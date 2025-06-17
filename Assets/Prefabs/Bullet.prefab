@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  power: 3
 --- !u!60 &6223255917221561823
 PolygonCollider2D:
   m_ObjectHideFlags: 0

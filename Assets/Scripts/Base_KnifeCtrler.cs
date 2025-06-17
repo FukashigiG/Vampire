@@ -5,6 +5,7 @@ using UnityEngine;
 public class Base_KnifeCtrler : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] int power;
 
     void Start()
     {
@@ -21,7 +22,7 @@ public class Base_KnifeCtrler : MonoBehaviour
     {
         if(collision.TryGetComponent(out IDamagable i_d))
         {
-            i_d.TakeDamage(1);
+            i_d.TakeDamage(power);
 
             Destroy(this.gameObject);
         }
