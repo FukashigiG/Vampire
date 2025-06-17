@@ -16,4 +16,14 @@ public class Base_KnifeCtrler : MonoBehaviour
     {
         transform.Translate(Vector2.up * speed * Time.fixedDeltaTime);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.TryGetComponent(out IDamagable i_d))
+        {
+            i_d.TakeDamage(1);
+
+            Destroy(this.gameObject);
+        }
+    }
 }
