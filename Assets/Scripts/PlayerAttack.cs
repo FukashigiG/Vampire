@@ -12,18 +12,23 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] LayerMask targetLayer;
 
-    bool a;
+    GameObject targetEnemy;
 
     void Start()
     {
+        AttackTask();
+    }
 
+    private void Update()
+    {
+        targetEnemy = FindEnemy();
     }
 
     async void AttackTask()
     {
         while (true)
         {
-            await UniTask.WaitUntil(() => a == true);
+            await UniTask.WaitUntil(() => targetEnemy != null);
 
             ShooteBullet();
 
@@ -56,6 +61,8 @@ public class PlayerAttack : MonoBehaviour
 
     void ShooteBullet()
     {
-        Instantiate(bullet, this.transform.position, Quaternion.identity);
+        Vector2 dir = (targetEnemy.transform.position - this.transform.position);
+
+        Instantiate(bullet, this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
     }
 }
