@@ -5,6 +5,7 @@ using UnityEngine;
 public class Base_KnifeCtrler : MonoBehaviour
 {
     [SerializeField] float speed;
+    [SerializeField] float lifeTime;
     [SerializeField] int power;
 
     void Start()
@@ -16,6 +17,10 @@ public class Base_KnifeCtrler : MonoBehaviour
     void FixedUpdate()
     {
         transform.Translate(Vector2.up * speed * Time.fixedDeltaTime);
+
+        lifeTime -= Time.fixedDeltaTime;
+
+        if(lifeTime <= 0 ) Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
