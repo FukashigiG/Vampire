@@ -14,7 +14,7 @@ public class GameAdmin : MonoBehaviour
     bool onGame;
 
     // 購読のライフサイクルを管理するためのDisposable
-    private CompositeDisposable disposables = new CompositeDisposable();
+    CompositeDisposable disposables = new CompositeDisposable();
 
     void Start()
     {
