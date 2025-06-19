@@ -8,14 +8,20 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] GameObject bullet;
 
     [SerializeField] float detectionRadius;
-    [SerializeField] float coolTime;
+    [SerializeField] float coolTime_ThrowKnife;
+    [SerializeField] float time_ReloadKnives;
 
     [SerializeField] LayerMask targetLayer;
 
     GameObject targetEnemy;
 
+    List<GameObject> availableKnifes = new List<GameObject>();
+
     void Start()
     {
+        availableKnifes.Add(bullet);
+        availableKnifes.Add(bullet);
+
         AttackTask();
     }
 
@@ -24,15 +30,18 @@ public class PlayerAttack : MonoBehaviour
         targetEnemy = FindEnemy();
     }
 
+    public void AddKnife(KnifeData x)
+    {
+        availableKnifes.Add(x.prefab);
+    }
+
     async void AttackTask()
     {
         while (true)
         {
-            await UniTask.WaitUntil(() => targetEnemy != null);
+            await UniTask.Delay((int)(time_ReloadKnives * 1000));
 
-            ShooteBullet();
-
-            await UniTask.Delay((int)(coolTime * 1000));
+            await ThrowKnives();
         }
     }
 
@@ -59,10 +68,17 @@ public class PlayerAttack : MonoBehaviour
         return nearestObject;
     }
 
-    void ShooteBullet()
+    async UniTask ThrowKnives()
     {
-        Vector2 dir = (targetEnemy.transform.position - this.transform.position);
+        for (int i = 0; i < availableKnifes.Count; i++)
+        {
+            await UniTask.WaitUntil(() => targetEnemy != null);
 
-        Instantiate(bullet, this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
+            Vector2 dir = (targetEnemy.transform.position - this.transform.position);
+
+            Instantiate(availableKnifes[i], this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
+
+            await UniTask.Delay((int)(coolTime_ThrowKnife * 1000));
+        }
     }
 }

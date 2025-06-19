@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Base_KnifeCtrler : MonoBehaviour
 {
-    [SerializeField] float speed;
-    [SerializeField] float lifeTime;
-    [SerializeField] int power;
+    [SerializeField] KnifeData knifeData;
+
+    float speed;
+    float lifeTime;
+    int power;
 
     void Start()
     {
-        
+        power = knifeData.power;
+
+        speed = 3;
+        lifeTime = 1;
     }
 
 

@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    //このスクリプトでは、プレイヤーの操作に関する処理を記述している
+
     [SerializeField] float moveSpeed;
 
     Rigidbody2D _rigidbody;

@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject enemy;
+    [SerializeField] GameObject bossEnemy;
 
     [SerializeField] float interval_Spawn;
 
@@ -24,5 +25,14 @@ public class EnemySpawner : MonoBehaviour
 
             await UniTask.Delay((int)(interval_Spawn * 1000));
         }
+    }
+
+    public GameObject SpawnBoss()
+    {
+        Vector2 randomPoint = Random.insideUnitCircle * 15;
+
+        var x = Instantiate(bossEnemy, randomPoint, Quaternion.identity);
+
+        return x;
     }
 }

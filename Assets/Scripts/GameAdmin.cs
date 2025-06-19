@@ -6,12 +6,17 @@ using UnityEngine;
 
 public class GameAdmin : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject player_Obj;
+    [SerializeField] GameObject spawner_Obj;
+
     [SerializeField] GameObject panel_LvUp;
 
     [SerializeField] int num_Wave;
+    [SerializeField] float minute_Wave;
 
     bool onGame;
+
+    EnemySpawner _spawner;
 
     // 購読のライフサイクルを管理するためのDisposable
     CompositeDisposable disposables = new CompositeDisposable();
@@ -20,7 +25,9 @@ public class GameAdmin : MonoBehaviour
     {
         onGame = true;
 
-        player.GetComponent<PlayerStatus>().lvUp.Subscribe(_ => ShowLevelUpUIAsync().Forget()).AddTo( disposables );
+        player_Obj.GetComponent<PlayerStatus>().lvUp.Subscribe(_ => ShowLevelUpUIAsync().Forget()).AddTo( disposables );
+
+        _spawner = spawner_Obj.GetComponent<EnemySpawner>();
 
         GameProgression().Forget();
     }
@@ -30,7 +37,14 @@ public class GameAdmin : MonoBehaviour
     {
         for (int i = 0; i < num_Wave; i++)
         {
-            await UniTask.Delay((int)(5000));
+            //2分待つ
+            await UniTask.Delay((int)(60 * minute_Wave * 1000));
+
+            var x = _spawner.SpawnBoss();
+
+            Debug.Log(i);
+
+            await UniTask.WaitUntil(() => x == null);
         }
 
         onGame = false;

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8647299246085379186}
   - component: {fileID: 6223255917221561823}
   m_Layer: 8
-  m_Name: Bullet
+  m_Name: Knife_P
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8233702, g: 0.3537736, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,9 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c265268871118274abdb6971d3c8f2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 14
-  lifeTime: 1
-  power: 3
+  knifeData: {fileID: 11400000, guid: 6414a74605b3f054cbcd4b041cb7ddfd, type: 2}
 --- !u!60 &6223255917221561823
 PolygonCollider2D:
   m_ObjectHideFlags: 0

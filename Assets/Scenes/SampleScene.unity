@@ -299,6 +299,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button_Option: {fileID: 4757622343610648202, guid: 2de89337c8d82cc4c8a54e08db822086, type: 3}
   buttonArea: {fileID: 1548298609}
+  allKnifeData:
+  - {fileID: 11400000, guid: 369865d53233e664585ae0cbf45b7ec3, type: 2}
+  - {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
+  - {fileID: 11400000, guid: e56215dabd3c06f45a96919a7a864598, type: 2}
+  - {fileID: 11400000, guid: 6414a74605b3f054cbcd4b041cb7ddfd, type: 2}
+  - {fileID: 11400000, guid: db9660f6b74bfd9468608ca8cb45c1e9, type: 2}
+  - {fileID: 11400000, guid: a01509043f2b4f44b82e72c70f2d0c0c, type: 2}
 --- !u!1 &142022628
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,7 +556,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 9031835482910408214, guid: b9079c8807b1cb94890d3272cb98e190, type: 3}
   detectionRadius: 4
-  coolTime: 0.8
+  coolTime_ThrowKnife: 0.4
+  time_ReloadKnives: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -603,6 +611,10 @@ MonoBehaviour:
   hp: 10
   gauge_EXP: {fileID: 306841715}
   requiredEXP_LvUp: 5
+  moveSpeed: 0
+  defense: 0
+  throwPower: 0
+  luck: 0
 --- !u!1 &306841713
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,7 +855,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000023841858, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: -0.00000047683716, y: 0.00000023841858, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -928,6 +940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 9151170032971857288, guid: c68f0e6b42a422e46866fb24c2666024, type: 3}
+  bossEnemy: {fileID: 9151170032971857288, guid: eb0f25b9613ab654ab4c06cdfb28d2a9, type: 3}
   interval_Spawn: 0.8
 --- !u!1 &806565752
 GameObject:
@@ -1150,7 +1163,7 @@ Transform:
   m_GameObject: {fileID: 1159856793}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000023841858, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: -0.00000047683716, y: 0.00000023841858, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1457,9 +1470,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81d33a91d6e0ff41a6603101e251399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 229048608}
+  player_Obj: {fileID: 229048608}
+  spawner_Obj: {fileID: 763625843}
   panel_LvUp: {fileID: 117317614}
   num_Wave: 4
+  minute_Wave: 0.3
 --- !u!1 &1820317366
 GameObject:
   m_ObjectHideFlags: 0

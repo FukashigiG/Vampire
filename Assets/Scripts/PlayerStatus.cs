@@ -10,6 +10,11 @@ public class PlayerStatus : Base_MobStatus
 
     [SerializeField] int requiredEXP_LvUp;
 
+    [SerializeField] int moveSpeed;
+    [SerializeField] int defense;
+    [SerializeField] int throwPower;
+    [SerializeField] int luck;
+
     int exp;
 
 

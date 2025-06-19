@@ -8,6 +8,8 @@ public class PlayerLvUpManager : MonoBehaviour
     [SerializeField] GameObject button_Option;
     [SerializeField] GameObject buttonArea;
 
+    [SerializeField] List<KnifeData> allKnifeData;
+
     private void OnEnable()
     {
         int num_Option = Random.Range(2, 6);
@@ -17,14 +19,18 @@ public class PlayerLvUpManager : MonoBehaviour
             //生成したボタンをxと置く
             var x =  Instantiate(button_Option, buttonArea.transform);
 
+            var y = DrawingKnives();
+
             //xのbuttonコンポーネントのonClickに反応してChoice関数を実行せよ
-            x.GetComponent<Button>().onClick.AddListener(Choice);
+            x.GetComponent<Button>().onClick.AddListener(() => Choice(y));
         }
     }
 
-    void Choice()
+    void Choice(KnifeData knifeData)
     {
-        //List<GameObject> _list = new List<GameObject>();
+        //プレイヤーに抽選されたナイフの追加
+        //流石にヤケクソ実装すぎるので修正必須
+        GameObject.Find("Player").GetComponent<PlayerAttack>().AddKnife(knifeData);
 
         //buttonAreaの子オブジェクトを全削除
         foreach (Transform button in buttonArea.transform)
@@ -32,12 +38,17 @@ public class PlayerLvUpManager : MonoBehaviour
             Destroy(button.gameObject);
         }
 
-        //foreach(GameObject button in _list)
-        //{
-        //    Destroy(button);
-        //}
-
         //パネルを閉じる
         this.gameObject.SetActive(false);
+    }
+
+    //ナイフの抽選
+    KnifeData DrawingKnives()
+    {
+        int x = Random.Range(0, allKnifeData.Count);
+
+        var y = allKnifeData[x];
+
+        return y;
     }
 }

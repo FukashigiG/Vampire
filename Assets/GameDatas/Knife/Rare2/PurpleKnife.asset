@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
+  m_Name: PurpleKnife
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 294745e3e5a377e47b407b6faa4511c0, type: 3}
+  Rarity: 2
+  power: 2
+  prefab: {fileID: 9031835482910408214, guid: fb36f7ee615a3fe4e938fba9d6cf2217, type: 3}
