@@ -541,7 +541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd9f72aaaccd8945831c7f59632ba12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
 --- !u!114 &229048614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,7 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 9031835482910408214, guid: b9079c8807b1cb94890d3272cb98e190, type: 3}
   detectionRadius: 4
-  coolTime_ThrowKnife: 0.4
+  coolTime_ThrowKnife: 0.3
   time_ReloadKnives: 1
   targetLayer:
     serializedVersion: 2
@@ -610,11 +609,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 10
   gauge_EXP: {fileID: 306841715}
+  playerCharaData: {fileID: 11400000, guid: 84e3045caecac934399e61f34d187921, type: 2}
   requiredEXP_LvUp: 5
-  moveSpeed: 0
-  defense: 0
-  throwPower: 0
-  luck: 0
 --- !u!1 &306841713
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +851,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000047683716, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: -0.00000023841858, y: 0.00000023841858, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1163,7 +1159,7 @@ Transform:
   m_GameObject: {fileID: 1159856793}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000047683716, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: -0.00000023841858, y: 0.00000023841858, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

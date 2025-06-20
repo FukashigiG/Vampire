@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: YelloKnife
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: aff3e3679a02be444962063e08d6265c, type: 3}
-  Rarity: 3
+  _name: "\u30A4\u30A8\u30ED\u30FC\u30CA\u30A4\u30D5"
+  rarity: 3
   power: 3
   prefab: {fileID: 9031835482910408214, guid: 1e57f995ea8a31140ab359e0988d6439, type: 3}

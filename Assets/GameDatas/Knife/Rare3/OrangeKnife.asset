@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: OrangeKnife
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: dd7d5b59571753148b19a33696546cdb, type: 3}
-  Rarity: 3
+  _name: "\u30AA\u30EC\u30F3\u30B8\u30CA\u30A4\u30D5"
+  rarity: 3
   power: 3
   prefab: {fileID: 9031835482910408214, guid: b9fd5649f2f47a641849fef7cdb86c6a, type: 3}

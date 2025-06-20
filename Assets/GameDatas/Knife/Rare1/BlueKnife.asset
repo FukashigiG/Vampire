@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BlueKnife
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 3afb1d6028784f94e8414edf5eeaf218, type: 3}
-  Rarity: 1
+  _name: "\u30D6\u30EB\u30FC\u30CA\u30A4\u30D5"
+  rarity: 1
   power: 1
   prefab: {fileID: 9031835482910408214, guid: b8d86c0cdb605df41a492e1043b4c880, type: 3}

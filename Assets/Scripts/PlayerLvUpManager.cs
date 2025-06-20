@@ -1,7 +1,9 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UniRx;
 
 public class PlayerLvUpManager : MonoBehaviour
 {
@@ -10,19 +12,34 @@ public class PlayerLvUpManager : MonoBehaviour
 
     [SerializeField] List<KnifeData> allKnifeData;
 
+    private void Start()
+    {
+        //ナイフ追加画面のボタンが押された際に、それを検知し関数を実行
+        Button_AddKnifeCtrler.clicked.Subscribe(xx => Choice(xx));
+    }
+
+
+    //パネルがActiveになったとき
     private void OnEnable()
     {
         int num_Option = Random.Range(2, 6);
 
+        //２～５個のボタンを用意
         for (int i = 0; i < num_Option; i++)
         {
             //生成したボタンをxと置く
-            var x =  Instantiate(button_Option, buttonArea.transform);
+            var buttonObj =  Instantiate(button_Option, buttonArea.transform);
 
-            var y = DrawingKnives();
+            //ランダムなナイフを選出
+            var randomKnife = DrawingKnives();
 
-            //xのbuttonコンポーネントのonClickに反応してChoice関数を実行せよ
-            x.GetComponent<Button>().onClick.AddListener(() => Choice(y));
+            //コンポーネントの取得
+            var buttonCtrler = buttonObj.GetComponent<Button_AddKnifeCtrler>();
+
+            //ボタンに選出したナイフの情報を渡す
+            buttonCtrler.SetInfo(randomKnife);
+
+            //ボタンが押された際の処理はStart()にて記載済み
         }
     }
 

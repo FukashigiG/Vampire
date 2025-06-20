@@ -14,6 +14,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
      * イベントを発行できるようになる
      * また、プレイヤー側で単一のSubjectを購読するだけで、
      * 全ての敵の撃破イベントをキャッチできる*/
+    //ゲーム終了時にはGameAdminにDisposeされる
 
     protected virtual void Start()
     {

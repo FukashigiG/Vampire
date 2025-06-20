@@ -7,10 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     //このスクリプトでは、プレイヤーの操作に関する処理を記述している
 
-    [SerializeField] float moveSpeed;
-
     Rigidbody2D _rigidbody;
     PlayerInput _input;
+    PlayerStatus _status;
 
     Vector2 inputValue;
 
@@ -18,6 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = GetComponent<PlayerInput>();
+        _status = GetComponent<PlayerStatus>();
     }
 
 
@@ -25,6 +25,6 @@ public class PlayerController : MonoBehaviour
     {
         inputValue = _input.actions["Move"].ReadValue<Vector2>();
 
-        _rigidbody.AddForce(inputValue * moveSpeed);
+        _rigidbody.AddForce(inputValue * _status.moveSpeed);
     }
 }

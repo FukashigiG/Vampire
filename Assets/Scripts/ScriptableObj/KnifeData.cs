@@ -5,7 +5,9 @@ public class KnifeData : ScriptableObject
 {
     public Sprite sprite;
 
-    public int Rarity;
+    public string _name;
+
+    public int rarity;
 
     public int power;
 

@@ -73,8 +73,12 @@ public class GameAdmin : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    //GameAdminの消失時、つまりゲームシーン終了時の処理
     private void OnDestroy()
     {
         disposables.Dispose();
+
+        Base_MobStatus.onDie.Dispose();
+        Button_AddKnifeCtrler.clicked.Dispose();
     }
 }
