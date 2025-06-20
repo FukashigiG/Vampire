@@ -31,6 +31,7 @@ public class PlayerStatus : Base_MobStatus
         base.Start();
 
         //各内部ステータスをPlayerCharaDataから代入
+        hitPoint = playerCharaData.hp;
         moveSpeed = playerCharaData.moveSpeed;
         defense = playerCharaData.defense;
         throwPower = playerCharaData.throwPower;

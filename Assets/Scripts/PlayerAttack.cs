@@ -76,7 +76,10 @@ public class PlayerAttack : MonoBehaviour
 
             Vector2 dir = (targetEnemy.transform.position - this.transform.position);
 
-            Instantiate(availableKnifes[i], this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
+            // ナイフを生成、それをxと置く
+            var x = Instantiate(availableKnifes[i], this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
+            // xを初期化
+            x.GetComponent<Base_KnifeCtrler>().Initialize(1);
 
             await UniTask.Delay((int)(coolTime_ThrowKnife * 1000));
         }

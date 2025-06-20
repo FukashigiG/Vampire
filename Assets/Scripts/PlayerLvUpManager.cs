@@ -37,7 +37,7 @@ public class PlayerLvUpManager : MonoBehaviour
             var buttonCtrler = buttonObj.GetComponent<Button_AddKnifeCtrler>();
 
             //ボタンに選出したナイフの情報を渡す
-            buttonCtrler.SetInfo(randomKnife);
+            buttonCtrler.Initialize(randomKnife);
 
             //ボタンが押された際の処理はStart()にて記載済み
         }

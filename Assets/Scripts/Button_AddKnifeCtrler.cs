@@ -22,7 +22,8 @@ public class Button_AddKnifeCtrler : MonoBehaviour
         button.onClick.AddListener(() => clicked.OnNext(knifeData));
     }
 
-    public void SetInfo(KnifeData x)
+    // ‰Šú‰»
+    public void Initialize(KnifeData x)
     {
         knifeData = x;
 

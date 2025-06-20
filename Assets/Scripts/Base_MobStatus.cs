@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class Base_MobStatus : MonoBehaviour, IDamagable
 {
-    [SerializeField] int hp;
-
-    public int hitPoint {  get; private set; }
+    public int hitPoint {  get; protected set; }
 
     public static Subject<int> onDie = new Subject<int>();
     /*static にすることで、どの Enemy インスタンスからでもこのSubjectにアクセスし、
@@ -18,7 +16,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
     protected virtual void Start()
     {
-        hitPoint = hp;
+        
     }
 
     public void TakeDamage(int a)
