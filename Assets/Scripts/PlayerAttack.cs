@@ -7,11 +7,12 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] GameObject bullet;
 
-    [SerializeField] float detectionRadius;
     [SerializeField] float coolTime_ThrowKnife;
     [SerializeField] float time_ReloadKnives;
 
     [SerializeField] LayerMask targetLayer;
+
+    PlayerStatus status;
 
     GameObject targetEnemy;
 
@@ -19,6 +20,8 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
+        status = GetComponent<PlayerStatus>();
+
         availableKnifes.Add(bullet);
         availableKnifes.Add(bullet);
 
@@ -49,7 +52,7 @@ public class PlayerAttack : MonoBehaviour
     {
 
         //一定範囲内の敵を配列に格納
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectionRadius, targetLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, status.eyeSight, targetLayer);
 
         GameObject nearestObject = null;
         float shortestDistance = Mathf.Infinity; // 無限大で初期化
@@ -79,7 +82,7 @@ public class PlayerAttack : MonoBehaviour
             // ナイフを生成、それをxと置く
             var x = Instantiate(availableKnifes[i], this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
             // xを初期化
-            x.GetComponent<Base_KnifeCtrler>().Initialize(1);
+            x.GetComponent<Base_KnifeCtrler>().Initialize(status.throwPower);
 
             await UniTask.Delay((int)(coolTime_ThrowKnife * 1000));
         }

@@ -1,8 +1,11 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameAdmin : MonoBehaviour
 {
@@ -11,8 +14,12 @@ public class GameAdmin : MonoBehaviour
 
     [SerializeField] GameObject panel_LvUp;
 
+    [SerializeField] Text txt_TimeLimit_Wave;
+
     [SerializeField] int num_Wave;
     [SerializeField] float minute_Wave;
+
+    CancellationTokenSource _cancellationTokenSource;
 
     bool onGame;
 
@@ -37,17 +44,51 @@ public class GameAdmin : MonoBehaviour
     {
         for (int i = 0; i < num_Wave; i++)
         {
-            //2分待つ
-            await UniTask.Delay((int)(60 * minute_Wave * 1000));
+            //ウェーブの時間待つ
+            await WaitWithWave(minute_Wave);
 
+            //ボス生成
             var x = _spawner.SpawnBoss();
 
-            Debug.Log(i);
-
+            // ボス討伐まで待つ
             await UniTask.WaitUntil(() => x == null);
         }
 
+        // ステージクリア
         onGame = false;
+    }
+
+    async UniTask WaitWithWave(float min)
+    {
+        float sec = min * 60;
+        float remainingTime = sec;
+
+        // UIのTextを直接更新する匿名関数
+        IProgress<float> progress = new Progress<float>(value =>
+        {
+            TimeSpan ts = TimeSpan.FromSeconds(value);
+            txt_TimeLimit_Wave.text = $"{ts.Minutes:00}:{ts.Seconds:00}";
+        });
+
+        try
+        {
+            while(remainingTime > 0)
+            {
+                await UniTask.Yield();
+                remainingTime -= Time.deltaTime;
+
+                // 進行状況を報告
+                progress.Report(remainingTime);
+            }
+        }
+        catch(OperationCanceledException)
+        {
+            // 例外処理
+        }
+        finally
+        {
+            // 最後に
+        }
     }
 
     async UniTask ShowLevelUpUIAsync()
@@ -77,6 +118,9 @@ public class GameAdmin : MonoBehaviour
     private void OnDestroy()
     {
         disposables.Dispose();
+
+        _cancellationTokenSource?.Cancel();
+        _cancellationTokenSource?.Dispose();
 
         Base_MobStatus.onDie.Dispose();
         Button_AddKnifeCtrler.clicked.Dispose();

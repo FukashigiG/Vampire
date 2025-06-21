@@ -16,6 +16,7 @@ public class PlayerStatus : Base_MobStatus
     public float defense {  get; private set; }
     public float throwPower { get; private set; }
     public float luck {  get; private set; }
+    public float eyeSight {  get; private set; }
 
     int exp;
 
@@ -36,6 +37,7 @@ public class PlayerStatus : Base_MobStatus
         defense = playerCharaData.defense;
         throwPower = playerCharaData.throwPower;
         luck = playerCharaData.luck;
+        eyeSight = playerCharaData.eyeSight;
 
         //”CˆÓ‚Ì“G‚ªŽ€‚ñ‚¾‚çEXPƒQƒbƒg
         EnemyStatus.onDie.Subscribe(x => GetEXP(x)).AddTo( disposables );

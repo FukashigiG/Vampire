@@ -13,6 +13,7 @@ public class PlayerCharaData : ScriptableObject
     public float luck;
     public float throwPower;
     public float defense;
+    public float eyeSight;
 
     public GameObject prefab;
 }
