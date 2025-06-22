@@ -19,7 +19,8 @@ public class GameAdmin : MonoBehaviour
     [SerializeField] int num_Wave;
     [SerializeField] float minute_Wave;
 
-    CancellationTokenSource _cancellationTokenSource;
+    CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+    CancellationToken _cancellationToken;
 
     bool onGame;
 
@@ -30,6 +31,8 @@ public class GameAdmin : MonoBehaviour
 
     void Start()
     {
+        _cancellationToken = _cancellationTokenSource.Token;
+
         onGame = true;
 
         player_Obj.GetComponent<PlayerStatus>().lvUp.Subscribe(_ => ShowLevelUpUIAsync().Forget()).AddTo( disposables );
@@ -45,20 +48,34 @@ public class GameAdmin : MonoBehaviour
         for (int i = 0; i < num_Wave; i++)
         {
             //ウェーブの時間待つ
-            await WaitWithWave(minute_Wave);
+            await WaitWithWave(minute_Wave, _cancellationToken);
+            // キャンセル済みかチェック
+            _cancellationToken.ThrowIfCancellationRequested();
 
-            //ボス生成
+            // UI更新を正しく行うための1フレ待ち
+            await UniTask.Yield(PlayerLoopTiming.Update);
+
+            // ボス生成
             var x = _spawner.SpawnBoss();
 
+            if(txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス出現";
+
             // ボス討伐まで待つ
-            await UniTask.WaitUntil(() => x == null);
+            await UniTask.WaitUntil(() => x == null, PlayerLoopTiming.Update, _cancellationToken);
+            _cancellationToken.ThrowIfCancellationRequested();
+
+            if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス撃破";
+
+            // 1秒待つ
+            await UniTask.Delay(1000, ignoreTimeScale: false, PlayerLoopTiming.Update, _cancellationToken);
+            _cancellationToken.ThrowIfCancellationRequested();
         }
 
         // ステージクリア
         onGame = false;
     }
 
-    async UniTask WaitWithWave(float min)
+    async UniTask WaitWithWave(float min, CancellationToken token)
     {
         float sec = min * 60;
         float remainingTime = sec;
@@ -66,6 +83,8 @@ public class GameAdmin : MonoBehaviour
         // UIのTextを直接更新する匿名関数
         IProgress<float> progress = new Progress<float>(value =>
         {
+            //if (txt_TimeLimit_Wave == null) return;
+
             TimeSpan ts = TimeSpan.FromSeconds(value);
             txt_TimeLimit_Wave.text = $"{ts.Minutes:00}:{ts.Seconds:00}";
         });
@@ -74,7 +93,13 @@ public class GameAdmin : MonoBehaviour
         {
             while(remainingTime > 0)
             {
-                await UniTask.Yield();
+                // 1フレ待つ
+                // "PlayerLoopTiming.Update"をつけると「更新タイミングをUnityのUpDate関数に合わせる」
+                //（処理はUpdate前に処理される）
+                await UniTask.Yield(PlayerLoopTiming.Update, token);
+                token.ThrowIfCancellationRequested();
+
+                // 残り時間の更新
                 remainingTime -= Time.deltaTime;
 
                 // 進行状況を報告

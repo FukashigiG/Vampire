@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UniRx;
 
 public class Button_AddKnifeCtrler : MonoBehaviour
 {
-    [SerializeField] Text txt_Name;
     [SerializeField] Image image_Sprite;
 
     [SerializeField] Button button;
+
+    Animator _animator;
 
     KnifeData knifeData;
 
@@ -19,6 +21,8 @@ public class Button_AddKnifeCtrler : MonoBehaviour
 
     void Start()
     {
+        _animator = GetComponent<Animator>();
+
         button.onClick.AddListener(() => clicked.OnNext(knifeData));
     }
 
@@ -27,7 +31,20 @@ public class Button_AddKnifeCtrler : MonoBehaviour
     {
         knifeData = x;
 
-        txt_Name.text = knifeData.name;
         image_Sprite.sprite = knifeData.sprite;
+    }
+
+    // カーソルが合ったとき
+    public void OnPointerEnter(PointerEventData data)
+    {
+        _animator?.SetBool("highlighted", true);
+
+        Debug.Log("dfd");
+    }
+
+    // カーソルが外れたとき
+    public void OnPointerExit(PointerEventData data)
+    {
+        _animator?.SetBool("highlighted", true);
     }
 }

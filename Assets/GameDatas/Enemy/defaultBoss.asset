@@ -9,15 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf4a92988800192408927d5db7966ed4, type: 3}
-  m_Name: theLayMan
+  m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
+  m_Name: defaultBoss
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  _name: "\u30B6\u30FB\u30EC\u30A4\u30DE\u30F3"
-  hp: 10
-  moveSpeed: 7
-  luck: 1
-  throwPower: 8
-  defense: 1
-  eyeSight: 4
-  prefab: {fileID: 0}
+  _name: defBoss
+  hp: 30
+  moveSpeed: 2.6
+  defense: 0
+  prefab: {fileID: 9151170032971857288, guid: c68f0e6b42a422e46866fb24c2666024, type: 3}
