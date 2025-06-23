@@ -6,11 +6,11 @@ public class Base_KnifeCtrler : MonoBehaviour
 {
     [SerializeField] KnifeData knifeData;
 
-    float speed;
-    float lifeTime;
-    int power;
+    protected float speed;
+    protected float lifeTime;
+    protected int power;
 
-    void Start()
+    protected virtual void Start()
     {
         power = knifeData.power;
 
@@ -23,7 +23,7 @@ public class Base_KnifeCtrler : MonoBehaviour
         speed = s;
     }
 
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         // 進む
         transform.Translate(Vector2.up * speed * Time.fixedDeltaTime);
@@ -33,7 +33,7 @@ public class Base_KnifeCtrler : MonoBehaviour
         if(lifeTime <= 0 ) Destroy(this.gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         // もし当たったもんがダメージを受けるものだったらダメージ
         if(collision.TryGetComponent(out IDamagable i_d))

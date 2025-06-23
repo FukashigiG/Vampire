@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UniRx;
 
-public class Button_AddKnifeCtrler : MonoBehaviour
+public class Button_AddKnifeCtrler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Image image_Sprite;
 
@@ -45,6 +45,6 @@ public class Button_AddKnifeCtrler : MonoBehaviour
     // カーソルが外れたとき
     public void OnPointerExit(PointerEventData data)
     {
-        _animator?.SetBool("highlighted", true);
+        _animator?.SetBool("highlighted", false);
     }
 }
