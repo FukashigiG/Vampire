@@ -6,6 +6,7 @@ using UnityEngine;
 public class Base_MobStatus : MonoBehaviour, IDamagable
 {
     public int hitPoint {  get; protected set; }
+    public int defence {  get; protected set; }
 
     public static Subject<int> onDie = new Subject<int>();
     /*static にすることで、どの Enemy インスタンスからでもこのSubjectにアクセスし、
@@ -19,7 +20,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         
     }
 
-    public void TakeDamage(int a)
+    public virtual void TakeDamage(int a, Vector2 damagedPosi)
     {
         hitPoint -= a;
 

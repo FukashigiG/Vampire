@@ -15,6 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   _name: def
   hp: 3
-  moveSpeed: 3
   defense: 0
+  moveSpeed: 3
+  weight: 1
   prefab: {fileID: 9151170032971857288, guid: c68f0e6b42a422e46866fb24c2666024, type: 3}

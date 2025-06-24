@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 449099179641164914}
   - component: {fileID: 7319939396980895283}
   - component: {fileID: 1487854396973117586}
+  - component: {fileID: 2287444921370097606}
   m_Layer: 5
   m_Name: Txt_Damage
   m_TagString: Untagged
@@ -79,3 +80,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 20
+--- !u!114 &2287444921370097606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8935918345617990812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8507fb35a6168fe40806a0320d17ca1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txt: {fileID: 1487854396973117586}
+  life: 0.75

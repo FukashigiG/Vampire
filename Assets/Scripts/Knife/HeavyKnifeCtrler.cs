@@ -21,7 +21,7 @@ public class HeavyKnifeCtrler : Base_KnifeCtrler
             if (hit.TryGetComponent(out IDamagable i_d))
             {
                 // power‚Ì”¼•ª‚Ìƒ_ƒ[ƒW‚ğ—^‚¦‚é
-                i_d.TakeDamage(power / 2);
+                i_d.TakeDamage(power / 2, transform.position);
             }
         }
     }

@@ -10,7 +10,7 @@ public class SharpKnifeCtrler : Base_KnifeCtrler
         // もし当たったもんがダメージを受けるものだったらダメージ
         if (collision.TryGetComponent(out IDamagable i_d))
         {
-            i_d.TakeDamage(power);
+            i_d.TakeDamage(power, transform.position);
 
             // 当たった時このオブジェクトをDestroyする処理を削除したため、貫通するようになってる
         }

@@ -38,7 +38,7 @@ public class Base_KnifeCtrler : MonoBehaviour
         // もし当たったもんがダメージを受けるものだったらダメージ
         if(collision.TryGetComponent(out IDamagable i_d))
         {
-            i_d.TakeDamage(power);
+            i_d.TakeDamage(power, transform.position);
 
             Destroy(this.gameObject);
         }

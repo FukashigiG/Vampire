@@ -77,7 +77,7 @@ public class PlayerAttack : MonoBehaviour
         {
             await UniTask.WaitUntil(() => targetEnemy != null);
 
-            Vector2 dir = (targetEnemy.transform.position - this.transform.position);
+            Vector2 dir = (targetEnemy.transform.position - this.transform.position).normalized;
 
             // ナイフを生成、それをxと置く
             var x = Instantiate(availableKnifes[i], this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));

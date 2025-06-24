@@ -12,4 +12,7 @@ public class KnifeData : ScriptableObject
     public int power;
 
     public GameObject prefab;
+
+    // ↓をつけるとエディタ上で長いテキストも扱いやすくなる
+    [Multiline(6)] public string description;
 }

@@ -17,3 +17,4 @@ MonoBehaviour:
   rarity: 1
   power: 1
   prefab: {fileID: 9031835482910408214, guid: b8d86c0cdb605df41a492e1043b4c880, type: 3}
+  description: "\u30C6\u30B9\u30C8\u7528\u30C7\u30FC\u30BF\u306E\u4E00\u3064"

@@ -9,6 +9,8 @@ public class Button_AddKnifeCtrler : MonoBehaviour, IPointerEnterHandler, IPoint
 {
     [SerializeField] Image image_Sprite;
 
+    [SerializeField] GameObject detailWindow;
+
     [SerializeField] Button button;
 
     Animator _animator;
@@ -32,19 +34,29 @@ public class Button_AddKnifeCtrler : MonoBehaviour, IPointerEnterHandler, IPoint
         knifeData = x;
 
         image_Sprite.sprite = knifeData.sprite;
+
+        detailWindow.GetComponent<AKBtn_Detail>().Initialize(knifeData);
     }
 
     // カーソルが合ったとき
     public void OnPointerEnter(PointerEventData data)
     {
+        // アニメーション
         _animator?.SetBool("highlighted", true);
 
-        Debug.Log("dfd");
+        // 詳細ウインドウの表示
+        detailWindow.SetActive(true);
+
+        // ヒエラルキーで最下に移動する
+        // →前面に表示される
+        transform.SetAsLastSibling();
     }
 
     // カーソルが外れたとき
     public void OnPointerExit(PointerEventData data)
     {
         _animator?.SetBool("highlighted", false);
+
+        detailWindow.SetActive(false);
     }
 }
