@@ -40,8 +40,6 @@ public class Base_KnifeCtrler : MonoBehaviour
         {
             bool shouldDestroyThis = true;
 
-            ms.TakeDamage(power, transform.position);
-
             foreach(var SpEffect in knifeData.specialEffects)
             {
                 if(SpEffect != null)
@@ -49,10 +47,13 @@ public class Base_KnifeCtrler : MonoBehaviour
                     SpEffect.OnHitSpecialEffect(ms);
 
                     if(SpEffect.DestroyBullet == false) shouldDestroyThis = false;
+                    if (SpEffect.IgnoreDefence == true) power += ms.defence;
                 }
             }
 
-            if(shouldDestroyThis) Destroy(this.gameObject);
+            ms.TakeDamage(power, transform.position);
+
+            if (shouldDestroyThis) Destroy(this.gameObject);
         }
     }
 }

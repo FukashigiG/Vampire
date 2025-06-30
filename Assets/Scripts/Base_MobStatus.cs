@@ -29,7 +29,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
 
     public virtual void MoveSpeedDebuff(float duration, float amount)
     {
-
+        
     }
     public virtual void AttackDebuff(float duration, float amount)
     {
