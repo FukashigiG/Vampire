@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class Base_MobStatus : MonoBehaviour, IDamagable
+public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
 {
     public int hitPoint {  get; protected set; }
     public int defence {  get; protected set; }
@@ -25,6 +25,19 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         hitPoint -= a;
 
         if (hitPoint <= 0) Die();
+    }
+
+    public virtual void MoveSpeedDebuff(float duration, float amount)
+    {
+
+    }
+    public virtual void AttackDebuff(float duration, float amount)
+    {
+
+    }
+    public virtual void DefenceDebuff(float duration, float amount)
+    {
+
     }
 
     protected virtual void Die()

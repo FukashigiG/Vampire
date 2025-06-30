@@ -35,12 +35,24 @@ public class Base_KnifeCtrler : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        // もし当たったもんがダメージを受けるものだったらダメージ
-        if(collision.TryGetComponent(out IDamagable i_d))
+        // もし当たったものがダメージを受けるものだったらダメージを与える
+        if(collision.TryGetComponent(out Base_MobStatus ms))
         {
-            i_d.TakeDamage(power, transform.position);
+            bool shouldDestroyThis = true;
 
-            Destroy(this.gameObject);
+            ms.TakeDamage(power, transform.position);
+
+            foreach(var SpEffect in knifeData.specialEffects)
+            {
+                if(SpEffect != null)
+                {
+                    SpEffect.OnHitSpecialEffect(ms);
+
+                    if(SpEffect.DestroyBullet == false) shouldDestroyThis = false;
+                }
+            }
+
+            if(shouldDestroyThis) Destroy(this.gameObject);
         }
     }
 }

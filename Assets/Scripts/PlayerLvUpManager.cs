@@ -27,7 +27,7 @@ public class PlayerLvUpManager : MonoBehaviour
         //２～５個のボタンを用意
         for (int i = 0; i < num_Option; i++)
         {
-            //生成したボタンをxと置く
+            //生成したボタンをbuttonObjと置く
             var buttonObj =  Instantiate(button_Option, buttonArea.transform);
 
             //ランダムなナイフを選出
@@ -40,6 +40,29 @@ public class PlayerLvUpManager : MonoBehaviour
             buttonCtrler.Initialize(randomKnife);
 
             //ボタンが押された際の処理はStart()にて記載済み
+
+            // 位置を変更
+
+            float x;
+
+            switch (num_Option)
+            {
+                case 2:
+                    x = 500;
+                    break;
+
+                case 3:
+                    x = 650;
+                    break;
+
+                default:
+                    x = 800;
+                    break;
+            }
+
+            float y = x / (num_Option - 1);
+
+            buttonObj.GetComponent<RectTransform>().anchoredPosition = new Vector2(y * i - x / 2, 0);
         }
     }
 
