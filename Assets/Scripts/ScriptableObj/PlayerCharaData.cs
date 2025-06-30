@@ -8,11 +8,11 @@ public class PlayerCharaData : ScriptableObject
     public string _name;
 
     public int hp;
+    public int defense;
 
     public float moveSpeed;
     public float luck;
     public float throwPower;
-    public float defense;
     public float eyeSight;
 
     public GameObject prefab;

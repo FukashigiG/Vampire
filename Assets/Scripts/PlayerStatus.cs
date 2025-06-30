@@ -12,8 +12,6 @@ public class PlayerStatus : Base_MobStatus
 
     [SerializeField] int requiredEXP_LvUp;
 
-    public float moveSpeed {  get; private set; }
-    public float defense {  get; private set; }
     public float throwPower { get; private set; }
     public float luck {  get; private set; }
     public float eyeSight {  get; private set; }
@@ -33,8 +31,8 @@ public class PlayerStatus : Base_MobStatus
 
         //各内部ステータスをPlayerCharaDataから代入
         hitPoint = playerCharaData.hp;
+        defence = playerCharaData.defense;
         moveSpeed = playerCharaData.moveSpeed;
-        defense = playerCharaData.defense;
         throwPower = playerCharaData.throwPower;
         luck = playerCharaData.luck;
         eyeSight = playerCharaData.eyeSight;

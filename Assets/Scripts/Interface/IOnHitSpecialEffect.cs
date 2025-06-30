@@ -6,7 +6,8 @@ using UnityEngine;
 public interface IOnHitSpecialEffect
 {
 
-    bool DestroyBullet { get; }
+    bool dontDestroyBullet { get; }
+    bool IgnoreDefence { get; }
 
     void OnHitSpecialEffect(Base_MobStatus status);
 }

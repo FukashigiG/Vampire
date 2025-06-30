@@ -5,9 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewHSpE", menuName = "Game Data/HSpE/penetration")]
 public class HSpE_Penetration : BaseHSpE
 {
-    public override bool DestroyBullet
+    // dontDestroyBullet‚ğtrue‚Éã‘‚«‚·‚é‚±‚Æ‚ÅŠÑ’Ê‚ğ‹–‰Â
+    public override bool dontDestroyBullet
     {
-        get { return false; }
+        get { return true; }
     }
 
     public override void OnHitSpecialEffect(Base_MobStatus status)

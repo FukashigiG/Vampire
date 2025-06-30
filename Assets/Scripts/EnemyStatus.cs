@@ -17,6 +17,7 @@ public class EnemyStatus : Base_MobStatus
         hitPoint = _enemyData.hp;
         defence = _enemyData.defense;
         weight = _enemyData.weight;
+        moveSpeed = _enemyData.moveSpeed;
     }
 
     public override void TakeDamage(int a, Vector2 damagedPosi)

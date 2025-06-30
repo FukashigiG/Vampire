@@ -7,9 +7,9 @@ public class BaseHSpE : ScriptableObject, IOnHitSpecialEffect
 {
     public string effectName;
 
-    public virtual bool DestroyBullet
+    public virtual bool dontDestroyBullet
     {
-        get { return true; }
+        get { return false; }
     }
 
     public virtual bool IgnoreDefence

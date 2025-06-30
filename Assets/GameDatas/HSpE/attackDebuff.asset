@@ -9,15 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf4a92988800192408927d5db7966ed4, type: 3}
-  m_Name: theLayMan
+  m_Script: {fileID: 11500000, guid: 99e3abe2d83798446a79662ad9c82b10, type: 3}
+  m_Name: attackDebuff
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  _name: "\u30B6\u30FB\u30EC\u30A4\u30DE\u30F3"
-  hp: 10
-  defense: 1
-  moveSpeed: 7
-  luck: 1
-  throwPower: 12
-  eyeSight: 4
-  prefab: {fileID: 0}
+  effectName: "\u5175\u6756\u7815\u304D"
+  description: "\u653B\u6483\u529B\u3092\u4E0B\u3052\u308B"
+  dulation: 1
+  amount: 0.5

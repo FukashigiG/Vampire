@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Base_EnemyCtrler : MonoBehaviour
 {
-    [SerializeField] float moveSpeed;
-
     [SerializeField] LayerMask targetLayer;
 
     Transform target;
+
+    EnemyStatus _enemyStatus;
 
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.Find("Player").transform;
+
+        _enemyStatus = GetComponent<EnemyStatus>();
     }
 
     // Update is called once per frame
@@ -21,6 +23,6 @@ public class Base_EnemyCtrler : MonoBehaviour
     {
         Vector2 dir = (target.position - this.transform.position).normalized;
 
-        transform.Translate(dir * moveSpeed * Time.fixedDeltaTime);
+        transform.Translate(dir * _enemyStatus.moveSpeed * Time.fixedDeltaTime);
     }
 }

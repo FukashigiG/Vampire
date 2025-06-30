@@ -8,6 +8,8 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
     public int hitPoint {  get; protected set; }
     public int defence {  get; protected set; }
 
+    public float moveSpeed { get; protected set; }
+
     public static Subject<int> onDie = new Subject<int>();
     /*static にすることで、どの Enemy インスタンスからでもこのSubjectにアクセスし、
      * イベントを発行できるようになる
@@ -29,7 +31,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
 
     public virtual void MoveSpeedDebuff(float duration, float amount)
     {
-        
+        moveSpeed *= amount;
     }
     public virtual void AttackDebuff(float duration, float amount)
     {
