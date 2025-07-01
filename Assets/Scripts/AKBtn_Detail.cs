@@ -24,7 +24,18 @@ public class AKBtn_Detail : MonoBehaviour
         t_Name.text = knifeData.name;
         t_Rare.text = "Rarity : " + knifeData.rarity;
         t_Power.text = "Attack : " + knifeData.power;
-        t_Description.text = knifeData.description;
+
+        t_Description.text = ""; // èâä˙âª
+
+        foreach (var effect in knifeData.specialEffects)
+        {
+            if(effect != null)
+            {
+                t_Description.text += effect.effectName + "\n";
+            }
+        }
+
+        t_Description.text += knifeData.description;
 
     }
 }
