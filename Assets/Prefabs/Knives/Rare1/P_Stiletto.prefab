@@ -146,4 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c265268871118274abdb6971d3c8f2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knifeData: {fileID: 11400000, guid: 6f3c7905e41af7149ae2c2b34ee14fc9, type: 2}
+  knifeData: {fileID: 11400000, guid: e3796f498a0e33b4fb633e37c0bda146, type: 2}

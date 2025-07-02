@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   _name: defBoss
-  hp: 30
-  defense: 1
+  hp: 200
+  defense: 35
   moveSpeed: 1
   weight: 5
   prefab: {fileID: 9151170032971857288, guid: c68f0e6b42a422e46866fb24c2666024, type: 3}
