@@ -9,5 +9,5 @@ public interface IOnHitSpecialEffect
     bool dontDestroyBullet { get; }
     bool IgnoreDefence { get; }
 
-    void OnHitSpecialEffect(Base_MobStatus status);
+    void OnHitSpecialEffect(Base_MobStatus status, Vector2 position);
 }

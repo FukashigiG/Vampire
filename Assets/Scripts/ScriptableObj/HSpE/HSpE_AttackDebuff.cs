@@ -8,7 +8,7 @@ public class HSpE_AttackDebuff : BaseHSpE
     public float dulation;
     public float amount;
 
-    public override void OnHitSpecialEffect(Base_MobStatus status)
+    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi)
     {
         status.AttackDebuff(dulation, amount);
     }

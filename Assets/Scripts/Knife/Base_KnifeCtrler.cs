@@ -46,7 +46,7 @@ public class Base_KnifeCtrler : MonoBehaviour
                 if(SpEffect != null)
                 {
                     // ƒqƒbƒg‚Ì“Áêˆ—‚ğÀs
-                    SpEffect.OnHitSpecialEffect(ms);
+                    SpEffect.OnHitSpecialEffect(ms, transform.position);
 
                     // ŠÑ’Ê‚ª‹–‰Â‚³‚ê‚Ä‚¢‚é‚È‚ç
                     if(SpEffect.dontDestroyBullet == true) shouldDestroyThis = false;

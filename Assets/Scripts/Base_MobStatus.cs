@@ -9,6 +9,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
     public int defence {  get; protected set; }
 
     public float moveSpeed { get; protected set; }
+    public float weight { get; protected set; }
 
     public static Subject<int> onDie = new Subject<int>();
     /*static にすることで、どの Enemy インスタンスからでもこのSubjectにアクセスし、
@@ -27,6 +28,13 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
         hitPoint -= a;
 
         if (hitPoint <= 0) Die();
+    }
+
+    public virtual void KnockBack(Vector2 damagedPosi, float power)
+    {
+        // ノックバック
+        var damageDir = (damagedPosi - (Vector2)transform.position).normalized;
+        transform.Translate(damageDir * -1 * power * (1 / (1 + weight)));
     }
 
     public virtual void MoveSpeedDebuff(float duration, float amount)

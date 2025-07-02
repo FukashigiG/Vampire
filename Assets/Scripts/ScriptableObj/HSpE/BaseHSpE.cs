@@ -17,7 +17,7 @@ public class BaseHSpE : ScriptableObject, IOnHitSpecialEffect
         get { return false; }
     }
 
-    public virtual void OnHitSpecialEffect(Base_MobStatus status)
+    public virtual void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi)
     {
 
     }

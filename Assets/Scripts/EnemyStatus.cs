@@ -8,8 +8,6 @@ public class EnemyStatus : Base_MobStatus
 
     [SerializeField] GameObject damageTxt;
 
-    float weight;
-
     protected override void Start()
     {
         base.Start();
@@ -25,10 +23,6 @@ public class EnemyStatus : Base_MobStatus
         a -= defence;
 
         base.TakeDamage(a, damagedPosi);
-
-        // ノックバック
-        var damageDir = (damagedPosi - (Vector2)transform.position).normalized;
-        transform.Translate(damageDir * -1 * (1 / (1 + weight)));
 
         //ダメージテキストを出す処理
         Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, transform.position);
