@@ -21,7 +21,7 @@ public class AKBtn_Detail : MonoBehaviour
     {
         knifeData = data;
 
-        t_Name.text = knifeData.name;
+        t_Name.text = knifeData._name;
         t_Rare.text = "Rarity : " + knifeData.rarity;
         t_Power.text = "Attack : " + knifeData.power;
 
@@ -31,7 +31,7 @@ public class AKBtn_Detail : MonoBehaviour
         {
             if(effect != null)
             {
-                t_Description.text += effect.effectName + "\n";
+                t_Description.text += "<color=#CCD900>" + effect.effectName + "</color>\n";
             }
         }
 
