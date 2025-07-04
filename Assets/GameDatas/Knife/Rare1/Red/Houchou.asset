@@ -19,4 +19,5 @@ MonoBehaviour:
   power: 40
   prefab: {fileID: 9031835482910408214, guid: 84bef47b0e1e7f34aa20010ef06beffb, type: 3}
   description: 
-  specialEffects: []
+  specialEffects:
+  - {fileID: 11400000, guid: 249e96673c14ceb42938269bb32e3a14, type: 2}

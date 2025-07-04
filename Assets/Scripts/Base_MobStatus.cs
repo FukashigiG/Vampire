@@ -30,10 +30,11 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
         if (hitPoint <= 0) Die();
     }
 
+    // ノックバック
     public virtual void KnockBack(Vector2 damagedPosi, float power)
     {
-        // ノックバック
         var damageDir = (damagedPosi - (Vector2)transform.position).normalized;
+
         transform.Translate(damageDir * -1 * power * (1 / (1 + weight)));
     }
 
@@ -50,7 +51,17 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
 
     }
 
-    protected virtual void Die()
+    public virtual void Blaze(float duration)
+    {
+
+    }
+
+    public virtual void Freeze(float duration)
+    {
+
+    }
+
+    public virtual void Die()
     {
         onDie.OnNext(1);
 

@@ -57,7 +57,7 @@ public class Base_KnifeCtrler : MonoBehaviour
                 }
             }
 
-            ms.TakeDamage(power, transform.position);
+            ms?.TakeDamage(power, transform.position);
 
             if (shouldDestroyThis) Destroy(this.gameObject);
         }

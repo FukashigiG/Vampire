@@ -20,7 +20,7 @@ public class BaseHSpE : ScriptableObject, IOnHitSpecialEffect
     public virtual bool critical
     {
         get { return false; }
-        set { critical = false; }
+        set { }
     }
 
     public virtual void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi)
