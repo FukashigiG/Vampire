@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
-  m_Name: P_Stiletto
+  m_Name: Stiletto
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: a3932cd3b570d0a409114dcc18ea6244, type: 3}
   _name: "\u30B9\u30C6\u30A3\u30EC\u30C3\u30C8"
-  rarity: 2
+  rarity: 1
+  attribute: 2
   power: 40
   prefab: {fileID: 9031835482910408214, guid: ee5a31e3c90a4674f8af63905b6abc50, type: 3}
-  description: "\u30D7\u30ED\u30C8\u30BF\u30A4\u30D7\u30E2\u30C7\u30EB\u306E\u4E00\u7A2E\n\u9632\u5FA1\u3092\u7121\u8996\u3057\u3066\u653B\u6483\u3067\u304D\u308B"
+  description: 
   specialEffects:
   - {fileID: 11400000, guid: ea2a3eb34be66c5458dd64e4e09a0e78, type: 2}

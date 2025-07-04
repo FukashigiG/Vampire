@@ -51,7 +51,9 @@ public class Base_KnifeCtrler : MonoBehaviour
                     // 貫通が許可されているなら
                     if(SpEffect.dontDestroyBullet == true) shouldDestroyThis = false;
                     // 防御無視が許可されているなら
-                    if (SpEffect.IgnoreDefence == true) power += ms.defence; // 防御力分を上乗せすることで実質無視
+                    if (SpEffect.ignoreDefence == true) power += ms.defence; // 防御力分を上乗せすることで実質無視
+                    // クリティカルなら
+                    if (SpEffect.critical == true) power *= 2;
                 }
             }
 

@@ -7,6 +7,7 @@ public class AKBtn_Detail : MonoBehaviour
 {
     [SerializeField] Text t_Name;
     [SerializeField] Text t_Rare;
+    [SerializeField] Text t_Attribute;
     [SerializeField] Text t_Power;
     [SerializeField] Text t_Description;
 
@@ -23,6 +24,7 @@ public class AKBtn_Detail : MonoBehaviour
 
         t_Name.text = knifeData._name;
         t_Rare.text = "Rarity : " + knifeData.rarity;
+        t_Attribute.text = "Attribute : " + knifeData.attribute;
         t_Power.text = "Attack : " + knifeData.power;
 
         t_Description.text = ""; // èâä˙âª

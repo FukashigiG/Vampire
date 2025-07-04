@@ -3,11 +3,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="NewWeaponData", menuName = "Game Data/Weapon Data")]
 public class KnifeData : ScriptableObject
 {
+    public enum AttributeEnum
+    {
+        white, red, blue, yellow
+    }
+
     public Sprite sprite;
 
     public string _name;
 
     public int rarity;
+
+    public AttributeEnum attribute;
 
     public int power;
 

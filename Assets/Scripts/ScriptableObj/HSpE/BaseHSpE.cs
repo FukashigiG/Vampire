@@ -12,9 +12,15 @@ public class BaseHSpE : ScriptableObject, IOnHitSpecialEffect
         get { return false; }
     }
 
-    public virtual bool IgnoreDefence
+    public virtual bool ignoreDefence
     {
         get { return false; }
+    }
+
+    public virtual bool critical
+    {
+        get { return false; }
+        set { critical = false; }
     }
 
     public virtual void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi)

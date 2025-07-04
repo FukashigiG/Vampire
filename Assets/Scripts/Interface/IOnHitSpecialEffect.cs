@@ -7,7 +7,8 @@ public interface IOnHitSpecialEffect
 {
 
     bool dontDestroyBullet { get; }
-    bool IgnoreDefence { get; }
+    bool ignoreDefence { get; }
+    bool critical { get; }
 
     void OnHitSpecialEffect(Base_MobStatus status, Vector2 position);
 }

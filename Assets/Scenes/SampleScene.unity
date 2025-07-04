@@ -301,16 +301,15 @@ MonoBehaviour:
   button_Option: {fileID: 4757622343610648202, guid: 2de89337c8d82cc4c8a54e08db822086, type: 3}
   buttonArea: {fileID: 1548298609}
   allKnifeData:
-  - {fileID: 11400000, guid: 369865d53233e664585ae0cbf45b7ec3, type: 2}
-  - {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
-  - {fileID: 11400000, guid: e56215dabd3c06f45a96919a7a864598, type: 2}
-  - {fileID: 11400000, guid: 6414a74605b3f054cbcd4b041cb7ddfd, type: 2}
-  - {fileID: 11400000, guid: db9660f6b74bfd9468608ca8cb45c1e9, type: 2}
-  - {fileID: 11400000, guid: a01509043f2b4f44b82e72c70f2d0c0c, type: 2}
-  - {fileID: 11400000, guid: 1c8ffcafe59d74347a58ead434fa0710, type: 2}
-  - {fileID: 11400000, guid: 6f3c7905e41af7149ae2c2b34ee14fc9, type: 2}
-  - {fileID: 11400000, guid: 41c82aa537cb7cb4782b704a8ed0b188, type: 2}
+  - {fileID: 11400000, guid: cea7cbe3fcc5a0949aa6daed819e9b43, type: 2}
+  - {fileID: 11400000, guid: 7cec1ed6fe22c854bb9ac76cbc1d7258, type: 2}
   - {fileID: 11400000, guid: e3796f498a0e33b4fb633e37c0bda146, type: 2}
+  - {fileID: 11400000, guid: 28c195926bc5a5f4da94eff1ea7c5a16, type: 2}
+  - {fileID: 11400000, guid: 6ec7b0c2264e3a8479679e9e202daa2f, type: 2}
+  - {fileID: 11400000, guid: 39a7e245b983ee94f81bc0088b4319cb, type: 2}
+  - {fileID: 11400000, guid: 24e083d5331721742a25bbc2b298f240, type: 2}
+  - {fileID: 11400000, guid: 41c82aa537cb7cb4782b704a8ed0b188, type: 2}
+  - {fileID: 11400000, guid: 96b1c044d00ca5b438474a65f2267daf, type: 2}
 --- !u!1 &142022628
 GameObject:
   m_ObjectHideFlags: 0

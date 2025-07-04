@@ -6,7 +6,7 @@ using UnityEngine;
 public class HSpE_IgnoreDefence : BaseHSpE
 {
     // IgnoreDefence‚ğtrue‚Éã‘‚«‚·‚é‚±‚Æ‚Å–hŒä–³‹‚ğ‹–‰Â
-    public override bool IgnoreDefence
+    public override bool ignoreDefence
     {
         get { return true; } 
     }
