@@ -46,12 +46,12 @@ public class Base_KnifeCtrler : MonoBehaviour
                 if(SpEffect != null)
                 {
                     // ヒット時の特殊処理を実行
-                    SpEffect.OnHitSpecialEffect(ms, transform.position);
+                    SpEffect.OnHitSpecialEffect(ms, transform.position, knifeData);
 
                     // 貫通が許可されているなら
                     if(SpEffect.dontDestroyBullet == true) shouldDestroyThis = false;
                     // 防御無視が許可されているなら
-                    if (SpEffect.ignoreDefence == true) power += ms.defence; // 防御力分を上乗せすることで実質無視
+                    if (SpEffect.ignoreDefence == true) power += ms.defence / 4; // 防御力分を上乗せすることで実質無視
                     // クリティカルなら
                     if (SpEffect.critical == true) power *= 2;
                 }

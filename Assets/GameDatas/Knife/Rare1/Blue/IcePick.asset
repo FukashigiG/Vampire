@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "\u30A2\u30A4\u30B9\u30D4\u30C3\u30AF"
   rarity: 1
   attribute: 2
-  power: 40
+  power: 28
   prefab: {fileID: 9031835482910408214, guid: 3a8f2bb61b7839b46aebc769d9c4a29b, type: 3}
   description: 
   specialEffects:

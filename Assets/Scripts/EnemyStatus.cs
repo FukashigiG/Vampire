@@ -20,13 +20,6 @@ public class EnemyStatus : Base_MobStatus
         moveSpeed = _enemyData.moveSpeed;
     }
 
-    public override void GetAttack(int a, Vector2 damagedPosi)
-    {
-        a -= defence;
-
-        base.GetAttack(a, damagedPosi);
-    }
-
     public override void TakeDamage(int a, Vector2 damagedPosi)
     {
         base.TakeDamage(a, damagedPosi);

@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "\u5341\u624B"
   rarity: 1
   attribute: 1
-  power: 40
+  power: 30
   prefab: {fileID: 9031835482910408214, guid: 586bffbcd97128740a29aff0f1c9e99b, type: 3}
   description: 
   specialEffects:

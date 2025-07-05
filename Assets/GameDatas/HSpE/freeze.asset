@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: freeze
   m_EditorClassIdentifier: 
   effectName: "\u6C37\u7D50"
-  description: "\u6575\u3092\u51CD\u3089\u305B\u3001\u79FB\u52D5\u4E0D\u80FD\u306B\u3059\u308B"
+  description: "\u5BFE\u8C61\u3092\u51CD\u3089\u305B\u3001\u5C11\u3057\u306E\u9593\u79FB\u52D5\u4E0D\u80FD\u306B\u3059\u308B"
   duration: 2

@@ -8,7 +8,7 @@ public class HSpE_SpeedDebuff: BaseHSpE
     public float dulation;
     public float amount;
 
-    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 p)
+    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
     {
         status.MoveSpeedDebuff(dulation, amount);
     }

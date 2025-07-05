@@ -17,7 +17,7 @@ public class HSpE_Critical : BaseHSpE
     // Šm—¦
     public float probability;
 
-    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi)
+    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
     {
         float x = Random.Range(0f, 1f);
 

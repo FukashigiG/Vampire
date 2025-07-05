@@ -557,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0865eb8f646ee8443a0601a2e2b4ab9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 9031835482910408214, guid: 6f2510960069e29448b7fa536b4d9b0f, type: 3}
+  bullet: {fileID: 9031835482910408214, guid: 9aa2d1f1efde0884589810a8c46e36e4, type: 3}
   coolTime_ThrowKnife: 0.3
   time_ReloadKnives: 1
   targetLayer:

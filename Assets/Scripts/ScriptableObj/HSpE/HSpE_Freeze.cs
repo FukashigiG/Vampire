@@ -7,7 +7,7 @@ public class HSpE_Freeze : BaseHSpE
 {
     public float duration;
 
-    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 p)
+    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
     {
         status.Freeze(duration);
     }

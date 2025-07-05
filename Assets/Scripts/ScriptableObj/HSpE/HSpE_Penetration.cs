@@ -10,9 +10,4 @@ public class HSpE_Penetration : BaseHSpE
     {
         get { return true; }
     }
-
-    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 ps)
-    {
-
-    }
 }

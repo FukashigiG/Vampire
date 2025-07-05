@@ -38,7 +38,13 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
     // 攻撃を受ける処理
     public virtual void GetAttack(int a, Vector2 damagedPosi)
     {
-        TakeDamage(a, damagedPosi);
+        // ダメージ計算式
+        int damage = a - defence / 4;
+
+        // 0以下にならないように
+        if (damage <= 0) damage = 1;
+
+        TakeDamage(damage, damagedPosi);
     }
 
     // ダメージ処理
