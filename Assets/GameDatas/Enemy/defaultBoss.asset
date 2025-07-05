@@ -15,6 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   _name: defBoss
   hp: 200
+  power: 0
   defense: 35
   moveSpeed: 1
   weight: 5

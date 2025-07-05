@@ -12,16 +12,23 @@ public class EnemyStatus : Base_MobStatus
     {
         base.Start();
 
-        hitPoint = _enemyData.hp;
+        maxHP = _enemyData.hp;
+        hitPoint = maxHP;
+        power = _enemyData.power;
         defence = _enemyData.defense;
         weight = _enemyData.weight;
         moveSpeed = _enemyData.moveSpeed;
     }
 
-    public override void TakeDamage(int a, Vector2 damagedPosi)
+    public override void GetAttack(int a, Vector2 damagedPosi)
     {
         a -= defence;
 
+        base.GetAttack(a, damagedPosi);
+    }
+
+    public override void TakeDamage(int a, Vector2 damagedPosi)
+    {
         base.TakeDamage(a, damagedPosi);
 
         //ダメージテキストを出す処理

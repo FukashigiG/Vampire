@@ -15,6 +15,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   _name: def
   hp: 60
+  power: 0
   defense: 20
   moveSpeed: 1
   weight: 1

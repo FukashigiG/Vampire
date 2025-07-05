@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: crush
   m_EditorClassIdentifier: 
   effectName: "\u7834\u7815"
-  description: "\u30D2\u30C3\u30C8\u5BFE\u8C61\u306Ehp\u304C\u4E00\u5B9A\u4EE5\u4E0B\u306A\u3089\n\u5373\u5EA7\u306B\u5012\u3059"
-  crushBorder: 10
+  description: "\u30D2\u30C3\u30C8\u5BFE\u8C61\u306Ehp\u306E\u5272\u5408\u304C\u4E00\u5B9A\u4EE5\u4E0B\u306A\u3089\n\u5373\u5EA7\u306B\u5012\u3059"
+  crushBorder: 0.1

@@ -10,6 +10,6 @@ public class HSpE_AttackDebuff : BaseHSpE
 
     public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi)
     {
-        status.AttackDebuff(dulation, amount);
+        status.PowerDebuff(dulation, amount);
     }
 }

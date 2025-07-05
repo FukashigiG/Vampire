@@ -21,6 +21,8 @@ public class Base_EnemyCtrler : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (_enemyStatus.actable == false) return;
+
         Vector2 dir = (target.position - this.transform.position).normalized;
 
         transform.Translate(dir * _enemyStatus.moveSpeed * Time.fixedDeltaTime);

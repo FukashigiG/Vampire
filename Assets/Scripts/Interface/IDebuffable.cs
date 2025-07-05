@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine;
 public interface IDebuffable
 {
     void MoveSpeedDebuff(float duration, float amount);
-    void AttackDebuff(float duration, float amount);
+    void PowerDebuff(float duration, float amount);
     void DefenceDebuff(float duration, float amount);
     void Blaze(float duration);
     void Freeze(float duration);

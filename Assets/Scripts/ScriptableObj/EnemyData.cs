@@ -8,6 +8,7 @@ public class EnemyData : ScriptableObject
     public string _name;
 
     public int hp;
+    public int power;
     public int defense;
 
     public float moveSpeed;
