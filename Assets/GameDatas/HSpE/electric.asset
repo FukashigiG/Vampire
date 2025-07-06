@@ -19,3 +19,4 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
+  effect: {fileID: 13301048646092075, guid: d981c1b42bb00b94abfd7980eb3fbe36, type: 3}

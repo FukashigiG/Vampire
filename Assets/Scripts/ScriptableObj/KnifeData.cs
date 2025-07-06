@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="NewWeaponData", menuName = "Game Data/Weapon Data")]
 public class KnifeData : ScriptableObject
 {
-    public enum AttributeEnum
+    public enum ElementEnum
     {
         white, red, blue, yellow
     }
@@ -14,11 +14,13 @@ public class KnifeData : ScriptableObject
 
     public int rarity;
 
-    public AttributeEnum attribute;
+    public ElementEnum element;
 
     public int power;
 
     public GameObject prefab;
+
+    public GameObject hitEffect;
 
     // ↓をつけるとエディタ上で長いテキストも扱いやすくなる
     [Multiline(6)] public string description;

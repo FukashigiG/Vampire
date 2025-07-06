@@ -15,9 +15,10 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: f4e8e2f13346f7945bba2d3a94f13298, type: 3}
   _name: "\u5341\u624B"
   rarity: 1
-  attribute: 1
+  element: 1
   power: 30
   prefab: {fileID: 9031835482910408214, guid: 586bffbcd97128740a29aff0f1c9e99b, type: 3}
+  hitEffect: {fileID: 2533848353679586684, guid: edc689687b1d4fc47a87ba0f3d1128e2, type: 3}
   description: 
   specialEffects:
   - {fileID: 11400000, guid: ee67369d5d2c814418efcdf163d44a7b, type: 2}

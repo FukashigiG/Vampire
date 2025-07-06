@@ -9,6 +9,7 @@ public class HSpE_Electric : BaseHSpE
     public float magnification;
     public float radius;
     public LayerMask targetLayer;
+    [SerializeField] GameObject effect;
 
     public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
     {
@@ -22,6 +23,8 @@ public class HSpE_Electric : BaseHSpE
             {
                 // 当たった本人には追加ダメージは発生しない
                 if(ms != status) ms.GetAttack((int)(knifeData.power * magnification), posi);
+
+                Instantiate(effect, hit.transform.position, Quaternion.identity);
             }
         }
     }

@@ -557,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0865eb8f646ee8443a0601a2e2b4ab9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 9031835482910408214, guid: 9aa2d1f1efde0884589810a8c46e36e4, type: 3}
+  bullet: {fileID: 9031835482910408214, guid: b9079c8807b1cb94890d3272cb98e190, type: 3}
   coolTime_ThrowKnife: 0.3
   time_ReloadKnives: 1
   targetLayer:
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gauge_EXP: {fileID: 306841715}
-  playerCharaData: {fileID: 11400000, guid: 84e3045caecac934399e61f34d187921, type: 2}
+  playerCharaData: {fileID: 11400000, guid: c5837e0905e889a44890b52e8c1e5263, type: 2}
   requiredEXP_LvUp: 5
 --- !u!1 &306841713
 GameObject:

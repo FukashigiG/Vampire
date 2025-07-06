@@ -15,5 +15,7 @@ public class PlayerCharaData : ScriptableObject
     public float throwPower;
     public float eyeSight;
 
+    public KnifeData.ElementEnum masteredElement;
+
     public GameObject prefab;
 }

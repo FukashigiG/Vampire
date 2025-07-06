@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4a92988800192408927d5db7966ed4, type: 3}
+  m_Name: demoChara 3
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 0}
+  _name: "\u8FD1\u8DDD\u96E2\u7279\u5316"
+  hp: 220
+  defense: 40
+  moveSpeed: 6
+  luck: 0
+  throwPower: 18
+  eyeSight: 3.2
+  masteredElement: 0
+  prefab: {fileID: 0}

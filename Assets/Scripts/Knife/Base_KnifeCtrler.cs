@@ -59,6 +59,8 @@ public class Base_KnifeCtrler : MonoBehaviour
 
             ms?.GetAttack(power, transform.position);
 
+            Instantiate(knifeData.hitEffect, transform.position, Quaternion.identity);
+
             if (shouldDestroyThis) Destroy(this.gameObject);
         }
     }
