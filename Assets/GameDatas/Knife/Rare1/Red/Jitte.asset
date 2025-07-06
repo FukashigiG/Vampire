@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
   m_Name: Jitte
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: d234f6cf9f0ab5a4cadec07a7e201276, type: 3}
+  sprite: {fileID: 21300000, guid: f4e8e2f13346f7945bba2d3a94f13298, type: 3}
   _name: "\u5341\u624B"
   rarity: 1
   attribute: 1

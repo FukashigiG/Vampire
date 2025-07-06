@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
   m_Name: MetalKnife
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: d234f6cf9f0ab5a4cadec07a7e201276, type: 3}
-  _name: "\u96FB\u52D5\u30CA\u30A4\u30D5"
+  sprite: {fileID: 21300000, guid: 90f6a8affa44b5944b693355c2009931, type: 3}
+  _name: "\u30E1\u30BF\u30EB\u30CA\u30A4\u30D5"
   rarity: 1
   attribute: 3
   power: 30

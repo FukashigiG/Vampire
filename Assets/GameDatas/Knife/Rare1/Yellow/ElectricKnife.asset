@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
   m_Name: ElectricKnife
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: d234f6cf9f0ab5a4cadec07a7e201276, type: 3}
+  sprite: {fileID: 21300000, guid: af5b881b2d4560b4e96d69c7118fec37, type: 3}
   _name: "\u96FB\u52D5\u30CA\u30A4\u30D5"
   rarity: 1
   attribute: 3
-  power: 28
+  power: 27
   prefab: {fileID: 9031835482910408214, guid: 9aa2d1f1efde0884589810a8c46e36e4, type: 3}
   description: 
   specialEffects:

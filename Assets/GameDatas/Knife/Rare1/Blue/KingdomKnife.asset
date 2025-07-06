@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
   m_Name: KingdomKnife
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: d234f6cf9f0ab5a4cadec07a7e201276, type: 3}
+  sprite: {fileID: 21300000, guid: 0b584fad21745fd47ac0dbf5bddebb31, type: 3}
   _name: "\u738B\u65CF\u306E\u30CA\u30A4\u30D5"
   rarity: 1
   attribute: 2
