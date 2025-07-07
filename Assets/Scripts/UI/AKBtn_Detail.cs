@@ -9,6 +9,8 @@ public class AKBtn_Detail : MonoBehaviour
     [SerializeField] Text t_Rare;
     [SerializeField] Text t_Attribute;
     [SerializeField] Text t_Power;
+    [SerializeField] GameObject area_HSpE;
+    [SerializeField] GameObject HSpE_TxtObj;
     [SerializeField] Text t_Description;
 
     KnifeData knifeData;
@@ -33,7 +35,11 @@ public class AKBtn_Detail : MonoBehaviour
         {
             if(effect != null)
             {
-                t_Description.text += "<color=#CCD900>" + effect.effectName + "</color>\n";
+                GameObject a = Instantiate(HSpE_TxtObj, area_HSpE.transform);
+
+                var d = a.GetComponent<Detail_HSpE>();
+
+                d.Initialize(effect);
             }
         }
 

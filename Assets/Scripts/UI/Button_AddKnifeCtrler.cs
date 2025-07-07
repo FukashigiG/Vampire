@@ -36,6 +36,8 @@ public class Button_AddKnifeCtrler : MonoBehaviour, IPointerEnterHandler, IPoint
         image_Sprite.sprite = knifeData.sprite;
 
         detailWindow.GetComponent<AKBtn_Detail>().Initialize(knifeData);
+
+        detailWindow.SetActive(false);
     }
 
     // ƒJ[ƒ\ƒ‹‚ª‡‚Á‚½‚Æ‚«
