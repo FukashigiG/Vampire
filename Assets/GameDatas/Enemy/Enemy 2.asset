@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
-  m_Name: defaultBoss
+  m_Name: Enemy 2
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: f3a964194160e724db7a797dc01a7871, type: 3}
-  _name: defBoss
-  hp: 200
-  power: 0
-  defense: 35
-  moveSpeed: 1
-  weight: 5
-  prefab: {fileID: 9151170032971857288, guid: c68f0e6b42a422e46866fb24c2666024, type: 3}
+  sprite: {fileID: 21300000, guid: daae71d6e4ef7434c8ea4af4ec857a49, type: 3}
+  _name: "\u65752_\u30A2\u30BF\u30C3\u30AB\u30FC"
+  hp: 40
+  power: 27
+  defense: 20
+  moveSpeed: 1.4
+  weight: 0.4
+  prefab: {fileID: 9151170032971857288, guid: 609dd6bb37305c84aa460a97003a6ad6, type: 3}

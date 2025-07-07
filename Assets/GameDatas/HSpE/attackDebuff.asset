@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectName: "\u5200\u72E9"
   description: "\u4E00\u5B9A\u671F\u9593\u3001\u5BFE\u8C61\u306E\u653B\u6483\u529B\u3092\u4E0B\u3052\u308B"
-  dulation: 1
+  dulation: 4
   amount: 0.5

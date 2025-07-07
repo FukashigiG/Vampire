@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -18,14 +19,19 @@ public class PlayerAttack : MonoBehaviour
 
     List<GameObject> availableKnifes = new List<GameObject>();
 
+    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+    CancellationToken _token;
+
     void Start()
     {
+        _token = cancellationTokenSource.Token;
+
         status = GetComponent<PlayerStatus>();
 
         availableKnifes.Add(bullet);
         availableKnifes.Add(bullet);
 
-        AttackTask();
+        AttackTask(_token).Forget();
     }
 
     private void Update()
@@ -38,13 +44,13 @@ public class PlayerAttack : MonoBehaviour
         availableKnifes.Add(x.prefab);
     }
 
-    async void AttackTask()
+    async UniTask AttackTask(CancellationToken token)
     {
         while (true)
         {
             await UniTask.Delay((int)(time_ReloadKnives * 1000));
 
-            await ThrowKnives();
+            await ThrowKnives(_token);
         }
     }
 
@@ -71,11 +77,11 @@ public class PlayerAttack : MonoBehaviour
         return nearestObject;
     }
 
-    async UniTask ThrowKnives()
+    async UniTask ThrowKnives(CancellationToken token)
     {
         for (int i = 0; i < availableKnifes.Count; i++)
         {
-            await UniTask.WaitUntil(() => targetEnemy != null);
+            await UniTask.WaitUntil(() => targetEnemy != null, cancellationToken: token);
 
             Vector2 dir = (targetEnemy.transform.position - this.transform.position).normalized;
 
@@ -84,7 +90,13 @@ public class PlayerAttack : MonoBehaviour
             // xÇèâä˙âª
             x.GetComponent<Base_KnifeCtrler>().Initialize(status.throwPower);
 
-            await UniTask.Delay((int)(coolTime_ThrowKnife * 1000));
+            await UniTask.Delay((int)(coolTime_ThrowKnife * 1000), cancellationToken: token);
         }
+    }
+
+    private void OnDestroy()
+    {
+        cancellationTokenSource.Cancel();
+        cancellationTokenSource.Dispose();
     }
 }

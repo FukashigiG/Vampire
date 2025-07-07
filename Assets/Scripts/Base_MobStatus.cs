@@ -72,6 +72,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
     {
         // 現行のトークンソースをキャンセル
         moveSpeedDbfCts?.Cancel();
+        moveSpeedDbfCts?.Dispose();
 
         // トークンソースを新しいものに差し替え
         moveSpeedDbfCts = new CancellationTokenSource();
@@ -111,6 +112,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
     {
         // 現行のをキャンセル
         powerDbfCts?.Cancel();
+        powerDbfCts?.Dispose();
 
         // トークンソースを新しいものに差し替え
         powerDbfCts = new CancellationTokenSource();
@@ -147,6 +149,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
     {
         // キャンセル
         defenceDbfCts?.Cancel();
+        defenceDbfCts?.Dispose();
 
         // 新しいものに
         defenceDbfCts = new CancellationTokenSource();
@@ -181,6 +184,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
     public virtual void Blaze(float duration)
     {
         blazeCts?.Cancel();
+        blazeCts?.Dispose();
 
         blazeCts = new CancellationTokenSource();
 
@@ -216,6 +220,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
     public virtual void Freeze(float duration)
     {
         freezeCts?.Cancel();
+        freezeCts?.Dispose();
 
         freezeCts = new CancellationTokenSource();
 

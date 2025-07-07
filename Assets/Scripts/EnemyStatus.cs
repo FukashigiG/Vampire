@@ -12,12 +12,17 @@ public class EnemyStatus : Base_MobStatus
     {
         base.Start();
 
-        maxHP = _enemyData.hp;
+        GetComponent<SpriteRenderer>().sprite = _enemyData.sprite;
+    }
+
+    public void Initialize(float multiplier)
+    {
+        maxHP = (int)((float)_enemyData.hp * multiplier);
         hitPoint = maxHP;
-        power = _enemyData.power;
-        defence = _enemyData.defense;
-        weight = _enemyData.weight;
-        moveSpeed = _enemyData.moveSpeed;
+        power = (int)((float)_enemyData.power * multiplier);
+        defence = (int)((float)_enemyData.defense * multiplier);
+        weight = _enemyData.weight * multiplier;
+        moveSpeed = _enemyData.moveSpeed * multiplier;
     }
 
     public override void TakeDamage(int a, Vector2 damagedPosi)

@@ -15,3 +15,4 @@ MonoBehaviour:
   effectName: "\u4F1A\u5FC3"
   description: "\u7A00\u306B\u4E0E\u3048\u308B\u30C0\u30E1\u30FC\u30B8\u304C\u5897\u52A0\u3059\u308B"
   probability: 0.2
+  efect: {fileID: 4467026661881878016, guid: 6b2d4816c99691142b2565bbf88c3336, type: 3}

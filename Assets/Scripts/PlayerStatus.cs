@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
@@ -7,6 +8,7 @@ using UnityEngine.UI;
 public class PlayerStatus : Base_MobStatus
 {
     [SerializeField] Image gauge_EXP;
+    [SerializeField] Image gauge_HP;
 
     [SerializeField] PlayerCharaData playerCharaData;
 
@@ -18,6 +20,7 @@ public class PlayerStatus : Base_MobStatus
 
     int exp;
 
+    bool isInvincible;
 
     public Subject<Unit> lvUp = new Subject<Unit>();
 
@@ -30,7 +33,8 @@ public class PlayerStatus : Base_MobStatus
         base.Start();
 
         //各内部ステータスをPlayerCharaDataから代入
-        hitPoint = playerCharaData.hp;
+        maxHP = playerCharaData.hp;
+        hitPoint = maxHP;
         defence = playerCharaData.defense;
         moveSpeed = playerCharaData.moveSpeed;
         throwPower = playerCharaData.throwPower;
@@ -64,6 +68,49 @@ public class PlayerStatus : Base_MobStatus
         }
 
         lvUp.OnNext(Unit.Default);
+    }
+
+    public override void GetAttack(int a, Vector2 damagedPosi)
+    {
+        if (isInvincible) return;
+
+        base.GetAttack(a, damagedPosi);
+
+        BeInvincible().Forget();
+    }
+
+    public override void TakeDamage(int a, Vector2 damagedPosi)
+    {
+        base.TakeDamage(a, damagedPosi);
+
+        gauge_HP.fillAmount = (float)hitPoint / (float)maxHP;
+    }
+
+    async UniTask BeInvincible()
+    {
+        try
+        {
+            isInvincible = true;
+
+            await UniTask.Delay(1000);
+
+            isInvincible = false;
+        }
+        catch
+        {
+
+        }
+        finally
+        {
+
+        }
+    }
+
+    public override void Die()
+    {
+        onDie.OnNext(1);
+
+        this.gameObject.SetActive(false);
     }
 
     protected override void OnDestroy()

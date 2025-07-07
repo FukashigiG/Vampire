@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : SingletonMono<PlayerController>
 {
     //このスクリプトでは、プレイヤーの操作に関する処理を記述している
 

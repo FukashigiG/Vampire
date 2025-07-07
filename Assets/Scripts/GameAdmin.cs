@@ -7,13 +7,14 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameAdmin : MonoBehaviour
+public class GameAdmin : SingletonMono<GameAdmin>
 {
     [SerializeField] GameObject player_Obj;
     [SerializeField] GameObject spawner_Obj;
 
     [SerializeField] GameObject panel_LvUp;
 
+    [SerializeField] Text txt_WaveCount;
     [SerializeField] Text txt_TimeLimit_Wave;
 
     [SerializeField] int num_Wave;
@@ -26,6 +27,19 @@ public class GameAdmin : MonoBehaviour
 
     EnemySpawner _spawner;
 
+    public int waveCount = 0;
+
+     // １ウェーブあたりの敵の強化倍率
+    public float waveBoostMultiplier {  get; private set; }
+    [SerializeField] float _waveBoostMultiplier;
+
+    public enum WaveState
+    {
+        zako, boss
+    }
+
+    public WaveState _waveState;
+
     // 購読のライフサイクルを管理するためのDisposable
     CompositeDisposable disposables = new CompositeDisposable();
 
@@ -34,6 +48,8 @@ public class GameAdmin : MonoBehaviour
         _cancellationToken = _cancellationTokenSource.Token;
 
         onGame = true;
+
+        waveBoostMultiplier = _waveBoostMultiplier;
 
         player_Obj.GetComponent<PlayerStatus>().lvUp.Subscribe(_ => ShowLevelUpUIAsync().Forget()).AddTo( disposables );
 
@@ -45,8 +61,15 @@ public class GameAdmin : MonoBehaviour
     //全体的なゲームの進行を管理
     async UniTask GameProgression()
     {
-        for (int i = 0; i < num_Wave; i++)
+        while (true)
         {
+            waveCount++;
+
+            txt_WaveCount.text = "Wave : " + waveCount;
+
+            // ウェーブの状態変数の更新
+            _waveState = WaveState.zako;
+
             //ウェーブの時間待つ
             await WaitWithWave(minute_Wave, _cancellationToken);
             // キャンセル済みかチェック
@@ -55,10 +78,16 @@ public class GameAdmin : MonoBehaviour
             // UI更新を正しく行うための1フレ待ち
             await UniTask.Yield(PlayerLoopTiming.Update);
 
+            // 既存の敵を全除去
+            _spawner.DestroyAllEnemies();
+
             // ボス生成
             var x = _spawner.SpawnBoss();
 
-            if(txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス出現";
+            if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス出現";
+
+            // ウェーブの状態変数の更新
+            _waveState = WaveState.boss;
 
             // ボス討伐まで待つ
             await UniTask.WaitUntil(() => x == null, PlayerLoopTiming.Update, _cancellationToken);
@@ -70,9 +99,6 @@ public class GameAdmin : MonoBehaviour
             await UniTask.Delay(1000, ignoreTimeScale: false, PlayerLoopTiming.Update, _cancellationToken);
             _cancellationToken.ThrowIfCancellationRequested();
         }
-
-        // ステージクリア
-        onGame = false;
     }
 
     async UniTask WaitWithWave(float min, CancellationToken token)
@@ -129,11 +155,13 @@ public class GameAdmin : MonoBehaviour
         ResumeGame();
     }
 
+    // 一時停止
     void PauseGame()
     {
         Time.timeScale = 0f;
     }
 
+    // 再開
     void ResumeGame()
     {
         Time.timeScale = 1f;

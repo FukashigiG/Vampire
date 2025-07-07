@@ -17,6 +17,8 @@ public class HSpE_Critical : BaseHSpE
     // Šm—¦
     public float probability;
 
+    [SerializeField] GameObject efect;
+
     public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
     {
         float x = Random.Range(0f, 1f);
@@ -24,6 +26,8 @@ public class HSpE_Critical : BaseHSpE
         if (x <= probability)
         {
             critical = true;
+
+            Instantiate(efect, posi, Quaternion.identity);
         }
         else
         {
