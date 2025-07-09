@@ -9,7 +9,8 @@ public class PlayerController : SingletonMono<PlayerController>
 
     Rigidbody2D _rigidbody;
     PlayerInput _input;
-    PlayerStatus _status;
+    public PlayerStatus _status { get; private set; }
+    public PlayerAttack _attack { get; private set; }
 
     Vector2 inputValue;
 
@@ -18,6 +19,7 @@ public class PlayerController : SingletonMono<PlayerController>
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = GetComponent<PlayerInput>();
         _status = GetComponent<PlayerStatus>();
+        _attack = GetComponent<PlayerAttack>();
     }
 
 

@@ -70,15 +70,17 @@ public class PlayerStatus : Base_MobStatus
         lvUp.OnNext(Unit.Default);
     }
 
+    // 攻撃を受ける処理
     public override void GetAttack(int a, Vector2 damagedPosi)
     {
         if (isInvincible) return;
 
         base.GetAttack(a, damagedPosi);
 
-        BeInvincible().Forget();
+        BeInvincible(1f).Forget();
     }
 
+    // ダメージを受ける処理
     public override void TakeDamage(int a, Vector2 damagedPosi)
     {
         base.TakeDamage(a, damagedPosi);
@@ -86,13 +88,14 @@ public class PlayerStatus : Base_MobStatus
         gauge_HP.fillAmount = (float)hitPoint / (float)maxHP;
     }
 
-    async UniTask BeInvincible()
+    // 指定秒数間むてきになる
+    async UniTask BeInvincible(float sec)
     {
         try
         {
             isInvincible = true;
 
-            await UniTask.Delay(1000);
+            await UniTask.Delay((int)(sec * 1000));
 
             isInvincible = false;
         }

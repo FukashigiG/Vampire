@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] GameObject bullet;
+    [SerializeField] KnifeData defKnife;
 
     [SerializeField] float coolTime_ThrowKnife;
     [SerializeField] float time_ReloadKnives;
@@ -17,7 +17,7 @@ public class PlayerAttack : MonoBehaviour
 
     GameObject targetEnemy;
 
-    List<GameObject> availableKnifes = new List<GameObject>();
+    public List<KnifeData> availableKnifes { get; private set; } = new List<KnifeData>();
 
     CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _token;
@@ -28,8 +28,7 @@ public class PlayerAttack : MonoBehaviour
 
         status = GetComponent<PlayerStatus>();
 
-        availableKnifes.Add(bullet);
-        availableKnifes.Add(bullet);
+        availableKnifes.Add(defKnife);
 
         AttackTask(_token).Forget();
     }
@@ -41,7 +40,7 @@ public class PlayerAttack : MonoBehaviour
 
     public void AddKnife(KnifeData x)
     {
-        availableKnifes.Add(x.prefab);
+        availableKnifes.Add(x);
     }
 
     async UniTask AttackTask(CancellationToken token)
@@ -54,6 +53,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    // 攻撃対象の探索
     GameObject FindEnemy()
     {
 
@@ -86,7 +86,7 @@ public class PlayerAttack : MonoBehaviour
             Vector2 dir = (targetEnemy.transform.position - this.transform.position).normalized;
 
             // ナイフを生成、それをxと置く
-            var x = Instantiate(availableKnifes[i], this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
+            var x = Instantiate(availableKnifes[i].prefab, this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
             // xを初期化
             x.GetComponent<Base_KnifeCtrler>().Initialize(status.throwPower);
 

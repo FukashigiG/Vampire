@@ -72,6 +72,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "UICtrl",
+            "id": "2accd90f-2aef-4ceb-a300-2ce6114c5031",
+            "actions": [
+                {
+                    "name": "TogglePanel",
+                    "type": "Button",
+                    "id": "2f9745be-694d-46cc-9a49-51e2fbdc2a44",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2a799e20-e11f-4ec9-aab9-15cf279fe87a",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TogglePanel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
