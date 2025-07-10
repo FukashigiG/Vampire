@@ -28,6 +28,8 @@ public class PausePanelCtrler : MonoBehaviour
     void TogglePanel(InputAction.CallbackContext context)
     {
         this.gameObject.SetActive(true);
+
+        Debug.Log("do");
     }
 
     private void OnEnable()

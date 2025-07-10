@@ -25,6 +25,8 @@ public class UI_Manager : SingletonMono<UI_Manager>
 
         if(togglePanelAction != null)
         {
+            togglePanelAction.Enable(); // この一文があって初めて、アクションが呼ばれるようになる
+
             _pausePanelCtrler.Initialize(togglePanelAction);
         }
         else
