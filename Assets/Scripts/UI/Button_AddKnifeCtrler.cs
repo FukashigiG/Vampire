@@ -9,17 +9,21 @@ public class Button_AddKnifeCtrler : MonoBehaviour, IPointerEnterHandler, IPoint
 {
     [SerializeField] Image image_Sprite;
 
-    [SerializeField] GameObject detailWindow;
+    //[SerializeField] GameObject detailWindow;
 
     [SerializeField] Button button;
 
     Animator _animator;
 
     KnifeData knifeData;
-
+ 
     //押されたときに飛ばす通知
     //ゲーム終了時にはGameAdminにDisposeされる
     public static Subject<KnifeData> clicked { get; private set; } = new Subject<KnifeData>();
+
+    // カーソルが重なった、外れたら飛ばす通知
+    public Subject<KnifeData> pointerEntered { get; private set; } = new Subject<KnifeData> ();
+    public Subject<KnifeData> pointerExited { get; private set; } = new Subject<KnifeData> ();
 
     void Start()
     {
@@ -35,9 +39,9 @@ public class Button_AddKnifeCtrler : MonoBehaviour, IPointerEnterHandler, IPoint
 
         image_Sprite.sprite = knifeData.sprite;
 
-        detailWindow.GetComponent<AKBtn_Detail>().Initialize(knifeData);
+        //detailWindow.GetComponent<AKBtn_Detail>().Initialize(knifeData);
 
-        detailWindow.SetActive(false);
+        //detailWindow.SetActive(false);
     }
 
     // カーソルが合ったとき
@@ -47,11 +51,13 @@ public class Button_AddKnifeCtrler : MonoBehaviour, IPointerEnterHandler, IPoint
         _animator?.SetBool("highlighted", true);
 
         // 詳細ウインドウの表示
-        detailWindow.SetActive(true);
+        //detailWindow.SetActive(true);
 
         // ヒエラルキーで最下に移動する
         // →前面に表示される
-        transform.SetAsLastSibling();
+        //transform.SetAsLastSibling();
+
+        pointerEntered.OnNext(knifeData);
     }
 
     // カーソルが外れたとき
@@ -59,6 +65,14 @@ public class Button_AddKnifeCtrler : MonoBehaviour, IPointerEnterHandler, IPoint
     {
         _animator?.SetBool("highlighted", false);
 
-        detailWindow.SetActive(false);
+        //detailWindow.SetActive(false);
+
+        pointerExited.OnNext(knifeData);
+    }
+
+    private void OnDestroy()
+    {
+        pointerEntered.Dispose();
+        pointerExited.Dispose();
     }
 }

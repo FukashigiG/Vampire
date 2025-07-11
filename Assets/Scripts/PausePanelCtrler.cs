@@ -10,6 +10,8 @@ public class PausePanelCtrler : MonoBehaviour
 
     [SerializeField] GameObject knifeButtonPrefab;
 
+    [SerializeField] GameObject detailWindow;
+
 
 
     private void Awake()
@@ -53,6 +55,8 @@ public class PausePanelCtrler : MonoBehaviour
 
         this.gameObject.SetActive(false);
     }
+
+
 
     private void OnDisable()
     {
