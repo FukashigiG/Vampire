@@ -15,7 +15,8 @@ public class PlayerCharaData : ScriptableObject
     public float throwPower;
     public float eyeSight;
 
-    public KnifeData[] knife_Beginning;
+    public KnifeData[] initialKnives;
+    public Base_TreasureData[] initialTreasures;
 
     public KnifeData.ElementEnum masteredElement;
 

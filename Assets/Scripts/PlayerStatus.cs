@@ -10,7 +10,9 @@ public class PlayerStatus : Base_MobStatus
     [SerializeField] Image gauge_EXP;
     [SerializeField] Image gauge_HP;
 
-    [SerializeField] PlayerCharaData playerCharaData;
+    public PlayerCharaData playerCharaData;
+
+    public PlayerInventory inventory { get; private set; }
 
     [SerializeField] int requiredEXP_LvUp;
 
@@ -28,9 +30,11 @@ public class PlayerStatus : Base_MobStatus
     // これ１つで沢山のDisposableなやつらに対応可能らしい
     private CompositeDisposable disposables = new CompositeDisposable();
 
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
+
+        inventory = GetComponent<PlayerInventory>();
 
         //各内部ステータスをPlayerCharaDataから代入
         maxHP = playerCharaData.hp;
@@ -40,6 +44,21 @@ public class PlayerStatus : Base_MobStatus
         throwPower = playerCharaData.throwPower;
         luck = playerCharaData.luck;
         eyeSight = playerCharaData.eyeSight;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+
+        // インベントリに初期所持ナイフと秘宝を追加
+        foreach (var x in playerCharaData.initialKnives)
+        {
+            inventory.AddKnife(x);
+        }
+        foreach (var y in playerCharaData.initialTreasures)
+        {
+            inventory.AddTreasure(y);
+        }
 
         //任意の敵が死んだらEXPゲット
         EnemyStatus.onDie.Subscribe(x => GetEXP(x)).AddTo( disposables );

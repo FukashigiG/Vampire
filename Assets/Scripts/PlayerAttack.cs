@@ -17,18 +17,19 @@ public class PlayerAttack : MonoBehaviour
 
     GameObject targetEnemy;
 
-    public List<KnifeData> availableKnifes { get; private set; } = new List<KnifeData>();
+    List<KnifeData> availableKnifes = new List<KnifeData>();
 
     CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _token;
 
+    private void Awake()
+    {
+        status = GetComponent<PlayerStatus>();
+    }
+
     void Start()
     {
         _token = cancellationTokenSource.Token;
-
-        status = GetComponent<PlayerStatus>();
-
-        availableKnifes.Add(defKnife);
 
         AttackTask(_token).Forget();
     }
@@ -38,16 +39,11 @@ public class PlayerAttack : MonoBehaviour
         targetEnemy = FindEnemy();
     }
 
-    public void AddKnife(KnifeData x)
-    {
-        availableKnifes.Add(x);
-    }
-
     async UniTask AttackTask(CancellationToken token)
     {
         while (true)
         {
-            await UniTask.Delay((int)(time_ReloadKnives * 1000));
+            await Reload();
 
             await ThrowKnives(_token);
         }
@@ -75,6 +71,15 @@ public class PlayerAttack : MonoBehaviour
         }
 
         return nearestObject;
+    }
+
+    async UniTask Reload()
+    {
+        availableKnifes = status.inventory.runtimeKnives;
+
+        await UniTask.Delay((int)(time_ReloadKnives * 1000));
+
+        Debug.Log(availableKnifes.Count);
     }
 
     async UniTask ThrowKnives(CancellationToken token)

@@ -9,10 +9,10 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
 {
     public int maxHP {  get; protected set; }
     public int hitPoint {  get; protected set; }
-    public int defence {  get; protected set; }
-    public int power {  get; protected set; }
-    public float moveSpeed { get; protected set; }
-    public float weight { get; protected set; }
+    public int defence;
+    public int power;
+    public float moveSpeed;
+    public float weight;
 
     public bool actable { get; protected set; }
 
@@ -29,6 +29,11 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
     CancellationTokenSource defenceDbfCts = new CancellationTokenSource();
     CancellationTokenSource blazeCts = new CancellationTokenSource();
     CancellationTokenSource freezeCts = new CancellationTokenSource();
+
+    protected virtual void Awake()
+    {
+
+    }
 
     protected virtual void Start()
     {

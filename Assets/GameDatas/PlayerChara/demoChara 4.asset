@@ -20,5 +20,8 @@ MonoBehaviour:
   luck: 0
   throwPower: 14
   eyeSight: 4
+  initialKnives:
+  - {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
+  initialTreasures: []
   masteredElement: 0
   prefab: {fileID: 0}

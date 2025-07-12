@@ -12,8 +12,6 @@ public class PausePanelCtrler : MonoBehaviour
 
     [SerializeField] GameObject detailWindow;
 
-
-
     private void Awake()
     {
         // 初期がアクティブでないオブジェクトへのアタッチを想定のため、AwakeやStartは上手く動作しない
@@ -36,7 +34,7 @@ public class PausePanelCtrler : MonoBehaviour
 
     private void OnEnable()
     {
-        List<KnifeData> knives = PlayerController.Instance._attack.availableKnifes;
+        List<KnifeData> knives = PlayerController.Instance._status.inventory.runtimeKnives;
 
         foreach(var knifeData in knives)
         {

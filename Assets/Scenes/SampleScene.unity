@@ -555,6 +555,7 @@ GameObject:
   - component: {fileID: 229048616}
   - component: {fileID: 229048613}
   - component: {fileID: 229048614}
+  - component: {fileID: 229048617}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -768,6 +769,18 @@ MonoBehaviour:
   gauge_HP: {fileID: 142022630}
   playerCharaData: {fileID: 11400000, guid: c5837e0905e889a44890b52e8c1e5263, type: 2}
   requiredEXP_LvUp: 5
+--- !u!114 &229048617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229048608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfdc4c8c984b95e4d9c7eef9be273cf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &234350007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1999,6 +2012,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knifeArea: {fileID: 377655002}
   knifeButtonPrefab: {fileID: 4757622343610648202, guid: 2de89337c8d82cc4c8a54e08db822086, type: 3}
+  detailWindow: {fileID: 0}
 --- !u!1 &1316949028
 GameObject:
   m_ObjectHideFlags: 0

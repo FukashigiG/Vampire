@@ -69,8 +69,7 @@ public class PlayerLvUpManager : MonoBehaviour
     void Choice(KnifeData knifeData)
     {
         //プレイヤーに抽選されたナイフの追加
-        //流石にヤケクソ実装すぎるので修正必須
-        GameObject.Find("Player").GetComponent<PlayerAttack>().AddKnife(knifeData);
+        PlayerController.Instance._status.inventory.AddKnife(knifeData);
 
         //buttonAreaの子オブジェクトを全削除
         foreach (Transform button in buttonArea.transform)
