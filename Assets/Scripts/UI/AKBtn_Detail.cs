@@ -20,6 +20,7 @@ public class AKBtn_Detail : MonoBehaviour
         
     }
 
+    // 初期化処理
     public void Initialize(KnifeData data)
     {
         knifeData = data;
@@ -29,8 +30,9 @@ public class AKBtn_Detail : MonoBehaviour
         t_Attribute.text = "Attribute : " + knifeData.element;
         t_Power.text = "Attack : " + knifeData.power;
 
-        t_Description.text = ""; // 初期化
+        t_Description.text = "";
 
+        // このナイフが持つ特殊能力を記述する処理
         foreach (var effect in knifeData.specialEffects)
         {
             if(effect != null)

@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewHSpE", menuName = "Game Data/HSpE/Critical")]
 public class HSpE_Critical : BaseHSpE
 {
+    // まれに大きなダメージ
+
     private bool _critical; // プロパティの値を保持するためのプライベートフィールド
     // これを下のcriticalに噛ませないと無限ループのエラーになる
 

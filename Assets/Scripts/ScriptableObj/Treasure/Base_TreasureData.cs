@@ -10,7 +10,12 @@ public abstract class Base_TreasureData : ScriptableObject
     [TextArea] public string _description;
     public Sprite icon;
 
+    // ゲットした時の処理
     public abstract void OnAdd(PlayerStatus status);
+
+    // 削除された時の処理
     public abstract void OnRemove(PlayerStatus status);
+
+    // 特定のアクションに反応する処理
     public abstract void SubscribeToEvent();
 }

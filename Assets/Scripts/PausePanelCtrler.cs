@@ -17,21 +17,21 @@ public class PausePanelCtrler : MonoBehaviour
         // 初期がアクティブでないオブジェクトへのアタッチを想定のため、AwakeやStartは上手く動作しない
     }
 
-    // 引数で渡されたアクションが実行されたらTogglePanelを呼ぶ
+    // 初期化
     public void Initialize(InputAction action)
     {
-        action.performed += TogglePanel;
+        action.performed += TogglePanel; // 引数で渡されたアクションが実行されたらTogglePanelを呼ぶ
 
         Debug.Log("set toggle");
     }
 
+    // パネル表示
     void TogglePanel(InputAction.CallbackContext context)
     {
         this.gameObject.SetActive(true);
-
-        Debug.Log("do");
     }
 
+    // 表示されたとき
     private void OnEnable()
     {
         List<KnifeData> knives = PlayerController.Instance._status.inventory.runtimeKnives;
@@ -44,8 +44,10 @@ public class PausePanelCtrler : MonoBehaviour
         }
     }
 
+    // パネル非表示
     public void CloseThis()
     {
+        // 全削除
         foreach(Transform button in knifeArea)
         {
             Destroy(button.gameObject);
@@ -54,8 +56,7 @@ public class PausePanelCtrler : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-
-
+    // 非表示になったとき
     private void OnDisable()
     {
         

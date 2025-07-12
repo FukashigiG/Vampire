@@ -6,6 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/demo")]
 public class demoTreasure : Base_TreasureData
 {
+    // Š‚µ‚Ä‚¢‚éŠÔA–hŒä—Í‚ªã¸‚·‚é”é•ó
+
     public int amount;
 
     public override void OnAdd(PlayerStatus status)

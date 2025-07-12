@@ -21,11 +21,13 @@ public class PlayerInventory : MonoBehaviour
 
     }
 
+    // ナイフを入手する処理
     public void AddKnife(KnifeData x)
     {
         runtimeKnives.Add(x);
     }
 
+    // 秘宝を入手する処理
     public void AddTreasure(Base_TreasureData x)
     {
         //if (runtimeTreasure.Contains(x)) return; // 同じアイテムは追加しない

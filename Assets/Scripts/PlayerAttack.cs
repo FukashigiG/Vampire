@@ -25,12 +25,12 @@ public class PlayerAttack : MonoBehaviour
     private void Awake()
     {
         status = GetComponent<PlayerStatus>();
+
+        _token = cancellationTokenSource.Token;
     }
 
     void Start()
     {
-        _token = cancellationTokenSource.Token;
-
         AttackTask(_token).Forget();
     }
 
@@ -39,6 +39,7 @@ public class PlayerAttack : MonoBehaviour
         targetEnemy = FindEnemy();
     }
 
+    // UŒ‚ƒTƒCƒNƒ‹ˆ—
     async UniTask AttackTask(CancellationToken token)
     {
         while (true)
@@ -59,6 +60,7 @@ public class PlayerAttack : MonoBehaviour
         GameObject nearestObject = null;
         float shortestDistance = Mathf.Infinity; // –³ŒÀ‘å‚Å‰Šú‰»
 
+        // ˆê”Ô‹ß‚¢“G‚ğ’Tõ
         foreach (Collider2D hit in hits)
         {
             float Distance = Vector2.Distance(transform.position, hit.transform.position);
@@ -86,6 +88,7 @@ public class PlayerAttack : MonoBehaviour
     {
         for (int i = 0; i < availableKnifes.Count; i++)
         {
+            // UŒ‚”ÍˆÍ“à‚É“G‚ªŒ»‚ê‚é‚Ü‚Å‘Ò‚Â
             await UniTask.WaitUntil(() => targetEnemy != null, cancellationToken: token);
 
             Vector2 dir = (targetEnemy.transform.position - this.transform.position).normalized;
