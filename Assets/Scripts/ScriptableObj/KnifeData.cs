@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName ="NewWeaponData", menuName = "Game Data/Weapon Data")]
@@ -26,7 +27,7 @@ public class KnifeData : ScriptableObject
     [Multiline(6)] public string description;
 
     // 特殊効果
-    public BaseHSpE[] specialEffects;
+    public List<BaseHSpE> specialEffects;
 
     // 以下キーワード能力
     /*

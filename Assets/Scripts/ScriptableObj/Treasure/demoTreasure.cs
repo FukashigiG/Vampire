@@ -22,7 +22,7 @@ public class demoTreasure : Base_TreasureData
         status.defence -= amount;
     }
 
-    public override void SubscribeToEvent()
+    public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
 
     }

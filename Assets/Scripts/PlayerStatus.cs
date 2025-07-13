@@ -13,6 +13,7 @@ public class PlayerStatus : Base_MobStatus
     public PlayerCharaData playerCharaData;
 
     public PlayerInventory inventory { get; private set; }
+    public PlayerAttack attack { get; private set; }
 
     [SerializeField] int requiredEXP_LvUp;
 
@@ -35,6 +36,7 @@ public class PlayerStatus : Base_MobStatus
         base.Awake();
 
         inventory = GetComponent<PlayerInventory>();
+        attack = GetComponent<PlayerAttack>();
 
         //各内部ステータスをPlayerCharaDataから代入
         maxHP = playerCharaData.hp;

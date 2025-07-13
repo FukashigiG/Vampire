@@ -17,5 +17,5 @@ public abstract class Base_TreasureData : ScriptableObject
     public abstract void OnRemove(PlayerStatus status);
 
     // “Á’è‚ÌƒAƒNƒVƒ‡ƒ“‚É”½‰‚·‚éˆ—
-    public abstract void SubscribeToEvent();
+    public abstract void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables);
 }

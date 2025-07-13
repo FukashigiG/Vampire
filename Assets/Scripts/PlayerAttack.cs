@@ -1,7 +1,9 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using UniRx;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
@@ -18,6 +20,9 @@ public class PlayerAttack : MonoBehaviour
     GameObject targetEnemy;
 
     List<KnifeData> availableKnifes = new List<KnifeData>();
+
+    // ナイフ生成直前に発行、秘宝効果で編集できるように
+    public Subject<KnifeData> onThrowKnife { get; private set; } = new Subject<KnifeData>();
 
     CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _token;
@@ -81,7 +86,7 @@ public class PlayerAttack : MonoBehaviour
 
         await UniTask.Delay((int)(time_ReloadKnives * 1000));
 
-        Debug.Log(availableKnifes.Count);
+        Debug.Log("reload : " + availableKnifes.Count);
     }
 
     async UniTask ThrowKnives(CancellationToken token)
@@ -93,8 +98,15 @@ public class PlayerAttack : MonoBehaviour
 
             Vector2 dir = (targetEnemy.transform.position - this.transform.position).normalized;
 
+            var knife = availableKnifes[i];
+
+            // 購読先による介入のための発行
+            onThrowKnife.OnNext(knife);
+
             // ナイフを生成、それをxと置く
-            var x = Instantiate(availableKnifes[i].prefab, this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
+            // 編集された可能性のあるKnifeDataで処理を続行
+            var x = Instantiate(knife.prefab, this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
+
             // xを初期化
             x.GetComponent<Base_KnifeCtrler>().Initialize(status.throwPower);
 
@@ -106,5 +118,7 @@ public class PlayerAttack : MonoBehaviour
     {
         cancellationTokenSource.Cancel();
         cancellationTokenSource.Dispose();
+
+        onThrowKnife.Dispose();
     }
 }
