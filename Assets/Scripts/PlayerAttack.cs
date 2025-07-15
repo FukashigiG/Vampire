@@ -96,9 +96,15 @@ public class PlayerAttack : MonoBehaviour
             // 攻撃範囲内に敵が現れるまで待つ
             await UniTask.WaitUntil(() => targetEnemy != null, cancellationToken: token);
 
+            // 攻撃対象の方向をVec2型で取得
             Vector2 dir = (targetEnemy.transform.position - this.transform.position).normalized;
 
-            var knife = availableKnifes[i];
+            // エディタ上で登録されたScriptableObjectを取得
+            var originalKnifeData = availableKnifes[i];
+
+            // ScriptableObjectをInstantiateして、実行時専用のコピーを生成する
+            // こうすることで、実際のScriptableObjectの内容を書き換えることなく、編集されたKnifeDataを扱うことができる
+            var knife = Instantiate(originalKnifeData);
 
             // 購読先による介入のための発行
             onThrowKnife.OnNext(knife);
@@ -108,7 +114,7 @@ public class PlayerAttack : MonoBehaviour
             var x = Instantiate(knife.prefab, this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
 
             // xを初期化
-            x.GetComponent<Base_KnifeCtrler>().Initialize(status.throwPower);
+            x.GetComponent<Base_KnifeCtrler>().Initialize(status.throwPower, knife);
 
             await UniTask.Delay((int)(coolTime_ThrowKnife * 1000), cancellationToken: token);
         }

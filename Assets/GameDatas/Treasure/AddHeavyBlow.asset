@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d00d18b2af593b48a22aef631595ed1, type: 3}
-  m_Name: AddBlaze
+  m_Name: AddHeavyBlow
   m_EditorClassIdentifier: 
-  _name: "\u706B\u306E\u30AA\u30FC\u30D6"
-  _description: "\u706B\u5C5E\u6027\u306E\u30CA\u30A4\u30D5\u306B\u706B\u708E\u52B9\u679C\u3092\u4ED8\u4E0E"
+  _name: "\u91CD\u6483\u306E\u6975\u610F"
+  _description: "\u9EC4\u5C5E\u6027\u306E\u30CA\u30A4\u30D5\u306B\u91CD\u6483\u52B9\u679C\u3092\u4ED8\u4E0E"
   icon: {fileID: 0}
-  blazeData: {fileID: 11400000, guid: 249e96673c14ceb42938269bb32e3a14, type: 2}
+  targetEnum: 3
+  hspe: {fileID: 11400000, guid: 0ecace1a4da53ac43aa4802915857ebe, type: 2}

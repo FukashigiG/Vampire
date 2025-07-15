@@ -17,9 +17,9 @@ public class PlayerStatus : Base_MobStatus
 
     [SerializeField] int requiredEXP_LvUp;
 
-    public float throwPower { get; private set; }
-    public float luck {  get; private set; }
-    public float eyeSight {  get; private set; }
+    public float throwPower;
+    public float luck;
+    public float eyeSight;
 
     int exp;
 

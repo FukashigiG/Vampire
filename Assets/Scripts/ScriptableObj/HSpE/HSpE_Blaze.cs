@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewHSpE", menuName = "Game Data/HSpE/Blaze")]
 public class HSpE_Blaze : BaseHSpE
 {
+    
     // “–‚½‚Á‚½“G‚ğ‰Î‰Šó‘Ô‚É‚·‚é
 
     public float duration;
