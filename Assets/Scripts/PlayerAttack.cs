@@ -24,6 +24,9 @@ public class PlayerAttack : MonoBehaviour
     // ナイフ生成直前に発行、秘宝効果で編集できるように
     public Subject<KnifeData> onThrowKnife { get; private set; } = new Subject<KnifeData>();
 
+    // リロード時に発行
+    public Subject<Unit> onReload { get; private set; } = new Subject<Unit>();
+
     CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _token;
 
@@ -126,5 +129,7 @@ public class PlayerAttack : MonoBehaviour
         cancellationTokenSource.Dispose();
 
         onThrowKnife.Dispose();
+
+        onReload.Dispose();
     }
 }

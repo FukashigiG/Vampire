@@ -23,13 +23,6 @@ MonoBehaviour:
   initialKnives:
   - {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
   initialTreasures:
-  - {fileID: 11400000, guid: d667eafc6c60dc045b19ddc486bd9a75, type: 2}
-  - {fileID: 11400000, guid: 632e80df986933f4db93b89e64d263da, type: 2}
-  - {fileID: 11400000, guid: 3ef17795f4516ce4abffd3c8b2451f8a, type: 2}
-  - {fileID: 11400000, guid: bc5026d2fd1c27e48906baef0271cfdd, type: 2}
-  - {fileID: 11400000, guid: 4b9d94751bb1c90419d15d5cc0063c5e, type: 2}
-  - {fileID: 11400000, guid: 8adf9433024c5b64fa101f6489e96ddc, type: 2}
-  - {fileID: 11400000, guid: ff30bf2309e0e174ba086998ab39d035, type: 2}
-  - {fileID: 11400000, guid: aecb6cbc2eba64e4cb0775ebbe15d35b, type: 2}
+  - {fileID: 11400000, guid: f8066584ec74fed4f8027731bb88fde2, type: 2}
   masteredElement: 0
   prefab: {fileID: 0}

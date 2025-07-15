@@ -64,6 +64,14 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
      *上二つの関数が分かれてるのは、防御計算をしたい場合としたくない場合に両対応するため 
      */
 
+    // 回復
+    public virtual void HealHP(int x)
+    {
+        hitPoint += x;
+
+        if (hitPoint > maxHP) hitPoint = maxHP;
+    }
+
     // ノックバック
     public virtual void KnockBack(Vector2 damagedPosi, float power)
     {
@@ -91,24 +99,28 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
     {
         moveSpeed *= amount;
 
+        Debug.Log(moveSpeed);
+
         try
         {
             await UniTask.Delay((int)(duration * 1000), cancellationToken: token);
 
-            // 指定時間待ち終わったら
-            moveSpeed /= amount;
+            
         }
         catch
         {
             // 例外処理
 
-            Debug.Log("MoveSpeedDebuff was canceled.");
+            //Debug.Log("MoveSpeedDebuff was canceled.");
 
             return;
         }
         finally
         {
-            
+            // 指定時間待ち終わるかキャンセルされたら
+            moveSpeed /= amount;
+
+            // これ今の仕様じゃバグるんじゃ？？？
         }
     }
 
@@ -134,18 +146,18 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
         {
             await UniTask.Delay((int)(duration * 1000), cancellationToken: token);
 
-            // 指定時間待ち終わったら
-            power = (int)(power / amount);
+            
         }
         catch
         {
-            Debug.Log("PowerDebuff was canceled.");
+            //Debug.Log("PowerDebuff was canceled.");
 
             return;
         }
         finally
         {
-
+            // 指定時間待ち終わったら
+            power = (int)(power / amount);
         }
     }
 
@@ -172,17 +184,17 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
         {
             await UniTask.Delay((int)(duration * 1000), cancellationToken: token);
 
-            defence = (int)(defence / amount);
+            
         }
         catch
         {
-            Debug.Log("DefenceDebuff was canceled.");
+            //Debug.Log("DefenceDebuff was canceled.");
             
             return;
         }
         finally
         {
-            
+            defence = (int)(defence / amount);
         }
     }
 
