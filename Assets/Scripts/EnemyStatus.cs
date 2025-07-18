@@ -19,8 +19,9 @@ public class EnemyStatus : Base_MobStatus
     {
         maxHP = (int)((float)_enemyData.hp * multiplier);
         hitPoint = maxHP;
-        power = (int)((float)_enemyData.power * multiplier);
-        defence = (int)((float)_enemyData.defense * multiplier);
+
+        power = _enemyData.power * multiplier;
+        defence = _enemyData.defense * multiplier;
         weight = _enemyData.weight * multiplier;
         moveSpeed = _enemyData.moveSpeed * multiplier;
     }
@@ -34,6 +35,6 @@ public class EnemyStatus : Base_MobStatus
 
         var x = Instantiate(damageTxt, screenPoint, Quaternion.identity, GameObject.Find("Parent_DamageTxt").transform);
 
-        x.GetComponent<DamageTxtCtrler>().Initialize(a);
+        x.GetComponent<DamageTxtCtrler>().Initialize((int)a);
     }
 }

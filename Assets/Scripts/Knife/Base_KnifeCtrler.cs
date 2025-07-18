@@ -8,7 +8,7 @@ public class Base_KnifeCtrler : MonoBehaviour
 
     protected float speed;
     protected float lifeTime;
-    protected int power;
+    protected float power;
 
     protected virtual void Start()
     {
@@ -30,7 +30,7 @@ public class Base_KnifeCtrler : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         // êiÇﬁ
-        transform.Translate(Vector2.up * speed * Time.fixedDeltaTime);
+        transform.Translate(Vector2.up * (speed * 0.2f) * Time.fixedDeltaTime);
 
         // éıñΩ
         lifeTime -= Time.fixedDeltaTime;
@@ -61,7 +61,7 @@ public class Base_KnifeCtrler : MonoBehaviour
                 }
             }
 
-            ms?.GetAttack(power, transform.position);
+            ms?.GetAttack((int)((power + speed * 0.75f) / 2), transform.position);
 
             Instantiate(knifeData.hitEffect, transform.position, Quaternion.identity);
 

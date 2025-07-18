@@ -17,7 +17,6 @@ public class PlayerStatus : Base_MobStatus
 
     [SerializeField] int requiredEXP_LvUp;
 
-    public float throwPower;
     public float luck;
     public float eyeSight;
 
@@ -41,9 +40,10 @@ public class PlayerStatus : Base_MobStatus
         //各内部ステータスをPlayerCharaDataから代入
         maxHP = playerCharaData.hp;
         hitPoint = maxHP;
+        power = playerCharaData.power; //　プレイヤーのpowerはナイフの速度を決定する
         defence = playerCharaData.defense;
         moveSpeed = playerCharaData.moveSpeed;
-        throwPower = playerCharaData.throwPower;
+
         luck = playerCharaData.luck;
         eyeSight = playerCharaData.eyeSight;
     }
@@ -92,7 +92,7 @@ public class PlayerStatus : Base_MobStatus
     }
 
     // 攻撃を受ける処理
-    public override void GetAttack(int a, Vector2 damagedPosi)
+    public override void GetAttack(float a, Vector2 damagedPosi)
     {
         if (isInvincible) return;
 

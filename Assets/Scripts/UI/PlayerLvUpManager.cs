@@ -12,10 +12,15 @@ public class PlayerLvUpManager : MonoBehaviour
 
     [SerializeField] List<KnifeData> allKnifeData;
 
+    [SerializeField] Button button_Skip;
+
     private void Start()
     {
         //ナイフ追加画面のボタンが押された際に、それを検知し関数を実行
-        Button_AddKnifeCtrler.clicked.Subscribe(xx => Choice(xx));
+        Button_AddKnifeCtrler.clicked.Subscribe(xx => Choice(xx)).AddTo(this);
+
+        // スキップボタンが押されるのに反応して、パネルを閉じるように
+        button_Skip.onClick.AddListener(() => this.gameObject.SetActive(false));
     }
 
 
@@ -71,12 +76,6 @@ public class PlayerLvUpManager : MonoBehaviour
         //プレイヤーに抽選されたナイフの追加
         PlayerController.Instance._status.inventory.AddKnife(knifeData);
 
-        //buttonAreaの子オブジェクトを全削除
-        foreach (Transform button in buttonArea.transform)
-        {
-            Destroy(button.gameObject);
-        }
-
         //パネルを閉じる
         this.gameObject.SetActive(false);
     }
@@ -89,5 +88,15 @@ public class PlayerLvUpManager : MonoBehaviour
         var y = allKnifeData[x];
 
         return y;
+    }
+
+    // このパネルが閉じるとき（activeSelfがfalseになるとき）
+    private void OnDisable()
+    {
+        //buttonAreaの子オブジェクトを全削除
+        foreach (Transform button in buttonArea.transform)
+        {
+            Destroy(button.gameObject);
+        }
     }
 }

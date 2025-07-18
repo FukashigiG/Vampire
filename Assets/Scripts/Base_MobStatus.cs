@@ -9,8 +9,9 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
 {
     public int maxHP {  get; protected set; }
     public int hitPoint {  get; protected set; }
-    public int defence;
-    public int power;
+
+    public float defence;
+    public float power;
     public float moveSpeed;
     public float weight;
 
@@ -41,10 +42,10 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
     }
 
     // 攻撃を受ける処理
-    public virtual void GetAttack(int a, Vector2 damagedPosi)
+    public virtual void GetAttack(float a, Vector2 damagedPosi)
     {
         // ダメージ計算式
-        int damage = a - defence / 4;
+        int damage = (int)(a - defence / 4);
 
         // 0以下にならないように
         if (damage <= 0) damage = 1;

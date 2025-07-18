@@ -15,14 +15,14 @@ MonoBehaviour:
   sprite: {fileID: 0}
   _name: "\u6A19\u6E96"
   hp: 200
+  power: 40
   defense: 40
   moveSpeed: 6
   luck: 0
-  throwPower: 14
   eyeSight: 4
   initialKnives:
   - {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
   initialTreasures:
-  - {fileID: 11400000, guid: f8066584ec74fed4f8027731bb88fde2, type: 2}
+  - {fileID: 11400000, guid: 75654eb28566e4845b4582e0c4be9dd8, type: 2}
   masteredElement: 0
   prefab: {fileID: 0}

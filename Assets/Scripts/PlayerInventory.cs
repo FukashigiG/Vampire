@@ -8,11 +8,12 @@ using static UnityEditor.Progress;
 [RequireComponent(typeof(PlayerStatus))]
 public class PlayerInventory : MonoBehaviour
 {
-    public List<KnifeData> runtimeKnives { get; private set; } = new List<KnifeData>();
+    public ReactiveCollection<KnifeData> runtimeKnives { get; private set; } = new ReactiveCollection<KnifeData>();
     public List<Base_TreasureData> runtimeTreasure { get; private set; } = new List<Base_TreasureData>();
 
     // アイテムとそのイベント購読を紐付けて管理する
     private readonly Dictionary<Base_TreasureData, CompositeDisposable> _itemDisposables = new Dictionary<Base_TreasureData, CompositeDisposable>();
+
 
     PlayerStatus status;
 

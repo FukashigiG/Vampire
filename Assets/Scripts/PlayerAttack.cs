@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UniRx;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -85,7 +86,7 @@ public class PlayerAttack : MonoBehaviour
 
     async UniTask Reload()
     {
-        availableKnifes = status.inventory.runtimeKnives;
+        availableKnifes = status.inventory.runtimeKnives.ToList();
 
         await UniTask.Delay((int)(time_ReloadKnives * 1000));
 
@@ -117,7 +118,7 @@ public class PlayerAttack : MonoBehaviour
             var x = Instantiate(knife.prefab, this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
 
             // xÇèâä˙âª
-            x.GetComponent<Base_KnifeCtrler>().Initialize(status.throwPower, knife);
+            x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife);
 
             await UniTask.Delay((int)(coolTime_ThrowKnife * 1000), cancellationToken: token);
         }

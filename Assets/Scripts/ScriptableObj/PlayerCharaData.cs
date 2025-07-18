@@ -8,11 +8,10 @@ public class PlayerCharaData : ScriptableObject
     public string _name;
 
     public int hp;
-    public int defense;
-
+    public float power;
+    public float defense;
     public float moveSpeed;
     public float luck;
-    public float throwPower;
     public float eyeSight;
 
     public KnifeData[] initialKnives;

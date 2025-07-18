@@ -15,10 +15,10 @@ MonoBehaviour:
   sprite: {fileID: 0}
   _name: "\u8FD1\u8DDD\u96E2\u7279\u5316"
   hp: 220
+  power: 40
   defense: 40
   moveSpeed: 6
   luck: 0
-  throwPower: 18
   eyeSight: 3.2
   initialKnives:
   - {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class PausePanelCtrler : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class PausePanelCtrler : MonoBehaviour
     // •\Ž¦‚³‚ê‚½‚Æ‚«
     private void OnEnable()
     {
-        List<KnifeData> knives = PlayerController.Instance._status.inventory.runtimeKnives;
+        List<KnifeData> knives = PlayerController.Instance._status.inventory.runtimeKnives.ToList();
 
         foreach(var knifeData in knives)
         {
