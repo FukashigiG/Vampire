@@ -9,6 +9,6 @@ public class HSpE_Freeze : BaseHSpE
 
     public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
     {
-        status.Freeze(duration);
+        status.ApplyStatusEffect(StatusEffectType.Freeze, duration);
     }
 }

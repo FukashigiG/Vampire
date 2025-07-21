@@ -90,7 +90,7 @@ public class PlayerAttack : MonoBehaviour
 
         await UniTask.Delay((int)(time_ReloadKnives * 1000));
 
-        Debug.Log("reload : " + availableKnifes.Count);
+        //Debug.Log("reload : " + availableKnifes.Count);
     }
 
     async UniTask ThrowKnives(CancellationToken token)

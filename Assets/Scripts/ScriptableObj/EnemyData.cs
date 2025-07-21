@@ -14,5 +14,7 @@ public class EnemyData : ScriptableObject
     public float moveSpeed;
     public float weight;
 
+    public float amount_EXP;
+
     public GameObject prefab;
 }

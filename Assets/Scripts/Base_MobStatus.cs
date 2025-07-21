@@ -5,7 +5,16 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 
-public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
+public enum StatusEffectType
+{
+    Defence,
+    Power,
+    MoveSpeed,
+    Blaze,
+    Freeze
+}
+
+public class Base_MobStatus : MonoBehaviour, IDamagable
 {
     public int maxHP {  get; protected set; }
     public int hitPoint {  get; protected set; }
@@ -24,12 +33,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
      * 全ての敵の撃破イベントをキャッチできる*/
     //ゲーム終了時にはGameAdminにDisposeされる
 
-    // 各デバフ処理のキャンセルに必要なトークンソース
-    CancellationTokenSource moveSpeedDbfCts = new CancellationTokenSource();
-    CancellationTokenSource powerDbfCts = new CancellationTokenSource();
-    CancellationTokenSource defenceDbfCts = new CancellationTokenSource();
-    CancellationTokenSource blazeCts = new CancellationTokenSource();
-    CancellationTokenSource freezeCts = new CancellationTokenSource();
+    Dictionary<StatusEffectType, CancellationTokenSource> activeStatusEffects = new();
 
     protected virtual void Awake()
     {
@@ -39,6 +43,101 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
     protected virtual void Start()
     {
         actable = true;
+    }
+
+    // 状態変化効果を適用する統合メソッド
+    public void ApplyStatusEffect(StatusEffectType type, float duration, float amount = 0)
+    {
+        // すでに同じ効果がかかっている場合は、一度キャンセルして上書きする
+        if (activeStatusEffects.ContainsKey(type))
+        {
+            activeStatusEffects[type].Cancel();
+            activeStatusEffects[type].Dispose();
+            activeStatusEffects.Remove(type);
+        }
+
+        // 新しいトークンソースを用意
+        var cts = new CancellationTokenSource();
+        activeStatusEffects[type] = cts;
+
+        // タスクの実行
+        StatusEffectTask(type, duration, amount + 1f, cts.Token).Forget();
+    }
+
+    // 状態変化効果の非同期処理
+    async UniTask StatusEffectTask(StatusEffectType type, float duration, float amount, CancellationToken token)
+    {
+        // 事前処理：効果を適用する
+        switch (type)
+        {
+            case StatusEffectType.MoveSpeed:
+                moveSpeed *= amount;
+                break;
+            case StatusEffectType.Power:
+                power *= amount;
+                break;
+            case StatusEffectType.Defence:
+                defence *= amount;
+                break;
+            case StatusEffectType.Freeze:
+                actable = false;
+                break;
+            case StatusEffectType.Blaze:
+                // Blazeはamountを使わず、内部でダメージ計算
+                break;
+        }
+
+        try
+        {
+            if(type == StatusEffectType.Blaze)
+            {
+                float dmg = maxHP / 100f * 5f;
+
+                int tickCount = Mathf.FloorToInt(duration);
+
+                for (int i = 0; i < tickCount; i++)
+                {
+                    await UniTask.Delay(1000, cancellationToken: token);
+
+                    TakeDamage((int)dmg, this.transform.position);
+                }
+            }
+            else
+            {
+                // 通常の待ち処理
+                await UniTask.Delay((int)(duration * 1000), cancellationToken: token);
+            }
+        }
+        catch
+        {
+            Debug.Log($"{type}.effect was cancelled");
+        }
+        finally
+        {
+            // 事後処理：効果を元に戻す
+            switch (type)
+            {
+                case StatusEffectType.MoveSpeed:
+                    moveSpeed /= amount; 
+                    break;
+                case StatusEffectType.Power:
+                    power /= amount; 
+                    break;
+                case StatusEffectType.Defence:
+                    defence /= amount; 
+                    break;
+                case StatusEffectType.Freeze:
+                    actable = true;
+                    break;
+            }
+
+            // Dictionaryから削除
+            if (activeStatusEffects.ContainsKey(type))
+            {
+                activeStatusEffects.Remove(type);
+            }
+        }
+
     }
 
     // 攻撃を受ける処理
@@ -81,190 +180,6 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
         transform.Translate(damageDir * -1 * power * (1 / (1 + weight)));
     }
 
-
-    public void MoveSpeedDebuff(float duration, float amount)
-    {
-        // 現行のトークンソースをキャンセル
-        moveSpeedDbfCts?.Cancel();
-        moveSpeedDbfCts?.Dispose();
-
-        // トークンソースを新しいものに差し替え
-        moveSpeedDbfCts = new CancellationTokenSource();
-
-        // 実行
-        MSDbfTask(duration, amount, moveSpeedDbfCts.Token).Forget();
-    }
-
-    // 移動速度デバフ
-    async public virtual UniTask MSDbfTask(float duration, float amount, CancellationToken token)
-    {
-        moveSpeed *= amount;
-
-        Debug.Log(moveSpeed);
-
-        try
-        {
-            await UniTask.Delay((int)(duration * 1000), cancellationToken: token);
-
-            
-        }
-        catch
-        {
-            // 例外処理
-
-            //Debug.Log("MoveSpeedDebuff was canceled.");
-
-            return;
-        }
-        finally
-        {
-            // 指定時間待ち終わるかキャンセルされたら
-            moveSpeed /= amount;
-
-            // これ今の仕様じゃバグるんじゃ？？？
-        }
-    }
-
-
-    public void PowerDebuff(float duration, float amount)
-    {
-        // 現行のをキャンセル
-        powerDbfCts?.Cancel();
-        powerDbfCts?.Dispose();
-
-        // トークンソースを新しいものに差し替え
-        powerDbfCts = new CancellationTokenSource();
-
-        PDbfTask(duration, amount, powerDbfCts.Token).Forget();
-    }
-
-    // 力デバフ
-    async public virtual UniTask PDbfTask(float duration, float amount, CancellationToken token)
-    {
-        power = (int)(power * amount);
-
-        try
-        {
-            await UniTask.Delay((int)(duration * 1000), cancellationToken: token);
-
-            
-        }
-        catch
-        {
-            //Debug.Log("PowerDebuff was canceled.");
-
-            return;
-        }
-        finally
-        {
-            // 指定時間待ち終わったら
-            power = (int)(power / amount);
-        }
-    }
-
-
-    public void DefenceDebuff(float duration, float amount)
-    {
-        // キャンセル
-        defenceDbfCts?.Cancel();
-        defenceDbfCts?.Dispose();
-
-        // 新しいものに
-        defenceDbfCts = new CancellationTokenSource();
-
-        // 実行
-        DDbfTask(duration, amount, defenceDbfCts.Token).Forget();
-    }
-
-    // 防御デバフ
-    async public virtual UniTask DDbfTask (float duration, float amount, CancellationToken token)
-    {
-        defence = (int)(defence * amount);
-
-        try
-        {
-            await UniTask.Delay((int)(duration * 1000), cancellationToken: token);
-
-            
-        }
-        catch
-        {
-            //Debug.Log("DefenceDebuff was canceled.");
-            
-            return;
-        }
-        finally
-        {
-            defence = (int)(defence / amount);
-        }
-    }
-
-    public virtual void Blaze(float duration)
-    {
-        blazeCts?.Cancel();
-        blazeCts?.Dispose();
-
-        blazeCts = new CancellationTokenSource();
-
-        BlazeTask(duration, blazeCts.Token).Forget();
-    }
-
-    async UniTask BlazeTask(float duration, CancellationToken token)
-    {
-        try
-        {
-            float dmg = maxHP / 100f * 5f;
-
-            int num = Mathf.FloorToInt(duration);
-
-            for(int i = 0; i < 5;  i++)
-            {
-                await UniTask.Delay(1000, cancellationToken: token);
-
-                TakeDamage((int)dmg, this.transform.position);
-            }
-            
-        }
-        catch
-        {
-            return;
-        }
-        finally
-        {
-
-        }
-    }
-
-    public virtual void Freeze(float duration)
-    {
-        freezeCts?.Cancel();
-        freezeCts?.Dispose();
-
-        freezeCts = new CancellationTokenSource();
-
-        FreezeTask(duration, freezeCts.Token).Forget();
-    }
-
-    async UniTask FreezeTask(float duration, CancellationToken token)
-    {
-        try
-        {
-            actable = false;
-
-            await UniTask.Delay((int)(duration * 1000), cancellationToken: token);
-
-            actable = true;
-        }
-        catch
-        {
-            return ;
-        }
-        finally
-        {
-            
-        }
-    }
-
     public virtual void Die()
     {
         onDie.OnNext(1);
@@ -274,16 +189,11 @@ public class Base_MobStatus : MonoBehaviour, IDamagable, IDebuffable
 
     protected virtual void OnDestroy()
     {
-        moveSpeedDbfCts?.Cancel();
-        powerDbfCts?.Cancel();
-        defenceDbfCts?.Cancel();
-        blazeCts?.Cancel();
-        freezeCts?.Cancel();
-
-        moveSpeedDbfCts.Dispose();
-        powerDbfCts.Dispose();
-        defenceDbfCts.Dispose();
-        blazeCts.Dispose();
-        freezeCts.Dispose();
+        foreach (var cts in activeStatusEffects.Values)
+        {
+            cts.Cancel();
+            cts.Dispose();
+        }
+        activeStatusEffects.Clear();
     }
 }

@@ -10,6 +10,6 @@ public class HSpE_SpeedDebuff: BaseHSpE
 
     public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
     {
-        status.MoveSpeedDebuff(dulation, amount);
+        status.ApplyStatusEffect(StatusEffectType.MoveSpeed, dulation, -1 * amount);
     }
 }

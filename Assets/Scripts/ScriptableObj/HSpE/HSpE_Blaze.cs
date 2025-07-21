@@ -12,6 +12,6 @@ public class HSpE_Blaze : BaseHSpE
 
     public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
     {
-        status.Blaze(duration);
+        status.ApplyStatusEffect(StatusEffectType.Blaze, duration);
     }
 }

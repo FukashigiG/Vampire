@@ -33,7 +33,7 @@ public class AddHSpETreasure : Base_TreasureData
             // 引数で渡されたナイフのデータに、特定の特殊能力を追加
             _knifeData.specialEffects.Add(hspe);
 
-            Debug.Log("Add" + hspe.effectName + "for : " + _knifeData._name);
+            //Debug.Log("Add" + hspe.effectName + "for : " + _knifeData._name);
         })
         .AddTo(disposables);
     }
