@@ -795,7 +795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defKnife: {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
   coolTime_ThrowKnife: 0.3
-  time_ReloadKnives: 0.6
+  time_ReloadKnives: 0.5
   targetLayer:
     serializedVersion: 2
     m_Bits: 128

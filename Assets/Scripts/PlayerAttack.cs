@@ -24,9 +24,8 @@ public class PlayerAttack : MonoBehaviour
 
     // ナイフ生成直前に発行、秘宝効果で編集できるように
     public Subject<KnifeData> onThrowKnife { get; private set; } = new Subject<KnifeData>();
-
-    // リロード時に発行
-    public Subject<Unit> onReload { get; private set; } = new Subject<Unit>();
+    // リロード時に発行、
+    public Subject<List<KnifeData>> onReload { get; private set; } = new();
 
     CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _token;
@@ -87,6 +86,9 @@ public class PlayerAttack : MonoBehaviour
     async UniTask Reload()
     {
         availableKnifes = status.inventory.runtimeKnives.ToList();
+
+        // 購読先による検知、介入のための発行
+        onReload.OnNext(availableKnifes);
 
         await UniTask.Delay((int)(time_ReloadKnives * 1000));
 

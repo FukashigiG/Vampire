@@ -15,5 +15,4 @@ MonoBehaviour:
   _name: "\u30D2\u30FC\u30EB\u30EA\u30ED\u30FC\u30C9"
   _description: "\u30CA\u30A4\u30D5\u306E\u30EA\u30ED\u30FC\u30C9\u6642\u306BHP\u304C\u56DE\u5FA9\u3059\u308B"
   icon: {fileID: 0}
-  hspe: {fileID: 0}
-  healRatio: 0.07
+  healRatio: 0.04

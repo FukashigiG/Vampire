@@ -48,12 +48,14 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     // 状態変化効果を適用する統合メソッド
     public void ApplyStatusEffect(StatusEffectType type, float duration, float amount = 0)
     {
-        // すでに同じ効果がかかっている場合は、一度キャンセルして上書きする
+        // すでに同じ効果がかかっている場合は、一度キャンセルしてから上書きする
         if (activeStatusEffects.ContainsKey(type))
         {
             activeStatusEffects[type].Cancel();
             activeStatusEffects[type].Dispose();
-            activeStatusEffects.Remove(type);
+            //activeStatusEffects.Remove(type);
+
+            Debug.Log("already");
         }
 
         // 新しいトークンソースを用意
@@ -61,11 +63,11 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         activeStatusEffects[type] = cts;
 
         // タスクの実行
-        StatusEffectTask(type, duration, amount + 1f, cts.Token).Forget();
+        StatusEffectTask(type, duration, amount + 1f, cts).Forget();
     }
 
     // 状態変化効果の非同期処理
-    async UniTask StatusEffectTask(StatusEffectType type, float duration, float amount, CancellationToken token)
+    async UniTask StatusEffectTask(StatusEffectType type, float duration, float amount, CancellationTokenSource cts)
     {
         // 事前処理：効果を適用する
         switch (type)
@@ -97,7 +99,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
                 for (int i = 0; i < tickCount; i++)
                 {
-                    await UniTask.Delay(1000, cancellationToken: token);
+                    await UniTask.Delay(1000, cancellationToken: cts.Token);
 
                     TakeDamage((int)dmg, this.transform.position);
                 }
@@ -105,10 +107,10 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
             else
             {
                 // 通常の待ち処理
-                await UniTask.Delay((int)(duration * 1000), cancellationToken: token);
+                await UniTask.Delay((int)(duration * 1000), cancellationToken: cts.Token);
             }
         }
-        catch
+        catch (System.OperationCanceledException)
         {
             Debug.Log($"{type}.effect was cancelled");
         }
@@ -131,11 +133,15 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
                     break;
             }
 
-            // Dictionaryから削除
-            if (activeStatusEffects.ContainsKey(type))
+            // Dictionaryに自分に宛てたトークンソースが残っているのであれば、それを削除
+            if (activeStatusEffects.ContainsKey(type) && activeStatusEffects[type] == cts)
             {
                 activeStatusEffects.Remove(type);
+
+                Debug.Log("removed");
             }
+
+            cts.Dispose();
         }
 
     }

@@ -8,8 +8,6 @@ public class Base_ReloadActionTreasure : Base_TreasureData
 {
     // 所持している間、プレイヤーのリロードに反応して
 
-    public BaseHSpE hspe;
-
     public override void OnAdd(PlayerStatus status)
     {
 
@@ -22,14 +20,14 @@ public class Base_ReloadActionTreasure : Base_TreasureData
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
-        status.attack.onThrowKnife.Subscribe(_knifeData =>
+        status.attack.onReload.Subscribe(_knives =>
         {
-            ReloadAction(status);
+            ReloadAction(status, _knives);
         })
         .AddTo(disposables);
     }
 
-    public virtual void ReloadAction(PlayerStatus status)
+    public virtual void ReloadAction(PlayerStatus status, List<KnifeData> knives)
     {
 
     }
