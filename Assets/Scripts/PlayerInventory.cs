@@ -9,7 +9,7 @@ using static UnityEditor.Progress;
 public class PlayerInventory : MonoBehaviour
 {
     public ReactiveCollection<KnifeData> runtimeKnives { get; private set; } = new ReactiveCollection<KnifeData>();
-    public List<Base_TreasureData> runtimeTreasure { get; private set; } = new List<Base_TreasureData>();
+    public ReactiveCollection<Base_TreasureData> runtimeTreasure { get; private set; } = new();
 
     // アイテムとそのイベント購読を紐付けて管理する
     private readonly Dictionary<Base_TreasureData, CompositeDisposable> _itemDisposables = new Dictionary<Base_TreasureData, CompositeDisposable>();
