@@ -11,7 +11,8 @@ public class PausePanelCtrler : MonoBehaviour
     [SerializeField] Transform knifeArea;
     [SerializeField] Transform treasureArea;
 
-    [SerializeField] GameObject knifeButtonPrefab;
+    [SerializeField] GameObject knifeImagePrefab;
+    [SerializeField] GameObject treasureImagePrefab;
 
     [SerializeField] GameObject detailWindow;
 
@@ -19,6 +20,9 @@ public class PausePanelCtrler : MonoBehaviour
 
     // イベント購読をまとめて管理するためのDisposable
     private CompositeDisposable _disposables = new CompositeDisposable();
+
+    Dictionary<KnifeData, GameObject> knifeImageDictionaty = new();
+    Dictionary<Base_TreasureData, GameObject> treasureImageDictionaty = new();
 
     private void Awake()
     {
@@ -56,29 +60,44 @@ public class PausePanelCtrler : MonoBehaviour
 
         Debug.Log("set toggle");
 
+        // 最初に、既に登録されている物について追加処理をする
         foreach (var knives in playerInventory.runtimeKnives) OnKnifeAdded(knives);
         foreach (var treasures in playerInventory.runtimeTreasure) OnTreasureAdded(treasures);
     }
 
     void OnKnifeAdded(KnifeData knifeData)
     {
+        var imageObj = Instantiate(knifeImagePrefab, knifeArea);
+        imageObj.GetComponent<Image>().sprite = knifeData.sprite;
 
+        knifeImageDictionaty[knifeData] = imageObj;
     }
 
     void OnKnifeRemoved(KnifeData knifeData)
     {
-
+        if (knifeImageDictionaty.TryGetValue(knifeData, out var obj))
+        {
+            Destroy(obj);
+            knifeImageDictionaty.Remove(knifeData);
+        }
     }
 
 
     void OnTreasureAdded(Base_TreasureData treasureData)
     {
+        var imageObj = Instantiate(knifeImagePrefab, knifeArea);
+        imageObj.GetComponent<Image>().sprite = treasureData.icon;
 
+        treasureImageDictionaty[treasureData] = imageObj;
     }
 
     void OnTreasureRemoved(Base_TreasureData treasureData)
     {
-
+        if (treasureImageDictionaty.TryGetValue(treasureData, out var obj))
+        {
+            Destroy(obj);
+            treasureImageDictionaty.Remove(treasureData);
+        }
     }
 
     // パネル表示
