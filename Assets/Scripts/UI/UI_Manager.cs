@@ -9,7 +9,7 @@ public class UI_Manager : SingletonMono<UI_Manager>
 
     [SerializeField] PausePanelCtrler _pausePanelCtrler;
 
-    private void Awake()
+    private void Start()
     {
         InputActionMap uiMap = inputActions.FindActionMap("UICtrl");
         InputAction togglePanelAction = null;

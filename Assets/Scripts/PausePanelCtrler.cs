@@ -8,19 +8,21 @@ using UniRx;
 
 public class PausePanelCtrler : MonoBehaviour
 {
+    // 一覧となるオブジェクトのTransform
+    // Instantiate時に親の引数として渡す
     [SerializeField] Transform knifeArea;
     [SerializeField] Transform treasureArea;
 
+    // 生成される
     [SerializeField] GameObject knifeImagePrefab;
     [SerializeField] GameObject treasureImagePrefab;
-
-    [SerializeField] GameObject detailWindow;
 
     PlayerInventory playerInventory;
 
     // イベント購読をまとめて管理するためのDisposable
     private CompositeDisposable _disposables = new CompositeDisposable();
 
+    // 所持ナイフ/秘宝欄に生成されたオブジェクトを管理するためのもの
     Dictionary<KnifeData, GameObject> knifeImageDictionaty = new();
     Dictionary<Base_TreasureData, GameObject> treasureImageDictionaty = new();
 
@@ -34,7 +36,7 @@ public class PausePanelCtrler : MonoBehaviour
     {
         action.performed += TogglePanel; // 引数で渡されたアクションが実行されたらTogglePanelを呼ぶ
 
-        playerInventory = PlayerController.Instance._status.inventory;
+        playerInventory = PlayerController.Instance._status.inventory; // PlayerInventoryをプレイヤーから取得
 
         // --- ナイフの購読設定 ---
         playerInventory.runtimeKnives
@@ -47,7 +49,7 @@ public class PausePanelCtrler : MonoBehaviour
             .Subscribe(e => OnKnifeRemoved(e.Value))
             .AddTo(_disposables);
 
-        // --- トレジャーの購読設定 ---
+        // --- 秘宝の購読設定 ---
         playerInventory.runtimeTreasure
             .ObserveAdd()
             .Subscribe(e => OnTreasureAdded(e.Value))
@@ -60,37 +62,44 @@ public class PausePanelCtrler : MonoBehaviour
 
         Debug.Log("set toggle");
 
-        // 最初に、既に登録されている物について追加処理をする
+        // 最初に、既に登録されている物について、追加処理をする
         foreach (var knives in playerInventory.runtimeKnives) OnKnifeAdded(knives);
         foreach (var treasures in playerInventory.runtimeTreasure) OnTreasureAdded(treasures);
     }
 
+    // ナイフが追加された際
     void OnKnifeAdded(KnifeData knifeData)
     {
+        // ナイフ一覧に新たに生成
         var imageObj = Instantiate(knifeImagePrefab, knifeArea);
         imageObj.GetComponent<Image>().sprite = knifeData.sprite;
 
+        // 辞書に登録
         knifeImageDictionaty[knifeData] = imageObj;
     }
 
+    // ナイフが削除された際
     void OnKnifeRemoved(KnifeData knifeData)
     {
+        // 辞書に登録されているものであれば
         if (knifeImageDictionaty.TryGetValue(knifeData, out var obj))
         {
+            // 要素を削除
             Destroy(obj);
             knifeImageDictionaty.Remove(knifeData);
         }
     }
 
-
+    // 秘宝が追加された際
     void OnTreasureAdded(Base_TreasureData treasureData)
     {
-        var imageObj = Instantiate(knifeImagePrefab, knifeArea);
+        var imageObj = Instantiate(treasureImagePrefab, treasureArea);
         imageObj.GetComponent<Image>().sprite = treasureData.icon;
 
         treasureImageDictionaty[treasureData] = imageObj;
     }
 
+    // 秘宝が削除された際
     void OnTreasureRemoved(Base_TreasureData treasureData)
     {
         if (treasureImageDictionaty.TryGetValue(treasureData, out var obj))
@@ -106,28 +115,13 @@ public class PausePanelCtrler : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
-    /*
-    // 表示されたとき
-    private void OnEnable()
-    {
-        List<KnifeData> knives = inventory.runtimeKnives.ToList();
-
-        foreach(var knifeData in knives)
-        {
-            var x = Instantiate(knifeButtonPrefab, knifeArea);
-
-            x.GetComponent<Button_AddKnifeCtrler>().Initialize(knifeData);
-        }
-    }
-    */
-
     // パネル非表示
     public void CloseThis()
     {
         this.gameObject.SetActive(false);
     }
 
-    // このオブジェクトが破棄されるときに購読をすべて解除
+    // このオブジェクトが破棄されるときに、購読をすべて解除
     private void OnDestroy()
     {
         _disposables.Dispose();
