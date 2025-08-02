@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UniRx;
 
-public class Button_AddKnifeCtrler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Button_Knife : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Image image_Sprite;
 

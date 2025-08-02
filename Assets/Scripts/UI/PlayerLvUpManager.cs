@@ -17,7 +17,7 @@ public class PlayerLvUpManager : MonoBehaviour
     private void Start()
     {
         //ナイフ追加画面のボタンが押された際に、それを検知し関数を実行
-        Button_AddKnifeCtrler.clicked.Subscribe(xx => Choice(xx)).AddTo(this);
+        Button_Knife.clicked.Subscribe(xx => Choice(xx)).AddTo(this);
 
         // スキップボタンが押されるのに反応して、パネルを閉じるように
         button_Skip.onClick.AddListener(() => this.gameObject.SetActive(false));
@@ -39,7 +39,7 @@ public class PlayerLvUpManager : MonoBehaviour
             var randomKnife = DrawingKnives();
 
             //コンポーネントの取得
-            var buttonCtrler = buttonObj.GetComponent<Button_AddKnifeCtrler>();
+            var buttonCtrler = buttonObj.GetComponent<Button_Knife>();
 
             //ボタンに選出したナイフの情報を渡す
             buttonCtrler.Initialize(randomKnife);

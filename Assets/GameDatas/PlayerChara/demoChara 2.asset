@@ -24,14 +24,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
   initialTreasures:
   - {fileID: 11400000, guid: 51b462e2f82ef8a4bbe765448c9f4387, type: 2}
-  - {fileID: 11400000, guid: d667eafc6c60dc045b19ddc486bd9a75, type: 2}
-  - {fileID: 11400000, guid: 632e80df986933f4db93b89e64d263da, type: 2}
-  - {fileID: 11400000, guid: 3ef17795f4516ce4abffd3c8b2451f8a, type: 2}
-  - {fileID: 11400000, guid: f8066584ec74fed4f8027731bb88fde2, type: 2}
-  - {fileID: 11400000, guid: 72ce224489adfd848a3337fe37658dd9, type: 2}
-  - {fileID: 11400000, guid: 75654eb28566e4845b4582e0c4be9dd8, type: 2}
-  - {fileID: 11400000, guid: 7350bc15ab6652141bf634251844a286, type: 2}
-  - {fileID: 11400000, guid: aecb6cbc2eba64e4cb0775ebbe15d35b, type: 2}
-  - {fileID: 11400000, guid: 313dd25337fce694bb59abb56a56896f, type: 2}
   masteredElement: 0
   prefab: {fileID: 0}

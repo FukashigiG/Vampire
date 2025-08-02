@@ -30,7 +30,12 @@ public class PlayerInventory : MonoBehaviour
     // ナイフを入手する処理
     public void AddKnife(KnifeData x)
     {
-        runtimeKnives.Add(x);
+        // 渡されたデータのインスタンスを生成
+        // こうすることで、今後リスト内のナイフデータを編集する際、元データとなるスクリプタブルオブジェクトアセットの数値をいじらずに済む
+        var y = Instantiate(x);
+
+        // リストに加える
+        runtimeKnives.Add(y);
     }
 
     // 秘宝を入手する処理
@@ -38,17 +43,22 @@ public class PlayerInventory : MonoBehaviour
     {
         //if (runtimeTreasure.Contains(x)) return; // 同じアイテムは追加しない
 
-        runtimeTreasure.Add(x);
+        // 渡されたデータのインスタンスを生成
+        var y = Instantiate(x);
 
-        x.OnAdd(status);
+        // リストに加える
+        runtimeTreasure.Add(y);
+
+        // 秘宝の、入手時の処理を実行
+        y.OnAdd(status);
 
         // この秘宝に対するCompositeDisposableを新規作成
         var disposables = new CompositeDisposable();
-        _itemDisposables.Add(x, disposables);
+        _itemDisposables.Add(y, disposables);
 
-        x.SubscribeToEvent(status, disposables);
+        y.SubscribeToEvent(status, disposables);
 
-        Debug.Log($"{x._name} を取得した！");
+        Debug.Log($"{y._name} を取得した！");
     }
 
     public void RemoveTreasure(Base_TreasureData x)
