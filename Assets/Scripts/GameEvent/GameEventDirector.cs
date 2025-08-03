@@ -17,6 +17,12 @@ public class GameEventDirector : SingletonMono<GameEventDirector>
         _cancellationToken = _cancellationTokenSource.Token;
     }
 
+    private void Start()
+    {
+        panel_GetKnife.GetComponent<Eve_GetKnife>().Initialize();
+        panel_GetTreasure.GetComponent<Eve_GetTreasure>().Initialize();
+    }
+
     public enum Events
     {
         getKnife,

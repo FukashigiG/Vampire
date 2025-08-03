@@ -15,8 +15,10 @@ public class Eve_GetTreasure : Base_EventCtrler
 
     List<Base_TreasureData> allTreasures;
 
-    public void Initialize()
+    public override void Initialize()
     {
+        base.Initialize();
+
         // ƒQ[ƒ€‚É“o˜^‚³‚ê‚½‘S‚Ä‚Ì”é•ó‚ğ”z—ñ‚Æ‚µ‚Äæ“¾
         var x = Resources.LoadAll<Base_TreasureData>("GameDatas/Treasure");
 

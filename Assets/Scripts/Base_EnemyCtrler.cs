@@ -6,16 +6,19 @@ public class Base_EnemyCtrler : MonoBehaviour
 {
     [SerializeField] LayerMask targetLayer;
 
-    Transform target;
+    protected Transform target;
 
-    EnemyStatus _enemyStatus;
+    protected EnemyStatus _enemyStatus;
+
+    protected virtual void Awake()
+    {
+        _enemyStatus = GetComponent<EnemyStatus>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         target = PlayerController.Instance.transform;
-
-        _enemyStatus = GetComponent<EnemyStatus>();
     }
 
     // Update is called once per frame

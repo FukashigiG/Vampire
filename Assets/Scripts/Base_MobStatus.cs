@@ -26,7 +26,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
     public bool actable { get; protected set; }
 
-    public static Subject<int> onDie = new Subject<int>();
+    public static Subject<(Base_MobStatus status , int value)> onDie = new Subject<(Base_MobStatus, int)>();
     /*static にすることで、どの Enemy インスタンスからでもこのSubjectにアクセスし、
      * イベントを発行できるようになる
      * また、プレイヤー側で単一のSubjectを購読するだけで、
@@ -188,7 +188,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
     public virtual void Die()
     {
-        onDie.OnNext(1);
+        onDie.OnNext((this, 1));
 
         Destroy(gameObject);
     }

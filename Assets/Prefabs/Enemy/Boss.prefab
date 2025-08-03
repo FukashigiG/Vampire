@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4159087966120797754}
   - component: {fileID: 5372873811540176900}
   - component: {fileID: 7396028624555884689}
-  - component: {fileID: 3962039898617168920}
+  - component: {fileID: 3427890787072040883}
   - component: {fileID: -5141789047055471556}
   m_Layer: 7
   m_Name: Boss
@@ -160,7 +160,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3962039898617168920
+--- !u!114 &3427890787072040883
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,10 +169,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 9151170032971857288}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3226425c57781f6408c588a8405d766c, type: 3}
+  m_Script: {fileID: 11500000, guid: fba2163266aaa954ca42bfb0c269e8d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -188,5 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4557447ebf3801469a480c7168cff85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defence: 0
+  power: 0
+  moveSpeed: 0
+  weight: 0
   _enemyData: {fileID: 11400000, guid: 148b96ab06e03514fbadcf994f41237a, type: 2}
   damageTxt: {fileID: 8935918345617990812, guid: abadf68d7c030fd42a22e1efd81531ef, type: 3}

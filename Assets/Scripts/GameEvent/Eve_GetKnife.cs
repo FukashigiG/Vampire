@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 
-public class Eve_GetKnife : MonoBehaviour
+public class Eve_GetKnife : Base_EventCtrler
 {
     [SerializeField] GameObject button_Option;
     [SerializeField] GameObject buttonArea;
@@ -14,15 +14,16 @@ public class Eve_GetKnife : MonoBehaviour
 
     [SerializeField] Button button_Skip;
 
-    private void Start()
+    public override void Initialize()
     {
+        base.Initialize();
+
         //ナイフ追加画面のボタンが押された際に、それを検知し関数を実行
         Button_Knife.clicked.Subscribe(xx => Choice(xx)).AddTo(this);
 
         // スキップボタンが押されるのに反応して、パネルを閉じるように
         button_Skip.onClick.AddListener(() => this.gameObject.SetActive(false));
     }
-
 
     //パネルがActiveになったとき
     private void OnEnable()

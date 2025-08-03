@@ -63,7 +63,7 @@ public class PlayerStatus : Base_MobStatus
         }
 
         //”CˆÓ‚Ì“G‚ªŽ€‚ñ‚¾‚çEXPƒQƒbƒg
-        EnemyStatus.onDie.Subscribe(x => GetEXP(x)).AddTo( disposables );
+        EnemyStatus.onDie.Subscribe(x => GetEXP(x.value)).AddTo( disposables );
     }
 
     // expŠl“¾
@@ -135,7 +135,7 @@ public class PlayerStatus : Base_MobStatus
 
     public override void Die()
     {
-        onDie.OnNext(1);
+        onDie.OnNext((this, 1));
 
         this.gameObject.SetActive(false);
     }

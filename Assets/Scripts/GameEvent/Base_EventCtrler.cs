@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class Base_EventCtrler : MonoBehaviour
 {
-    
+    public virtual void Initialize()
+    {
+
+    }
 }
