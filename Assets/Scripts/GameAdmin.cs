@@ -9,7 +9,6 @@ using UnityEngine.UI;
 
 public class GameAdmin : SingletonMono<GameAdmin>
 {
-    [SerializeField] GameObject player_Obj;
     [SerializeField] GameObject spawner_Obj;
 
     [SerializeField] GameObject panel_LvUp;
@@ -51,7 +50,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
         waveBoostMultiplier = _waveBoostMultiplier;
 
-        player_Obj.GetComponent<PlayerStatus>().lvUp.Subscribe(_ => ShowLevelUpUIAsync().Forget()).AddTo( disposables );
+        //player_Obj.GetComponent<PlayerStatus>().lvUp.Subscribe(_ => ShowLevelUpUIAsync().Forget()).AddTo( disposables );
 
         _spawner = spawner_Obj.GetComponent<EnemySpawner>();
 
@@ -142,6 +141,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
         }
     }
 
+    /*
     async UniTask ShowLevelUpUIAsync()
     {
         if (panel_LvUp.activeSelf) return;
@@ -154,15 +154,16 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
         ResumeGame();
     }
+    */
 
     // àÍéûí‚é~
-    void PauseGame()
+    public void PauseGame()
     {
         Time.timeScale = 0f;
     }
 
     // çƒäJ
-    void ResumeGame()
+    public void ResumeGame()
     {
         Time.timeScale = 1f;
     }

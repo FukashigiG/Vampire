@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 
-public class PlayerLvUpManager : MonoBehaviour
+public class Eve_GetKnife : MonoBehaviour
 {
     [SerializeField] GameObject button_Option;
     [SerializeField] GameObject buttonArea;

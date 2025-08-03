@@ -528,7 +528,7 @@ GameObject:
   - component: {fileID: 117317616}
   - component: {fileID: 117317618}
   m_Layer: 5
-  m_Name: Panel_LvUp
+  m_Name: Panel_GetKnife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2193,6 +2193,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806565752}
   m_CullTransparentMesh: 1
+--- !u!1 &877368257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 877368259}
+  - component: {fileID: 877368258}
+  m_Layer: 0
+  m_Name: GameEventDirector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &877368258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877368257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8684d2e40070fe54db6b672aa19139a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel_GetKnife: {fileID: 117317614}
+  panel_GetTreasure: {fileID: 983847642}
+--- !u!4 &877368259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877368257}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &894185843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2449,12 +2495,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   treasureButtonObj: {fileID: 4757622343610648202, guid: 98cdeb4878b80dc4aacd199682641c4a, type: 3}
   buttonArea: {fileID: 41613835}
-  treasures:
-  - {fileID: 11400000, guid: d667eafc6c60dc045b19ddc486bd9a75, type: 2}
-  - {fileID: 11400000, guid: 632e80df986933f4db93b89e64d263da, type: 2}
-  - {fileID: 11400000, guid: 3ef17795f4516ce4abffd3c8b2451f8a, type: 2}
-  - {fileID: 11400000, guid: f8066584ec74fed4f8027731bb88fde2, type: 2}
-  - {fileID: 11400000, guid: 86b321e3dc1a38e43bf9667443578f58, type: 2}
 --- !u!114 &983847645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3829,7 +3869,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81d33a91d6e0ff41a6603101e251399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player_Obj: {fileID: 229048608}
   spawner_Obj: {fileID: 763625843}
   panel_LvUp: {fileID: 117317614}
   txt_WaveCount: {fileID: 935835504}
@@ -4631,3 +4670,4 @@ SceneRoots:
   - {fileID: 1113652509}
   - {fileID: 1149141960}
   - {fileID: 1986861210}
+  - {fileID: 877368259}
