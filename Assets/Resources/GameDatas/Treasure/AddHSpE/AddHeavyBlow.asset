@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d00d18b2af593b48a22aef631595ed1, type: 3}
   m_Name: AddHeavyBlow
   m_EditorClassIdentifier: 
+  uniqueIP: 102
   _name: "\u91CD\u6483\u306E\u6975\u610F"
   _description: "\u9EC4\u5C5E\u6027\u306E\u30CA\u30A4\u30D5\u306B\u91CD\u6483\u52B9\u679C\u3092\u4ED8\u4E0E"
   icon: {fileID: 0}

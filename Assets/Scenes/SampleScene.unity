@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 41613835}
   - component: {fileID: 41613837}
   - component: {fileID: 41613836}
+  - component: {fileID: 41613838}
   m_Layer: 5
   m_Name: ButtonArea
   m_TagString: Untagged
@@ -198,6 +199,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 41613834}
   m_CullTransparentMesh: 1
+--- !u!114 &41613838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41613834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &72070888
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,8 +634,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0be143f0ba9714ca71de9138267f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites: []
+  EventSpriteArea: {fileID: 0}
+  buttonArea: {fileID: 1548298610}
+  button_Skip: {fileID: 1626764585}
   button_Option: {fileID: 4757622343610648202, guid: 2de89337c8d82cc4c8a54e08db822086, type: 3}
-  buttonArea: {fileID: 1548298609}
   allKnifeData:
   - {fileID: 11400000, guid: cea7cbe3fcc5a0949aa6daed819e9b43, type: 2}
   - {fileID: 11400000, guid: 7cec1ed6fe22c854bb9ac76cbc1d7258, type: 2}
@@ -619,7 +649,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 24e083d5331721742a25bbc2b298f240, type: 2}
   - {fileID: 11400000, guid: 41c82aa537cb7cb4782b704a8ed0b188, type: 2}
   - {fileID: 11400000, guid: 96b1c044d00ca5b438474a65f2267daf, type: 2}
-  button_Skip: {fileID: 1626764585}
 --- !u!1 &136117045
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,8 +2522,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8d5aa91b35d50408b4f1e6ef081783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treasureButtonObj: {fileID: 4757622343610648202, guid: 98cdeb4878b80dc4aacd199682641c4a, type: 3}
+  sprites: []
+  EventSpriteArea: {fileID: 0}
   buttonArea: {fileID: 41613835}
+  button_Skip: {fileID: 894185845}
+  treasureButtonObj: {fileID: 4757622343610648202, guid: 98cdeb4878b80dc4aacd199682641c4a, type: 3}
 --- !u!114 &983847645
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17189b5f1ae2f9f4a816f514838d97ee, type: 3}
   m_Name: PowerRaiseTreasure
   m_EditorClassIdentifier: 
+  uniqueIP: 404
   _name: "\u529B\u306E\u79D8\u5B9D"
   _description: "\u529B\u304C\u4E0A\u6607\u3059\u308B"
   icon: {fileID: 0}
-  amount: 10
+  ratio: 0
   _status: 0

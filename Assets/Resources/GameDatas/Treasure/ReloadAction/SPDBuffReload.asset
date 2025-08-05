@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b95c77e8d589b242adcc68f93583649, type: 3}
   m_Name: SPDBuffReload
   m_EditorClassIdentifier: 
+  uniqueIP: 303
   _name: "\u30B9\u30D4\u30FC\u30C9\u30EA\u30ED\u30FC\u30C9"
   _description: "\u30CA\u30A4\u30D5\u306E\u30EA\u30ED\u30FC\u30C9\u6642\u3001\u4E00\u5B9A\u6642\u9593\u3059\u3070\u3084\u3055\u304C\u4E0A\u304C\u308B"
   icon: {fileID: 0}

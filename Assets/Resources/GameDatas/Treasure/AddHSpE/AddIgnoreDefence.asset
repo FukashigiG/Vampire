@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d00d18b2af593b48a22aef631595ed1, type: 3}
   m_Name: AddIgnoreDefence
   m_EditorClassIdentifier: 
+  uniqueIP: 103
   _name: "\u9632\u5FA1\u7121\u8996\u306E\u6975\u610F"
   _description: "\u9752\u5C5E\u6027\u306E\u30CA\u30A4\u30D5\u306B\u9632\u5FA1\u7121\u8996\u3092\u8FFD\u52A0\u3059\u308B"
   icon: {fileID: 0}

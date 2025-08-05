@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d00d18b2af593b48a22aef631595ed1, type: 3}
   m_Name: AddSPD_Debuff_White
   m_EditorClassIdentifier: 
+  uniqueIP: 104
   _name: "\u817F\u7815\u304D\u306E\u6975\u610F\u30FB\u767D"
   _description: "\u767D\u5C5E\u6027\u306E\u30CA\u30A4\u30D5\u306B\u817F\u7815\u304D\u3092\u3064\u3044\u304B\u3059\u308B"
   icon: {fileID: 0}

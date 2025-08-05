@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48e34cd9688f0848bf39149d59a38d6, type: 3}
   m_Name: Luck_ReferKnifeCount
   m_EditorClassIdentifier: 
+  uniqueIP: 203
   _name: "\u7121\u9650\u306E\u904B"
   _description: "\u6240\u6301\u30CA\u30A4\u30D5\u306E\u6570\u304C\u591A\u3044\u307B\u3069\u904B\u304C\u4E0A\u6607\u3059\u308B"
   icon: {fileID: 0}

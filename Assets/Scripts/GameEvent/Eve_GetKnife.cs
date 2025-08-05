@@ -8,11 +8,8 @@ using UniRx;
 public class Eve_GetKnife : Base_EventCtrler
 {
     [SerializeField] GameObject button_Option;
-    [SerializeField] GameObject buttonArea;
 
     [SerializeField] List<KnifeData> allKnifeData;
-
-    [SerializeField] Button button_Skip;
 
     public override void Initialize()
     {
@@ -20,21 +17,20 @@ public class Eve_GetKnife : Base_EventCtrler
 
         //ナイフ追加画面のボタンが押された際に、それを検知し関数を実行
         Button_Knife.clicked.Subscribe(xx => Choice(xx)).AddTo(this);
-
-        // スキップボタンが押されるのに反応して、パネルを閉じるように
-        button_Skip.onClick.AddListener(() => this.gameObject.SetActive(false));
     }
 
     //パネルがActiveになったとき
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+
         int num_Option = Random.Range(2, 6);
 
         //２～５個のボタンを用意
         for (int i = 0; i < num_Option; i++)
         {
             //生成したボタンをbuttonObjと置く
-            var buttonObj =  Instantiate(button_Option, buttonArea.transform);
+            var buttonObj =  Instantiate(button_Option, buttonArea);
 
             //ランダムなナイフを選出
             var randomKnife = DrawingKnives();
@@ -89,15 +85,5 @@ public class Eve_GetKnife : Base_EventCtrler
         var y = allKnifeData[x];
 
         return y;
-    }
-
-    // このパネルが閉じるとき（activeSelfがfalseになるとき）
-    private void OnDisable()
-    {
-        //buttonAreaの子オブジェクトを全削除
-        foreach (Transform button in buttonArea.transform)
-        {
-            Destroy(button.gameObject);
-        }
     }
 }
