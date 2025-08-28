@@ -18,8 +18,7 @@ public class Button_Knife : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     KnifeData knifeData;
  
     //押されたときに飛ばす通知
-    //ゲーム終了時にはGameAdminにDisposeされる
-    public static Subject<KnifeData> clicked { get; private set; } = new Subject<KnifeData>();
+    public Subject<KnifeData> clicked { get; private set; } = new Subject<KnifeData>();
 
     // カーソルが重なった、外れたら飛ばす通知
     public Subject<KnifeData> pointerEntered { get; private set; } = new Subject<KnifeData> ();
@@ -72,6 +71,8 @@ public class Button_Knife : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private void OnDestroy()
     {
+        clicked.Dispose();
+
         pointerEntered.Dispose();
         pointerExited.Dispose();
     }

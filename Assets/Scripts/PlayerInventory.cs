@@ -38,6 +38,13 @@ public class PlayerInventory : MonoBehaviour
         runtimeKnives.Add(y);
     }
 
+    public void RemoveKnife(KnifeData x)
+    {
+        if (! runtimeKnives.Contains(x)) return;
+
+        runtimeKnives.Remove(x);
+    }
+
     // ”é•ó‚ğ“üè‚·‚éˆ—
     public void AddTreasure(Base_TreasureData x)
     {

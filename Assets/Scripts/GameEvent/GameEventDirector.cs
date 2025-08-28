@@ -8,6 +8,7 @@ public class GameEventDirector : SingletonMono<GameEventDirector>
 {
     [SerializeField] GameObject panel_GetKnife;
     [SerializeField] GameObject panel_GetTreasure;
+    [SerializeField] GameObject panel_DriveKnife;
 
     CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _cancellationToken;
@@ -21,12 +22,15 @@ public class GameEventDirector : SingletonMono<GameEventDirector>
     {
         panel_GetKnife.GetComponent<Eve_GetKnife>().Initialize();
         panel_GetTreasure.GetComponent<Eve_GetTreasure>().Initialize();
+        panel_DriveKnife.GetComponent<Eve_DriveKnife>().Initialize();
     }
 
     public enum Events
     {
         getKnife,
-        getTreasure
+        getTreasure,
+        fusionKnives,
+        driveKnife
     }
 
     public void TriggerEvent(Events _event)
@@ -39,6 +43,10 @@ public class GameEventDirector : SingletonMono<GameEventDirector>
 
             case Events.getTreasure:
                 EventAsync(panel_GetTreasure, _cancellationToken).Forget();
+                break;
+
+            case Events.driveKnife:
+                EventAsync(panel_DriveKnife, _cancellationToken).Forget();
                 break;
         }
     }

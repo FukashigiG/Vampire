@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Base_EventCtrler : MonoBehaviour
 {
-    [SerializeField] Sprite[] sprites;
-
     [SerializeField] Image EventSpriteArea;
     [SerializeField] protected Transform buttonArea;
 
@@ -23,13 +21,18 @@ public class Base_EventCtrler : MonoBehaviour
 
     }
 
-    // このパネルが閉じるとき（activeSelfがfalseになるとき）
-    protected void OnDisable()
+    protected void DisposeButtons()
     {
         //buttonAreaの子オブジェクトを全削除
         foreach (Transform button in buttonArea)
         {
             Destroy(button.gameObject);
         }
+    }
+
+    // このパネルが閉じるとき（activeSelfがfalseになるとき）
+    protected void OnDisable()
+    {
+        DisposeButtons();
     }
 }

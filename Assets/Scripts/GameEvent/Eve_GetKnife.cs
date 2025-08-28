@@ -9,14 +9,20 @@ public class Eve_GetKnife : Base_EventCtrler
 {
     [SerializeField] GameObject button_Option;
 
+    [SerializeField] Button button_reroll;
+
     [SerializeField] List<KnifeData> allKnifeData;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        //ナイフ追加画面のボタンが押された際に、それを検知し関数を実行
-        Button_Knife.clicked.Subscribe(xx => Choice(xx)).AddTo(this);
+        button_reroll.onClick.AddListener(() =>
+        {
+            Reroll();
+        });
+
+        
     }
 
     //パネルがActiveになったとき
@@ -24,16 +30,21 @@ public class Eve_GetKnife : Base_EventCtrler
     {
         base.OnEnable();
 
+        GenerateButtons();
+    }
+
+    void GenerateButtons()
+    {
         int num_Option = Random.Range(2, 6);
 
         //２～５個のボタンを用意
         for (int i = 0; i < num_Option; i++)
         {
-            //生成したボタンをbuttonObjと置く
-            var buttonObj =  Instantiate(button_Option, buttonArea);
-
             //ランダムなナイフを選出
             var randomKnife = DrawingKnives();
+
+            //生成したボタンをbuttonObjと置く
+            var buttonObj = Instantiate(button_Option, buttonArea);
 
             //コンポーネントの取得
             var buttonCtrler = buttonObj.GetComponent<Button_Knife>();
@@ -41,7 +52,8 @@ public class Eve_GetKnife : Base_EventCtrler
             //ボタンに選出したナイフの情報を渡す
             buttonCtrler.Initialize(randomKnife);
 
-            //ボタンが押された際の処理はStart()にて記載済み
+            //ボタンが押された際に、それを検知し関数を実行
+            buttonCtrler.clicked.Subscribe(xx => Choice(xx)).AddTo(buttonCtrler);
 
             // 位置を変更
 
@@ -85,5 +97,12 @@ public class Eve_GetKnife : Base_EventCtrler
         var y = allKnifeData[x];
 
         return y;
+    }
+
+    void Reroll()
+    {
+        DisposeButtons();
+
+        GenerateButtons();
     }
 }

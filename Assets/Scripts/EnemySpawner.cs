@@ -5,7 +5,7 @@ using UnityEngine;
 using UniRx;
 using System.Threading;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : SingletonMono<EnemySpawner>
 {
     [SerializeField] Transform parent_Enemy;
     [SerializeField] GameObject effect_DeleteEnemy;

@@ -177,6 +177,5 @@ public class GameAdmin : SingletonMono<GameAdmin>
         _cancellationTokenSource?.Dispose();
 
         Base_MobStatus.onDie.Dispose();
-        Button_Knife.clicked.Dispose();
     }
 }
