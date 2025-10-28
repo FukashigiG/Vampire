@@ -20,10 +20,9 @@ public class EnemyStatus : Base_MobStatus
         maxHP = (int)((float)_enemyData.hp * multiplier);
         hitPoint = maxHP;
 
-        power = _enemyData.power * multiplier;
-        defence = _enemyData.defense * multiplier;
-        weight = _enemyData.weight * multiplier;
-        moveSpeed = _enemyData.moveSpeed * multiplier;
+        base_Power = (int)(_enemyData.power * multiplier);
+        base_Defence = (int)(_enemyData.defense * multiplier);
+        base_MoveSpeed = (int)(_enemyData.moveSpeed * multiplier);
     }
 
     public override void TakeDamage(int a, Vector2 damagedPosi)

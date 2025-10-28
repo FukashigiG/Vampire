@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/RaiseStatus")]
 public class RiseStatusTreasure : Base_TreasureData
 {
-    // 所持している間、特定のステータスが上昇する秘宝
+    // 所持している間、特定のステータス強化倍率が上昇する秘宝
 
     public int ratio;
 
@@ -23,23 +23,23 @@ public class RiseStatusTreasure : Base_TreasureData
         switch (_status)
         {
             case targetStatus.power:
-                status.power *= (1 + ratio);
+                status.enhancementRate_Power += ratio;
                 break;
 
             case targetStatus.diffence:
-                status.defence *= (1 + ratio);
+                status.enhancementRate_Defence += ratio;
                 break;
 
             case targetStatus.speed:
-                status.moveSpeed *= (1 + ratio);
+                status.enhancementRate_MoveSpeed += ratio;
                 break;
 
             case targetStatus.luck:
-                status.luck *= (1 + ratio);
+                status.luck *= (1 + ratio / 100);
                 break;
 
             case targetStatus.eyeSight:
-                status.eyeSight *= (1 + ratio);
+                status.eyeSight *= (1 + ratio / 100);
                 break;
         }
     }
@@ -49,23 +49,23 @@ public class RiseStatusTreasure : Base_TreasureData
         switch (_status)
         {
             case targetStatus.power:
-                status.power /= (1 + ratio);
+                status.enhancementRate_Power -= ratio;
                 break;
 
             case targetStatus.diffence:
-                status.defence /= ((1 + ratio));
+                status.enhancementRate_Defence -= ratio;
                 break;
 
             case targetStatus.speed:
-                status.moveSpeed /= (1 + ratio);
+                status.enhancementRate_MoveSpeed -= ratio;
                 break;
 
             case targetStatus.luck:
-                status.luck /= (1 + ratio);
+                status.luck /= (1 + ratio / 100);
                 break;
 
             case targetStatus.eyeSight:
-                status.eyeSight /= (1 + ratio);
+                status.eyeSight /= (1 + ratio / 100);
                 break;
         }
     }

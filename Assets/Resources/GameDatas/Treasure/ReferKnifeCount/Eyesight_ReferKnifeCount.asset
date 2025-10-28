@@ -17,4 +17,4 @@ MonoBehaviour:
   _description: "\u6240\u6301\u30CA\u30A4\u30D5\u306E\u6570\u304C\u591A\u3044\u307B\u3069\u8996\u91CE\u304C\u4E0A\u6607\u3059\u308B"
   icon: {fileID: 0}
   targetStatus: 4
-  xBonusRatio: 0.03
+  xBonusRatio: 3

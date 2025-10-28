@@ -16,5 +16,5 @@ MonoBehaviour:
   _name: "\u901F\u5EA6\u306E\u79D8\u5B9D"
   _description: "\u901F\u5EA6\u304C\u4E0A\u6607\u3059\u308B"
   icon: {fileID: 0}
-  ratio: 0
+  ratio: 20
   _status: 2

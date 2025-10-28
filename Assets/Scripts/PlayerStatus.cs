@@ -40,9 +40,9 @@ public class PlayerStatus : Base_MobStatus
         //各内部ステータスをPlayerCharaDataから代入
         maxHP = playerCharaData.hp;
         hitPoint = maxHP;
-        power = playerCharaData.power; //　プレイヤーのpowerはナイフの速度を決定する
-        defence = playerCharaData.defense;
-        moveSpeed = playerCharaData.moveSpeed;
+        base_Power = playerCharaData.power; //　プレイヤーのpowerはナイフの速度を決定する
+        base_Defence = playerCharaData.defense;
+        base_MoveSpeed = playerCharaData.moveSpeed;
 
         luck = playerCharaData.luck;
         eyeSight = playerCharaData.eyeSight;

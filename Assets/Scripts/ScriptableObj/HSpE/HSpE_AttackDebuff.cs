@@ -6,10 +6,10 @@ using UnityEngine;
 public class HSpE_AttackDebuff : BaseHSpE
 {
     public float dulation;
-    public float amount;
+    public int amount_percent;
 
     public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
     {
-        status.ApplyStatusEffect(StatusEffectType.Power, dulation, -1 * amount);
+        status.ApplyStatusEffect(StatusEffectType.Power, dulation, -1 * amount_percent);
     }
 }

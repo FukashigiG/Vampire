@@ -17,10 +17,10 @@ public class ReferKnifeCountTreasure : Base_TreasureData
     [SerializeField] statusEnum targetStatus;
 
     // ナイフ1本あたりの効果割合
-    public float xBonusRatio;
+    public int xBonusRatio;
 
     // 現在の効果量
-    float currentBonusValue;
+    int currentBonusValue;
 
     public override void OnAdd(PlayerStatus status)
     {
@@ -54,7 +54,7 @@ public class ReferKnifeCountTreasure : Base_TreasureData
         DeclineStatus(currentBonusValue, _status);
 
         // 2. 新しいボーナスを計算する
-        float newBonus = x * xBonusRatio;
+        int newBonus = x * xBonusRatio;
 
         // 3. 新しいバフを適用する
         RiseStatus(newBonus, _status);
@@ -63,56 +63,56 @@ public class ReferKnifeCountTreasure : Base_TreasureData
         currentBonusValue = newBonus;
     }
 
-    void RiseStatus(float ratio, PlayerStatus status)
+    void RiseStatus(int enhancementPercentage, PlayerStatus status)
     {
         // targetStatusによって効果を適用させるステータスを切り替える
         switch (targetStatus)
         {
             case statusEnum.power:
-                status.power *= (1 + ratio);
+                status.enhancementRate_Power += enhancementPercentage;
                 break;
 
             case statusEnum.diffence:
-                status.defence *= (1 + ratio);
+                status.enhancementRate_Defence += enhancementPercentage;
                 break;
 
             case statusEnum.speed:
-                status.moveSpeed *= (1 + ratio);
+                status.enhancementRate_MoveSpeed += enhancementPercentage;
                 break;
 
             case statusEnum.luck:
-                status.luck *= (1 + ratio);
+                status.luck *= (1 + enhancementPercentage / 100f);
                 break;
 
             case statusEnum.eyeSight:
-                status.eyeSight *= (1 + ratio);
+                status.eyeSight *= (1 + enhancementPercentage / 100f);
                 break;
         }
     }
 
-    void DeclineStatus(float ratio, PlayerStatus status)
+    void DeclineStatus(int enhancementPercentage, PlayerStatus status)
     {
         // targetStatusによって効果を適用させるステータスを切り替える
         switch (targetStatus)
         {
             case statusEnum.power:
-                status.power /= (1 + ratio);
+                status.enhancementRate_Power -= enhancementPercentage;
                 break;
 
             case statusEnum.diffence:
-                status.defence /= (1 + ratio);
+                status.enhancementRate_Defence -= enhancementPercentage;
                 break;
 
             case statusEnum.speed:
-                status.moveSpeed /= (1 + ratio);
+                status.enhancementRate_MoveSpeed -= enhancementPercentage;
                 break;
 
             case statusEnum.luck:
-                status.luck /= (1 + ratio);
+                status.luck /= (1 + enhancementPercentage / 100f);
                 break;
 
             case statusEnum.eyeSight:
-                status.eyeSight /= (1 + ratio);
+                status.eyeSight /= (1 + enhancementPercentage / 100f);
                 break;
         }
     }

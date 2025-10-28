@@ -18,4 +18,4 @@ MonoBehaviour:
   icon: {fileID: 0}
   statusEffectType: 1
   duration: 1
-  amount: 0.6
+  amount_percent: 60

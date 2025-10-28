@@ -19,10 +19,17 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     public int maxHP {  get; protected set; }
     public int hitPoint {  get; protected set; }
 
-    public float defence;
-    public float power;
-    public float moveSpeed;
-    public float weight;
+    public int defence { get {  return (int)(base_Defence * (1f + (enhancementRate_Defence / 100f))); } }
+    public int power { get { return (int)(base_Power * (1f + (enhancementRate_Power / 100f))); } }
+    public int moveSpeed { get { return (int)(base_MoveSpeed * (1f + (enhancementRate_MoveSpeed / 100f))); } }
+
+    protected int base_Defence;
+    protected int base_Power;
+    protected int base_MoveSpeed;
+
+    public int enhancementRate_Defence = 0;
+    public int enhancementRate_Power = 0;
+    public int enhancementRate_MoveSpeed = 0;
 
     public bool actable { get; protected set; }
 
@@ -46,7 +53,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     }
 
     // 状態変化効果を適用する統合メソッド
-    public void ApplyStatusEffect(StatusEffectType type, float duration, float amount = 0)
+    public void ApplyStatusEffect(StatusEffectType type, float duration, int amount = 0)
     {
         // すでに同じ効果がかかっている場合は、一度キャンセルしてから上書きする
         if (activeStatusEffects.ContainsKey(type))
@@ -63,23 +70,23 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         activeStatusEffects[type] = cts;
 
         // タスクの実行
-        StatusEffectTask(type, duration, amount + 1f, cts).Forget();
+        StatusEffectTask(type, duration, amount, cts).Forget();
     }
 
     // 状態変化効果の非同期処理
-    async UniTask StatusEffectTask(StatusEffectType type, float duration, float amount, CancellationTokenSource cts)
+    async UniTask StatusEffectTask(StatusEffectType type, float duration, int amount, CancellationTokenSource cts)
     {
         // 事前処理：効果を適用する
         switch (type)
         {
             case StatusEffectType.MoveSpeed:
-                moveSpeed *= amount;
+                enhancementRate_MoveSpeed += amount;
                 break;
             case StatusEffectType.Power:
-                power *= amount;
+                enhancementRate_Power += amount;
                 break;
             case StatusEffectType.Defence:
-                defence *= amount;
+                enhancementRate_Defence += amount;
                 break;
             case StatusEffectType.Freeze:
                 actable = false;
@@ -93,6 +100,8 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         {
             if(type == StatusEffectType.Blaze)
             {
+                // 一定時間ダメージを受け続ける
+
                 float dmg = maxHP / 100f * 5f;
 
                 int tickCount = Mathf.FloorToInt(duration);
@@ -120,13 +129,13 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
             switch (type)
             {
                 case StatusEffectType.MoveSpeed:
-                    moveSpeed /= amount; 
+                    enhancementRate_MoveSpeed -= amount;
                     break;
                 case StatusEffectType.Power:
-                    power /= amount; 
+                    enhancementRate_Power -= amount;
                     break;
                 case StatusEffectType.Defence:
-                    defence /= amount; 
+                    enhancementRate_Defence -= amount;
                     break;
                 case StatusEffectType.Freeze:
                     actable = true;
@@ -183,7 +192,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     {
         var damageDir = (damagedPosi - (Vector2)transform.position).normalized;
 
-        transform.Translate(damageDir * -1 * power * (1 / (1 + weight)));
+        transform.Translate(damageDir * -1 * power);
     }
 
     public virtual void Die()

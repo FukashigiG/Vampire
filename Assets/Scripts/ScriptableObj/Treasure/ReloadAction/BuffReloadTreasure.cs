@@ -9,10 +9,10 @@ public class BuffReloadTreasure : Base_ReloadActionTreasure
     public StatusEffectType statusEffectType;
 
     public float duration;
-    public float amount;
+    public int amount_percent;
 
     public override void ReloadAction(PlayerStatus status, List<KnifeData> knives)
     {
-        status.ApplyStatusEffect(statusEffectType, duration, amount);
+        status.ApplyStatusEffect(statusEffectType, duration, amount_percent);
     }
 }
