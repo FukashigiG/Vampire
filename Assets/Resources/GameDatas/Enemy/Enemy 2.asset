@@ -21,3 +21,6 @@ MonoBehaviour:
   weight: 0.4
   amount_EXP: 0
   prefab: {fileID: 9151170032971857288, guid: 609dd6bb37305c84aa460a97003a6ad6, type: 3}
+  dropItems:
+  - prefab: {fileID: 270761467918423833, guid: e31f728fb94c834468be24cd54e2a5d2, type: 3}
+    dropRate_Parcentage: 20

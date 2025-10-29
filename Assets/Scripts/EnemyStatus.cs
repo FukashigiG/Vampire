@@ -36,4 +36,19 @@ public class EnemyStatus : Base_MobStatus
 
         x.GetComponent<DamageTxtCtrler>().Initialize((int)a);
     }
+
+    public override void Die()
+    {
+        if(_enemyData.dropItems.Length > 0)
+        {
+            foreach(var item in _enemyData.dropItems)
+            {
+                int randomCount = Random.Range(1, 101);
+
+                if (randomCount < item.dropRate_Parcentage) Instantiate(item.prefab, transform.position, Quaternion.identity);
+            }
+        }
+
+        base.Die();
+    }
 }
