@@ -21,4 +21,4 @@ MonoBehaviour:
   hitEffect: {fileID: 2533848353679586684, guid: fe36de0609e73f344911275b3a2180da, type: 3}
   description: 
   specialEffects:
-  - {fileID: 11400000, guid: 464de5bb5b21cbd4499bae4efec1b1e5, type: 2}
+  - {fileID: 11400000, guid: 705569ce2c278984ba3438c97fd89126, type: 2}

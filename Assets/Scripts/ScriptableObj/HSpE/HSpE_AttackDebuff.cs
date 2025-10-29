@@ -7,9 +7,10 @@ public class HSpE_AttackDebuff : BaseHSpE
 {
     public float dulation;
     public int amount_percent;
+    [SerializeField] string effectID;
 
     public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
     {
-        status.ApplyStatusEffect(StatusEffectType.Power, dulation, -1 * amount_percent);
+        status.ApplyStatusEffect(StatusEffectType.Power, effectID, dulation, -1 * amount_percent);
     }
 }

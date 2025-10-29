@@ -90,8 +90,8 @@ public class PlayerStatus : Base_MobStatus
 
         lvUp.OnNext(Unit.Default);
 
-        // ナイフ獲得イベントを実行
-        GameEventDirector.Instance.TriggerEvent(GameEventDirector.Events.getKnife);
+        // 獲得イベントを実行
+        GameEventDirector.Instance.TriggerEvent(GameEventDirector.Events.getTreasure);
     }
 
     // 攻撃を受ける処理

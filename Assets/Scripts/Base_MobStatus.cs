@@ -40,7 +40,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
      * 全ての敵の撃破イベントをキャッチできる*/
     //ゲーム終了時にはGameAdminにDisposeされる
 
-    Dictionary<StatusEffectType, CancellationTokenSource> activeStatusEffects = new();
+    Dictionary<string, CancellationTokenSource> activeStatusEffects = new();
 
     protected virtual void Awake()
     {
@@ -53,13 +53,18 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     }
 
     // 状態変化効果を適用する統合メソッド
-    public void ApplyStatusEffect(StatusEffectType type, float duration, int amount = 0)
+    public void ApplyStatusEffect(StatusEffectType type, string effectID, float duration, int amount = 0)
     {
+        //下部コメントアウト群を有効化すると、同種の状態異常効果が重複しなくなる
+        //(新しいのが適用されるタイミングで、現在適用中の効果が即座にキャンセルされる)
+        // 例：atkに-90のデバフがかかってる状態で+10のバフが適用されると、最終結果が-80でなく+10になる
+
+
         // すでに同じ効果がかかっている場合は、一度キャンセルしてから上書きする
-        if (activeStatusEffects.ContainsKey(type))
+        if (activeStatusEffects.ContainsKey(effectID))
         {
-            activeStatusEffects[type].Cancel();
-            activeStatusEffects[type].Dispose();
+            activeStatusEffects[effectID].Cancel();
+            activeStatusEffects[effectID].Dispose();
             //activeStatusEffects.Remove(type);
 
             Debug.Log("already");
@@ -67,14 +72,14 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
         // 新しいトークンソースを用意
         var cts = new CancellationTokenSource();
-        activeStatusEffects[type] = cts;
+        activeStatusEffects[effectID] = cts;
 
         // タスクの実行
-        StatusEffectTask(type, duration, amount, cts).Forget();
+        StatusEffectTask(type, effectID, duration, amount, cts).Forget();
     }
 
     // 状態変化効果の非同期処理
-    async UniTask StatusEffectTask(StatusEffectType type, float duration, int amount, CancellationTokenSource cts)
+    async UniTask StatusEffectTask(StatusEffectType type, string effectID, float duration, int amount, CancellationTokenSource cts)
     {
         // 事前処理：効果を適用する
         switch (type)
@@ -142,14 +147,15 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
                     break;
             }
 
+            // 効果重複を許可しない場合は、以下のコメントアウトを外す
+
             // Dictionaryに自分に宛てたトークンソースが残っているのであれば、それを削除
-            if (activeStatusEffects.ContainsKey(type) && activeStatusEffects[type] == cts)
+            if (activeStatusEffects.ContainsKey(effectID) && activeStatusEffects[effectID] == cts)
             {
-                activeStatusEffects.Remove(type);
+                activeStatusEffects.Remove(effectID);
 
                 Debug.Log("removed");
             }
-
             cts.Dispose();
         }
 

@@ -17,6 +17,7 @@ MonoBehaviour:
   hp: 60
   power: 20
   defense: 20
-  moveSpeed: 0.8
+  moveSpeed: 8
   weight: 1
+  amount_EXP: 0
   prefab: {fileID: 9151170032971857288, guid: a78d6c856990e6443a0c6b7b2a539d4a, type: 3}

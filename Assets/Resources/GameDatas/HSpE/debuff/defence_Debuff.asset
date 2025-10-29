@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ff880cef4385f140b3d5ab4fb14e24b, type: 3}
-  m_Name: speedDebuff
+  m_Script: {fileID: 11500000, guid: f43cf86051909534589a21ee1dafaff1, type: 3}
+  m_Name: defence_Debuff
   m_EditorClassIdentifier: 
-  effectName: "\u817F\u7815\u304D"
-  description: "\u4E00\u5B9A\u671F\u9593\u3001\u5BFE\u8C61\u306E\u79FB\u52D5\u901F\u5EA6\u3092\u4F4E\u4E0B\u3055\u305B\u308B"
+  effectName: "\u93A7\u7815\u304D"
+  description: "\u4EEE\u30C6\u30AD\u30B9\u30C8\u3042\u3044\u3046\u3048\u304A"
   dulation: 4
   amount_percent: 30
+  effectID: yoroikudaki472
+  targetState: 1

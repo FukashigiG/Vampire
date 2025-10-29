@@ -30,7 +30,7 @@ public class Base_EnemyCtrler : MonoBehaviour
 
         Vector2 dir = (target.position - this.transform.position).normalized;
 
-        transform.Translate(dir * _enemyStatus.moveSpeed * Time.fixedDeltaTime);
+        transform.Translate(dir * _enemyStatus.moveSpeed / 10f * Time.fixedDeltaTime);
     }
 
     private void OnCollisionStay2D(Collision2D collision)

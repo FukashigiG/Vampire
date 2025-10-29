@@ -17,4 +17,4 @@ MonoBehaviour:
   _description: "\u9632\u5FA1\u529B\u304C\u4E0A\u6607\u3059\u308B"
   icon: {fileID: 0}
   ratio: 20
-  _status: 0
+  _status: 1

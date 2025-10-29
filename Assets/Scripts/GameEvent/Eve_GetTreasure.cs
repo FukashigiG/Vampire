@@ -24,7 +24,7 @@ public class Eve_GetTreasure : Base_EventCtrler
         playerInventory = PlayerController.Instance._status.inventory;
 
         // ƒQ[ƒ€‚É“o˜^‚³‚ê‚½‘S‚Ä‚Ì”é•ó‚ğ”z—ñ‚Æ‚µ‚Äæ“¾
-        var x = Resources.LoadAll<Base_TreasureData>("GameDatas/Treasure/AddHSpE");
+        var x = Resources.LoadAll<Base_TreasureData>("GameDatas/Treasure");
 
         // ”z—ñ‚ğList‚É•ÏŠ·Atreasures‚ÉŠi”[
         allTreasures = new List<Base_TreasureData>(x);

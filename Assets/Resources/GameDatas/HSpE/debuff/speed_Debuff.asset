@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99e3abe2d83798446a79662ad9c82b10, type: 3}
-  m_Name: attackDebuff
+  m_Script: {fileID: 11500000, guid: f43cf86051909534589a21ee1dafaff1, type: 3}
+  m_Name: speed_Debuff
   m_EditorClassIdentifier: 
-  effectName: "\u5200\u72E9"
-  description: "\u4E00\u5B9A\u671F\u9593\u3001\u5BFE\u8C61\u306E\u653B\u6483\u529B\u3092\u4E0B\u3052\u308B"
+  effectName: "\u817F\u7815\u304D"
+  description: "\u4E00\u5B9A\u671F\u9593\u3001\u5BFE\u8C61\u306E\u79FB\u52D5\u901F\u5EA6\u3092\u4F4E\u4E0B\u3055\u305B\u308B"
   dulation: 4
   amount_percent: 30
+  effectID: taikudaki558
+  targetState: 2
