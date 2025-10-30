@@ -15,7 +15,7 @@ public class HSpE_Debuff : BaseHSpE
     [SerializeField] string effectID;
     [SerializeField] targetStateEnum targetState;
 
-    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
+    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
     {
         
 

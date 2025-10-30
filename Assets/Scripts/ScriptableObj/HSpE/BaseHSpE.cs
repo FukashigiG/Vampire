@@ -23,7 +23,7 @@ public class BaseHSpE : ScriptableObject, IOnHitSpecialEffect
         set { }
     }
 
-    public virtual void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
+    public virtual void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
     {
 
     }

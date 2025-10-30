@@ -10,5 +10,5 @@ public interface IOnHitSpecialEffect
     bool ignoreDefence { get; }
     bool critical { get; }
 
-    void OnHitSpecialEffect(Base_MobStatus status, Vector2 position, KnifeData knifeData);
+    void OnHitSpecialEffect(Base_MobStatus status, Vector2 position, KnifeData_RunTime knifeData);
 }

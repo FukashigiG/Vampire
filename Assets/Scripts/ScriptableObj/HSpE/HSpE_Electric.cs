@@ -11,7 +11,7 @@ public class HSpE_Electric : BaseHSpE
     public LayerMask targetLayer;
     [SerializeField] GameObject effect;
 
-    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
+    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
     {
         // üˆÍ‚Ì“G‚É¬ƒ_ƒ[ƒW
 

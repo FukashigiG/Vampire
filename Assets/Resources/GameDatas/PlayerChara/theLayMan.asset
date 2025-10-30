@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4a92988800192408927d5db7966ed4, type: 3}
   m_Name: theLayMan
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  _name: "\u30B6\u30FB\u30EC\u30A4\u30DE\u30F3"
-  hp: 10
-  defense: 1
-  moveSpeed: 7
-  luck: 1
-  throwPower: 12
-  eyeSight: 4
-  prefab: {fileID: 0}
+  <sprite>k__BackingField: {fileID: 0}
+  <_name>k__BackingField: 
+  <hp>k__BackingField: 200
+  <power>k__BackingField: 40
+  <defense>k__BackingField: 40
+  <moveSpeed>k__BackingField: 6
+  <luck>k__BackingField: 0
+  <eyeSight>k__BackingField: 4
+  <initialKnives>k__BackingField:
+  - {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
+  - {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
+  <initialTreasures>k__BackingField: []
+  <masteredElement>k__BackingField: 0
+  <prefab>k__BackingField: {fileID: 0}

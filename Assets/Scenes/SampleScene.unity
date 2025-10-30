@@ -1035,7 +1035,7 @@ MonoBehaviour:
   enhancementRate_MoveSpeed: 0
   gauge_EXP: {fileID: 306841715}
   gauge_HP: {fileID: 142022630}
-  playerCharaData: {fileID: 11400000, guid: c5837e0905e889a44890b52e8c1e5263, type: 2}
+  playerCharaData: {fileID: 11400000, guid: 84e3045caecac934399e61f34d187921, type: 2}
   requiredEXP_LvUp: 5
   luck: 0
   eyeSight: 0

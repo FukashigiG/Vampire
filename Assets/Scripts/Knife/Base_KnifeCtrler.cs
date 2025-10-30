@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Base_KnifeCtrler : MonoBehaviour
 {
-    KnifeData knifeData;
+    KnifeData_RunTime knifeData;
 
     protected float speed;
     protected float lifeTime;
@@ -18,9 +18,14 @@ public class Base_KnifeCtrler : MonoBehaviour
     //‰Šú‰»—pƒƒ]ƒbƒg
     public void Initialize(float s, KnifeData _knifeData)
     {
+        var renderer = GetComponent<SpriteRenderer>();
+
+        renderer.sprite = _knifeData.sprite_Defolme;
+        renderer.color = _knifeData.color;
+
         speed = s;
 
-        knifeData = _knifeData;
+        knifeData = new KnifeData_RunTime(_knifeData);
 
         power = knifeData.power;
 

@@ -8,7 +8,7 @@ public class AddHSpETreasure : Base_TreasureData
 {
     // 所持している間、プレイヤーの扱う特定の属性のナイフに特殊能力を追加
 
-    public KnifeData.ElementEnum targetEnum;
+    public Element targetEnum;
 
     public BaseHSpE hspe;
 

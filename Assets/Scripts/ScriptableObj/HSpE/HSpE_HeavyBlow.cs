@@ -7,7 +7,7 @@ public class HSpE_HeavyBlow : BaseHSpE
 {
     public float knockPower;
 
-    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
+    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
     {
         status.KnockBack(posi, knockPower);
     }

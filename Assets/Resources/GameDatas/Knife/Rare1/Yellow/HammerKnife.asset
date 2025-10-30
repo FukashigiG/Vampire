@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
   m_Name: HammerKnife
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 935183074e6140c438bac451e5c63571, type: 3}
-  _name: "\u30CF\u30F3\u30DE\u30FC\u30CA\u30A4\u30D5"
-  rarity: 1
-  element: 3
-  power: 32
-  prefab: {fileID: 9031835482910408214, guid: d5ecfc7c43d768840804bb420b5b4102, type: 3}
-  hitEffect: {fileID: 2533848353679586684, guid: fe36de0609e73f344911275b3a2180da, type: 3}
+  <sprite>k__BackingField: {fileID: 21300000, guid: 935183074e6140c438bac451e5c63571, type: 3}
+  <sprite_Defolme>k__BackingField: {fileID: 21300000, guid: a177636700e088c4080e891d48af7089, type: 3}
+  <color>k__BackingField: {r: 0.7557821, g: 0.7830189, b: 0, a: 1}
+  <_name>k__BackingField: "\u30CF\u30F3\u30DE\u30FC\u30CA\u30A4\u30D5"
+  <rarity>k__BackingField: 1
+  <element>k__BackingField: 0
+  <power>k__BackingField: 30
+  <elementPower>k__BackingField: 8
+  <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
+  <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: fe36de0609e73f344911275b3a2180da, type: 3}
   description: 
-  specialEffects:
-  - {fileID: 11400000, guid: 0ecace1a4da53ac43aa4802915857ebe, type: 2}
+  <specialEffects>k__BackingField: []

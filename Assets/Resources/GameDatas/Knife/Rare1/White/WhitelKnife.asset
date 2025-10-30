@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
   m_Name: WhitelKnife
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: d234f6cf9f0ab5a4cadec07a7e201276, type: 3}
-  _name: "\u30DB\u30EF\u30A4\u30C8\u30CA\u30A4\u30D5"
-  rarity: 1
-  element: 0
-  power: 30
-  prefab: {fileID: 9031835482910408214, guid: b9079c8807b1cb94890d3272cb98e190, type: 3}
-  hitEffect: {fileID: 2533848353679586684, guid: b3464c1d73b30534182e8b7fb7962cb1, type: 3}
+  <sprite>k__BackingField: {fileID: 21300000, guid: d234f6cf9f0ab5a4cadec07a7e201276, type: 3}
+  <sprite_Defolme>k__BackingField: {fileID: 21300000, guid: a177636700e088c4080e891d48af7089, type: 3}
+  <color>k__BackingField: {r: 0.8113208, g: 0.8113208, b: 0.8113208, a: 1}
+  <_name>k__BackingField: "\u30CA\u30A4\u30D5"
+  <rarity>k__BackingField: 1
+  <element>k__BackingField: 0
+  <power>k__BackingField: 30
+  <elementPower>k__BackingField: 0
+  <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
+  <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: b3464c1d73b30534182e8b7fb7962cb1, type: 3}
   description: "\u30C6\u30B9\u30C8\u7528\u30C7\u30FC\u30BF\u306E\u4E00\u3064"
-  specialEffects: []
+  <specialEffects>k__BackingField: []

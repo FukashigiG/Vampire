@@ -9,7 +9,7 @@ public class HSpE_Crush : BaseHSpE
 
     public float crushBorder;
 
-    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
+    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
     {
         float d = status.hitPoint / status.maxHP;
 

@@ -21,7 +21,7 @@ public class HSpE_Critical : BaseHSpE
 
     [SerializeField] GameObject efect;
 
-    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData knifeData)
+    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
     {
         float x = Random.Range(0f, 1f);
 
