@@ -12,6 +12,7 @@ public class Button_Treasure : MonoBehaviour
     //[SerializeField] GameObject detailWindow;
 
     [SerializeField] Text text_Name_Kari;
+    [SerializeField] Text text_Description_Kari;
 
     [SerializeField] Button button;
 
@@ -42,6 +43,7 @@ public class Button_Treasure : MonoBehaviour
         image_Sprite.sprite = treasureData.icon;
 
         text_Name_Kari.text = treasureData._name;
+        text_Description_Kari.text = treasureData._description;
 
         //detailWindow.GetComponent<AKBtn_Detail>().Initialize(knifeData);
 
