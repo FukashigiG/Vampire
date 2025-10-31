@@ -8,7 +8,10 @@ public class Base_KnifeCtrler : MonoBehaviour
 
     protected float speed;
     protected float lifeTime;
-    protected float power;
+    protected int power;
+
+    // ナイフが強化状態かを示す
+    bool isBoosted;
 
     protected virtual void Start()
     {
@@ -49,24 +52,32 @@ public class Base_KnifeCtrler : MonoBehaviour
         {
             bool shouldDestroyThis = true;
 
-            // ナイフに特殊能力が設定されていた場合の処理
-            foreach(var SpEffect in knifeData.specialEffects)
-            {
-                if(SpEffect != null)
-                {
-                    // ヒット時の特殊処理を実行
-                    SpEffect.OnHitSpecialEffect(ms, transform.position, knifeData);
+            int damagePoint = power;
 
-                    // 貫通が許可されているなら
-                    if(SpEffect.dontDestroyBullet == true) shouldDestroyThis = false;
-                    // 防御無視が許可されているなら
-                    if (SpEffect.ignoreDefence == true) power += ms.defence / 4; // 防御力分を上乗せすることで実質無視
-                    // クリティカルなら
-                    if (SpEffect.critical == true) power *= 2;
+            // ナイフが強化状態なら、ダメージを増加し、特殊効果を発動させる
+            if (isBoosted)
+            {
+                damagePoint += knifeData.elementPower;
+
+                // ナイフに特殊能力が設定されていた場合の処理
+                foreach (var SpEffect in knifeData.specialEffects)
+                {
+                    if (SpEffect != null)
+                    {
+                        // ヒット時の特殊処理を実行
+                        SpEffect.OnHitSpecialEffect(ms, transform.position, knifeData);
+
+                        // 貫通が許可されているなら
+                        if (SpEffect.dontDestroyBullet == true) shouldDestroyThis = false;
+                        // 防御無視が許可されているなら
+                        if (SpEffect.ignoreDefence == true) damagePoint += ms.defence / 4; // 防御力分を上乗せすることで実質無視
+                        // クリティカルなら
+                        if (SpEffect.critical == true) damagePoint *= 2;
+                    }
                 }
             }
 
-            ms?.GetAttack((int)((power + speed * 0.75f) / 2), transform.position);
+            ms?.GetAttack((int)((damagePoint + speed * 0.75f) / 2), transform.position);
 
             Instantiate(knifeData.hitEffect, transform.position, Quaternion.identity);
 

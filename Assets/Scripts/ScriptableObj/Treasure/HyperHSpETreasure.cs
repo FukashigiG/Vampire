@@ -8,7 +8,7 @@ public class HyperHSpETreasure : Base_TreasureData
 {
     // 所持している間、プレイヤーの扱うナイフの特定の特殊能力を強化
 
-    public BaseHSpE hspe;
+    [field: SerializeField] public BaseHSpE hspe { get; private set; }
 
     public override void OnAdd(PlayerStatus status)
     {

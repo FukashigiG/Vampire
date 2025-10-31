@@ -8,9 +8,9 @@ public class AddHSpETreasure : Base_TreasureData
 {
     // 所持している間、プレイヤーの扱う特定の属性のナイフに特殊能力を追加
 
-    public Element targetEnum;
+    [field: SerializeField] public Element targetEnum {  get; private set; }
 
-    public BaseHSpE hspe;
+    [field: SerializeField] public BaseHSpE hspe {  get; private set; }
 
     public override void OnAdd(PlayerStatus status)
     {

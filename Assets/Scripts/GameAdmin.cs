@@ -50,8 +50,6 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
         waveBoostMultiplier = _waveBoostMultiplier;
 
-        //player_Obj.GetComponent<PlayerStatus>().lvUp.Subscribe(_ => ShowLevelUpUIAsync().Forget()).AddTo( disposables );
-
         _spawner = spawner_Obj.GetComponent<EnemySpawner>();
 
         GameProgression().Forget();
@@ -166,6 +164,11 @@ public class GameAdmin : SingletonMono<GameAdmin>
     public void ResumeGame()
     {
         Time.timeScale = 1f;
+    }
+
+    public void ReTry_Kari()
+    {
+        SceneLoader.Instance.Load("TitleScene");
     }
 
     //GameAdminの消失時、つまりゲームシーン終了時の処理

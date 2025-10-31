@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 [RequireComponent(typeof(PlayerStatus))]
 public class PlayerInventory : MonoBehaviour

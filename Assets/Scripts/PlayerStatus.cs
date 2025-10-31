@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class PlayerStatus : Base_MobStatus
 {
+    // ‰¼ŽÀ‘•
+    [SerializeField] GameObject panel_Die;
+
     [SerializeField] Image gauge_EXP;
     [SerializeField] Image gauge_HP;
 
@@ -138,6 +141,8 @@ public class PlayerStatus : Base_MobStatus
         onDie.OnNext((this, 1));
 
         this.gameObject.SetActive(false);
+
+        panel_Die.SetActive(true);
     }
 
     protected override void OnDestroy()
