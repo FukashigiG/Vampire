@@ -19,16 +19,16 @@ public class Base_KnifeCtrler : MonoBehaviour
     }
 
     //‰Šú‰»—pƒƒ]ƒbƒg
-    public void Initialize(float s, KnifeData _knifeData)
+    public void Initialize(float s, KnifeData_RunTime _knifeData)
     {
+        knifeData = _knifeData;
+
         var renderer = GetComponent<SpriteRenderer>();
 
         renderer.sprite = _knifeData.sprite_Defolme;
         renderer.color = _knifeData.color;
 
         speed = s;
-
-        knifeData = new KnifeData_RunTime(_knifeData);
 
         power = knifeData.power;
 

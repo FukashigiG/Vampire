@@ -38,7 +38,7 @@ public class Eve_FusionKnives : Base_EventCtrler
     }
 
     // ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Ìˆ—
-    void Clicked(KnifeData knifeData)
+    void Clicked(KnifeData_RunTime knifeData)
     {
 
     }

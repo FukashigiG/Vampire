@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerStatus))]
 public class PlayerInventory : MonoBehaviour
 {
-    public ReactiveCollection<KnifeData> runtimeKnives { get; private set; } = new ReactiveCollection<KnifeData>();
+    public ReactiveCollection<KnifeData_RunTime> runtimeKnives { get; private set; } = new ReactiveCollection<KnifeData_RunTime>();
     public ReactiveCollection<Base_TreasureData> runtimeTreasure { get; private set; } = new();
 
     // アイテムとそのイベント購読を紐付けて管理する
@@ -28,15 +28,14 @@ public class PlayerInventory : MonoBehaviour
     // ナイフを入手する処理
     public void AddKnife(KnifeData x)
     {
-        // 渡されたデータのインスタンスを生成
-        // こうすることで、今後リスト内のナイフデータを編集する際、元データとなるスクリプタブルオブジェクトアセットの数値をいじらずに済む
-        var y = Instantiate(x);
+        // 渡されたナイフのデータを元に初期化したランタイム用ナイフデータ
+        var y = new KnifeData_RunTime(x);
 
         // リストに加える
         runtimeKnives.Add(y);
     }
 
-    public void RemoveKnife(KnifeData x)
+    public void RemoveKnife(KnifeData_RunTime x)
     {
         if (! runtimeKnives.Contains(x)) return;
 

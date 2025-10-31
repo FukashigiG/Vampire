@@ -25,7 +25,7 @@ public class Eve_DriveKnife : Base_EventCtrler
         base.OnEnable();
 
         // プレイヤーの所持ナイフリストをコピー
-        List<KnifeData> list = new List<KnifeData>(PlayerController.Instance._status.inventory.runtimeKnives);
+        List<KnifeData_RunTime> list = new List<KnifeData_RunTime>(PlayerController.Instance._status.inventory.runtimeKnives);
 
         // リストのシャッフル
         list = list.OrderBy(a => Guid.NewGuid()).ToList();
@@ -51,7 +51,7 @@ public class Eve_DriveKnife : Base_EventCtrler
         }
     }
 
-    void Choice(KnifeData knifeData)
+    void Choice(KnifeData_RunTime knifeData)
     {
         PlayerController.Instance._status.inventory.RemoveKnife(knifeData);
 

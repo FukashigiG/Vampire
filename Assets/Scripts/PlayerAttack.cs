@@ -20,12 +20,12 @@ public class PlayerAttack : MonoBehaviour
 
     GameObject targetEnemy;
 
-    List<KnifeData> availableKnifes = new List<KnifeData>();
+    List<KnifeData_RunTime> availableKnifes = new List<KnifeData_RunTime>();
 
     // ナイフ生成直前に発行、秘宝効果で編集できるように
-    public Subject<KnifeData> onThrowKnife { get; private set; } = new Subject<KnifeData>();
+    public Subject<KnifeData_RunTime> onThrowKnife { get; private set; } = new Subject<KnifeData_RunTime>();
     // リロード時に発行、
-    public Subject<List<KnifeData>> onReload { get; private set; } = new();
+    public Subject<List<KnifeData_RunTime>> onReload { get; private set; } = new();
 
     CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _token;
@@ -105,12 +105,10 @@ public class PlayerAttack : MonoBehaviour
             // 攻撃対象の方向をVec2型で取得
             Vector2 dir = (targetEnemy.transform.position - this.transform.position).normalized;
 
-            // エディタ上で登録されたScriptableObjectを取得
-            var originalKnifeData = availableKnifes[i];
-
-            // ScriptableObjectをInstantiateして、実行時専用のコピーを生成する
-            // こうすることで、実際のScriptableObjectの内容を書き換えることなく、編集されたKnifeDataを扱うことができる
-            var knife = Instantiate(originalKnifeData);
+            // エディタ上で登録されたナイフデータを取得
+            // データのコピーを扱うことで、PlayerInventry内のナイフデータが書き換えられる事故を防ぐ
+            // ぶっちゃけavailableKnivesの時点でコピーにすべき
+            var knife = new KnifeData_RunTime(availableKnifes[i]);
 
             // 購読先による介入のための発行
             onThrowKnife.OnNext(knife);
