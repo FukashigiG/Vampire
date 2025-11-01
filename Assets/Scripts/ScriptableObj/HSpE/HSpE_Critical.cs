@@ -30,6 +30,8 @@ public class HSpE_Critical : BaseHSpE
             critical = true;
 
             Instantiate(efect, posi, Quaternion.identity);
+
+            onEffectActived.OnNext(status);
         }
         else
         {

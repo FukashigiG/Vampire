@@ -23,7 +23,7 @@ public class PausePanelCtrler : MonoBehaviour
     private CompositeDisposable _disposables = new CompositeDisposable();
 
     // 所持ナイフ/秘宝欄に生成されたオブジェクトを管理するためのもの
-    Dictionary<KnifeData, GameObject> knifeImageDictionaty = new();
+    Dictionary<KnifeData_RunTime, GameObject> knifeImageDictionaty = new();
     Dictionary<Base_TreasureData, GameObject> treasureImageDictionaty = new();
 
     private void Awake()
@@ -68,7 +68,7 @@ public class PausePanelCtrler : MonoBehaviour
     }
 
     // ナイフが追加された際
-    void OnKnifeAdded(KnifeData knifeData)
+    void OnKnifeAdded(KnifeData_RunTime knifeData)
     {
         // ナイフ一覧に新たに生成
         var imageObj = Instantiate(knifeImagePrefab, knifeArea);
@@ -79,7 +79,7 @@ public class PausePanelCtrler : MonoBehaviour
     }
 
     // ナイフが削除された際
-    void OnKnifeRemoved(KnifeData knifeData)
+    void OnKnifeRemoved(KnifeData_RunTime knifeData)
     {
         // 辞書に登録されているものであれば
         if (knifeImageDictionaty.TryGetValue(knifeData, out var obj))

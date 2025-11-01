@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewHSpE", menuName = "Game Data/zzzDont")]
 public class BaseHSpE : ScriptableObject, IOnHitSpecialEffect
 {
-    public string effectName;
+    [field: SerializeField] public string effectName { get; private set; }
 
     public virtual bool dontDestroyBullet
     {
@@ -22,6 +23,9 @@ public class BaseHSpE : ScriptableObject, IOnHitSpecialEffect
         get { return false; }
         set { }
     }
+
+    // Œø‰Ê‚ª”­“®‚µ‚½Žž‚É’Ê’m‚ð”ò‚Î‚·
+    public static Subject<Base_MobStatus> onEffectActived = new Subject<Base_MobStatus>();
 
     public virtual void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
     {

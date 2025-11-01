@@ -26,7 +26,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
     // ナイフを入手する処理
-    public void AddKnife(KnifeData x)
+    public void AddKnife(KnifeData_RunTime x)
     {
         // 渡されたナイフのデータを元に初期化したランタイム用ナイフデータ
         var y = new KnifeData_RunTime(x);

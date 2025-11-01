@@ -80,7 +80,7 @@ public class Eve_GetKnife : Base_EventCtrler
         }
     }
 
-    void Choice(KnifeData knifeData)
+    void Choice(KnifeData_RunTime knifeData)
     {
         //プレイヤーに抽選されたナイフの追加
         PlayerController.Instance._status.inventory.AddKnife(knifeData);
@@ -90,11 +90,11 @@ public class Eve_GetKnife : Base_EventCtrler
     }
 
     //ナイフの抽選
-    KnifeData DrawingKnives()
+    KnifeData_RunTime DrawingKnives()
     {
         int x = Random.Range(0, allKnifeData.Count);
 
-        var y = allKnifeData[x];
+        var y = new KnifeData_RunTime(allKnifeData[x]);
 
         return y;
     }

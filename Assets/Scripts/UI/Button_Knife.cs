@@ -15,14 +15,14 @@ public class Button_Knife : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     Animator _animator;
 
-    KnifeData knifeData;
+    KnifeData_RunTime knifeData;
  
     //押されたときに飛ばす通知
-    public Subject<KnifeData> clicked { get; private set; } = new Subject<KnifeData>();
+    public Subject<KnifeData_RunTime> clicked { get; private set; } = new Subject<KnifeData_RunTime>();
 
     // カーソルが重なった、外れたら飛ばす通知
-    public Subject<KnifeData> pointerEntered { get; private set; } = new Subject<KnifeData> ();
-    public Subject<KnifeData> pointerExited { get; private set; } = new Subject<KnifeData> ();
+    public Subject<KnifeData_RunTime> pointerEntered { get; private set; } = new Subject<KnifeData_RunTime> ();
+    public Subject<KnifeData_RunTime> pointerExited { get; private set; } = new Subject<KnifeData_RunTime> ();
 
     void Start()
     {
@@ -32,7 +32,7 @@ public class Button_Knife : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
 
     // 初期化
-    public void Initialize(KnifeData x)
+    public void Initialize(KnifeData_RunTime x)
     {
         knifeData = x;
 

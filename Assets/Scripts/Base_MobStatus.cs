@@ -33,6 +33,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
     public bool actable { get; protected set; }
 
+    public static Subject<(StatusEffectType type, float duration, int amount)> onGetStatusEffect = new Subject<(StatusEffectType, float, int)>();
     public static Subject<(Base_MobStatus status , int value)> onDie = new Subject<(Base_MobStatus, int)>();
     /*static にすることで、どの Enemy インスタンスからでもこのSubjectにアクセスし、
      * イベントを発行できるようになる
@@ -55,11 +56,6 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     // 状態変化効果を適用する統合メソッド
     public void ApplyStatusEffect(StatusEffectType type, string effectID, float duration, int amount = 0)
     {
-        //下部コメントアウト群を有効化すると、同種の状態異常効果が重複しなくなる
-        //(新しいのが適用されるタイミングで、現在適用中の効果が即座にキャンセルされる)
-        // 例：atkに-90のデバフがかかってる状態で+10のバフが適用されると、最終結果が-80でなく+10になる
-
-
         // すでに同じ効果がかかっている場合は、一度キャンセルしてから上書きする
         if (activeStatusEffects.ContainsKey(effectID))
         {
@@ -73,6 +69,11 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         // 新しいトークンソースを用意
         var cts = new CancellationTokenSource();
         activeStatusEffects[effectID] = cts;
+
+        // イベント発行
+        // 変数一式を渡すので、数値を購読先が編集できる
+        // （例：特定の状態効果の時間を延長する秘宝）
+        onGetStatusEffect.OnNext((type, duration, amount));
 
         // タスクの実行
         StatusEffectTask(type, effectID, duration, amount, cts).Forget();

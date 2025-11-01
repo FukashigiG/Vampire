@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/OnN_Count")]
-public class OnN_CountTreasure : Base_TreasureData
+[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/OnN_Charge")]
+public class OnN_ChargeTreasure : Base_TreasureData
 {
-    // 所持している間、N本ごとに投げるナイフを教化
+    // 1サイクル内に投げるN本目以降のナイフを教化
 
-    [SerializeField] BaseHSpE addedHSpE;
-    [field: SerializeField] public int countCycle { get; private set; } = 4;
+    [field: SerializeField] public int border { get; private set; } = 8;
 
     int count = 0;
 
@@ -29,12 +28,17 @@ public class OnN_CountTreasure : Base_TreasureData
         {
             count++;
 
-            if (count >= countCycle)
+            if (count >= border)
             {
-                count = 0;
-
-                _knifeData.specialEffects.Add(addedHSpE);
+                Hvwbveows(_knifeData);
             }
+
+        }).AddTo(disposables);
+
+        // リロード時にカウントをリセット
+        status.attack.onReload.Subscribe(_ =>
+        {
+            count = 0;
 
         }).AddTo(disposables);
     }

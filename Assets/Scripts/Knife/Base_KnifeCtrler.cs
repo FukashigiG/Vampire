@@ -65,6 +65,7 @@ public class Base_KnifeCtrler : MonoBehaviour
                     if (SpEffect != null)
                     {
                         // ヒット時の特殊処理を実行
+                        // 相手のステータス、自分のポジションとナイフデータを渡す
                         SpEffect.OnHitSpecialEffect(ms, transform.position, knifeData);
 
                         // 貫通が許可されているなら

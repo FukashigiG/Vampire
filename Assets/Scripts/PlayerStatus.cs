@@ -58,7 +58,7 @@ public class PlayerStatus : Base_MobStatus
         // インベントリに初期所持ナイフと秘宝を追加
         foreach (var x in playerCharaData.initialKnives)
         {
-            inventory.AddKnife(x);
+            inventory.AddKnife(new KnifeData_RunTime(x));
         }
         foreach (var y in playerCharaData.initialTreasures)
         {
