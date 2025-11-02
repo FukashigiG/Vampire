@@ -16,6 +16,7 @@ MonoBehaviour:
   _name: "\u6613\u71C3\u6027"
   _description: "\u706B\u708E\u306E\u52B9\u679C\u30923\u79D2\u5EF6\u9577\u3059\u308B"
   icon: {fileID: 0}
+  isTargetEnemy: 1
   targetEffectType: 3
   amount_ExtraDuration: 3
   amount_: 0
