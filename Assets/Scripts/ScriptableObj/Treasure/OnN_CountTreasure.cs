@@ -33,7 +33,7 @@ public class OnN_CountTreasure : Base_TreasureData
             {
                 count = 0;
 
-                _knifeData.specialEffects.Add(addedHSpE);
+                _knifeData.specialEffects.Add(Instantiate(addedHSpE));
             }
 
         }).AddTo(disposables);

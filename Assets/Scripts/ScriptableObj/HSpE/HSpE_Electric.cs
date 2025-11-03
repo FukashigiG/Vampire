@@ -11,7 +11,7 @@ public class HSpE_Electric : BaseHSpE
     public LayerMask targetLayer;
     [SerializeField] GameObject effect;
 
-    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    protected override void ActivateEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
     {
         // 周囲の敵に小ダメージ
 
@@ -22,10 +22,12 @@ public class HSpE_Electric : BaseHSpE
             if (hit.TryGetComponent(out Base_MobStatus ms))
             {
                 // 当たった本人には追加ダメージは発生しない
-                if(ms != status) ms.GetAttack((int)(knifeData.power * magnification), posi);
+                if (ms != status) ms.GetAttack((int)(knifeData.power * magnification), posi);
 
                 Instantiate(effect, hit.transform.position, Quaternion.identity);
             }
         }
+
+        base.ActivateEffect(status, posi, knifeData);
     }
 }

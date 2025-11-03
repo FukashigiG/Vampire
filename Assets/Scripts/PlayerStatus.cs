@@ -23,6 +23,8 @@ public class PlayerStatus : Base_MobStatus
     public float luck;
     public float eyeSight;
 
+    public List<Element> masteredElements { get; private set; } = new List<Element>();
+
     int exp;
 
     bool isInvincible;
@@ -49,6 +51,8 @@ public class PlayerStatus : Base_MobStatus
 
         luck = playerCharaData.luck;
         eyeSight = playerCharaData.eyeSight;
+
+        masteredElements.Add(playerCharaData.masteredElement);
     }
 
     protected override void Start()

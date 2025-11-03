@@ -31,9 +31,7 @@ public class AddHSpETreasure : Base_TreasureData
             if (_knifeData.specialEffects.Contains(hspe)) return;
 
             // 引数で渡されたナイフのデータに、特定の特殊能力を追加
-            _knifeData.specialEffects.Add(hspe);
-
-            //Debug.Log("Add" + hspe.effectName + "for : " + _knifeData._name);
+            _knifeData.specialEffects.Add(Instantiate(hspe));
         })
         .AddTo(disposables);
     }

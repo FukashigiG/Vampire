@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff086c34a0796345ba7f56060e0bf22, type: 3}
   m_Name: critical
   m_EditorClassIdentifier: 
-  effectName: "\u4F1A\u5FC3"
-  description: "\u7A00\u306B\u4E0E\u3048\u308B\u30C0\u30E1\u30FC\u30B8\u304C\u5897\u52A0\u3059\u308B"
-  probability: 0.2
+  <effectName>k__BackingField: "\u6025\u6240"
+  <description>k__BackingField: "\u5927\u304D\u306A\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B"
+  probability_Percent: 20
   efect: {fileID: 4467026661881878016, guid: 6b2d4816c99691142b2565bbf88c3336, type: 3}

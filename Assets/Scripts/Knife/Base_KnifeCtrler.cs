@@ -11,7 +11,7 @@ public class Base_KnifeCtrler : MonoBehaviour
     protected int power;
 
     // ナイフが強化状態かを示す
-    bool isBoosted;
+    bool isBoosted = false;
 
     protected virtual void Start()
     {
@@ -19,7 +19,7 @@ public class Base_KnifeCtrler : MonoBehaviour
     }
 
     //初期化用メゾット
-    public void Initialize(float s, KnifeData_RunTime _knifeData)
+    public void Initialize(float s, KnifeData_RunTime _knifeData, bool boost = false)
     {
         knifeData = _knifeData;
 
@@ -33,6 +33,8 @@ public class Base_KnifeCtrler : MonoBehaviour
         power = knifeData.power;
 
         lifeTime = 1;
+
+        isBoosted = boost;
     }
 
     protected virtual void FixedUpdate()
@@ -59,6 +61,8 @@ public class Base_KnifeCtrler : MonoBehaviour
             {
                 damagePoint += knifeData.elementPower;
 
+                Debug.Log(knifeData.specialEffects.Count);
+
                 // ナイフに特殊能力が設定されていた場合の処理
                 foreach (var SpEffect in knifeData.specialEffects)
                 {
@@ -66,7 +70,7 @@ public class Base_KnifeCtrler : MonoBehaviour
                     {
                         // ヒット時の特殊処理を実行
                         // 相手のステータス、自分のポジションとナイフデータを渡す
-                        SpEffect.OnHitSpecialEffect(ms, transform.position, knifeData);
+                        SpEffect.OnHit(ms, transform.position, knifeData);
 
                         // 貫通が許可されているなら
                         if (SpEffect.dontDestroyBullet == true) shouldDestroyThis = false;

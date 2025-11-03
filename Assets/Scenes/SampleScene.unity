@@ -1115,7 +1115,7 @@ MonoBehaviour:
   panel_Die: {fileID: 725958155}
   gauge_EXP: {fileID: 306841715}
   gauge_HP: {fileID: 142022630}
-  playerCharaData: {fileID: 11400000, guid: 84e3045caecac934399e61f34d187921, type: 2}
+  playerCharaData: {fileID: 11400000, guid: c5837e0905e889a44890b52e8c1e5263, type: 2}
   requiredEXP_LvUp: 5
   luck: 0
   eyeSight: 0
@@ -2227,7 +2227,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000023841858, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: -0.00000047683716, y: 0.00000023841858, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3875,7 +3875,7 @@ Transform:
   m_GameObject: {fileID: 1159856793}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.00000023841858, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: -0.00000047683716, y: 0.00000023841858, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

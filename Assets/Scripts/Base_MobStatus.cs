@@ -7,9 +7,12 @@ using System.Threading;
 
 public enum StatusEffectType
 {
-    Defence,
-    Power,
-    MoveSpeed,
+    DefenceBuff,
+    PowerBuff,
+    MoveSpeedBuff,
+    DefenceDebuff,
+    PowerDebuff,
+    MoveSpeedDebuff,
     Blaze,
     Freeze
 }
@@ -42,6 +45,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     //ゲーム終了時にはGameAdminにDisposeされる
 
     Dictionary<string, CancellationTokenSource> activeStatusEffects = new();
+    Dictionary<StatusEffectType, int> activeStatusTypeCounts = new();
 
     protected virtual void Awake()
     {
@@ -56,14 +60,14 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     // 状態変化効果を適用する統合メソッド
     public void ApplyStatusEffect(StatusEffectType type, string effectID, float duration, int amount = 0)
     {
+        Debug.Log(type);
+
         // すでに同じ効果がかかっている場合は、一度キャンセルしてから上書きする
         if (activeStatusEffects.ContainsKey(effectID))
         {
             activeStatusEffects[effectID].Cancel();
             activeStatusEffects[effectID].Dispose();
             //activeStatusEffects.Remove(type);
-
-            Debug.Log("already");
         }
 
         // 新しいトークンソースを用意
@@ -82,17 +86,30 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     // 状態変化効果の非同期処理
     async UniTask StatusEffectTask(StatusEffectType type, string effectID, float duration, int amount, CancellationTokenSource cts)
     {
+        // カウントの追加
+        if(! activeStatusTypeCounts.ContainsKey(type)) activeStatusTypeCounts[type] = 0;
+        activeStatusTypeCounts[type]++;
+
         // 事前処理：効果を適用する
         switch (type)
         {
-            case StatusEffectType.MoveSpeed:
+            case StatusEffectType.MoveSpeedBuff:
                 enhancementRate_MoveSpeed += amount;
                 break;
-            case StatusEffectType.Power:
+            case StatusEffectType.PowerBuff:
                 enhancementRate_Power += amount;
                 break;
-            case StatusEffectType.Defence:
+            case StatusEffectType.DefenceBuff:
                 enhancementRate_Defence += amount;
+                break;
+            case StatusEffectType.MoveSpeedDebuff:
+                enhancementRate_MoveSpeed -= amount;
+                break;
+            case StatusEffectType.PowerDebuff:
+                enhancementRate_Power -= amount;
+                break;
+            case StatusEffectType.DefenceDebuff:
+                enhancementRate_Defence -= amount;
                 break;
             case StatusEffectType.Freeze:
                 actable = false;
@@ -131,36 +148,60 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         }
         finally
         {
+            if (activeStatusTypeCounts.ContainsKey(type))
+            {
+                // カウントを減らす
+                activeStatusTypeCounts[type]--;
+
+                // カウントが0なら削除
+                if (activeStatusTypeCounts[type] >= 0) activeStatusTypeCounts.Remove(type);
+            }
+
             // 事後処理：効果を元に戻す
             switch (type)
             {
-                case StatusEffectType.MoveSpeed:
+                case StatusEffectType.MoveSpeedBuff:
                     enhancementRate_MoveSpeed -= amount;
                     break;
-                case StatusEffectType.Power:
+                case StatusEffectType.PowerBuff:
                     enhancementRate_Power -= amount;
                     break;
-                case StatusEffectType.Defence:
+                case StatusEffectType.DefenceBuff:
                     enhancementRate_Defence -= amount;
                     break;
+                case StatusEffectType.MoveSpeedDebuff:
+                    enhancementRate_MoveSpeed += amount;
+                    break;
+                case StatusEffectType.PowerDebuff:
+                    enhancementRate_Power += amount;
+                    break;
+                case StatusEffectType.DefenceDebuff:
+                    enhancementRate_Defence += amount;
+                    break;
                 case StatusEffectType.Freeze:
-                    actable = true;
+
+                    // カウントが残ってなければ（全ての効果が切れてれば）戻す
+                    if(! activeStatusTypeCounts.ContainsKey(StatusEffectType.Freeze)) actable = true;
                     break;
             }
-
-            // 効果重複を許可しない場合は、以下のコメントアウトを外す
 
             // Dictionaryに自分に宛てたトークンソースが残っているのであれば、それを削除
             if (activeStatusEffects.ContainsKey(effectID) && activeStatusEffects[effectID] == cts)
             {
                 activeStatusEffects.Remove(effectID);
-
-                Debug.Log("removed");
             }
+
             cts.Dispose();
         }
 
     }
+
+    // 指定した種類の状態異常がアクティブかを返す関数
+    public bool IsStatusEffectTypeActive(StatusEffectType type)
+    {
+        return activeStatusTypeCounts.ContainsKey(type) && activeStatusTypeCounts[type] > 0;
+    }
+
 
     // 攻撃を受ける処理
     public virtual void GetAttack(float a, Vector2 damagedPosi)
@@ -217,5 +258,6 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
             cts.Dispose();
         }
         activeStatusEffects.Clear();
+        activeStatusTypeCounts.Clear();
     }
 }

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ac5d356866de7c49ab581a04bb06f0f, type: 3}
-  m_Name: NewTreasure
+  m_Name: BoostCriticalProbability
   m_EditorClassIdentifier: 
-  uniqueIP: 0
-  _name: 
-  _description: 
+  uniqueIP: 84764645
+  _name: "\u9DF9\u306E\u76EE"
+  _description: "\u6025\u6240\u306E\u767A\u751F\u78BA\u7387\u3092\u4E0A\u6607\u3055\u305B\u308B"
   icon: {fileID: 0}
-  <hspe>k__BackingField: {fileID: 0}
+  <targetHspe>k__BackingField: {fileID: 11400000, guid: c21406ad570655744a5f2abbf1afa16c, type: 2}
+  amount_Boost_Percentage: 15

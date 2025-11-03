@@ -25,7 +25,7 @@ public class KnifeData_RunTime
     [Multiline(6)] public string description;
 
     // 特殊効果
-    public List<BaseHSpE> specialEffects;
+    public List<BaseHSpE> specialEffects {  get; private set; } = new List<BaseHSpE>();
 
     // ランタイム用でないナイフデータを元にするコンストラクタ
     public KnifeData_RunTime(KnifeData data)
@@ -41,7 +41,13 @@ public class KnifeData_RunTime
         prefab = data.prefab;
         hitEffect = data.hitEffect;
         description = data.description;
-        specialEffects = data.specialEffects;
+
+        // ナイフに登録されていた各HSpEを初期化したものをリストに加える
+        // これにより、HSpEのパラメータ（発動確率等）がいじられてもエディタ上で登録したものは
+        foreach (var HSpE in data.specialEffects)
+        {
+            specialEffects.Add(UnityEngine.Object.Instantiate(HSpE));
+        }
     }
 
     // このクラスを元にするコンストラクタ

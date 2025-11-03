@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43cf86051909534589a21ee1dafaff1, type: 3}
   m_Name: defence_Debuff
   m_EditorClassIdentifier: 
-  effectName: "\u93A7\u7815\u304D"
-  description: "\u4EEE\u30C6\u30AD\u30B9\u30C8\u3042\u3044\u3046\u3048\u304A"
+  <effectName>k__BackingField: "\u93A7\u7815\u304D"
+  <description>k__BackingField: "\u30D2\u30C3\u30C8\u3057\u305F\u6575\u306E\u653B\u6483\u529B\u3092\u6570\u79D2\u9593\u4E0B\u3052\u308B"
+  probability_Percent: 100
   dulation: 4
   amount_percent: 30
   effectID: yoroikudaki472
-  targetState: 1
+  targetState: 3

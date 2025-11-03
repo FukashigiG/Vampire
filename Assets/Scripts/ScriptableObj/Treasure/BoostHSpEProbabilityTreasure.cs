@@ -4,14 +4,17 @@ using UniRx;
 using UnityEngine;
 using System.Linq;
 
-[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/HyperHSpE")]
-public class HyperHSpETreasure : Base_TreasureData
+[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/BoostHSpE")]
+public class BoostHSpEProbabilityTreasure : Base_TreasureData
 {
-    // 所持している間、プレイヤーの扱うナイフの特定の特殊能力を強化
+    // 所持している間、プレイヤーの扱うナイフの特定の特殊能力の発動確率を上昇
 
-    [field: SerializeField] public BaseHSpE hspe { get; private set; }
+    // 強化させたい特殊能力
+    [field: SerializeField] public BaseHSpE targetHspe { get; private set; }
+    // ↑の型を示す
+    System.Type targetType => targetHspe.GetType();
 
-    System.Type targetType => hspe.GetType();
+    [SerializeField] int amount_Boost_Percentage;
 
     public override void OnAdd(PlayerStatus status)
     {
@@ -33,7 +36,7 @@ public class HyperHSpETreasure : Base_TreasureData
 
             if (matchedEffect != null)
             {
-
+                matchedEffect.probability_Percent += amount_Boost_Percentage;
             }
         })
         .AddTo(disposables);

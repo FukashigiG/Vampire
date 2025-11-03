@@ -28,7 +28,7 @@ public class CriticalBonusTreasure : Base_TreasureData
         // クリティカル発動の発動を購読
         HSpE_Critical.onEffectActived.Subscribe(targetStatus  =>
         {
-            targetStatus.ApplyStatusEffect(effectType, effectID, duration ,-1 * amount_Debuff);
+            targetStatus.ApplyStatusEffect(effectType, effectID, duration ,amount_Debuff);
 
         }).AddTo(disposables);
     }

@@ -10,8 +10,12 @@ public class HSpE_Debuff : BaseHSpE
     [SerializeField] string effectID;
     [SerializeField] StatusEffectType targetState;
 
-    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    protected override void ActivateEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
     {
-        status.ApplyStatusEffect(targetState, effectID, dulation, -1 * amount_percent);
+        Debug.Log("HSpE");
+
+        status.ApplyStatusEffect(targetState, effectID, dulation, amount_percent);
+
+        base.ActivateEffect(status, posi, knifeData);
     }
 }

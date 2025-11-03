@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8c163ec17209146a4647f1cb8ee326, type: 3}
   m_Name: penetration
   m_EditorClassIdentifier: 
-  effectName: "\u8CAB\u901A"
-  description: "\u5BFE\u8C61\u3092\u8CAB\u901A\u3057\u3066\u9032\u3080"
+  <effectName>k__BackingField: "\u8CAB\u901A"
+  <description>k__BackingField: "\u6575\u3092\u8CAB\u901A\u3059\u308B"
+  probability_Percent: 100

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43cf86051909534589a21ee1dafaff1, type: 3}
   m_Name: freeze_Debuff
   m_EditorClassIdentifier: 
-  effectName: "\u6C37\u7D50"
-  description: "\u5BFE\u8C61\u3092\u51CD\u3089\u305B\u3001\u5C11\u3057\u306E\u9593\u79FB\u52D5\u4E0D\u80FD\u306B\u3059\u308B"
+  <effectName>k__BackingField: "\u51CD\u7D50"
+  <description>k__BackingField: "\u30D2\u30C3\u30C8\u3057\u305F\u6575\u3092\u6570\u79D2\u9593\u51CD\u7D50\u3055\u305B\u308B"
+  probability_Percent: 100
   dulation: 2
   amount_percent: 0
   effectID: hyouketu529
-  targetState: 4
+  targetState: 7

@@ -5,14 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewHSpE", menuName = "Game Data/HSpE/Crush")]
 public class HSpE_Crush : BaseHSpE
 {
-    // ”jÓ
+    // ƒqƒbƒg‚µ‚½“G‚ğ‘¦€‚³‚¹‚é
 
-    public float crushBorder;
-
-    public override void OnHitSpecialEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    protected override void ActivateEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
     {
-        float d = status.hitPoint / status.maxHP;
+        base.ActivateEffect(status, posi, knifeData);
 
-        if (d <= crushBorder) status.Die();
+        status.Die();
     }
 }

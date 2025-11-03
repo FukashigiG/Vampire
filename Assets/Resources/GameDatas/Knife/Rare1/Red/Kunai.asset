@@ -23,4 +23,5 @@ MonoBehaviour:
   <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
   <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: edc689687b1d4fc47a87ba0f3d1128e2, type: 3}
   description: 
-  <specialEffects>k__BackingField: []
+  <specialEffects>k__BackingField:
+  - {fileID: 11400000, guid: c21406ad570655744a5f2abbf1afa16c, type: 2}

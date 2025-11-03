@@ -6,8 +6,18 @@ using UnityEngine;
 public class HSpE_IgnoreDefence : BaseHSpE
 {
     // IgnoreDefence‚ğtrue‚Éã‘‚«‚·‚é‚±‚Æ‚Å–hŒä–³‹‚ğ‹–‰Â
+
+    bool _ignoreDefence = false;
+
     public override bool ignoreDefence
     {
-        get { return true; } 
+        get { return _ignoreDefence; } 
+    }
+
+    protected override void ActivateEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    {
+        _ignoreDefence = true;
+
+        base.ActivateEffect(status, posi, knifeData);
     }
 }

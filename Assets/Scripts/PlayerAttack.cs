@@ -117,8 +117,11 @@ public class PlayerAttack : MonoBehaviour
             // 編集された可能性のあるKnifeDataで処理を続行
             var x = Instantiate(knife.prefab, this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
 
+            // ナイフの属性がプレイヤーの得意属性か否か
+            bool isElementMatched = status.masteredElements.Contains(knife.element);
+
             // xを初期化
-            x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife);
+            x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife, isElementMatched);
 
             await UniTask.Delay((int)(coolTime_ThrowKnife * 1000), cancellationToken: token);
         }
