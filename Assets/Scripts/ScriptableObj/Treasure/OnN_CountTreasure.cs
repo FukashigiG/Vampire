@@ -6,12 +6,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/OnN_Count")]
 public class OnN_CountTreasure : Base_TreasureData
 {
-    // 所持している間、N本ごとに投げるナイフを教化
+    // 所持している間、N本ごとに投げるナイフにHSpEを追加
 
     [SerializeField] BaseHSpE addedHSpE;
     [field: SerializeField] public int countCycle { get; private set; } = 4;
-
-    int count = 0;
 
     public override void OnAdd(PlayerStatus status)
     {
@@ -25,6 +23,8 @@ public class OnN_CountTreasure : Base_TreasureData
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
+        int count = 0;
+
         status.attack.onThrowKnife.Subscribe(_knifeData =>
         {
             count++;

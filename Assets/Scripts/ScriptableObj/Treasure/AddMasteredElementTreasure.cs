@@ -12,12 +12,14 @@ public class AddMasteredElementTreasure : Base_TreasureData
 
     public override void OnAdd(PlayerStatus status)
     {
-        
+        // “¾ˆÓ‘®«‚ğ’Ç‰Á
+        status.masteredElements.Add(addedElement);
     }
 
     public override void OnRemove(PlayerStatus status)
     {
-
+        // ƒŠƒXƒg‚Ì’†‚É’Ç‰Á‚µ‚½‘®«‚ª‚ ‚ê‚ÎA‚»‚ê‚ğíœ
+        if(status.masteredElements.Contains(addedElement)) status.masteredElements.Remove(addedElement);
     }
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)

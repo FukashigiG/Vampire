@@ -5,8 +5,8 @@ using UnityEngine;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 
-[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/DefeatStatusEffected_Damage")]
-public class DefeatStatusEffected_DamageTreasure : Base_TreasureData
+[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/DontAttack_Buff")]
+public class DontAttack_BuffTreasure : Base_TreasureData
 {
     // ŠŽ‚µ‚Ä‚¢‚éŠÔA“Á’è‚Ìó‘Ô•Ï‰»Œø‰Ê‚ðŽó‚¯‚½“G‚ÌŽ€–S‚É”½‰ž‚µ‚ÄA‚»‚Ì“G‚ÌŽüˆÍ‚ÉAŽ€‚ñ‚¾“G‚ÌÅ‘åHP‚Ì”¼•ª‚Åƒ_ƒ[ƒW
 
@@ -15,6 +15,8 @@ public class DefeatStatusEffected_DamageTreasure : Base_TreasureData
     [SerializeField] float radius;
     [SerializeField] LayerMask targetLayer;
     [SerializeField] float coolDownSeconds;
+
+    
 
     public override void OnAdd(PlayerStatus status)
     {
@@ -30,6 +32,26 @@ public class DefeatStatusEffected_DamageTreasure : Base_TreasureData
     {
         bool isCooling = false;
         var token = status.GetCancellationTokenOnDestroy();
+        bool standBy = false;
+
+        PlayerStatus.onDamaged.Subscribe(async x =>
+        {
+
+
+            try
+            {
+                // ‘Ò‚Â
+                await UniTask.Delay((int)(coolDownSeconds * 1000), cancellationToken: token);
+
+                // ƒXƒ^ƒ“ƒoƒCó‘Ô‚ÉˆÈ~
+                standBy = true;
+            }
+            catch (System.OperationCanceledException)
+            {
+                return;
+            }
+
+        }).AddTo(disposables);
 
         EnemyStatus.onDie.Subscribe(async x =>
         {

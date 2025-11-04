@@ -62,7 +62,7 @@ public class PlayerInventory : MonoBehaviour
 
         y.SubscribeToEvent(status, disposables);
 
-        Debug.Log($"{y._name} を取得した！");
+        //Debug.Log($"{y._name} を取得した！");
     }
 
     public void RemoveTreasure(Base_TreasureData x)
@@ -82,7 +82,7 @@ public class PlayerInventory : MonoBehaviour
         // 所持秘宝リストから除外
         runtimeTreasure.Remove(x);
 
-        Debug.Log($"{x._name} を失った！");
+        //Debug.Log($"{x._name} を失った！");
     }
 
     private void OnDestroy()

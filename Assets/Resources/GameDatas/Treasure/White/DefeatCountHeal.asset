@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e250279fe7fa82e49a7ebbeaf6da9094, type: 3}
+  m_Name: DefeatCountHeal
+  m_EditorClassIdentifier: 
+  uniqueIP: 4538888
+  _name: "\u9B3C\u306E\u7259"
+  _description: "\u6575\u309213\u4F53\u5012\u3059\u5EA6\u3001Hp\u30925%\u56DE\u5FA9"
+  icon: {fileID: 0}
+  countCycle: 13
+  healRatio_Percent: 5

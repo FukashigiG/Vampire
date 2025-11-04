@@ -36,6 +36,7 @@ public class BoostHSpEProbabilityTreasure : Base_TreasureData
 
             if (matchedEffect != null)
             {
+                // ”­¶Šm—¦‚ğƒvƒ‰ƒX‚·‚é
                 matchedEffect.probability_Percent += amount_Boost_Percentage;
             }
         })

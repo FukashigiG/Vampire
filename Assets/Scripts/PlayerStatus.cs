@@ -119,6 +119,15 @@ public class PlayerStatus : Base_MobStatus
         gauge_HP.fillAmount = (float)hitPoint / (float)maxHP;
     }
 
+    public override void HealHP(int x)
+    {
+        base.HealHP(x);
+
+        Debug.Log(x);
+
+        gauge_HP.fillAmount = (float)hitPoint / (float)maxHP;
+    }
+
     // w’è•b”ŠÔ‚Ş‚Ä‚«‚É‚È‚é
     async UniTask BeInvincible(float sec)
     {

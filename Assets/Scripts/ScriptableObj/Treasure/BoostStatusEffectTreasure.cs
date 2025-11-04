@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/BoostStatusEffect")]
 public class BoostStatusEffectTreasure : Base_TreasureData
 {
-    // Š‚µ‚Ä‚¢‚éŠÔA“G‚©©•ª‚ªó‚¯‚éó‘Ô•Ï‰»‚ÌŒø‰Ê‚ğ‘Œ¸
+    // Š‚µ‚Ä‚¢‚éŠÔA“G‚©©•ª‚ªó‚¯‚éó‘Ô•Ï‰»‚ÌŒø‰ÊŠÔ‚ğ‘Œ¸
 
     // ‘ÎÛ‚Í“G‚©©•ª‚©
     [SerializeField] bool isTargetEnemy;
