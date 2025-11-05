@@ -61,8 +61,6 @@ public class Base_KnifeCtrler : MonoBehaviour
             {
                 damagePoint += knifeData.elementPower;
 
-                Debug.Log(knifeData.specialEffects.Count);
-
                 // ナイフに特殊能力が設定されていた場合の処理
                 foreach (var SpEffect in knifeData.specialEffects)
                 {

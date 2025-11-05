@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewHSpE", menuName = "Game Data/HSpE/Critical")]
-public class HSpE_Critical : BaseHSpE
+[CreateAssetMenu(fileName = "NewKnifeAbility", menuName = "Game Data/KnifeAbility/Critical")]
+public class KnifeAbility_Critical : Base_KnifeAbility
 {
     // ‚Ü‚ê‚É‘å‚«‚Èƒ_ƒ[ƒW
 
@@ -18,12 +18,11 @@ public class HSpE_Critical : BaseHSpE
     [SerializeField] GameObject efect;
 
     // Œø‰Ê‚ª”­“®‚µ‚Ä‰‚ß‚Ätrue‚É‚È‚é
-    protected override void ActivateEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    protected override void ActivateEffect_OnHit(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
     {
         _critical = true;
 
         Instantiate(efect, posi, Quaternion.identity);
 
-        base.ActivateEffect(status, posi, knifeData);
     }
 }

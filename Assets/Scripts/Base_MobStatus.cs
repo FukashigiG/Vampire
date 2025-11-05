@@ -36,7 +36,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
     public bool actable { get; protected set; }
 
-    public static Subject<(Vector2 position, int amount)> onDamaged = new Subject<(Vector2, int)>();
+    public Subject<(Vector2 position, int amount)> onDamaged = new Subject<(Vector2, int)>();
     public static Subject<(StatusEffectType type, float duration, int amount)> onGetStatusEffect = new Subject<(StatusEffectType, float, int)>();
     public static Subject<(Base_MobStatus status , int value)> onDie = new Subject<(Base_MobStatus, int)>();
     /*static にすることで、どの Enemy インスタンスからでもこのSubjectにアクセスし、

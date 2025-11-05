@@ -29,7 +29,7 @@ public class KnifeData : ScriptableObject
     [Multiline(6)] public string description;
 
     // 特殊効果
-    [field: SerializeField] public List<BaseHSpE> specialEffects { get; private set; }
+    [field: SerializeField] public List<Base_KnifeAbility> abilities { get; private set; }
 
     // 以下キーワード能力
     /*

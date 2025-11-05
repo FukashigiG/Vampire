@@ -4,13 +4,13 @@ using UniRx;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/AddHSpE")]
-public class AddHSpETreasure : Base_TreasureData
+public class AddKnifeAbilityTreasure : Base_TreasureData
 {
     // 所持している間、プレイヤーの扱う特定の属性のナイフに特殊能力を追加
 
     [field: SerializeField] public Element targetEnum {  get; private set; }
 
-    [field: SerializeField] public BaseHSpE hspe {  get; private set; }
+    [field: SerializeField] public Base_KnifeAbility hspe {  get; private set; }
 
     public override void OnAdd(PlayerStatus status)
     {

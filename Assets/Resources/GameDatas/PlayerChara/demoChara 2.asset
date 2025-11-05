@@ -21,8 +21,9 @@ MonoBehaviour:
   <luck>k__BackingField: 0
   <eyeSight>k__BackingField: 4
   <initialKnives>k__BackingField:
-  - {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
+  - {fileID: 11400000, guid: 39a7e245b983ee94f81bc0088b4319cb, type: 2}
   <initialTreasures>k__BackingField:
-  - {fileID: 11400000, guid: 55db33a1e7ef40549b59624f2acb46bf, type: 2}
+  - {fileID: 11400000, guid: 58637475d54af484b85a787eaa319ab4, type: 2}
+  - {fileID: 11400000, guid: 81947407ddaddad4c8961a1584ff03d3, type: 2}
   <masteredElement>k__BackingField: 1
   <prefab>k__BackingField: {fileID: 0}

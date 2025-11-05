@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewHSpE", menuName = "Game Data/HSpE/IgnoreDefence")]
-public class HSpE_IgnoreDefence : BaseHSpE
+[CreateAssetMenu(fileName = "NewKnifeAbility", menuName = "Game Data/KnifeAbility/IgnoreDefence")]
+public class KnifeAbility_IgnoreDefence : Base_KnifeAbility
 {
     // IgnoreDefence‚ğtrue‚Éã‘‚«‚·‚é‚±‚Æ‚Å–hŒä–³‹‚ğ‹–‰Â
 
@@ -14,10 +14,9 @@ public class HSpE_IgnoreDefence : BaseHSpE
         get { return _ignoreDefence; } 
     }
 
-    protected override void ActivateEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    protected override void ActivateEffect_OnHit(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
     {
         _ignoreDefence = true;
 
-        base.ActivateEffect(status, posi, knifeData);
     }
 }

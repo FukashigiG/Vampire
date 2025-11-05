@@ -34,7 +34,7 @@ public class DontAttack_BuffTreasure : Base_TreasureData
         var token = status.GetCancellationTokenOnDestroy();
         bool standBy = false;
 
-        PlayerStatus.onDamaged.Subscribe(async x =>
+        status.onDamaged.Subscribe(async x =>
         {
 
 

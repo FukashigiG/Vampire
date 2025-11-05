@@ -10,9 +10,9 @@ public class BoostHSpEProbabilityTreasure : Base_TreasureData
     // 所持している間、プレイヤーの扱うナイフの特定の特殊能力の発動確率を上昇
 
     // 強化させたい特殊能力
-    [field: SerializeField] public BaseHSpE targetHspe { get; private set; }
+    [field: SerializeField] public Base_KnifeAbility targetAbility { get; private set; }
     // ↑の型を示す
-    System.Type targetType => targetHspe.GetType();
+    System.Type targetType => targetAbility.GetType();
 
     [SerializeField] int amount_Boost_Percentage;
 
@@ -31,7 +31,7 @@ public class BoostHSpEProbabilityTreasure : Base_TreasureData
         status.attack.onThrowKnife.Subscribe(_knifeData =>
         {
             // 対象のHSpEがあれば、それを取得
-            BaseHSpE matchedEffect = _knifeData.specialEffects
+            Base_KnifeAbility matchedEffect = _knifeData.specialEffects
                 .FirstOrDefault(effect => effect.GetType() == targetType);
 
             if (matchedEffect != null)

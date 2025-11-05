@@ -26,7 +26,7 @@ public class CriticalBonusTreasure : Base_TreasureData
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
         // クリティカル発動の発動を購読
-        HSpE_Critical.onEffectActived.Subscribe(targetStatus  =>
+        KnifeAbility_Critical.onEffectActived.Subscribe(targetStatus  =>
         {
             targetStatus.ApplyStatusEffect(effectType, effectID, duration ,amount_Debuff);
 

@@ -25,7 +25,7 @@ public class DamageToBuffTreasure : Base_TreasureData
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
-        PlayerStatus.onDamaged.Subscribe(x =>
+        status.onDamaged.Subscribe(x =>
         {
             status.ApplyStatusEffect(effectType, effectID, duration, amount);
 

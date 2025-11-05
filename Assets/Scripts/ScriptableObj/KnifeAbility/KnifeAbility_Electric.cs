@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-[CreateAssetMenu(fileName = "NewHSpE", menuName = "Game Data/HSpE/Electric")]
-public class HSpE_Electric : BaseHSpE
+[CreateAssetMenu(fileName = "NewKnifeAbility", menuName = "Game Data/KnifeAbility/Electric")]
+public class KnifeAbility_Electric : Base_KnifeAbility
 {
     public float magnification;
     public float radius;
     public LayerMask targetLayer;
     [SerializeField] GameObject effect;
 
-    protected override void ActivateEffect(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    protected override void ActivateEffect_OnHit(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
     {
         // é¸àÕÇÃìGÇ…è¨É_ÉÅÅ[ÉW
 
@@ -27,7 +27,5 @@ public class HSpE_Electric : BaseHSpE
                 Instantiate(effect, hit.transform.position, Quaternion.identity);
             }
         }
-
-        base.ActivateEffect(status, posi, knifeData);
     }
 }

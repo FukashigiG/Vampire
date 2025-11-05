@@ -12,15 +12,15 @@ public class Detail_HSpE : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] Text txt_Name_DetailWindow;
     [SerializeField] Text txt_Description;
 
-    BaseHSpE hspe;
+    Base_KnifeAbility knifeAbility;
 
-    public void Initialize(BaseHSpE _hspe)
+    public void Initialize(Base_KnifeAbility _knifeAbility)
     {
-        hspe = _hspe;
+        knifeAbility = _knifeAbility;
 
-        txt_Name.text = hspe.effectName;
-        txt_Name_DetailWindow.text = hspe.effectName;
-        txt_Description.text = hspe.description;
+        txt_Name.text = knifeAbility.effectName;
+        txt_Name_DetailWindow.text = knifeAbility.effectName;
+        txt_Description.text = knifeAbility.description;
 
         detailWindow.SetActive(false);
     }

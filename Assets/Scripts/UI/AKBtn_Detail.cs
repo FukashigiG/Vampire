@@ -33,7 +33,7 @@ public class AKBtn_Detail : MonoBehaviour
         t_Description.text = "";
 
         // このナイフが持つ特殊能力を記述する処理
-        foreach (var effect in knifeData.specialEffects)
+        foreach (var effect in knifeData.abilities)
         {
             if(effect != null)
             {

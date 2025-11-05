@@ -8,7 +8,7 @@ public class DamageToHSpETreasure : Base_TreasureData
 {
     // 所持している間、プレイヤーが攻撃を受けると次投げるナイフにHSpEを追加
 
-    [SerializeField] BaseHSpE hspe;
+    [SerializeField] Base_KnifeAbility knifeAbility;
 
     public override void OnAdd(PlayerStatus status)
     {
@@ -24,7 +24,7 @@ public class DamageToHSpETreasure : Base_TreasureData
     {
         bool standBy = false;
 
-        PlayerStatus.onDamaged.Subscribe(x =>
+        status.onDamaged.Subscribe(x =>
         {
             standBy = true;
 
@@ -34,7 +34,7 @@ public class DamageToHSpETreasure : Base_TreasureData
         {
             if (!standBy) return;
 
-            KnifeData.specialEffects.Add(hspe);
+            KnifeData.specialEffects.Add(knifeAbility);
 
             standBy = false;
 
