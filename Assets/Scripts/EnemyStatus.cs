@@ -25,16 +25,16 @@ public class EnemyStatus : Base_MobStatus
         base_MoveSpeed = (int)(_enemyData.moveSpeed * multiplier);
     }
 
-    public override void TakeDamage(int a, Vector2 damagedPosi)
+    public override void TakeDamage(int value)
     {
-        base.TakeDamage(a, damagedPosi);
+        base.TakeDamage(value);
 
         //ダメージテキストを出す処理
         Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, transform.position);
 
         var x = Instantiate(damageTxt, screenPoint, Quaternion.identity, GameObject.Find("Parent_DamageTxt").transform);
 
-        x.GetComponent<DamageTxtCtrler>().Initialize((int)a);
+        x.GetComponent<DamageTxtCtrler>().Initialize(value);
     }
 
     public override void Die()

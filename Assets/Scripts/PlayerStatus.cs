@@ -102,17 +102,17 @@ public class PlayerStatus : Base_MobStatus
     }
 
     // UŒ‚‚ğó‚¯‚éˆ—
-    public override void GetAttack(float a, Vector2 damagedPosi)
+    public override void GetAttack(int damagePoint, int elementPoint, Vector2 damagedPosi, bool isCritical = false, bool isIgnoreDefence = false)
     {
-        base.GetAttack(a, damagedPosi);
+        base.GetAttack(damagePoint, elementPoint, damagedPosi, isCritical, isIgnoreDefence);
 
         BeInvincible(1f).Forget();
     }
 
     // ƒ_ƒ[ƒW‚ğó‚¯‚éˆ—
-    public override void TakeDamage(int a, Vector2 damagedPosi)
+    public override void TakeDamage(int value)
     {
-        base.TakeDamage(a, damagedPosi);
+        base.TakeDamage(value);
 
         gauge_HP.fillAmount = (float)hitPoint / (float)maxHP;
     }

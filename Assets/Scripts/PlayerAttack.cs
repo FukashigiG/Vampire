@@ -121,7 +121,7 @@ public class PlayerAttack : MonoBehaviour
             bool isElementMatched = status.masteredElements.Contains(knife.element);
 
             // x‚ğ‰Šú‰»
-            x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife, isElementMatched);
+            x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife, status, isElementMatched);
 
             await UniTask.Delay((int)(coolTime_ThrowKnife * 1000), cancellationToken: token);
         }

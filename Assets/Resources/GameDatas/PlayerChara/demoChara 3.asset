@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf4a92988800192408927d5db7966ed4, type: 3}
   m_Name: demoChara 3
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  _name: "\u8FD1\u8DDD\u96E2\u7279\u5316"
-  hp: 220
-  power: 40
-  defense: 40
-  moveSpeed: 6
-  luck: 0
-  eyeSight: 3.2
-  initialKnives:
-  - {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
-  initialTreasures: []
-  masteredElement: 0
-  prefab: {fileID: 0}
+  <sprite>k__BackingField: {fileID: 0}
+  <_name>k__BackingField: "\u9752"
+  <hp>k__BackingField: 200
+  <power>k__BackingField: 32
+  <defense>k__BackingField: 50
+  <moveSpeed>k__BackingField: 6
+  <luck>k__BackingField: 0
+  <eyeSight>k__BackingField: 4
+  <maxLimit_Num_DrawKnives>k__BackingField: 6
+  <initialKnives>k__BackingField: []
+  <initialTreasures>k__BackingField: []
+  <masteredElement>k__BackingField: 3
+  <prefab>k__BackingField: {fileID: 0}

@@ -65,7 +65,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     // 状態変化効果を適用する統合メソッド
     public void ApplyStatusEffect(StatusEffectType type, string effectID, float duration, int amount = 0)
     {
-        Debug.Log(type);
+        //Debug.Log(type);
 
         // すでに同じ効果がかかっている場合は、一度キャンセルしてから上書きする
         if (activeStatusEffects.ContainsKey(effectID))
@@ -120,6 +120,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
                 actable = false;
                 break;
             case StatusEffectType.Ghost:
+                Debug.Log("Ghost");
                 _collider.enabled = false;
                 break;
             case StatusEffectType.Blaze:
@@ -141,7 +142,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
                 {
                     await UniTask.Delay(1000, cancellationToken: cts.Token);
 
-                    TakeDamage((int)dmg, this.transform.position);
+                    TakeDamage((int)dmg);
                 }
             }
             else
@@ -216,23 +217,31 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
 
     // 攻撃を受ける処理
-    public virtual void GetAttack(float a, Vector2 damagedPosi)
+    public virtual void GetAttack(int damagePoint, int elementPoint, Vector2 damagedPosi, bool isCritical = false, bool isIgnoreDefence = false)
     {
+        // クリティカルなら基礎ダメージ量を2倍
+        if(isCritical) damagePoint *= 2;
+
+        // 防御無視でないなら、防御計算
+        if (!isIgnoreDefence) damagePoint -= defence / 4;
+        // damagePointを0以下にしない
+        if (damagePoint < 0) damagePoint = 0;
+
         // ダメージ計算式
-        int damage = (int)(a - defence / 4);
+        int damage = damagePoint + elementPoint;
 
         // 0以下にならないように
         if (damage <= 0) damage = 1;
 
-        TakeDamage(damage, damagedPosi);
+        TakeDamage(damage);
     }
 
     // ダメージ処理
-    public virtual void TakeDamage(int a, Vector2 damagedPosi)
+    public virtual void TakeDamage(int value)
     {
-        if (a > 0) onDamaged.OnNext((transform.position, a));
+        if (value > 0) onDamaged.OnNext((transform.position, value));
 
-        if (a > 0) hitPoint -= a;
+        if (value > 0) hitPoint -= value;
 
         if (hitPoint <= 0) Die();
     }

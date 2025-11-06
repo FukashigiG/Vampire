@@ -61,10 +61,20 @@ public class KnifeData_RunTime
         description = data.description;
 
         // ナイフに登録されていた各HSpEを初期化したものをリストに加える
-        // これにより、HSpEのパラメータ（発動確率等）がいじられてもエディタ上で登録したものは
         foreach (var ability in data.abilities)
         {
-            abilities.Add(ability);
+            if(ability.abilityLogic != null)
+            {
+                // 参照(ability)をそのままAddするのではなく、
+                // 新しいKnifeAbilityインスタンスを生成してAddする
+                KnifeAbility newAbility = new KnifeAbility(
+                    UnityEngine.Object.Instantiate(ability.abilityLogic),
+                    ability.probability_Percent,
+                    ability.modifire,
+                    ability.effectID
+                );
+                abilities.Add(newAbility);
+            }
         }
     }
 
@@ -85,7 +95,18 @@ public class KnifeData_RunTime
 
         foreach (var ability in data.abilities)
         {
-            abilities.Add(ability);
+            if (ability.abilityLogic != null)
+            {
+                // 参照(ability)をそのままAddするのではなく、
+                // 新しいKnifeAbilityインスタンスを生成してAddする
+                KnifeAbility newAbility = new KnifeAbility(
+                    UnityEngine.Object.Instantiate(ability.abilityLogic),
+                    ability.probability_Percent,
+                    ability.modifire,
+                    ability.effectID
+                );
+                abilities.Add(newAbility);
+            }
         }
     }
 }

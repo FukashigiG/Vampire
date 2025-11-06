@@ -36,15 +36,10 @@ public class Base_KnifeAbilityLogic : ScriptableObject, IOnHitSpecialEffect
     
 
     // “ÁêŒø‰Êˆ—
-    public virtual void ActivateEffect_OnThrown(PlayerStatus status, Vector2 posi, KnifeData_RunTime knifeData, float modifire)
+    public virtual void ActivateAbility(Base_MobStatus status, GameObject knifeObject, KnifeData_RunTime knifeData, float modifire, string effectID)
     {
-        // ”­“®’Ê’m
-        onEffectActived.OnNext(status);
-    }
 
-    // “ÁêŒø‰Êˆ—
-    public virtual void ActivateEffect_OnHit(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData, float modifire)
-    {
+
         // ”­“®’Ê’m
         onEffectActived.OnNext(status);
     }

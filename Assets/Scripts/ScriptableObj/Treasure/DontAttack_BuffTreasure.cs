@@ -9,6 +9,7 @@ using Cysharp.Threading.Tasks;
 public class DontAttack_BuffTreasure : Base_TreasureData
 {
     // 所持している間、特定の状態変化効果を受けた敵の死亡に反応して、その敵の周囲に、死んだ敵の最大HPの半分でダメージ
+    // めちゃめちゃ作りかけです
 
     [SerializeField] StatusEffectType targetEffectType;
     [SerializeField] GameObject effect;
@@ -32,7 +33,7 @@ public class DontAttack_BuffTreasure : Base_TreasureData
     {
         bool isCooling = false;
         var token = status.GetCancellationTokenOnDestroy();
-        bool standBy = false;
+        //bool standBy = false;
 
         status.onDamaged.Subscribe(async x =>
         {
@@ -44,7 +45,7 @@ public class DontAttack_BuffTreasure : Base_TreasureData
                 await UniTask.Delay((int)(coolDownSeconds * 1000), cancellationToken: token);
 
                 // スタンバイ状態に以降
-                standBy = true;
+                //standBy = true;
             }
             catch (System.OperationCanceledException)
             {
@@ -72,7 +73,7 @@ public class DontAttack_BuffTreasure : Base_TreasureData
                 if (hit.TryGetComponent(out Base_MobStatus ms))
                 {
                     // 当たった本人には追加ダメージは発生しない
-                    if (ms != status) ms.GetAttack((x.status.maxHP / 2), center);
+                    if (ms != status) ms.GetAttack((x.status.maxHP / 2), 0, center);
                 }
             }
 

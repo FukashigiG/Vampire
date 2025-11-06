@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: critical
   m_EditorClassIdentifier: 
   <effectName>k__BackingField: "\u6025\u6240"
-  <description>k__BackingField: "\u5927\u304D\u306A\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B"
-  probability_Percent: 20
+  <description>k__BackingField: "\u767A\u52D5\u6642\u3001\u4E0E\u3048\u308B\u30C0\u30E1\u30FC\u30B8\u304C\u5897\u3048\u308B"
   <effectOnThrown>k__BackingField: 0
   <effectOnHit>k__BackingField: 1
   efect: {fileID: 4467026661881878016, guid: 6b2d4816c99691142b2565bbf88c3336, type: 3}

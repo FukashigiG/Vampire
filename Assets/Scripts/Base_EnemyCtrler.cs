@@ -60,7 +60,7 @@ public class Base_EnemyCtrler : MonoBehaviour
             }
             */
 
-            ms?.GetAttack(_enemyStatus.power, transform.position);
+            ms?.GetAttack(_enemyStatus.power, 0, transform.position);
 
             //Instantiate(knifeData.hitEffect, transform.position, Quaternion.identity);
         }

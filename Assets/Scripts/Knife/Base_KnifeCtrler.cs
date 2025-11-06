@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Playables;
 using UnityEngine;
 
 public class Base_KnifeCtrler : MonoBehaviour
@@ -9,6 +10,7 @@ public class Base_KnifeCtrler : MonoBehaviour
     protected float speed;
     protected float lifeTime;
     protected int power;
+    protected int elementPower;
 
     // ナイフが強化状態かを示す
     bool isBoosted = false;
@@ -19,7 +21,7 @@ public class Base_KnifeCtrler : MonoBehaviour
     }
 
     //初期化用メゾット
-    public void Initialize(float s, KnifeData_RunTime _knifeData, bool boost = false)
+    public void Initialize(float s, KnifeData_RunTime _knifeData, PlayerStatus status, bool boost = false)
     {
         knifeData = _knifeData;
 
@@ -31,11 +33,29 @@ public class Base_KnifeCtrler : MonoBehaviour
         speed = s;
 
         power = knifeData.power;
+        elementPower = knifeData.elementPower;
 
         lifeTime = 1;
 
         isBoosted = boost;
 
+        // ブースト状態でないなら、属性値が半減
+        if(!isBoosted) elementPower /= 2;
+
+        // ナイフに特殊能力が設定されていた場合の処理
+        foreach (var ability in knifeData.abilities)
+        {
+            if (ability != null)
+            {
+                // ブースト状態でないなら、発動率半減
+                if (!isBoosted) ability.probability_Percent /= 2;
+
+                // ヒット時の特殊処理を実行
+                // 相手のステータス、自分のポジションとナイフデータを渡す
+                ability.OnThrown(status, this.gameObject, knifeData);
+
+            }
+        }
 
     }
 
@@ -55,34 +75,32 @@ public class Base_KnifeCtrler : MonoBehaviour
         if(collision.TryGetComponent(out Base_MobStatus ms))
         {
             bool shouldDestroyThis = true;
+            bool is_ignoreDefence = false;
+            bool is_critical = false;
 
-            int damagePoint = power;
-
-            // ナイフが強化状態なら、ダメージを増加し、特殊効果を発動させる
-            if (isBoosted)
+            // ナイフに特殊能力が設定されていた場合の処理
+            foreach (var ability in knifeData.abilities)
             {
-                damagePoint += knifeData.elementPower;
-
-                // ナイフに特殊能力が設定されていた場合の処理
-                foreach (var ability in knifeData.abilities)
+                if (ability != null)
                 {
-                    if (ability != null)
-                    {
-                        // ヒット時の特殊処理を実行
-                        // 相手のステータス、自分のポジションとナイフデータを渡す
-                        ability.OnHit(ms, transform.position, knifeData);
+                    // ブースト状態でないなら、発動率半減
+                    if (!isBoosted) ability.probability_Percent /= 2;
 
-                        // 貫通が許可されているなら
-                        if (ability.abilityLogic.dontDestroyBullet == true) shouldDestroyThis = false;
-                        // 防御無視が許可されているなら
-                        if (ability.abilityLogic.ignoreDefence == true) damagePoint += ms.defence / 4; // 防御力分を上乗せすることで実質無視
-                        // クリティカルなら
-                        if (ability.abilityLogic.critical == true) damagePoint *= 2;
-                    }
+                    // ヒット時の特殊処理を実行
+                    // 相手のステータス、自分のポジションとナイフデータを渡す
+                    ability.OnHit(ms, this.gameObject, knifeData);
+
+                    // 貫通が許可されているなら
+                    if (ability.abilityLogic.dontDestroyBullet == true) shouldDestroyThis = false;
+                    // クリティカルが許可されているなら
+                    if (ability.abilityLogic.critical == true) is_critical = true;
+                    // 防御無視が許可されているなら
+                    if (ability.abilityLogic.ignoreDefence == true) is_ignoreDefence = true;
+
                 }
             }
 
-            ms?.GetAttack((int)((damagePoint + speed * 0.75f) / 2), transform.position);
+            ms?.GetAttack((int)((power + speed * 0.75f) / 2), elementPower, transform.position, is_critical, is_ignoreDefence);
 
             Instantiate(knifeData.hitEffect, transform.position, Quaternion.identity);
 

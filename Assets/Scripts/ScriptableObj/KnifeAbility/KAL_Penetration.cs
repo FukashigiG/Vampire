@@ -14,9 +14,9 @@ public class KAL_Penetration : Base_KnifeAbilityLogic
         get { return _dontDestroyBullet; }
     }
 
-    public override void ActivateEffect_OnThrown(PlayerStatus status, Vector2 posi, KnifeData_RunTime knifeData, float modifire)
+    public override void ActivateAbility(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData, float modifire, string effectID)
     {
-        base.ActivateEffect_OnThrown (status, posi, knifeData, modifire);
+        base.ActivateAbility(status, knifeObj, knifeData, modifire, effectID);
 
         _dontDestroyBullet=true;
     }

@@ -7,10 +7,10 @@ public class KAL_HeavyBlow : Base_KnifeAbilityLogic
 {
     [SerializeField] float knockPower;
 
-    public override void ActivateEffect_OnHit(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData, float modifire)
+    public override void ActivateAbility(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData, float modifire, string effectID)
     {
-        base.ActivateEffect_OnHit(status, posi, knifeData, modifire);
+        base.ActivateAbility(status, knifeObj, knifeData, modifire, effectID);
 
-        status.KnockBack(posi, knockPower);
+        status.KnockBack(knifeObj.transform.position, knockPower);
     }
 }

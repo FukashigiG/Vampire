@@ -52,9 +52,11 @@ public class KnifeAbility
     [SerializeField] public int probability_Percent = 100; // デフォルト値
     // 効果倍率
     [SerializeField] public float modifire = 1.0f; // デフォルト値
+    // 効果ID 状態変化系効果の際等で使用される
+    [SerializeField] public string effectID;
 
     // ナイフが投げられたときに呼ばれる
-    public virtual void OnThrown(PlayerStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    public virtual void OnThrown(PlayerStatus status, GameObject knifeObj, KnifeData_RunTime knifeData)
     {
         // 変数がfalseなら無視
         if (! abilityLogic.effectOnThrown) return;
@@ -65,12 +67,12 @@ public class KnifeAbility
         if (randomNum <= probability_Percent)
         {
             // 効果処理
-            abilityLogic.ActivateEffect_OnHit(status, posi, knifeData, modifire);
+            abilityLogic.ActivateAbility(status, knifeObj, knifeData, modifire, effectID);
         }
     }
 
     // ナイフがヒットした時に呼ばれる
-    public virtual void OnHit(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    public virtual void OnHit(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData)
     {
         // 変数がfalseなら無視
         if (! abilityLogic.effectOnHit) return;
@@ -81,15 +83,16 @@ public class KnifeAbility
         if (randomNum <= probability_Percent)
         {
             // 効果処理
-            abilityLogic.ActivateEffect_OnHit(status, posi, knifeData, modifire);
+            abilityLogic.ActivateAbility(status, knifeObj, knifeData, modifire, effectID);
         }
     }
 
     // コンストラクタ
-    public KnifeAbility(Base_KnifeAbilityLogic abilityLogic, int probability_Percent, float modifire)
+    public KnifeAbility(Base_KnifeAbilityLogic abilityLogic, int probability_Percent, float modifire, string effectID)
     {
         this.abilityLogic = abilityLogic;
         this.probability_Percent = probability_Percent;
         this.modifire = modifire;
+        this.effectID = effectID;
     }
 }

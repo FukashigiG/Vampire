@@ -6,7 +6,7 @@ public interface IDamagable
 {
     // 攻撃を受け、ダメージをくらう処理のインターフェース
 
-    void GetAttack(float dmg, Vector2 damagedPosi);
+    void GetAttack(int dmg, int elementDmg, Vector2 damagedPosi, bool isCritical, bool isIgnoreDefence);
 
-    void TakeDamage(int dmg, Vector2 damagedPosi);
+    void TakeDamage(int dmg);
 }
