@@ -8,7 +8,7 @@ public class OnN_CountTreasure : Base_TreasureData
 {
     // 所持している間、N本ごとに投げるナイフにHSpEを追加
 
-    [SerializeField] Base_KnifeAbility addedKnifeAbility;
+    [SerializeField] KnifeAbility addedKnifeAbility;
     [field: SerializeField] public int countCycle { get; private set; } = 4;
 
     public override void OnAdd(PlayerStatus status)
@@ -33,7 +33,7 @@ public class OnN_CountTreasure : Base_TreasureData
             {
                 count = 0;
 
-                _knifeData.specialEffects.Add(Instantiate(addedKnifeAbility));
+                _knifeData.abilities.Add(addedKnifeAbility);
             }
 
         }).AddTo(disposables);

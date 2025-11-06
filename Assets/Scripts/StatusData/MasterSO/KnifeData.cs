@@ -29,7 +29,7 @@ public class KnifeData : ScriptableObject
     [Multiline(6)] public string description;
 
     // 特殊効果
-    [field: SerializeField] public List<Base_KnifeAbility> abilities { get; private set; }
+    [field: SerializeField] public List<KnifeAbility> abilities { get; private set; }
 
     // 以下キーワード能力
     /*
@@ -41,4 +41,55 @@ public class KnifeData : ScriptableObject
     public bool blaze; // 火焔
     public bool freeze; // 氷結
     */
+}
+
+[System.Serializable]
+public class KnifeAbility
+{
+    // 発動する能力
+    [SerializeField] public Base_KnifeAbilityLogic abilityLogic;
+    // 発動率
+    [SerializeField] public int probability_Percent = 100; // デフォルト値
+    // 効果倍率
+    [SerializeField] public float modifire = 1.0f; // デフォルト値
+
+    // ナイフが投げられたときに呼ばれる
+    public virtual void OnThrown(PlayerStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    {
+        // 変数がfalseなら無視
+        if (! abilityLogic.effectOnThrown) return;
+
+        // 1～100の乱数が発動確率以内なら、特殊効果を発動
+        int randomNum = Random.Range(1, 101);
+
+        if (randomNum <= probability_Percent)
+        {
+            // 効果処理
+            abilityLogic.ActivateEffect_OnHit(status, posi, knifeData, modifire);
+        }
+    }
+
+    // ナイフがヒットした時に呼ばれる
+    public virtual void OnHit(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    {
+        // 変数がfalseなら無視
+        if (! abilityLogic.effectOnHit) return;
+
+        // 1～100の乱数が発動確率以内なら、特殊効果を発動
+        int randomNum = Random.Range(1, 101);
+
+        if (randomNum <= probability_Percent)
+        {
+            // 効果処理
+            abilityLogic.ActivateEffect_OnHit(status, posi, knifeData, modifire);
+        }
+    }
+
+    // コンストラクタ
+    public KnifeAbility(Base_KnifeAbilityLogic abilityLogic, int probability_Percent, float modifire)
+    {
+        this.abilityLogic = abilityLogic;
+        this.probability_Percent = probability_Percent;
+        this.modifire = modifire;
+    }
 }

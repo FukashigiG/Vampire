@@ -23,4 +23,7 @@ MonoBehaviour:
   <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
   <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: b3464c1d73b30534182e8b7fb7962cb1, type: 3}
   description: "\u30C6\u30B9\u30C8\u7528\u30C7\u30FC\u30BF\u306E\u4E00\u3064"
-  <specialEffects>k__BackingField: []
+  <abilities>k__BackingField:
+  - abilityLogic: {fileID: 11400000, guid: f26fe09a7c077804189f3e8cbf0aabc1, type: 2}
+    probability_Percent: 100
+    modifire: 1

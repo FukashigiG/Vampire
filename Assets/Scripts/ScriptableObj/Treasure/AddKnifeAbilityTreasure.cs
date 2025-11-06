@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class AddKnifeAbilityTreasure : Base_TreasureData
 
     [field: SerializeField] public Element targetEnum {  get; private set; }
 
-    [field: SerializeField] public Base_KnifeAbility hspe {  get; private set; }
+    [field: SerializeField] public KnifeAbility ability {  get; private set; }
 
     public override void OnAdd(PlayerStatus status)
     {
@@ -28,10 +29,12 @@ public class AddKnifeAbilityTreasure : Base_TreasureData
         {
             // そのナイフデータの属性が対象でない、または既にこの能力を持ってるなら無視
             if (_knifeData.element != targetEnum) return;
-            if (_knifeData.specialEffects.Contains(hspe)) return;
+            // 対象のアビリティーロジックがあれば、それを取得
+            KnifeAbility matchedAbility = _knifeData.abilities
+                .FirstOrDefault(effect => effect.abilityLogic.GetType() == ability.abilityLogic.GetType());
 
             // 引数で渡されたナイフのデータに、特定の特殊能力を追加
-            _knifeData.specialEffects.Add(Instantiate(hspe));
+            _knifeData.abilities.Add(ability);
         })
         .AddTo(disposables);
     }

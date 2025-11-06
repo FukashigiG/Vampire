@@ -35,6 +35,8 @@ public class Base_KnifeCtrler : MonoBehaviour
         lifeTime = 1;
 
         isBoosted = boost;
+
+
     }
 
     protected virtual void FixedUpdate()
@@ -62,20 +64,20 @@ public class Base_KnifeCtrler : MonoBehaviour
                 damagePoint += knifeData.elementPower;
 
                 // ナイフに特殊能力が設定されていた場合の処理
-                foreach (var SpEffect in knifeData.specialEffects)
+                foreach (var ability in knifeData.abilities)
                 {
-                    if (SpEffect != null)
+                    if (ability != null)
                     {
                         // ヒット時の特殊処理を実行
                         // 相手のステータス、自分のポジションとナイフデータを渡す
-                        SpEffect.OnHit(ms, transform.position, knifeData);
+                        ability.OnHit(ms, transform.position, knifeData);
 
                         // 貫通が許可されているなら
-                        if (SpEffect.dontDestroyBullet == true) shouldDestroyThis = false;
+                        if (ability.abilityLogic.dontDestroyBullet == true) shouldDestroyThis = false;
                         // 防御無視が許可されているなら
-                        if (SpEffect.ignoreDefence == true) damagePoint += ms.defence / 4; // 防御力分を上乗せすることで実質無視
+                        if (ability.abilityLogic.ignoreDefence == true) damagePoint += ms.defence / 4; // 防御力分を上乗せすることで実質無視
                         // クリティカルなら
-                        if (SpEffect.critical == true) damagePoint *= 2;
+                        if (ability.abilityLogic.critical == true) damagePoint *= 2;
                     }
                 }
             }

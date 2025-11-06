@@ -14,7 +14,8 @@ public enum StatusEffectType
     PowerDebuff,
     MoveSpeedDebuff,
     Blaze,
-    Freeze
+    Freeze,
+    Ghost
 }
 
 public class Base_MobStatus : MonoBehaviour, IDamagable
@@ -48,14 +49,17 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     Dictionary<string, CancellationTokenSource> activeStatusEffects = new();
     Dictionary<StatusEffectType, int> activeStatusTypeCounts = new();
 
+    Collider2D _collider;
+
     protected virtual void Awake()
     {
-
+        _collider = GetComponent<Collider2D>();
     }
 
     protected virtual void Start()
     {
         actable = true;
+        _collider.enabled = true;
     }
 
     // 状態変化効果を適用する統合メソッド
@@ -114,6 +118,9 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
                 break;
             case StatusEffectType.Freeze:
                 actable = false;
+                break;
+            case StatusEffectType.Ghost:
+                _collider.enabled = false;
                 break;
             case StatusEffectType.Blaze:
                 // Blazeはamountを使わず、内部でダメージ計算
@@ -184,6 +191,10 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
                     // カウントが残ってなければ（全ての効果が切れてれば）戻す
                     if(! activeStatusTypeCounts.ContainsKey(StatusEffectType.Freeze)) actable = true;
                     break;
+                case StatusEffectType.Ghost:
+
+                    if (!activeStatusTypeCounts.ContainsKey(StatusEffectType.Ghost)) _collider.enabled = true;
+                    break;
             }
 
             // Dictionaryに自分に宛てたトークンソースが残っているのであれば、それを削除
@@ -219,9 +230,9 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     // ダメージ処理
     public virtual void TakeDamage(int a, Vector2 damagedPosi)
     {
-        hitPoint -= a;
-
         if (a > 0) onDamaged.OnNext((transform.position, a));
+
+        if (a > 0) hitPoint -= a;
 
         if (hitPoint <= 0) Die();
     }

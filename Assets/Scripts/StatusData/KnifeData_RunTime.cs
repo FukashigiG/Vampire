@@ -6,10 +6,10 @@ using System.Collections.ObjectModel;
 
 // カスタムリスト
 // 基本的な挙動はList<BaseHSpE>と同じだが、Add（～～）された際に同種の重複が起きるなら無視する
-public class CustomList : Collection<Base_KnifeAbility>
+public class CustomList : Collection<KnifeAbility>
 {
     // Add（）によってなにかしらが加えられる際の処理
-    protected override void InsertItem(int index, Base_KnifeAbility item)
+    protected override void InsertItem(int index, KnifeAbility item)
     {
         // その加えられるものの型と同じものが既にあるかどうか判別
         bool hasTargetTypeEffect = this.Any(effect => effect.GetType() == item.GetType());
@@ -43,7 +43,7 @@ public class KnifeData_RunTime
     [Multiline(6)] public string description;
 
     // 特殊効果
-    public CustomList specialEffects {  get; private set; } = new CustomList();
+    public CustomList abilities {  get; private set; } = new CustomList();
 
     // ランタイム用でないナイフデータを元にするコンストラクタ
     public KnifeData_RunTime(KnifeData data)
@@ -62,9 +62,9 @@ public class KnifeData_RunTime
 
         // ナイフに登録されていた各HSpEを初期化したものをリストに加える
         // これにより、HSpEのパラメータ（発動確率等）がいじられてもエディタ上で登録したものは
-        foreach (var HSpE in data.abilities)
+        foreach (var ability in data.abilities)
         {
-            specialEffects.Add(UnityEngine.Object.Instantiate(HSpE));
+            abilities.Add(ability);
         }
     }
 
@@ -83,9 +83,9 @@ public class KnifeData_RunTime
         hitEffect = data.hitEffect;
         description = data.description;
 
-        foreach (var HSpE in data.specialEffects)
+        foreach (var ability in data.abilities)
         {
-            specialEffects.Add(UnityEngine.Object.Instantiate(HSpE));
+            abilities.Add(ability);
         }
     }
 }

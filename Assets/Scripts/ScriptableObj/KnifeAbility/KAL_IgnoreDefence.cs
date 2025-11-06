@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewKnifeAbility", menuName = "Game Data/KnifeAbility/IgnoreDefence")]
-public class KnifeAbility_IgnoreDefence : Base_KnifeAbility
+public class KAL_IgnoreDefence : Base_KnifeAbilityLogic
 {
     // IgnoreDefence‚ğtrue‚Éã‘‚«‚·‚é‚±‚Æ‚Å–hŒä–³‹‚ğ‹–‰Â
 
@@ -14,9 +14,10 @@ public class KnifeAbility_IgnoreDefence : Base_KnifeAbility
         get { return _ignoreDefence; } 
     }
 
-    protected override void ActivateEffect_OnHit(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    public override void ActivateEffect_OnHit(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData, float modifire)
     {
-        _ignoreDefence = true;
+        base.ActivateEffect_OnHit(status, posi, knifeData, modifire);
 
+        _ignoreDefence = true;
     }
 }

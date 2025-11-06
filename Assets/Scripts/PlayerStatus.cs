@@ -104,8 +104,6 @@ public class PlayerStatus : Base_MobStatus
     // UŒ‚‚ğó‚¯‚éˆ—
     public override void GetAttack(float a, Vector2 damagedPosi)
     {
-        if (isInvincible) return;
-
         base.GetAttack(a, damagedPosi);
 
         BeInvincible(1f).Forget();

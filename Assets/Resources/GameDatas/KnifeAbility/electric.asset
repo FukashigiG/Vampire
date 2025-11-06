@@ -15,6 +15,8 @@ MonoBehaviour:
   <effectName>k__BackingField: "\u96F7\u6483"
   <description>k__BackingField: "\u30D2\u30C3\u30C8\u3057\u305F\u6575\u306E\u5468\u56F2\u306B\u3044\u308B\u4ED6\u306E\u6575\u306B\u3082\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B"
   probability_Percent: 45
+  <effectOnThrown>k__BackingField: 0
+  <effectOnHit>k__BackingField: 1
   magnification: 0.4
   radius: 4
   targetLayer:

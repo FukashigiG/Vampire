@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewKnifeAbility", menuName = "Game Data/KnifeAbility/Critical")]
-public class KnifeAbility_Critical : Base_KnifeAbility
+public class KAL_Critical : Base_KnifeAbilityLogic
 {
     // ‚Ü‚ê‚É‘å‚«‚Èƒ_ƒ[ƒW
 
@@ -18,8 +18,10 @@ public class KnifeAbility_Critical : Base_KnifeAbility
     [SerializeField] GameObject efect;
 
     // Œø‰Ê‚ª”­“®‚µ‚Ä‰‚ß‚Ätrue‚É‚È‚é
-    protected override void ActivateEffect_OnHit(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    public override void ActivateEffect_OnHit(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData, float modifire)
     {
+        base.ActivateEffect_OnHit (status, posi, knifeData, modifire);
+
         _critical = true;
 
         Instantiate(efect, posi, Quaternion.identity);

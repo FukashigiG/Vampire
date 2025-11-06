@@ -4,15 +4,17 @@ using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
 [CreateAssetMenu(fileName = "NewKnifeAbility", menuName = "Game Data/KnifeAbility/Electric")]
-public class KnifeAbility_Electric : Base_KnifeAbility
+public class KAL_Electric : Base_KnifeAbilityLogic
 {
-    public float magnification;
-    public float radius;
-    public LayerMask targetLayer;
+    [SerializeField] float magnification;
+    [SerializeField] float radius;
+    [SerializeField] LayerMask targetLayer;
     [SerializeField] GameObject effect;
 
-    protected override void ActivateEffect_OnHit(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData)
+    public override void ActivateEffect_OnHit(Base_MobStatus status, Vector2 posi, KnifeData_RunTime knifeData, float modifire)
     {
+        base.ActivateEffect_OnHit(status, posi, knifeData, modifire);
+
         // é¸àÕÇÃìGÇ…è¨É_ÉÅÅ[ÉW
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(posi, radius, targetLayer);

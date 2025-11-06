@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f43cf86051909534589a21ee1dafaff1, type: 3}
-  m_Name: blaze_Debuff
+  m_Name: Ghost
   m_EditorClassIdentifier: 
-  <effectName>k__BackingField: "\u706B\u708E"
-  <description>k__BackingField: "\u30D2\u30C3\u30C8\u3057\u305F\u6575\u3092\u706B\u708E\u72B6\u614B\u306B\u3059\u308B"
-  probability_Percent: 100
+  <effectName>k__BackingField: "\u970A\u4F53\u5316"
+  <description>k__BackingField: "\u30D2\u30C3\u30C8\u5BFE\u8C61\u3092\u970A\u4F53\u5316\u3055\u305B\u308B"
+  probability_Percent: 80
   <effectOnThrown>k__BackingField: 0
   <effectOnHit>k__BackingField: 1
   dulation: 4
   amount_percent: 0
-  effectID: kaen535
-  targetState: 6
+  effectID: reitai46845
+  targetState: 8
