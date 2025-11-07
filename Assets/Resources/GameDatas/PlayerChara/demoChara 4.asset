@@ -20,7 +20,7 @@ MonoBehaviour:
   <moveSpeed>k__BackingField: 8
   <luck>k__BackingField: 0
   <eyeSight>k__BackingField: 5
-  <maxLimit_Num_DrawKnives>k__BackingField: 6
+  <limit_DrawKnives>k__BackingField: 5
   <initialKnives>k__BackingField: []
   <initialTreasures>k__BackingField: []
   <masteredElement>k__BackingField: 3

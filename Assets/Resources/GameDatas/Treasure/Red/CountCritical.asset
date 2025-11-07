@@ -16,5 +16,9 @@ MonoBehaviour:
   _name: "\u30AF\u30ED\u30C3\u30AF\u6025\u6240"
   _description: "4\u672C\u306B\u4E00\u5EA6\u3001\u6295\u3052\u308B\u30CA\u30A4\u30D5\u306B\u6025\u6240\u3092\u4ED8\u4E0E\u3059\u308B"
   icon: {fileID: 0}
-  addedHSpE: {fileID: 11400000, guid: c21406ad570655744a5f2abbf1afa16c, type: 2}
+  addedKnifeAbility:
+    abilityLogic: {fileID: 11400000, guid: c21406ad570655744a5f2abbf1afa16c, type: 2}
+    probability_Percent: 100
+    modifire: 1
+    effectID: ragunaroku
   <countCycle>k__BackingField: 4

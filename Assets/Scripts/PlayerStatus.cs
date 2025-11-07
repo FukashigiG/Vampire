@@ -22,6 +22,7 @@ public class PlayerStatus : Base_MobStatus
 
     public float luck;
     public float eyeSight;
+    public int limit_DrawKnife;
 
     public List<Element> masteredElements { get; private set; } = new List<Element>();
 
@@ -51,6 +52,7 @@ public class PlayerStatus : Base_MobStatus
 
         luck = playerCharaData.luck;
         eyeSight = playerCharaData.eyeSight;
+        limit_DrawKnife = playerCharaData.limit_DrawKnives;
 
         masteredElements.Add(playerCharaData.masteredElement);
     }

@@ -20,10 +20,11 @@ MonoBehaviour:
   <moveSpeed>k__BackingField: 6
   <luck>k__BackingField: 0
   <eyeSight>k__BackingField: 4
-  <limit_DrawKnives>k__BackingField: 0
+  <limit_DrawKnives>k__BackingField: 4
   <initialKnives>k__BackingField:
   - {fileID: 11400000, guid: 6ec7b0c2264e3a8479679e9e202daa2f, type: 2}
   - {fileID: 11400000, guid: 6ec7b0c2264e3a8479679e9e202daa2f, type: 2}
-  <initialTreasures>k__BackingField: []
+  <initialTreasures>k__BackingField:
+  - {fileID: 11400000, guid: 81947407ddaddad4c8961a1584ff03d3, type: 2}
   <masteredElement>k__BackingField: 1
   <prefab>k__BackingField: {fileID: 0}

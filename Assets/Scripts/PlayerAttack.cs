@@ -85,7 +85,10 @@ public class PlayerAttack : MonoBehaviour
 
     async UniTask Reload()
     {
-        availableKnifes = status.inventory.runtimeKnives.ToList();
+        availableKnifes = status.inventory.runtimeKnives
+                            .OrderBy(x => UnityEngine.Random.value)// 順番をシャッフルして参照（元のリストをいじるわけではない）
+                            .Take(status.limit_DrawKnife)// 上から上限まで引く
+                            .ToList();
 
         // 購読先による検知、介入のための発行
         onReload.OnNext(availableKnifes);
