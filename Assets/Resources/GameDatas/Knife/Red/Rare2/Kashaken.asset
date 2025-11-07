@@ -22,5 +22,9 @@ MonoBehaviour:
   <elementPower>k__BackingField: 24
   <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
   <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: edc689687b1d4fc47a87ba0f3d1128e2, type: 3}
-  description: "\u57FA\u790E\u653B\u6483\u529B\u304C\u4F4E\u304F\u3001\u5C5E\u6027\u5024\u304C\u9AD8\u3044"
-  <abilities>k__BackingField: []
+  description: "\u30D2\u30C3\u30C8\u3057\u305F\u6575\u3092\u706B\u708E\u72B6\u614B\u306B\u3067\u304D\u308B\n\u5C5E\u6027\u5024\u304C\u9AD8\u3044"
+  <abilities>k__BackingField:
+  - abilityLogic: {fileID: 11400000, guid: 25ce60272dc82d74bae73533fa4ce7d2, type: 2}
+    probability_Percent: 60
+    modifire: 4
+    effectID: kasyaken_blaze4

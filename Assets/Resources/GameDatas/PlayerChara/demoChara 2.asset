@@ -20,7 +20,7 @@ MonoBehaviour:
   <moveSpeed>k__BackingField: 6
   <luck>k__BackingField: 0
   <eyeSight>k__BackingField: 4
-  <maxLimit_Num_DrawKnives>k__BackingField: 5
+  <limit_DrawKnives>k__BackingField: 0
   <initialKnives>k__BackingField:
   - {fileID: 11400000, guid: 6ec7b0c2264e3a8479679e9e202daa2f, type: 2}
   - {fileID: 11400000, guid: 6ec7b0c2264e3a8479679e9e202daa2f, type: 2}

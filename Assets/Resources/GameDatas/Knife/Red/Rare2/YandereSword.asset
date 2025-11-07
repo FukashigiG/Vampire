@@ -25,6 +25,6 @@ MonoBehaviour:
   description: "\u5A01\u529B\u306F\u9AD8\u3044\u304C\u3001\u6295\u64F2\u6642\u6D88\u6EC5\u3059\u308B\u3053\u3068\u3082\u3042\u308B"
   <abilities>k__BackingField:
   - abilityLogic: {fileID: 11400000, guid: 3f1ac97b5ff3e44498726f30b4e412a2, type: 2}
-    probability_Percent: 50
+    probability_Percent: 60
     modifire: 1
     effectID: shinuhodoaisarete

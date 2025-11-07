@@ -91,8 +91,6 @@ public class PlayerAttack : MonoBehaviour
         onReload.OnNext(availableKnifes);
 
         await UniTask.Delay((int)(time_ReloadKnives * 1000));
-
-        //Debug.Log("reload : " + availableKnifes.Count);
     }
 
     async UniTask ThrowKnives(CancellationToken token)

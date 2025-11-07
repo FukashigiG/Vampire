@@ -16,8 +16,8 @@ MonoBehaviour:
   _name: "\u767A\u706B\u3059\u308B\u52C7\u6C17"
   _description: "\u4E00\u5B9A\u6642\u9593\u3054\u3068\u306B\u3001\u30CA\u30A4\u30D5\u3092\u6295\u3052\u308B\u3068\u3059\u3053\u3057\u306E\u9593\u81EA\u8EAB\u304C\u706B\u708E\u72B6\u614B\u306B\u306A\u308A\u3001\u653B\u6483\u529B\u304C\u5897\u3059"
   icon: {fileID: 0}
-  coolDownSeconds: 12
-  effectDuration: 3
+  coolDownSeconds: 16
+  effectDuration: 4
   blazeEffectID: timecountblaze
   buffType: 1
   buffEffectID: timecountbuff

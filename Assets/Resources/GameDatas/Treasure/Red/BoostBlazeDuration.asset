@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BoostBlazeDuration
   m_EditorClassIdentifier: 
   uniqueIP: 75747
-  _name: "\u6613\u71C3\u6027"
+  _name: "\u6613\u71C3\u6027\u30AA\u30A4\u30EB"
   _description: "\u706B\u708E\u306E\u52B9\u679C\u30923\u79D2\u5EF6\u9577\u3059\u308B"
   icon: {fileID: 0}
   isTargetEnemy: 1

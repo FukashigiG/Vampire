@@ -17,7 +17,7 @@ public class PlayerCharaData : ScriptableObject
     [field: SerializeField] public int moveSpeed { get; private set; }
     [field: SerializeField] public float luck { get; private set; }
     [field: SerializeField] public float eyeSight { get; private set; }
-    [field: SerializeField] public int maxLimit_Num_DrawKnives { get; private set; }
+    [field: SerializeField] public int limit_DrawKnives { get; private set; }
 
     [field: SerializeField] public KnifeData[] initialKnives { get; private set; }
     [field: SerializeField] public Base_TreasureData[] initialTreasures { get; private set; }
