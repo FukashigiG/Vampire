@@ -12,9 +12,9 @@ public class CustomList : Collection<KnifeAbility>
     protected override void InsertItem(int index, KnifeAbility item)
     {
         // ‚»‚Ì‰Á‚¦‚ç‚ê‚é‚à‚Ì‚ÌŒ^‚Æ“¯‚¶‚à‚Ì‚ªŠù‚É‚ ‚é‚©‚Ç‚¤‚©”»•Ê
-        bool hasTargetTypeEffect = this.Any(effect => effect.GetType() == item.GetType());
+        bool hasTargetTypeAbility = this.Any(ability => ability.abilityLogic.GetType() == item.abilityLogic.GetType());
 
-        if (hasTargetTypeEffect) return;
+        if (hasTargetTypeAbility) return;
 
         base.InsertItem(index, item);
     }

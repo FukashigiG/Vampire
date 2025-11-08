@@ -27,8 +27,8 @@ public class Base_KnifeCtrler : MonoBehaviour
 
         var renderer = GetComponent<SpriteRenderer>();
 
-        renderer.sprite = _knifeData.sprite_Defolme;
-        renderer.color = _knifeData.color;
+        renderer.sprite = _knifeData.sprite;
+        //renderer.color = _knifeData.color;
 
         speed = s;
 
@@ -77,6 +77,8 @@ public class Base_KnifeCtrler : MonoBehaviour
             bool shouldDestroyThis = true;
             bool is_ignoreDefence = false;
             bool is_critical = false;
+
+            if (knifeData.abilities.Count > 1) Debug.Log("I have 2 abiliies");
 
             // ナイフに特殊能力が設定されていた場合の処理
             foreach (var ability in knifeData.abilities)

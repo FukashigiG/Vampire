@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
@@ -24,13 +25,22 @@ public class PlayerStatus : Base_MobStatus
     public float eyeSight;
     public int limit_DrawKnife;
 
+    bool isInvincible;
+
+    public enum PlayerStatusType
+    {
+        atk, def, spd, eye, luk, lim
+    }
+
     public List<Element> masteredElements { get; private set; } = new List<Element>();
 
     int exp;
 
-    bool isInvincible;
+    Subject<Unit> lvUp = new Subject<Unit>();
 
-    public Subject<Unit> lvUp = new Subject<Unit>();
+    public IObservable<(Vector2 position, int amount)> onDamaged => subject_OnDamaged;
+    public IObservable<(Base_MobStatus status, StatusEffectType type, float duration, int amount)> onGetStatusEffect => subject_OnGetStatusEffect;
+    public IObservable<(Base_MobStatus status, int value)> onDie=> subject_OnDie;
 
     // 購読のライフサイクルを管理するためのDisposable
     // これ１つで沢山のDisposableなやつらに対応可能らしい
@@ -45,7 +55,7 @@ public class PlayerStatus : Base_MobStatus
 
         //各内部ステータスをPlayerCharaDataから代入
         maxHP = playerCharaData.hp;
-        hitPoint = maxHP;
+        _hitPoint.Value = maxHP;
         base_Power = playerCharaData.power; //　プレイヤーのpowerはナイフの速度を決定する
         base_Defence = playerCharaData.defense;
         base_MoveSpeed = playerCharaData.moveSpeed;
@@ -106,6 +116,8 @@ public class PlayerStatus : Base_MobStatus
     // 攻撃を受ける処理
     public override void GetAttack(int damagePoint, int elementPoint, Vector2 damagedPosi, bool isCritical = false, bool isIgnoreDefence = false)
     {
+        if(isInvincible) return;
+
         base.GetAttack(damagePoint, elementPoint, damagedPosi, isCritical, isIgnoreDefence);
 
         BeInvincible(1f).Forget();
@@ -115,29 +127,51 @@ public class PlayerStatus : Base_MobStatus
     public override void TakeDamage(int value)
     {
         base.TakeDamage(value);
-
-        gauge_HP.fillAmount = (float)hitPoint / (float)maxHP;
     }
 
     public override void HealHP(int x)
     {
         base.HealHP(x);
+    }
 
-        Debug.Log(x);
+    public void Modify_statusPoint(PlayerStatusType statusType, int point)
+    {
+        switch(statusType)
+        {
+            case PlayerStatusType.atk:
+                this.base_Power += point;
+                break;
 
-        gauge_HP.fillAmount = (float)hitPoint / (float)maxHP;
+            case PlayerStatusType.def:
+                this.base_Defence += point;
+                break;
+
+            case PlayerStatusType.spd:
+                this.base_MoveSpeed += point;
+                break;
+
+            case PlayerStatusType.eye:
+                this.eyeSight += point;
+                break;
+
+            case PlayerStatusType.luk:
+                this.luck += point;
+                break;
+
+            case PlayerStatusType.lim:
+                this.limit_DrawKnife += point;
+                break;
+        }
     }
 
     // 指定秒数間むてきになる
     async UniTask BeInvincible(float sec)
     {
+        isInvincible = true;
+
         try
         {
-            isInvincible = true;
-
             await UniTask.Delay((int)(sec * 1000));
-
-            isInvincible = false;
         }
         catch
         {
@@ -145,17 +179,15 @@ public class PlayerStatus : Base_MobStatus
         }
         finally
         {
-
+            isInvincible = false;
         }
     }
 
     public override void Die()
     {
-        onDie.OnNext((this, 1));
+        subject_OnDie.OnNext((this, 1));
 
         this.gameObject.SetActive(false);
-
-        panel_Die.SetActive(true);
     }
 
     protected override void OnDestroy()

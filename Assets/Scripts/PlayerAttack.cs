@@ -20,12 +20,15 @@ public class PlayerAttack : MonoBehaviour
 
     GameObject targetEnemy;
 
-    List<KnifeData_RunTime> availableKnifes = new List<KnifeData_RunTime>();
+    List<KnifeData_RunTime> hand = new List<KnifeData_RunTime>();
 
-    // ナイフ生成直前に発行、秘宝効果で編集できるように
-    public Subject<KnifeData_RunTime> onThrowKnife { get; private set; } = new Subject<KnifeData_RunTime>();
+    // ナイフ初期化直前に発行、秘宝効果で編集できるように
+    Subject<KnifeData_RunTime> subject_OnThrowKnife = new Subject<KnifeData_RunTime>();
+    public IObservable<KnifeData_RunTime> onThrowKnife => subject_OnThrowKnife;
+
     // リロード時に発行、
-    public Subject<List<KnifeData_RunTime>> onReload { get; private set; } = new();
+    Subject<List<KnifeData_RunTime>> subject_OnReload = new();
+    public IObservable<List<KnifeData_RunTime>> onReload => subject_OnReload;
 
     CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _token;
@@ -85,20 +88,20 @@ public class PlayerAttack : MonoBehaviour
 
     async UniTask Reload()
     {
-        availableKnifes = status.inventory.runtimeKnives
+        hand = status.inventory.runtimeKnives
                             .OrderBy(x => UnityEngine.Random.value)// 順番をシャッフルして参照（元のリストをいじるわけではない）
                             .Take(status.limit_DrawKnife)// 上から上限まで引く
                             .ToList();
 
         // 購読先による検知、介入のための発行
-        onReload.OnNext(availableKnifes);
+        subject_OnReload.OnNext(hand);
 
         await UniTask.Delay((int)(time_ReloadKnives * 1000));
     }
 
     async UniTask ThrowKnives(CancellationToken token)
     {
-        for (int i = 0; i < availableKnifes.Count; i++)
+        for (int i = 0; i < hand.Count; i++)
         {
             // 攻撃範囲内に敵が現れるまで待つ
             await UniTask.WaitUntil(() => targetEnemy != null, cancellationToken: token);
@@ -109,10 +112,10 @@ public class PlayerAttack : MonoBehaviour
             // エディタ上で登録されたナイフデータを取得
             // データのコピーを扱うことで、PlayerInventry内のナイフデータが書き換えられる事故を防ぐ
             // ぶっちゃけavailableKnivesの時点でコピーにすべき
-            var knife = new KnifeData_RunTime(availableKnifes[i]);
+            var knife = new KnifeData_RunTime(hand[i]);
 
             // 購読先による介入のための発行
-            onThrowKnife.OnNext(knife);
+            subject_OnThrowKnife.OnNext(knife);
 
             // ナイフを生成、それをxと置く
             // 編集された可能性のあるKnifeDataで処理を続行
@@ -133,8 +136,8 @@ public class PlayerAttack : MonoBehaviour
         cancellationTokenSource.Cancel();
         cancellationTokenSource.Dispose();
 
-        onThrowKnife.Dispose();
+        subject_OnThrowKnife.Dispose();
 
-        onReload.Dispose();
+        subject_OnReload.Dispose();
     }
 }

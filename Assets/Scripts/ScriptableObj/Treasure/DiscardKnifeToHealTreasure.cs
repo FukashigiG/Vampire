@@ -30,8 +30,8 @@ public class DiscardKnifeToHealTreasure : Base_TreasureData
 
         status.onDamaged.Subscribe(async x =>
         {
-            // クールタイム中か、敵が目的の状態異常でないなら無視
-            if (isCooling || status.hitPoint >= 0) return;
+            // クールタイム中なら無視
+            if (isCooling) return;
 
             // リストの何番目のナイフを捨てるかを決定
             int random = Random.Range(0, status.inventory.runtimeKnives.Count);

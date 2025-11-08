@@ -21,7 +21,9 @@ public enum StatusEffectType
 public class Base_MobStatus : MonoBehaviour, IDamagable
 {
     public int maxHP {  get; protected set; }
-    public int hitPoint {  get; protected set; }
+
+    protected ReactiveProperty<int> _hitPoint = new ReactiveProperty<int>();
+    public ReadOnlyReactiveProperty<int> hitPoint => _hitPoint.ToReadOnlyReactiveProperty();
 
     public int defence { get {  return (int)(base_Defence * (1f + (enhancementRate_Defence / 100f))); } }
     public int power { get { return (int)(base_Power * (1f + (enhancementRate_Power / 100f))); } }
@@ -37,9 +39,9 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
     public bool actable { get; protected set; }
 
-    public Subject<(Vector2 position, int amount)> onDamaged = new Subject<(Vector2, int)>();
-    public static Subject<(StatusEffectType type, float duration, int amount)> onGetStatusEffect = new Subject<(StatusEffectType, float, int)>();
-    public static Subject<(Base_MobStatus status , int value)> onDie = new Subject<(Base_MobStatus, int)>();
+    protected Subject<(Vector2 position, int amount)> subject_OnDamaged = new Subject<(Vector2, int)>();
+    protected static Subject<(Base_MobStatus status, StatusEffectType type, float duration, int amount)> subject_OnGetStatusEffect = new Subject<(Base_MobStatus, StatusEffectType, float, int)>();
+    protected static Subject<(Base_MobStatus status , int value)> subject_OnDie = new Subject<(Base_MobStatus, int)>();
     /*static にすることで、どの Enemy インスタンスからでもこのSubjectにアクセスし、
      * イベントを発行できるようになる
      * また、プレイヤー側で単一のSubjectを購読するだけで、
@@ -82,7 +84,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         // イベント発行
         // 変数一式を渡すので、数値を購読先が編集できる
         // （例：特定の状態効果の時間を延長する秘宝）
-        onGetStatusEffect.OnNext((type, duration, amount));
+        subject_OnGetStatusEffect.OnNext((this, type, duration, amount));
 
         // タスクの実行
         StatusEffectTask(type, effectID, duration, amount, cts).Forget();
@@ -118,6 +120,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
                 break;
             case StatusEffectType.Freeze:
                 actable = false;
+                Debug.Log("freeze");
                 break;
             case StatusEffectType.Ghost:
                 Debug.Log("Ghost");
@@ -239,11 +242,11 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     // ダメージ処理
     public virtual void TakeDamage(int value)
     {
-        if (value > 0) onDamaged.OnNext((transform.position, value));
+        if (value > 0) subject_OnDamaged.OnNext((transform.position, value));
 
-        if (value > 0) hitPoint -= value;
+        if (value > 0) _hitPoint.Value -= value;
 
-        if (hitPoint <= 0) Die();
+        if (_hitPoint.Value <= 0) Die();
     }
 
     /*
@@ -251,11 +254,18 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
      */
 
     // 回復
-    public virtual void HealHP(int x)
+    public virtual void HealHP(int value)
     {
-        hitPoint += x;
-
-        if (hitPoint > maxHP) hitPoint = maxHP;
+        // 現在のHPと回復量が最大HP未満なら
+        if(_hitPoint.Value + value < maxHP)
+        {
+            _hitPoint.Value += value;
+        }
+        // 以上なら
+        else
+        {
+            _hitPoint.Value = maxHP;
+        }
     }
 
     // ノックバック
@@ -266,9 +276,10 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         transform.Translate(damageDir * -1 * power);
     }
 
+    // 死亡処理
     public virtual void Die()
     {
-        onDie.OnNext((this, 1));
+        subject_OnDie.OnNext((this, 1));
 
         Destroy(gameObject);
     }

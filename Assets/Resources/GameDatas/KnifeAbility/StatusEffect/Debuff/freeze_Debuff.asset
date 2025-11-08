@@ -18,5 +18,4 @@ MonoBehaviour:
   <effectOnHit>k__BackingField: 1
   dulation: 1
   amount_percent: 0
-  effectID: hyouketu529
-  targetState: 0
+  targetState: 7

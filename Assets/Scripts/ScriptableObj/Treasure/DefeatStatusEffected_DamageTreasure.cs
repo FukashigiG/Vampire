@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
-using System.Linq;
 using Cysharp.Threading.Tasks;
 
 [CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/DefeatStatusEffected_Damage")]

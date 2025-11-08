@@ -900,6 +900,7 @@ GameObject:
   - component: {fileID: 229048613}
   - component: {fileID: 229048614}
   - component: {fileID: 229048617}
+  - component: {fileID: 229048618}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -1115,10 +1116,11 @@ MonoBehaviour:
   panel_Die: {fileID: 725958155}
   gauge_EXP: {fileID: 306841715}
   gauge_HP: {fileID: 142022630}
-  playerCharaData: {fileID: 11400000, guid: c5837e0905e889a44890b52e8c1e5263, type: 2}
+  playerCharaData: {fileID: 11400000, guid: a9eff1ab0a9deda47b80ddacb9142678, type: 2}
   requiredEXP_LvUp: 5
   luck: 0
   eyeSight: 0
+  limit_DrawKnife: 0
 --- !u!114 &229048617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1131,6 +1133,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdc4c8c984b95e4d9c7eef9be273cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &229048618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229048608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae70f051e22ef24a96e32b6a873f05d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gauge_PlayerHP: {fileID: 142022630}
+  showHandState: {fileID: 2074013098}
 --- !u!1 &234350007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,7 +1159,7 @@ GameObject:
   - component: {fileID: 234350010}
   - component: {fileID: 234350009}
   m_Layer: 5
-  m_Name: PlayerHP_Gauge_Body
+  m_Name: PlayerHP_Gauge_Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5441,6 +5457,7 @@ RectTransform:
   - {fileID: 512193314}
   - {fileID: 1239132878}
   - {fileID: 725958156}
+  - {fileID: 2074013096}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5659,6 +5676,122 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
+--- !u!1 &2074013095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2074013096}
+  - component: {fileID: 2074013100}
+  - component: {fileID: 2074013099}
+  - component: {fileID: 2074013098}
+  - component: {fileID: 2074013097}
+  m_Layer: 5
+  m_Name: ShowHandState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2074013096
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074013095}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1976216189}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -509.8, y: 84.32}
+  m_SizeDelta: {x: 200, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2074013097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074013095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 10
+    m_Bottom: 0
+  m_ChildAlignment: 1
+  m_Spacing: 10
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!114 &2074013098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074013095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f29fc84b4acd47d4ba271b60b0605d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KnifeImagePrefeb: {fileID: 8953348772822807272, guid: 8f91db0eb91552e44bf99a1ba5512151, type: 3}
+--- !u!114 &2074013099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074013095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2074013100
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074013095}
+  m_CullTransparentMesh: 1
 --- !u!1 &2092121315
 GameObject:
   m_ObjectHideFlags: 0
@@ -5750,7 +5883,7 @@ GameObject:
   - component: {fileID: 2110719235}
   - component: {fileID: 2110719234}
   m_Layer: 5
-  m_Name: EXP_Gauge_Body
+  m_Name: EXP_Gauge_Framw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

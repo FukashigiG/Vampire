@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
+  m_Name: 7_Stiletto
+  m_EditorClassIdentifier: 
+  <sprite>k__BackingField: {fileID: 21300000, guid: a3932cd3b570d0a409114dcc18ea6244, type: 3}
+  <sprite_Defolme>k__BackingField: {fileID: 21300000, guid: a177636700e088c4080e891d48af7089, type: 3}
+  <color>k__BackingField: {r: 0.2653524, g: 0.8396226, b: 0.8229288, a: 1}
+  <_name>k__BackingField: "\u30B9\u30C6\u30A3\u30EC\u30C3\u30C8"
+  <rarity>k__BackingField: 1
+  <element>k__BackingField: 2
+  <power>k__BackingField: 30
+  <elementPower>k__BackingField: 10
+  <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
+  <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: 8652acaeb0d9ebe438a44cecb3c3046d, type: 3}
+  description: "\u6975\u7A00\u306B\u30D2\u30C3\u30C8\u3057\u305F\u6575\u3092\u5373\u6B7B\u3055\u305B\u308B\n\u7279\u6B8A\u67A0"
+  <abilities>k__BackingField:
+  - abilityLogic: {fileID: 11400000, guid: a30a44b39e20fc04c8641f803993707d, type: 2}
+    probability_Percent: 3
+    modifire: 1
+    effectID: stiletto_crsh99999

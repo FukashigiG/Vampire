@@ -17,6 +17,5 @@ MonoBehaviour:
   <effectOnThrown>k__BackingField: 0
   <effectOnHit>k__BackingField: 1
   dulation: 1
-  amount_percent: 30
-  effectID: katanagari824
-  targetState: 0
+  amount_percent: 50
+  targetState: 4

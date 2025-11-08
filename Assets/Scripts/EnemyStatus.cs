@@ -1,12 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyStatus : Base_MobStatus
 {
     [SerializeField] EnemyData _enemyData;
 
     [SerializeField] GameObject damageTxt;
+
+    public IObservable<(Vector2 position, int amount)> onDamaged => subject_OnDamaged;
+    public static IObservable<(Base_MobStatus status, StatusEffectType type, float duration, int amount)> onGetStatusEffect => subject_OnGetStatusEffect;
+    public static IObservable<(Base_MobStatus status, int value)> onDie => subject_OnDie;
 
     protected override void Start()
     {
@@ -18,7 +24,7 @@ public class EnemyStatus : Base_MobStatus
     public void Initialize(float multiplier)
     {
         maxHP = (int)((float)_enemyData.hp * multiplier);
-        hitPoint = maxHP;
+        _hitPoint.Value = maxHP;
 
         base_Power = (int)(_enemyData.power * multiplier);
         base_Defence = (int)(_enemyData.defense * multiplier);

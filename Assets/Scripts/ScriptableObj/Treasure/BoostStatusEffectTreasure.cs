@@ -42,7 +42,7 @@ public class BoostStatusEffectTreasure : Base_TreasureData
 
             case false:
 
-                PlayerStatus.onGetStatusEffect.Subscribe(c =>
+                status.onGetStatusEffect.Subscribe(c =>
                 {
                     if (c.type == targetEffectType) c.duration += amount_ExtraDuration;
 
