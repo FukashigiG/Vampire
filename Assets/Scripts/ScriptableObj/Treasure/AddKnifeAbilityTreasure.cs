@@ -25,16 +25,16 @@ public class AddKnifeAbilityTreasure : Base_TreasureData
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
-        status.attack.onThrowKnife.Subscribe(_knifeData =>
+        status.attack.onThrowKnife.Subscribe(_throw =>
         {
             // そのナイフデータの属性が対象でない、または既にこの能力を持ってるなら無視
-            if (_knifeData.element != targetEnum) return;
+            if (_throw.knifeData.element != targetEnum) return;
             // 対象のアビリティーロジックがあれば、それを取得
-            KnifeAbility matchedAbility = _knifeData.abilities
+            KnifeAbility matchedAbility = _throw.knifeData.abilities
                 .FirstOrDefault(effect => effect.abilityLogic.GetType() == ability.abilityLogic.GetType());
 
             // 引数で渡されたナイフのデータに、特定の特殊能力を追加
-            _knifeData.abilities.Add(ability);
+            _throw.knifeData.abilities.Add(ability);
         })
         .AddTo(disposables);
     }

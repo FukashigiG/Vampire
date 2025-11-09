@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShowPlayerHandState : MonoBehaviour
 {
     [SerializeField] GameObject KnifeImagePrefeb;
+    [SerializeField] float width;
 
     public void ShowReloadResult(List<Sprite> sprites)
     {
@@ -15,7 +17,16 @@ public class ShowPlayerHandState : MonoBehaviour
 
         for (int i = 0; i < sprites.Count; i++)
         {
-            Instantiate(KnifeImagePrefeb, Vector2.zero, Quaternion.identity, this.transform);
+            GameObject x = Instantiate(KnifeImagePrefeb, Vector2.zero, Quaternion.identity, this.transform);
+
+            x.transform.GetChild(0).GetComponent<Image>().sprite = sprites[i];
+
+            x.GetComponent<RectTransform>().anchoredPosition = Vector2.up * width * -i;
         }
+    }
+
+    public void Thrown(int index)
+    {
+        Destroy(this.transform.GetChild(0).gameObject);
     }
 }

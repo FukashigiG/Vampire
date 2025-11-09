@@ -23,8 +23,8 @@ public class PlayerAttack : MonoBehaviour
     List<KnifeData_RunTime> hand = new List<KnifeData_RunTime>();
 
     // ナイフ初期化直前に発行、秘宝効果で編集できるように
-    Subject<KnifeData_RunTime> subject_OnThrowKnife = new Subject<KnifeData_RunTime>();
-    public IObservable<KnifeData_RunTime> onThrowKnife => subject_OnThrowKnife;
+    Subject<(KnifeData_RunTime knifeData, int index)> subject_OnThrowKnife = new Subject<(KnifeData_RunTime, int)>();
+    public IObservable<(KnifeData_RunTime knifeData, int index)> onThrowKnife => subject_OnThrowKnife;
 
     // リロード時に発行、
     Subject<List<KnifeData_RunTime>> subject_OnReload = new();
@@ -93,6 +93,8 @@ public class PlayerAttack : MonoBehaviour
                             .Take(status.limit_DrawKnife)// 上から上限まで引く
                             .ToList();
 
+        Debug.Log($"ナイフは{hand.Count}本");
+
         // 購読先による検知、介入のための発行
         subject_OnReload.OnNext(hand);
 
@@ -115,7 +117,7 @@ public class PlayerAttack : MonoBehaviour
             var knife = new KnifeData_RunTime(hand[i]);
 
             // 購読先による介入のための発行
-            subject_OnThrowKnife.OnNext(knife);
+            subject_OnThrowKnife.OnNext((knife, i));
 
             // ナイフを生成、それをxと置く
             // 編集された可能性のあるKnifeDataで処理を続行

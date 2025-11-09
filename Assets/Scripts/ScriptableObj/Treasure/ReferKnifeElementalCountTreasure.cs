@@ -45,24 +45,27 @@ public class ReferKnifeElementalCountTreasure : Base_TreasureData
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
         // runtimeKnivesの要素数が変わるたびに呼ばれる
-        DetermineBonus(status);
+        
+        status.inventory.runtimeKnives.ObserveCountChanged().Subscribe(x => DetermineBonus(x, status)).AddTo(disposables);
     }
     
     // 判定
-    void DetermineBonus(PlayerStatus status)
+    void DetermineBonus(int x, PlayerStatus status)
     {
-        // 欲しい属性値のやつが何個あるか計算
-        int d = status.inventory.runtimeKnives.Count(x => x.element == targetElement);
+        // 欲しい属性値のやつが何個あるか
+        Debug.Log($"欲しいのは{x}本あった");
 
         // 要求値以上あり、かつまだボーナス未適用なら
-        if (d >= border && !isBonusActive)
+        if (x >= border && !isBonusActive)
         {
             status.Modify_statusPoint(targetStatus_Bonus, bonusValue);
+
+            Debug.Log("効果発動");
 
             isBonusActive = true;
         }
         // 要求値未満かつボーナス適用済みなら
-        else if (d <= border && isBonusActive)
+        else if (x <= border && isBonusActive)
         {
             status.Modify_statusPoint(targetStatus_Bonus, bonusValue * -1);
 

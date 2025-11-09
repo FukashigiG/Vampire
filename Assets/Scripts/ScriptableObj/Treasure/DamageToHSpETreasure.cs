@@ -30,11 +30,11 @@ public class DamageToHSpETreasure : Base_TreasureData
 
         }).AddTo(disposables);
 
-        status.attack.onThrowKnife.Subscribe(KnifeData =>
+        status.attack.onThrowKnife.Subscribe(_throw =>
         {
             if (!standBy) return;
 
-            KnifeData.abilities.Add(knifeAbility);
+            _throw.knifeData.abilities.Add(new KnifeAbility(UnityEngine.Object.Instantiate(knifeAbility.abilityLogic), knifeAbility.probability_Percent, knifeAbility.modifire, knifeAbility.effectID));
 
             standBy = false;
 

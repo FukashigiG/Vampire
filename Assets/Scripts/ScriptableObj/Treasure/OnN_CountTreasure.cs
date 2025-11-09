@@ -25,7 +25,7 @@ public class OnN_CountTreasure : Base_TreasureData
     {
         int count = 0;
 
-        status.attack.onThrowKnife.Subscribe(_knifeData =>
+        status.attack.onThrowKnife.Subscribe(_throw =>
         {
             count++;
 
@@ -33,14 +33,12 @@ public class OnN_CountTreasure : Base_TreasureData
             {
                 count = 0;
 
-                Debug.Log("hspe");
-
                 var ablty = new KnifeAbility(UnityEngine.Object.Instantiate(addedKnifeAbility.abilityLogic),
                                              addedKnifeAbility.probability_Percent,
                                              addedKnifeAbility.modifire,
                                              addedKnifeAbility.effectID);
 
-                _knifeData.abilities.Add(ablty);
+                _throw.knifeData.abilities.Add(ablty);
             }
 
         }).AddTo(disposables);

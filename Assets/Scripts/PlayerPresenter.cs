@@ -31,6 +31,12 @@ public class PlayerPresenter : MonoBehaviour
             showHandState.ShowReloadResult(sprits);
 
         }).AddTo(this);
+
+        status.attack.onThrowKnife.Subscribe(value =>
+        {
+            showHandState.Thrown(value.index);
+
+        }).AddTo(this);
     }
 
     void OnChangeHP_Value(int value)

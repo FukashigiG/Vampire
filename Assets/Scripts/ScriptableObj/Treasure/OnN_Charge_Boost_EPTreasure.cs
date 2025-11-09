@@ -28,13 +28,13 @@ public class OnN_Charge_Boost_EP_Treasure : Base_TreasureData
     {
         int count = 0;
 
-        status.attack.onThrowKnife.Subscribe(_knifeData =>
+        status.attack.onThrowKnife.Subscribe(_throw =>
         {
             count++;
 
             if (count >= border)
             {
-                _knifeData.elementPower += amount_Plus;
+                _throw.knifeData.elementPower += amount_Plus;
             }
 
         }).AddTo(disposables);

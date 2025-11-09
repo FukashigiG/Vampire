@@ -28,10 +28,10 @@ public class BoostKnifeAbilityProbabilityTreasure : Base_TreasureData
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
-        status.attack.onThrowKnife.Subscribe(_knifeData =>
+        status.attack.onThrowKnife.Subscribe(_throw =>
         {
             // 対象のアビリティーロジックがあれば、それを取得
-            KnifeAbility matchedAbility = _knifeData.abilities
+            KnifeAbility matchedAbility = _throw.knifeData.abilities
                 .FirstOrDefault(effect => effect.abilityLogic.GetType() == targetType);
 
             if (matchedAbility != null)
