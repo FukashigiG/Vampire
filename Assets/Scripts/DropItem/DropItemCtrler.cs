@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
-public class EventItemCtrler : MonoBehaviour
+public class DropItemCtrler : MonoBehaviour
 {
     enum EventEnum
     {
@@ -10,6 +12,25 @@ public class EventItemCtrler : MonoBehaviour
     }
 
     [SerializeField] EventEnum eventEnum;
+
+    [SerializeField] float lifeSpan;
+
+    float elapsedTime;
+
+    public IObservable<Unit> onDestroy => subject_OnDestroy;
+    Subject<Unit> subject_OnDestroy = new Subject<Unit>();
+
+    private void Awake()
+    {
+        MiniMapController.Instance.NewItemInstance(this);
+    }
+
+    private void Update()
+    {
+        elapsedTime += Time.deltaTime;
+
+        if (elapsedTime > lifeSpan) Destroy(this.gameObject);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -29,5 +50,10 @@ public class EventItemCtrler : MonoBehaviour
         }
 
         Destroy(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        subject_OnDestroy.OnNext(Unit.Default);
     }
 }

@@ -45,8 +45,13 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
                 var x = Instantiate(EnemyLottery(), randomPoint, Quaternion.identity, parent_Enemy);
 
+                var enemy = x.GetComponent<EnemyStatus>();
+
                 // ウエーブ数の倍率ブーストを渡したうえでの初期化
-                x.GetComponent<EnemyStatus>().Initialize(1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
+                enemy.Initialize(1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
+
+                // ミニマップ管理人に、新しく生まれたことを知らせる
+                MiniMapController.Instance.NewEnemyInstance(enemy);
 
                 await UniTask.Delay((int)(interval_Spawn * 1000), cancellationToken: token);
 
@@ -108,7 +113,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         {
             Instantiate(effect_DeleteEnemy, x.transform.position, Quaternion.identity);
 
-            Destroy(x.gameObject);
+            x.GetComponent<EnemyStatus>().Die();
         }
     }
 

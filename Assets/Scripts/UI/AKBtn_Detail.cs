@@ -13,7 +13,7 @@ public class AKBtn_Detail : MonoBehaviour
     [SerializeField] GameObject HSpE_TxtObj;
     [SerializeField] Text t_Description;
 
-    KnifeData knifeData;
+    KnifeData_RunTime knifeData;
 
     private void OnEnable()
     {
@@ -21,7 +21,7 @@ public class AKBtn_Detail : MonoBehaviour
     }
 
     // 初期化処理
-    public void Initialize(KnifeData data)
+    public void Initialize(KnifeData_RunTime data)
     {
         knifeData = data;
 
@@ -31,6 +31,11 @@ public class AKBtn_Detail : MonoBehaviour
         t_Power.text = "Attack : " + knifeData.power;
 
         t_Description.text = "";
+
+        foreach(Transform child in area_HSpE.transform)
+        {
+            Destroy(child.gameObject);
+        }
 
         // このナイフが持つ特殊能力を記述する処理
         foreach (var effect in knifeData.abilities)

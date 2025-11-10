@@ -25,17 +25,20 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     protected ReactiveProperty<int> _hitPoint = new ReactiveProperty<int>();
     public ReadOnlyReactiveProperty<int> hitPoint => _hitPoint.ToReadOnlyReactiveProperty();
 
-    public int defence { get {  return (int)(base_Defence * (1f + (enhancementRate_Defence / 100f))); } }
-    public int power { get { return (int)(base_Power * (1f + (enhancementRate_Power / 100f))); } }
-    public int moveSpeed { get { return (int)(base_MoveSpeed * (1f + (enhancementRate_MoveSpeed / 100f))); } }
-
+    // 基礎ステータス値
     protected int base_Defence;
     protected int base_Power;
     protected int base_MoveSpeed;
 
+    // バフ量
     public int enhancementRate_Defence = 0;
     public int enhancementRate_Power = 0;
     public int enhancementRate_MoveSpeed = 0;
+
+    // 基礎ステータスとバフを計算した結果を返すプロパティ
+    public int defence { get {  return (int)(base_Defence * (1f + (enhancementRate_Defence / 100f))); } }
+    public int power { get { return (int)(base_Power * (1f + (enhancementRate_Power / 100f))); } }
+    public int moveSpeed { get { return (int)(base_MoveSpeed * (1f + (enhancementRate_MoveSpeed / 100f))); } }
 
     public bool actable { get; protected set; }
 
@@ -46,22 +49,25 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
      * イベントを発行できるようになる
      * また、プレイヤー側で単一のSubjectを購読するだけで、
      * 全ての敵の撃破イベントをキャッチできる*/
-    //ゲーム終了時にはGameAdminにDisposeされる
 
     Dictionary<string, CancellationTokenSource> activeStatusEffects = new();
     Dictionary<StatusEffectType, int> activeStatusTypeCounts = new();
 
+    SpriteRenderer _renderer;
     Collider2D _collider;
 
     protected virtual void Awake()
     {
+        _renderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
+
+        actable = true;
+        _collider.enabled = true;
     }
 
     protected virtual void Start()
     {
-        actable = true;
-        _collider.enabled = true;
+        
     }
 
     // 状態変化効果を適用する統合メソッド
@@ -222,11 +228,13 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     // 攻撃を受ける処理
     public virtual void GetAttack(int damagePoint, int elementPoint, Vector2 damagedPosi, bool isCritical = false, bool isIgnoreDefence = false)
     {
+        int K = 50;
+
         // クリティカルなら基礎ダメージ量を2倍
         if(isCritical) damagePoint *= 2;
 
         // 防御無視でないなら、防御計算
-        if (!isIgnoreDefence) damagePoint -= defence / 4;
+        if (!isIgnoreDefence) damagePoint = (int)((float)damagePoint / (((float)K + defence) / (float)K));
         // damagePointを0以下にしない
         if (damagePoint < 0) damagePoint = 0;
 
@@ -237,6 +245,8 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         if (damage <= 0) damage = 1;
 
         TakeDamage(damage);
+
+        KnockBack(damagedPosi, 1);
     }
 
     // ダメージ処理
@@ -246,12 +256,30 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
         if (value > 0) _hitPoint.Value -= value;
 
-        if (_hitPoint.Value <= 0) Die();
+        if (_hitPoint.Value <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            damageFlash().Forget();
+        }
     }
 
     /*
      *上二つの関数が分かれてるのは、防御計算をしたい場合としたくない場合に両対応するため 
      */
+
+    async UniTask damageFlash()
+    {
+        var token = this.GetCancellationTokenOnDestroy();
+
+        _renderer.color = Color.red;
+
+        await UniTask.Delay((int)(1000 * 0.1f), cancellationToken: token);
+
+        _renderer.color = Color.white;
+    }
 
     // 回復
     public virtual void HealHP(int value)
@@ -273,7 +301,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     {
         var damageDir = (damagedPosi - (Vector2)transform.position).normalized;
 
-        transform.Translate(damageDir * -1 * power);
+        transform.Translate(damageDir * -0.25f);
     }
 
     // 死亡処理

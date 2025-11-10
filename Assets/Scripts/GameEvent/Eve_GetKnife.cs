@@ -8,10 +8,13 @@ using UniRx;
 public class Eve_GetKnife : Base_EventCtrler
 {
     [SerializeField] GameObject button_Option;
+    [SerializeField] AKBtn_Detail window_ShowDiscription;
 
     [SerializeField] Button button_reroll;
 
     [SerializeField] List<KnifeData> allKnifeData;
+
+    GameObject discriptionTarget;
 
     public override void Initialize()
     {
@@ -21,8 +24,6 @@ public class Eve_GetKnife : Base_EventCtrler
         {
             Reroll();
         });
-
-        
     }
 
     //パネルがActiveになったとき
@@ -55,6 +56,8 @@ public class Eve_GetKnife : Base_EventCtrler
             //ボタンが押された際に、それを検知し関数を実行
             buttonCtrler.clicked.Subscribe(xx => Choice(xx)).AddTo(buttonCtrler);
 
+            
+
             // 位置を変更
 
             float x;
@@ -76,7 +79,24 @@ public class Eve_GetKnife : Base_EventCtrler
 
             float y = x / (num_Option - 1);
 
-            buttonObj.GetComponent<RectTransform>().anchoredPosition = new Vector2(y * i - x / 2, 0);
+            var buttonRect = buttonObj.GetComponent<RectTransform>();
+            buttonRect.anchoredPosition = new Vector2(y * i - x / 2, 0);
+
+            // ボタンにカーソルが在ったときの通知に購読
+            buttonCtrler.pointerEntered.Subscribe(x =>
+            {
+                window_ShowDiscription.gameObject.SetActive(true);
+                window_ShowDiscription.Initialize(x.knifeData);
+                discriptionTarget = x._object;
+                window_ShowDiscription.GetComponent<RectTransform>().anchoredPosition = buttonRect.anchoredPosition + new Vector2(240, 0);
+
+            }).AddTo(buttonCtrler);
+
+            buttonCtrler.pointerExited.Subscribe(x =>
+            {
+                if(discriptionTarget == x._object) window_ShowDiscription.gameObject.SetActive(false);
+
+            }).AddTo(buttonCtrler);
         }
     }
 

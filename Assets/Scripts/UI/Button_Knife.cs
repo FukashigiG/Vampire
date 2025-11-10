@@ -9,7 +9,7 @@ public class Button_Knife : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 {
     [SerializeField] Image image_Sprite;
 
-    //[SerializeField] GameObject detailWindow;
+    [SerializeField] GameObject detailWindow;
 
     [SerializeField] Button button;
 
@@ -21,8 +21,8 @@ public class Button_Knife : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public Subject<KnifeData_RunTime> clicked { get; private set; } = new Subject<KnifeData_RunTime>();
 
     // カーソルが重なった、外れたら飛ばす通知
-    public Subject<KnifeData_RunTime> pointerEntered { get; private set; } = new Subject<KnifeData_RunTime> ();
-    public Subject<KnifeData_RunTime> pointerExited { get; private set; } = new Subject<KnifeData_RunTime> ();
+    public Subject<(KnifeData_RunTime knifeData, GameObject _object)> pointerEntered { get; private set; } = new();
+    public Subject<(KnifeData_RunTime knifeData, GameObject _object)> pointerExited { get; private set; } = new ();
 
     void Start()
     {
@@ -56,7 +56,7 @@ public class Button_Knife : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         // →前面に表示される
         //transform.SetAsLastSibling();
 
-        pointerEntered.OnNext(knifeData);
+        pointerEntered.OnNext((knifeData, this.gameObject));
     }
 
     // カーソルが外れたとき
@@ -66,7 +66,7 @@ public class Button_Knife : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         //detailWindow.SetActive(false);
 
-        pointerExited.OnNext(knifeData);
+        pointerExited.OnNext((knifeData, this.gameObject));
     }
 
     private void OnDestroy()

@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "\u65752_\u30A2\u30BF\u30C3\u30AB\u30FC"
   hp: 40
   power: 27
-  defense: 20
+  defense: 25
   moveSpeed: 14
   weight: 0.4
   amount_EXP: 0
