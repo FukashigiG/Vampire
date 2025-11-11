@@ -18,4 +18,4 @@ MonoBehaviour:
   <effectOnHit>k__BackingField: 1
   dulation: 1
   amount_percent: 50
-  targetState: 5
+  statusEffect: {fileID: 11400000, guid: 42661e1fdb3375143be323f0c530cc5b, type: 2}

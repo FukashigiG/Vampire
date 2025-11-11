@@ -19,6 +19,9 @@ MonoBehaviour:
   coolDownSeconds: 16
   effectDuration: 4
   blazeEffectID: timecountblaze
-  buffType: 1
-  buffEffectID: timecountbuff
-  buffAmount: 60
+  statusEffect_1: {fileID: 11400000, guid: 8ee89ac241c31d44b9e118106387ae82, type: 2}
+  effectID_1: thfds
+  amount1: 1
+  statusEffect_2: {fileID: 11400000, guid: f63f06ece45123449bb043df727168e8, type: 2}
+  effectID_2: khjdt
+  amount2: 40

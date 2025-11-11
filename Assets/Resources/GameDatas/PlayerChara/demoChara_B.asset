@@ -24,6 +24,6 @@ MonoBehaviour:
   <initialKnives>k__BackingField:
   - {fileID: 11400000, guid: 2b7c8e004b5336c4198ed247cc6dae95, type: 2}
   <initialTreasures>k__BackingField:
-  - {fileID: 11400000, guid: 752eed15b456646428fe830f3ca03be6, type: 2}
+  - {fileID: 11400000, guid: 3450a5bdf79e79d488642a5b203e6862, type: 2}
   <masteredElement>k__BackingField: 2
   <prefab>k__BackingField: {fileID: 0}

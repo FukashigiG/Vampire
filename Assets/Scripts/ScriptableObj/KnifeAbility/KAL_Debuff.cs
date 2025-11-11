@@ -10,14 +10,12 @@ public class KAL_Debuff : Base_KnifeAbilityLogic
     [SerializeField] float dulation;
     [SerializeField] int amount_percent;
 
-    [SerializeField] StatusEffectType targetState;
+    [SerializeField] Base_StatusEffectData statusEffect;
 
     public override void ActivateAbility(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData, float modifire, string effectID)
     {
         base.ActivateAbility(status, knifeObj, knifeData, modifire, effectID);
 
-        Debug.Log(effectID);
-
-        status.ApplyStatusEffect(targetState, effectID, dulation * modifire, amount_percent);
+        status.ApplyStatusEffect(statusEffect, effectID, dulation * modifire, amount_percent);
     }
 }

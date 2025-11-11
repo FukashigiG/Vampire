@@ -8,7 +8,7 @@ public class CriticalBonusTreasure : Base_TreasureData
 {
     // 所持している間、クリティカルを食らった敵に追加効果を付与
 
-    [SerializeField] StatusEffectType effectType;
+    [SerializeField] Base_StatusEffectData statusEffect;
     [SerializeField] string effectID;
     [SerializeField] float duration;
     [SerializeField] int amount_Debuff;
@@ -28,7 +28,7 @@ public class CriticalBonusTreasure : Base_TreasureData
         // クリティカル発動の発動を購読
         KAL_Critical.onEffectActived.Subscribe(targetStatus  =>
         {
-            targetStatus.ApplyStatusEffect(effectType, effectID, duration ,amount_Debuff);
+            targetStatus.ApplyStatusEffect(statusEffect, effectID, duration ,amount_Debuff);
 
         }).AddTo(disposables);
     }

@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "\u65AC\u6483\u306E\u50B7\u8DE1"
   _description: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u3068\u3001\u5C11\u3057\u306E\u9593\u3001\u529B\u304C\u4E0A\u6607\u3059\u308B"
   icon: {fileID: 0}
-  effectType: 1
+  statusEffect: {fileID: 11400000, guid: f63f06ece45123449bb043df727168e8, type: 2}
   effectID: damagetopower
-  duration: 1
+  duration: 4
   amount: 40

@@ -7,17 +7,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/FreezeBonus")]
 public class FreezeBonusTreasure : Base_TreasureData
 {
-    // 所持している間、凍結になった敵の周囲の敵の素早さを下げる
+    // 所持している間、特定の状態異常の敵が死ぬと、周囲にいた他の敵を状態異常にする
+    // 例：凍結になった敵の周囲の敵の素早さを下げる
 
     [Header("反応対象")]
-    [SerializeField] StatusEffectType targetEffectType;
+    [SerializeField] Base_StatusEffectData targetStatusEffect;
 
     [Header("敵感知関連")]
     [SerializeField] float radius;
     [SerializeField] LayerMask targetLayer;
 
     [Header("与デバフ関連")]
-    [SerializeField] StatusEffectType effectType;
+    [SerializeField] Base_StatusEffectData statusEffect;
     [SerializeField] string effectID;
     [SerializeField] float duration;
     [SerializeField] int amount_Debuff;
@@ -44,7 +45,7 @@ public class FreezeBonusTreasure : Base_TreasureData
         EnemyStatus.onGetStatusEffect.Subscribe(async effect =>
         {
             // 目的の状態でない, クールタイム中なら無視
-            if (effect.type != targetEffectType || isCooling) return;
+            if (effect.effect != targetStatusEffect || isCooling) return;
 
             isCooling = true;
 
@@ -60,7 +61,7 @@ public class FreezeBonusTreasure : Base_TreasureData
                 if (hit.TryGetComponent(out EnemyStatus enemy))
                 {
                     // 当たった本人には発生しない
-                    if (enemy != status) enemy.ApplyStatusEffect(effectType, effectID, duration, amount_Debuff);
+                    if (enemy != status) enemy.ApplyStatusEffect(statusEffect, effectID, duration, amount_Debuff);
                 }
             }
 

@@ -16,4 +16,8 @@ MonoBehaviour:
   _name: "\u53CD\u6483\u306E\u72FC\u7159"
   _description: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u3068\u3001\u6B21\u6295\u3052\u308B\u30CA\u30A4\u30D5\u306B\u6025\u6240\u3092\u8FFD\u52A0"
   icon: {fileID: 0}
-  hspe: {fileID: 11400000, guid: c21406ad570655744a5f2abbf1afa16c, type: 2}
+  knifeAbility:
+    abilityLogic: {fileID: 11400000, guid: c21406ad570655744a5f2abbf1afa16c, type: 2}
+    probability_Percent: 50
+    modifire: 1
+    effectID: werty

@@ -11,8 +11,8 @@ public class CustomList : Collection<KnifeAbility>
     // Addij‚É‚æ‚Á‚Ä‚È‚É‚©‚µ‚ç‚ª‰Á‚¦‚ç‚ê‚éÛ‚Ìˆ—
     protected override void InsertItem(int index, KnifeAbility item)
     {
-        // ‚»‚Ì‰Á‚¦‚ç‚ê‚é‚à‚Ì‚ÌŒ^‚Æ“¯‚¶‚à‚Ì‚ªŠù‚É‚ ‚é‚©‚Ç‚¤‚©”»•Ê
-        bool hasTargetTypeAbility = this.Any(ability => ability.abilityLogic.GetType() == item.abilityLogic.GetType());
+        // ‚»‚Ì‰Á‚¦‚ç‚ê‚é‚à‚Ì‚Æ“¯‚¶‚à‚Ì‚ªŠù‚É‚ ‚é‚©‚Ç‚¤‚©”»•Ê
+        bool hasTargetTypeAbility = this.Any(ability => ability.abilityLogic.effectName == item.abilityLogic.effectName);
 
         if (hasTargetTypeAbility) return;
 

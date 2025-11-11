@@ -11,7 +11,7 @@ public class EnemyStatus : Base_MobStatus
     [SerializeField] GameObject damageTxt;
 
     public IObservable<(Vector2 position, int amount)> onDamaged => subject_OnDamaged;
-    public static IObservable<(Base_MobStatus status, StatusEffectType type, float duration, int amount)> onGetStatusEffect => subject_OnGetStatusEffect;
+    public static IObservable<(Base_MobStatus status, Base_StatusEffectData effect, float duration, int amount)> onGetStatusEffect => subject_OnGetStatusEffect;
     public static IObservable<(Base_MobStatus status, int value)> onDie => subject_OnDie;
 
     protected override void Start()

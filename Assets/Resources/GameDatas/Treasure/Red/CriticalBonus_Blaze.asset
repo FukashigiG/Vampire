@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "\u706B\u708E\u306E\u795F\u308A\u76EE"
   _description: "\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u3092\u98DF\u3089\u3063\u305F\u6575\u306B\u706B\u708E\u3092\u4ED8\u4E0E\u3059\u308B"
   icon: {fileID: 0}
-  effectType: 3
+  statusEffect: {fileID: 11400000, guid: 8ee89ac241c31d44b9e118106387ae82, type: 2}
   effectID: bonusBlaze
   duration: 6
   amount_Debuff: 0

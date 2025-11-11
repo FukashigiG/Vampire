@@ -5,19 +5,6 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 
-public enum StatusEffectType
-{
-    DefenceBuff,
-    PowerBuff,
-    MoveSpeedBuff,
-    DefenceDebuff,
-    PowerDebuff,
-    MoveSpeedDebuff,
-    Blaze,
-    Freeze,
-    Ghost
-}
-
 public class Base_MobStatus : MonoBehaviour, IDamagable
 {
     public int maxHP {  get; protected set; }
@@ -40,10 +27,17 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     public int power { get { return (int)(base_Power * (1f + (enhancementRate_Power / 100f))); } }
     public int moveSpeed { get { return (int)(base_MoveSpeed * (1f + (enhancementRate_MoveSpeed / 100f))); } }
 
-    public bool actable { get; protected set; }
+    // 特殊状態
+    // これらの変数はステータスエフェクトからのみ書き換えられなければならない
+    public bool actable;// { get; protected set; }
+    public bool isArrowDamage;// {  get; protected set; }
+    public bool isArrowHit;// {  get; protected set; }
+    public bool damageOverTime;
+    public bool onRegeneration;
 
     protected Subject<(Vector2 position, int amount)> subject_OnDamaged = new Subject<(Vector2, int)>();
-    protected static Subject<(Base_MobStatus status, StatusEffectType type, float duration, int amount)> subject_OnGetStatusEffect = new Subject<(Base_MobStatus, StatusEffectType, float, int)>();
+    protected Subject<Unit> subject_OnSecond = new Subject<Unit>();
+    protected static Subject<(Base_MobStatus status, Base_StatusEffectData effect, float duration, int amount)> subject_OnGetStatusEffect = new();
     protected static Subject<(Base_MobStatus status , int value)> subject_OnDie = new Subject<(Base_MobStatus, int)>();
     /*static にすることで、どの Enemy インスタンスからでもこのSubjectにアクセスし、
      * イベントを発行できるようになる
@@ -51,10 +45,12 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
      * 全ての敵の撃破イベントをキャッチできる*/
 
     Dictionary<string, CancellationTokenSource> activeStatusEffects = new();
-    Dictionary<StatusEffectType, int> activeStatusTypeCounts = new();
+    public ReactiveDictionary<Base_StatusEffectData, int> activeStatusTypeCounts = new();
 
     SpriteRenderer _renderer;
     Collider2D _collider;
+
+    float timeCount = 0f;
 
     protected virtual void Awake()
     {
@@ -62,7 +58,10 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         _collider = GetComponent<Collider2D>();
 
         actable = true;
-        _collider.enabled = true;
+        isArrowDamage = true;
+        isArrowHit = true;
+        damageOverTime = false;
+        onRegeneration = false;
     }
 
     protected virtual void Start()
@@ -70,11 +69,33 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         
     }
 
-    // 状態変化効果を適用する統合メソッド
-    public void ApplyStatusEffect(StatusEffectType type, string effectID, float duration, int amount = 0)
+    void Update()
     {
-        //Debug.Log(type);
+        timeCount += Time.deltaTime;
 
+        if(timeCount > 1f)
+        {
+            timeCount = 0f;
+
+            SecondUpdate();
+        }
+    }
+
+    // 毎秒処理
+    void SecondUpdate()
+    {
+        // スリップダメージを受ける設定なら、
+        if (damageOverTime) TakeDamage(maxHP / 100 * 2);
+        // リジェネを受ける設定なら、
+        if (onRegeneration) HealHP(maxHP / 100 * 4);
+
+        // 毎秒の通知
+        subject_OnSecond.OnNext(Unit.Default);
+    }
+
+    // 状態変化効果を適用する統合メソッド
+    public void ApplyStatusEffect(Base_StatusEffectData effect, string effectID, float duration, int amount = 0)
+    {
         // すでに同じ効果がかかっている場合は、一度キャンセルしてから上書きする
         if (activeStatusEffects.ContainsKey(effectID))
         {
@@ -85,74 +106,33 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
         // 新しいトークンソースを用意
         var cts = new CancellationTokenSource();
+
         activeStatusEffects[effectID] = cts;
 
         // イベント発行
         // 変数一式を渡すので、数値を購読先が編集できる
         // （例：特定の状態効果の時間を延長する秘宝）
-        subject_OnGetStatusEffect.OnNext((this, type, duration, amount));
+        subject_OnGetStatusEffect.OnNext((this, effect, duration, amount));
 
         // タスクの実行
-        StatusEffectTask(type, effectID, duration, amount, cts).Forget();
+        StatusEffectTask(effect, effectID, duration, amount, cts).Forget();
     }
 
     // 状態変化効果の非同期処理
-    async UniTask StatusEffectTask(StatusEffectType type, string effectID, float duration, int amount, CancellationTokenSource cts)
+    async UniTask StatusEffectTask(Base_StatusEffectData effect, string effectID, float duration, int amount, CancellationTokenSource cts)
     {
         // カウントの追加
-        if(! activeStatusTypeCounts.ContainsKey(type)) activeStatusTypeCounts[type] = 0;
-        activeStatusTypeCounts[type]++;
+        if(! activeStatusTypeCounts.ContainsKey(effect)) activeStatusTypeCounts[effect] = 0;
+        activeStatusTypeCounts[effect]++;
 
-        // 事前処理：効果を適用する
-        switch (type)
-        {
-            case StatusEffectType.MoveSpeedBuff:
-                enhancementRate_MoveSpeed += amount;
-                break;
-            case StatusEffectType.PowerBuff:
-                enhancementRate_Power += amount;
-                break;
-            case StatusEffectType.DefenceBuff:
-                enhancementRate_Defence += amount;
-                break;
-            case StatusEffectType.MoveSpeedDebuff:
-                enhancementRate_MoveSpeed -= amount;
-                break;
-            case StatusEffectType.PowerDebuff:
-                enhancementRate_Power -= amount;
-                break;
-            case StatusEffectType.DefenceDebuff:
-                enhancementRate_Defence -= amount;
-                break;
-            case StatusEffectType.Freeze:
-                actable = false;
-                Debug.Log("freeze");
-                break;
-            case StatusEffectType.Ghost:
-                Debug.Log("Ghost");
-                _collider.enabled = false;
-                break;
-            case StatusEffectType.Blaze:
-                // Blazeはamountを使わず、内部でダメージ計算
-                break;
-        }
+        // 渡されたエフェクトの適用時効果を実行
+        effect.Apply(this, amount);
 
         try
         {
-            if(type == StatusEffectType.Blaze)
+            if(effect.IsTickingEffect)
             {
-                // 一定時間ダメージを受け続ける
-
-                float dmg = maxHP / 100f * 5f;
-
-                int tickCount = Mathf.FloorToInt(duration);
-
-                for (int i = 0; i < tickCount; i++)
-                {
-                    await UniTask.Delay(1000, cancellationToken: cts.Token);
-
-                    TakeDamage((int)dmg);
-                }
+                await effect.Tick(this, duration, amount, cts.Token);
             }
             else
             {
@@ -162,50 +142,21 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         }
         catch (System.OperationCanceledException)
         {
-            Debug.Log($"{type}.effect was cancelled");
+            Debug.Log($"{effect.effectName}.effect was cancelled");
         }
         finally
         {
-            if (activeStatusTypeCounts.ContainsKey(type))
+            if (activeStatusTypeCounts.ContainsKey(effect))
             {
                 // カウントを減らす
-                activeStatusTypeCounts[type]--;
+                activeStatusTypeCounts[effect]--;
 
                 // カウントが0なら削除
-                if (activeStatusTypeCounts[type] >= 0) activeStatusTypeCounts.Remove(type);
+                if (activeStatusTypeCounts[effect] <= 0) activeStatusTypeCounts.Remove(effect);
             }
 
-            // 事後処理：効果を元に戻す
-            switch (type)
-            {
-                case StatusEffectType.MoveSpeedBuff:
-                    enhancementRate_MoveSpeed -= amount;
-                    break;
-                case StatusEffectType.PowerBuff:
-                    enhancementRate_Power -= amount;
-                    break;
-                case StatusEffectType.DefenceBuff:
-                    enhancementRate_Defence -= amount;
-                    break;
-                case StatusEffectType.MoveSpeedDebuff:
-                    enhancementRate_MoveSpeed += amount;
-                    break;
-                case StatusEffectType.PowerDebuff:
-                    enhancementRate_Power += amount;
-                    break;
-                case StatusEffectType.DefenceDebuff:
-                    enhancementRate_Defence += amount;
-                    break;
-                case StatusEffectType.Freeze:
 
-                    // カウントが残ってなければ（全ての効果が切れてれば）戻す
-                    if(! activeStatusTypeCounts.ContainsKey(StatusEffectType.Freeze)) actable = true;
-                    break;
-                case StatusEffectType.Ghost:
-
-                    if (!activeStatusTypeCounts.ContainsKey(StatusEffectType.Ghost)) _collider.enabled = true;
-                    break;
-            }
+            effect.Remove(this, amount);
 
             // Dictionaryに自分に宛てたトークンソースが残っているのであれば、それを削除
             if (activeStatusEffects.ContainsKey(effectID) && activeStatusEffects[effectID] == cts)
@@ -219,15 +170,18 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     }
 
     // 指定した種類の状態異常がアクティブかを返す関数
-    public bool IsStatusEffectTypeActive(StatusEffectType type)
+    public bool IsStatusEffectTypeActive(Base_StatusEffectData effect)
     {
-        return activeStatusTypeCounts.ContainsKey(type) && activeStatusTypeCounts[type] > 0;
+        return activeStatusTypeCounts.ContainsKey(effect) && activeStatusTypeCounts[effect] > 0;
     }
 
 
     // 攻撃を受ける処理
-    public virtual void GetAttack(int damagePoint, int elementPoint, Vector2 damagedPosi, bool isCritical = false, bool isIgnoreDefence = false)
+    public virtual bool GetAttack(int damagePoint, int elementPoint, Vector2 damagedPosi, bool isCritical = false, bool isIgnoreDefence = false)
     {
+        //被撃許容状態でないなら、falseを返して処理を終了する
+        if(! isArrowHit) return false;
+
         int K = 50;
 
         // クリティカルなら基礎ダメージ量を2倍
@@ -247,11 +201,15 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         TakeDamage(damage);
 
         KnockBack(damagedPosi, 1);
+
+        return true;
     }
 
     // ダメージ処理
     public virtual void TakeDamage(int value)
     {
+        if(! isArrowDamage) return;
+
         if (value > 0) subject_OnDamaged.OnNext((transform.position, value));
 
         if (value > 0) _hitPoint.Value -= value;

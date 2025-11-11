@@ -35,11 +35,11 @@ public class RiseStatusTreasure : Base_TreasureData
                 break;
 
             case targetStatus.luck:
-                status.luck *= (1 + ratio / 100);
+                status.enhancementRate_Luck += ratio;
                 break;
 
             case targetStatus.eyeSight:
-                status.eyeSight *= (1 + ratio / 100);
+                status.enhancementRate_EyeSight += ratio;
                 break;
         }
     }
@@ -61,11 +61,11 @@ public class RiseStatusTreasure : Base_TreasureData
                 break;
 
             case targetStatus.luck:
-                status.luck /= (1 + ratio / 100);
+                status.enhancementRate_Luck -= ratio;
                 break;
 
             case targetStatus.eyeSight:
-                status.eyeSight /= (1 + ratio / 100);
+                status.enhancementRate_EyeSight -= ratio;
                 break;
         }
     }

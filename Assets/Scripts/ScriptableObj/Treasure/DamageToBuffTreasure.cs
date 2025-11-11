@@ -8,7 +8,7 @@ public class DamageToBuffTreasure : Base_TreasureData
 {
     // 所持している間、プレイヤーが攻撃を受けるとバフが入る
 
-    [SerializeField] StatusEffectType effectType;
+    [SerializeField] Base_StatusEffectData statusEffect;
     [SerializeField] string effectID;
     [SerializeField] float duration;
     [SerializeField] int amount;
@@ -27,7 +27,7 @@ public class DamageToBuffTreasure : Base_TreasureData
     {
         status.onDamaged.Subscribe(x =>
         {
-            status.ApplyStatusEffect(effectType, effectID, duration, amount);
+            status.ApplyStatusEffect(statusEffect, effectID, duration, amount);
 
         }).AddTo(disposables);
     }

@@ -11,21 +11,27 @@ public class PlayerStatus : Base_MobStatus
     // 仮実装
     [SerializeField] GameObject panel_Die;
 
-    [SerializeField] Image gauge_EXP;
-    [SerializeField] Image gauge_HP;
-
-    public PlayerCharaData playerCharaData;
+    [field : SerializeField] public PlayerCharaData playerCharaData {  get; private set; }
 
     public PlayerInventory inventory { get; private set; }
     public PlayerAttack attack { get; private set; }
 
-    [SerializeField] int requiredEXP_LvUp;
+    [field : SerializeField] public int requiredEXP_LvUp {  get; private set; }
 
-    public float luck;
-    public float eyeSight;
-    public int limit_DrawKnife;
+    // プレイヤー専用ステータス群
+    int base_Luck;
+    int base_EyeSight;
+    int base_Limit_DrawKnife;
 
-    bool isInvincible;
+    public int enhancementRate_Luck = 0;
+    public int enhancementRate_EyeSight = 0;
+    public int enhancement_Limit_DrawKnife = 0;
+
+    public int luck { get { return (int)(base_Luck * (1f + (enhancementRate_Defence / 100f))); } }
+    public int eyeSight { get { return (int)(base_EyeSight * (1f + (enhancementRate_EyeSight / 100f))); } }
+    // ドロー上限のみ計算方法が異なり、増減量がパーセントでなくそのままの数値で扱われる
+    public int limit_DrawKnife { get { return base_Limit_DrawKnife + enhancement_Limit_DrawKnife; } }
+
 
     public enum PlayerStatusType
     {
@@ -34,13 +40,21 @@ public class PlayerStatus : Base_MobStatus
 
     public List<Element> masteredElements { get; private set; } = new List<Element>();
 
-    int exp;
+
+
+
+    // 通知を飛ばす奴ら
+    public ReactiveProperty<int> exp = new ReactiveProperty<int>();
 
     Subject<Unit> lvUp = new Subject<Unit>();
+    public IObservable<Unit> onLvUp => lvUp;
 
+    public IObservable<Unit> onSecond => subject_OnSecond;
     public IObservable<(Vector2 position, int amount)> onDamaged => subject_OnDamaged;
-    public IObservable<(Base_MobStatus status, StatusEffectType type, float duration, int amount)> onGetStatusEffect => subject_OnGetStatusEffect;
+    public IObservable<(Base_MobStatus status, Base_StatusEffectData statusEffect, float duration, int amount)> onGetStatusEffect => subject_OnGetStatusEffect;
     public IObservable<(Base_MobStatus status, int value)> onDie=> subject_OnDie;
+
+
 
     // 購読のライフサイクルを管理するためのDisposable
     // これ１つで沢山のDisposableなやつらに対応可能らしい
@@ -60,9 +74,9 @@ public class PlayerStatus : Base_MobStatus
         base_Defence = playerCharaData.defense;
         base_MoveSpeed = playerCharaData.moveSpeed;
 
-        luck = playerCharaData.luck;
-        eyeSight = playerCharaData.eyeSight;
-        limit_DrawKnife = playerCharaData.limit_DrawKnives;
+        base_Luck = playerCharaData.luck;
+        base_EyeSight = playerCharaData.eyeSight;
+        base_Limit_DrawKnife = playerCharaData.limit_DrawKnives;
 
         masteredElements.Add(playerCharaData.masteredElement);
     }
@@ -88,21 +102,18 @@ public class PlayerStatus : Base_MobStatus
     // exp獲得
     public void GetEXP(int x)
     {
-        exp += x;
+        exp.Value += x;
 
         // 経験値量が一定に達していたらレベルアップ
-        if (exp >= requiredEXP_LvUp) LvUp();
-
-        // 経験値ゲージUI更新
-        gauge_EXP.fillAmount = (float)exp / (float)requiredEXP_LvUp;
+        if (exp.Value >= requiredEXP_LvUp) LvUp();
     }
 
     // レベルアップ
     void LvUp()
     {
-        while (exp >= requiredEXP_LvUp)
+        while (exp.Value >= requiredEXP_LvUp)
         {
-            exp -= requiredEXP_LvUp ;
+            exp.Value -= requiredEXP_LvUp ;
 
             requiredEXP_LvUp += 1;
         }
@@ -114,13 +125,11 @@ public class PlayerStatus : Base_MobStatus
     }
 
     // 攻撃を受ける処理
-    public override void GetAttack(int damagePoint, int elementPoint, Vector2 damagedPosi, bool isCritical = false, bool isIgnoreDefence = false)
+    public override bool GetAttack(int damagePoint, int elementPoint, Vector2 damagedPosi, bool isCritical = false, bool isIgnoreDefence = false)
     {
-        if(isInvincible) return;
+        return base.GetAttack(damagePoint, elementPoint, damagedPosi, isCritical, isIgnoreDefence);
 
-        base.GetAttack(damagePoint, elementPoint, damagedPosi, isCritical, isIgnoreDefence);
-
-        BeInvincible(1f).Forget();
+        //BeInvincible(1f).Forget();
     }
 
     // ダメージを受ける処理
@@ -151,15 +160,15 @@ public class PlayerStatus : Base_MobStatus
                 break;
 
             case PlayerStatusType.eye:
-                this.eyeSight += point;
+                this.base_EyeSight += point;
                 break;
 
             case PlayerStatusType.luk:
-                this.luck += point;
+                this.base_Luck += point;
                 break;
 
             case PlayerStatusType.lim:
-                this.limit_DrawKnife += point;
+                this.base_Limit_DrawKnife += point;
                 break;
         }
     }
@@ -167,7 +176,7 @@ public class PlayerStatus : Base_MobStatus
     // 指定秒数間むてきになる
     async UniTask BeInvincible(float sec)
     {
-        isInvincible = true;
+        isArrowDamage = false;
 
         try
         {
@@ -179,7 +188,7 @@ public class PlayerStatus : Base_MobStatus
         }
         finally
         {
-            isInvincible = false;
+            isArrowDamage = true;
         }
     }
 

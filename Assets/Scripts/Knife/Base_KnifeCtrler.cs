@@ -42,6 +42,8 @@ public class Base_KnifeCtrler : MonoBehaviour
         // ブースト状態でないなら、属性値が半減
         if(!isBoosted) elementPower /= 2;
 
+        Debug.Log($"{_knifeData.abilities.Count}個のアビリティ");
+
         // ナイフに特殊能力が設定されていた場合の処理
         foreach (var ability in knifeData.abilities)
         {
@@ -78,7 +80,7 @@ public class Base_KnifeCtrler : MonoBehaviour
             bool is_ignoreDefence = false;
             bool is_critical = false;
 
-            if (knifeData.abilities.Count > 1) Debug.Log("I have 2 abiliies");
+            
 
             // ナイフに特殊能力が設定されていた場合の処理
             foreach (var ability in knifeData.abilities)

@@ -93,7 +93,7 @@ public class PlayerAttack : MonoBehaviour
                             .Take(status.limit_DrawKnife)// 上から上限まで引く
                             .ToList();
 
-        Debug.Log($"ナイフは{hand.Count}本");
+        //Debug.Log($"ナイフは{hand.Count}本");
 
         // 購読先による検知、介入のための発行
         subject_OnReload.OnNext(hand);

@@ -18,11 +18,11 @@ MonoBehaviour:
   icon: {fileID: 0}
   targetElement: 2
   border: 4
-  effectType: 7
+  statusEffect: {fileID: 11400000, guid: c5e621a7aaad6d040b55e8f7d994b305, type: 2}
   effectID: hyougaT634
   duration: 0.6
   amount: 0
-  radius: 2.5
+  radius: 4
   targetLayer:
     serializedVersion: 2
     m_Bits: 128

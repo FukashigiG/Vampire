@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "\u75BE\u98A8\u306E\u50B7\u8DE1"
   _description: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u3068\u3001\u5C11\u3057\u306E\u9593\u3001\u79FB\u52D5\u901F\u5EA6\u304C\u4E0A\u6607\u3059\u308B"
   icon: {fileID: 0}
-  effectType: 2
+  statusEffect: {fileID: 11400000, guid: 403c818acf0fc2f40a95694ac4f6120a, type: 2}
   effectID: damagetospeed
   duration: 1
   amount: 40

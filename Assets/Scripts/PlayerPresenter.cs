@@ -10,8 +10,13 @@ public class PlayerPresenter : MonoBehaviour
 {
     PlayerStatus status;
 
-    [SerializeField] Image gauge_PlayerHP;
+    [SerializeField] UI_PlayerHPGauge playerHPGauge;
+    [SerializeField] Image playerEXPGauge;
     [SerializeField] ShowPlayerHandState showHandState;
+    [SerializeField] RectTransform iconArea;
+    [SerializeField] GameObject iconPrefab;
+
+    Dictionary<Base_StatusEffectData, GameObject> dictionaly_SED_Icon = new();
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +25,7 @@ public class PlayerPresenter : MonoBehaviour
 
         status.hitPoint.Subscribe(value =>
         {
-            OnChangeHP_Value(value);
+            playerHPGauge.SetGauge(value, status.maxHP);
 
         }).AddTo(this);
 
@@ -37,10 +42,37 @@ public class PlayerPresenter : MonoBehaviour
             showHandState.Thrown(value.index);
 
         }).AddTo(this);
-    }
 
-    void OnChangeHP_Value(int value)
-    {
-        gauge_PlayerHP.fillAmount = ((float)value / (float)status.maxHP);
+        status.exp.Subscribe(value =>
+        {
+            playerEXPGauge.fillAmount = (float)value / (float)status.requiredEXP_LvUp;
+
+        }).AddTo(this);
+
+        status.activeStatusTypeCounts.ObserveAdd().Subscribe(x =>
+        {
+            if (! dictionaly_SED_Icon.ContainsKey(x.Key))
+            {
+                
+            }
+
+            GameObject obj = Instantiate(iconPrefab, iconArea);
+
+            obj.GetComponent<Image>().sprite = x.Key.icon;
+
+            dictionaly_SED_Icon.Add(x.Key, obj);
+
+        }).AddTo(this);
+
+        status.activeStatusTypeCounts.ObserveRemove().Subscribe(x =>
+        {
+            if (dictionaly_SED_Icon.ContainsKey(x.Key))
+            {
+                Destroy(dictionaly_SED_Icon[x.Key]);
+
+                dictionaly_SED_Icon.Remove(x.Key);
+            }
+
+        }).AddTo(this);
     }
 }

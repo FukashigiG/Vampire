@@ -18,7 +18,7 @@ MonoBehaviour:
   icon: {fileID: 0}
   targetElement: 1
   border: 4
-  effectType: 6
+  statusEffect: {fileID: 11400000, guid: 8ee89ac241c31d44b9e118106387ae82, type: 2}
   effectID: blazereload553
   duration: 5
   amount: 0

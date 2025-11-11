@@ -81,11 +81,11 @@ public class ReferKnifeCountTreasure : Base_TreasureData
                 break;
 
             case statusEnum.luck:
-                status.luck *= (1 + enhancementPercentage / 100f);
+                status.enhancementRate_Luck += enhancementPercentage;
                 break;
 
             case statusEnum.eyeSight:
-                status.eyeSight *= (1 + enhancementPercentage / 100f);
+                status.enhancementRate_EyeSight += enhancementPercentage;
                 break;
         }
     }
@@ -108,11 +108,11 @@ public class ReferKnifeCountTreasure : Base_TreasureData
                 break;
 
             case statusEnum.luck:
-                status.luck /= (1 + enhancementPercentage / 100f);
+                status.enhancementRate_Luck -= enhancementPercentage;
                 break;
 
             case statusEnum.eyeSight:
-                status.eyeSight /= (1 + enhancementPercentage / 100f);
+                status.enhancementRate_EyeSight -= enhancementPercentage;
                 break;
         }
     }

@@ -17,6 +17,6 @@ MonoBehaviour:
   _description: "\u706B\u708E\u306E\u52B9\u679C\u30923\u79D2\u5EF6\u9577\u3059\u308B"
   icon: {fileID: 0}
   isTargetEnemy: 1
-  targetEffectType: 6
+  targetEffect: {fileID: 11400000, guid: 8ee89ac241c31d44b9e118106387ae82, type: 2}
   amount_ExtraDuration: 3
   amount_: 0

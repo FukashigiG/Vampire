@@ -11,7 +11,7 @@ public class BoostStatusEffectTreasure : Base_TreasureData
     // ‘ÎÛ‚Í“G‚©Ž©•ª‚©
     [SerializeField] bool isTargetEnemy;
     // ‘ÎÛ‚Ìó‘Ô•Ï‰»
-    [SerializeField] StatusEffectType targetEffectType;
+    [SerializeField] Base_StatusEffectData targetEffect;
     // ‘Œ¸‚³‚¹‚éŒø‰ÊŽžŠÔ—Ê
     [SerializeField] float amount_ExtraDuration;
     [SerializeField] int amount_;
@@ -34,7 +34,7 @@ public class BoostStatusEffectTreasure : Base_TreasureData
 
                 EnemyStatus.onGetStatusEffect.Subscribe(c =>
                 {
-                    if (c.type == targetEffectType) c.duration += amount_ExtraDuration;
+                    if (c.effect == targetEffect) c.duration += amount_ExtraDuration;
 
                 }).AddTo(disposables);
 
@@ -44,7 +44,7 @@ public class BoostStatusEffectTreasure : Base_TreasureData
 
                 status.onGetStatusEffect.Subscribe(c =>
                 {
-                    if (c.type == targetEffectType) c.duration += amount_ExtraDuration;
+                    if (c.statusEffect == targetEffect) c.duration += amount_ExtraDuration;
 
                 }).AddTo(disposables);
 

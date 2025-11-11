@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 
 //[CreateAssetMenu(fileName = "NewHSpE", menuName = "Game Data/zzzDont")]
-public class Base_KnifeAbilityLogic : ScriptableObject, IOnHitSpecialEffect
+public abstract class Base_KnifeAbilityLogic : ScriptableObject, IOnHitSpecialEffect
 {
     // ‚±‚ÌHSpE‚Ì–¼‘O
     [field: SerializeField] public string effectName { get; private set; }

@@ -11,7 +11,7 @@ public class DontAttack_BuffTreasure : Base_TreasureData
     // 所持している間、特定の状態変化効果を受けた敵の死亡に反応して、その敵の周囲に、死んだ敵の最大HPの半分でダメージ
     // めちゃめちゃ作りかけです
 
-    [SerializeField] StatusEffectType targetEffectType;
+    [SerializeField] Base_StatusEffectData targetStatusEffect;
     [SerializeField] GameObject effect;
     [SerializeField] float radius;
     [SerializeField] LayerMask targetLayer;
@@ -37,8 +37,6 @@ public class DontAttack_BuffTreasure : Base_TreasureData
 
         status.onDamaged.Subscribe(async x =>
         {
-
-
             try
             {
                 // 待つ
@@ -57,7 +55,7 @@ public class DontAttack_BuffTreasure : Base_TreasureData
         EnemyStatus.onDie.Subscribe(async x =>
         {
             // クールタイム中か、敵が目的の状態異常でないなら無視
-            if (isCooling || !  x.status.IsStatusEffectTypeActive(targetEffectType)) return;
+            if (isCooling || !  x.status.IsStatusEffectTypeActive(targetStatusEffect)) return;
 
             isCooling = true;
 

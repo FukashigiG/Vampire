@@ -14,7 +14,7 @@ public class BlazeReloadTreasure : Base_ReloadActionTreasure
     [SerializeField] int border;
 
     [Header("状態効果詳細")]
-    [SerializeField] StatusEffectType effectType;
+    [SerializeField] Base_StatusEffectData statusEffect;
     [SerializeField] string effectID;
     [SerializeField] float duration;
     [SerializeField] int amount;
@@ -29,8 +29,12 @@ public class BlazeReloadTreasure : Base_ReloadActionTreasure
         // リロードした際の、N属性のナイフの数を数える
         int count = knives.Count(x => x.element == targetElement);
 
+        Debug.Log($"{count}本あった");
+
         // 規定の数に達していないならreturn
         if (count < border) return;
+
+        Debug.Log("発動");
 
         // 中心
         Vector2 posi = status.transform.position;
@@ -43,10 +47,10 @@ public class BlazeReloadTreasure : Base_ReloadActionTreasure
         {
             if (hit.TryGetComponent(out Base_MobStatus ms))
             {
-                ms.ApplyStatusEffect(effectType, effectID, duration);
-
-                if(effect != null) Instantiate(effect, hit.transform.position, Quaternion.identity);
+                ms.ApplyStatusEffect(statusEffect, effectID, duration);
             }
         }
+
+        if (effect != null) Instantiate(effect, status.transform.position, Quaternion.identity);
     }
 }

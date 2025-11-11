@@ -16,9 +16,13 @@ public class TimerTrigger_BlazeandBuffTreasure : Base_TreasureData
 
     [SerializeField] string blazeEffectID;
 
-    [SerializeField] StatusEffectType buffType;
-    [SerializeField] string buffEffectID;
-    [SerializeField] int buffAmount;
+    [SerializeField] Base_StatusEffectData statusEffect_1;
+    [SerializeField] string effectID_1;
+    [SerializeField] int amount1;
+
+    [SerializeField] Base_StatusEffectData statusEffect_2;
+    [SerializeField] string effectID_2;
+    [SerializeField] int amount2;
 
     public override void OnAdd(PlayerStatus status)
     {
@@ -42,8 +46,8 @@ public class TimerTrigger_BlazeandBuffTreasure : Base_TreasureData
 
             isCooling = true;
 
-            status.ApplyStatusEffect(StatusEffectType.Blaze, blazeEffectID, effectDuration);
-            status.ApplyStatusEffect(buffType, buffEffectID, effectDuration, buffAmount);
+            status.ApplyStatusEffect(statusEffect_2, effectID_2, effectDuration, amount2);
+            status.ApplyStatusEffect(statusEffect_2, effectID_2, effectDuration, amount2);
 
             // ‘Ò‚Â
             try

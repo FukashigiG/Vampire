@@ -31,7 +31,7 @@ public class ReferKnifeElementalCountTreasure : Base_TreasureData
 
         if(d >= border && ! isBonusActive)
         {
-            status.limit_DrawKnife += bonusValue;
+            status.enhancement_Limit_DrawKnife += bonusValue;
 
             isBonusActive = true;
         } 
@@ -39,7 +39,7 @@ public class ReferKnifeElementalCountTreasure : Base_TreasureData
 
     public override void OnRemove(PlayerStatus status)
     {
-        if(isBonusActive) status.limit_DrawKnife -= bonusValue;
+        if(isBonusActive) status.enhancement_Limit_DrawKnife -= bonusValue;
     }
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
