@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754f3f008366eb046905d487f14ef77c, type: 3}
   m_Name: DamageToBuff_Power
   m_EditorClassIdentifier: 
-  <uniqueIP>k__BackingField: 0
+  <uniqueIP>k__BackingField: 198198
   <_name>k__BackingField: "\u53CD\u6483\u306E\u72FC\u7159"
-  <_description>k__BackingField: 
+  <_description>k__BackingField: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u3068\u3001\u529B\u30D0\u30D5\u3092\u5F97\u308B"
   <icon>k__BackingField: {fileID: 0}
   statusEffect: {fileID: 11400000, guid: f63f06ece45123449bb043df727168e8, type: 2}
   effectID: damagetopower

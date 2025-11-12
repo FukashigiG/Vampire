@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fc9595d7070874ab5f833691426302, type: 3}
   m_Name: DamageToCritical
   m_EditorClassIdentifier: 
-  uniqueIP: 9911212
-  _name: "\u53CD\u6483\u306E\u72FC\u7159"
-  _description: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u3068\u3001\u6B21\u6295\u3052\u308B\u30CA\u30A4\u30D5\u306B\u6025\u6240\u3092\u8FFD\u52A0"
-  icon: {fileID: 0}
+  <uniqueIP>k__BackingField: 1234231
+  <_name>k__BackingField: "\u30D0\u30C1\u5207\u308C"
+  <_description>k__BackingField: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u3068\u3001\u6B21\u306E\u30CA\u30A4\u30D5\u306B\u6025\u6240\u3092\u4ED8\u4E0E"
+  <icon>k__BackingField: {fileID: 0}
   knifeAbility:
     abilityLogic: {fileID: 11400000, guid: c21406ad570655744a5f2abbf1afa16c, type: 2}
     probability_Percent: 50

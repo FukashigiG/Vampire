@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9365982d708bb0c40a7475cda17673bd, type: 3}
   m_Name: BoostFreezeDuration
   m_EditorClassIdentifier: 
-  uniqueIP: 879556
-  _name: "\u5438\u71B1\u5264"
-  _description: "\u51CD\u7D50\u306E\u52B9\u679C\u30920.6\u79D2\u5EF6\u9577\u3059\u308B"
-  icon: {fileID: 0}
+  <uniqueIP>k__BackingField: 0
+  <_name>k__BackingField: "\u5438\u71B1\u5264"
+  <_description>k__BackingField: "\u51CD\u7D50\u306E\u52B9\u679C\u6642\u9593\u304C\u4F38\u3073\u308B"
+  <icon>k__BackingField: {fileID: 0}
   isTargetEnemy: 1
   targetEffect: {fileID: 11400000, guid: c5e621a7aaad6d040b55e8f7d994b305, type: 2}
   amount_ExtraDuration: 0.6

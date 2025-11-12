@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac5d356866de7c49ab581a04bb06f0f, type: 3}
   m_Name: BoostCrushProbability
   m_EditorClassIdentifier: 
-  uniqueIP: 84764645
-  _name: "\u9699\u306E\u7CF8"
-  _description: "\u7834\u7815\u306E\u767A\u751F\u78BA\u7387\u3092\u4E0A\u6607\u3055\u305B\u308B"
-  icon: {fileID: 0}
+  <uniqueIP>k__BackingField: 0
+  <_name>k__BackingField: "\u9699\u306E\u7CF8"
+  <_description>k__BackingField: "\u7834\u7815\u306E\u767A\u751F\u78BA\u7387\u304C\u4E0A\u304C\u308B"
+  <icon>k__BackingField: {fileID: 0}
   <targetAbilityLogic>k__BackingField: {fileID: 11400000, guid: a30a44b39e20fc04c8641f803993707d, type: 2}
   amount_Boost_Percentage: 4

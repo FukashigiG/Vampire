@@ -36,11 +36,11 @@ public class Eve_GetTreasure : Base_EventCtrler
 
         // PlayerInventoryの持つ秘宝のIDをHashSetに格納
         // HashSetを使うことで、後の「含まれてるか」のチェックが楽になる
-        HashSet<int> excludedIDs = new HashSet<int>(playerInventory.runtimeTreasure.Select(x => x.uniqueIP));
+        HashSet<string> excludedIDs = new HashSet<string>(playerInventory.runtimeTreasure.Select(x => x._name));
 
         // Playerの持ってない秘宝のリストを作成
         List<Base_TreasureData> availableTreasures = allTreasures
-            .Where(treasureAsset => !excludedIDs.Contains(treasureAsset.uniqueIP))
+            .Where(treasureAsset => !excludedIDs.Contains(treasureAsset._name))
             .ToList();
 
         // リストの中身をシャッフル
