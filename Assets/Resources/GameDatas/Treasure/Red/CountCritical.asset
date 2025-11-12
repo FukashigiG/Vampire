@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c981b2716f35034e9cacd03530fd2fd, type: 3}
   m_Name: CountCritical
   m_EditorClassIdentifier: 
-  uniqueIP: 54323
-  _name: "\u30AF\u30ED\u30C3\u30AF\u6025\u6240"
-  _description: "4\u672C\u306B\u4E00\u5EA6\u3001\u6295\u3052\u308B\u30CA\u30A4\u30D5\u306B\u6025\u6240\u3092\u4ED8\u4E0E\u3059\u308B"
-  icon: {fileID: 0}
+  <uniqueIP>k__BackingField: 0
+  <_name>k__BackingField: "\u30AF\u30ED\u30C3\u30AF\u6025\u6240"
+  <_description>k__BackingField: "\uFF14\u672C\u306B\u4E00\u672C\u3001\u6295\u3052\u308B\u30CA\u30A4\u30D5\u306B\u6025\u6240\u52B9\u679C\u3092\u4ED8\u4E0E"
+  <icon>k__BackingField: {fileID: 21300000, guid: bb107c290509c794b864b58456d85119, type: 3}
   addedKnifeAbility:
     abilityLogic: {fileID: 11400000, guid: c21406ad570655744a5f2abbf1afa16c, type: 2}
     probability_Percent: 100

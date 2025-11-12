@@ -1,15 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/zzzDont")]
+//[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/zzzDont")]
 public abstract class Base_TreasureData : ScriptableObject
 {
-    public int uniqueIP;
-    public string _name;
-    [TextArea] public string _description;
-    public Sprite icon;
+    [field:SerializeField] public int uniqueIP { get; private set; }
+    [field:SerializeField] public string _name {  get; private set; }
+    [field:SerializeField,TextArea] public string _description {  get; private set; }
+    [field:SerializeField] public Sprite icon {  get; private set; }
+
+    protected static Subject<Base_TreasureData> subject_OnAct = new Subject<Base_TreasureData>();
+    public static IObservable<Base_TreasureData> onAct => subject_OnAct;
 
     // ƒQƒbƒg‚µ‚½‚Ìˆ—
     public abstract void OnAdd(PlayerStatus status);

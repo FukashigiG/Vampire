@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9bd6ff00e02b974d96d61ca1aaeb664, type: 3}
   m_Name: CriticalBonus_Blaze
   m_EditorClassIdentifier: 
-  uniqueIP: 3235
-  _name: "\u706B\u708E\u306E\u795F\u308A\u76EE"
-  _description: "\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u3092\u98DF\u3089\u3063\u305F\u6575\u306B\u706B\u708E\u3092\u4ED8\u4E0E\u3059\u308B"
-  icon: {fileID: 0}
+  <uniqueIP>k__BackingField: 16
+  <_name>k__BackingField: "\u706B\u708E\u306E\u795F\u308A\u76EE"
+  <_description>k__BackingField: "\u6025\u6240\u653B\u6483\u3092\u53D7\u3051\u305F\u6575\u306B\u706B\u708E\u3092\u4ED8\u4E0E"
+  <icon>k__BackingField: {fileID: 21300000, guid: c3dcbc6113f86f0428d7e029916b6079, type: 3}
   statusEffect: {fileID: 11400000, guid: 8ee89ac241c31d44b9e118106387ae82, type: 2}
   effectID: bonusBlaze
   duration: 6

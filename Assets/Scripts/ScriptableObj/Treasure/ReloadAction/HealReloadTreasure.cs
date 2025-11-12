@@ -11,5 +11,7 @@ public class HealReloadTreasure : Base_ReloadActionTreasure
     public override void ReloadAction(PlayerStatus status, List<KnifeData_RunTime> knives)
     {
         status.HealHP((int)(status.maxHP * healRatio));
+
+        base.ReloadAction(status, knives);
     }
 }

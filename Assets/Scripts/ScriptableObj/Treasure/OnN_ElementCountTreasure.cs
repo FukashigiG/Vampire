@@ -47,6 +47,9 @@ public class OnN_ElementCountTreasure : Base_TreasureData
                     if(cullentBouns >= bonusLimit) cullentBouns = bonusLimit;
 
                     _throw.knifeData.power += cullentBouns;
+
+                    // ”­“®‚ð’Ê’m
+                    subject_OnAct.OnNext(this);
                 }
             }
 

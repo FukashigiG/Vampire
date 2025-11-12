@@ -29,6 +29,7 @@ public class Base_ReloadActionTreasure : Base_TreasureData
 
     public virtual void ReloadAction(PlayerStatus status, List<KnifeData_RunTime> knives)
     {
-
+        // ”­“®‚ð’Ê’m
+        subject_OnAct.OnNext(this);
     }
 }

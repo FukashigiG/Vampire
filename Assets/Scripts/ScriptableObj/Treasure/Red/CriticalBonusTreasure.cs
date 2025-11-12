@@ -30,6 +30,9 @@ public class CriticalBonusTreasure : Base_TreasureData
         {
             targetStatus.ApplyStatusEffect(statusEffect, effectID, duration ,amount_Debuff);
 
+            // ”­“®‚ð’Ê’m
+            subject_OnAct.OnNext(this);
+
         }).AddTo(disposables);
     }
 }

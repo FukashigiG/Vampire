@@ -60,8 +60,6 @@ public class PausePanelCtrler : MonoBehaviour
             .Subscribe(e => OnTreasureRemoved(e.Value))
             .AddTo(_disposables);
 
-        Debug.Log("set toggle");
-
         // Å‰‚ÉAŠù‚É“o˜^‚³‚ê‚Ä‚¢‚é•¨‚É‚Â‚¢‚ÄA’Ç‰Áˆ—‚ğ‚·‚é
         foreach (var knives in playerInventory.runtimeKnives) OnKnifeAdded(knives);
         foreach (var treasures in playerInventory.runtimeTreasure) OnTreasureAdded(treasures);

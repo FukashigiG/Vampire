@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9365982d708bb0c40a7475cda17673bd, type: 3}
   m_Name: BoostBlazeDuration
   m_EditorClassIdentifier: 
-  uniqueIP: 75747
-  _name: "\u6613\u71C3\u6027\u5264"
-  _description: "\u706B\u708E\u306E\u52B9\u679C\u30923\u79D2\u5EF6\u9577\u3059\u308B"
-  icon: {fileID: 0}
+  <uniqueIP>k__BackingField: 14
+  <_name>k__BackingField: "\u6613\u71C3\u6027\u5264"
+  <_description>k__BackingField: "\u706B\u708E\u72B6\u614B\u306F\uFF13\u79D2\u5EF6\u9577\u3055\u308C\u308B"
+  <icon>k__BackingField: {fileID: 21300000, guid: f56793c7434be4947abc7c4543e0b877, type: 3}
   isTargetEnemy: 1
   targetEffect: {fileID: 11400000, guid: 8ee89ac241c31d44b9e118106387ae82, type: 2}
   amount_ExtraDuration: 3

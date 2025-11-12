@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afabba9b6a2584f43b7792cf4847cf68, type: 3}
   m_Name: DefeatBlazed_Explosion
   m_EditorClassIdentifier: 
-  uniqueIP: 34242
-  _name: "\u706B\u708E\u7206\u7834"
-  _description: "\u706B\u708E\u72B6\u614B\u306E\u6575\u304C\u6483\u7834\u3055\u308C\u308B\u3068\u3001\u305D\u306E\u5730\u70B9\u306B\u7206\u767A\u3092\u8D77\u3053\u3059(\u983B\u5EA6\u5236\u9650\u30A2\u30EA)"
-  icon: {fileID: 0}
+  <uniqueIP>k__BackingField: 109
+  <_name>k__BackingField: "\u706B\u708E\u7206\u7834"
+  <_description>k__BackingField: "\u706B\u708E\u72B6\u614B\u306E\u6575\u304C\u6B7B\u306C\u3068\u3001\u7206\u767A\u3092\u8D77\u3053\u3059"
+  <icon>k__BackingField: {fileID: 21300000, guid: 455122601e28e7743bbaacd42cbcc40d, type: 3}
   statusEffect: {fileID: 11400000, guid: 8ee89ac241c31d44b9e118106387ae82, type: 2}
   effect: {fileID: 3599841958050145209, guid: 8965d9b29e491a34c803876d952104d2, type: 3}
   radius: 1.6

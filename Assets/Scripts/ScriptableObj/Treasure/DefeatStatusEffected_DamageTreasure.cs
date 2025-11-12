@@ -57,6 +57,9 @@ public class DefeatStatusEffected_DamageTreasure : Base_TreasureData
             // エフェクト生成
             Instantiate(effect, center, Quaternion.identity);
 
+            // 発動を通知
+            subject_OnAct.OnNext(this);
+
             // 待つ
             try
             {

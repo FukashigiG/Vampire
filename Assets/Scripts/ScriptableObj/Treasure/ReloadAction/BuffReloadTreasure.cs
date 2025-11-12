@@ -15,5 +15,7 @@ public class BuffReloadTreasure : Base_ReloadActionTreasure
     public override void ReloadAction(PlayerStatus status, List<KnifeData_RunTime> knives)
     {
         status.ApplyStatusEffect(statusEffect, effectID, duration, amount_percent);
+
+        base.ReloadAction(status, knives);
     }
 }

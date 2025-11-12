@@ -6,7 +6,7 @@ using UnityEngine;
 //[CreateAssetMenu(fileName = "NewHSpE", menuName = "Game Data/zzzDont")]
 public abstract class Base_KnifeAbilityLogic : ScriptableObject, IOnHitSpecialEffect
 {
-    // このHSpEの名前
+    // このアビリティの名前
     [field: SerializeField] public string effectName { get; private set; }
     // 能力の詳細説明テキスト
     [field: SerializeField, Multiline(6)] public string description { get; private set; }

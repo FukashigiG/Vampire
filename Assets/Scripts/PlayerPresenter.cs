@@ -14,6 +14,9 @@ public class PlayerPresenter : MonoBehaviour
     [SerializeField] Image playerEXPGauge;
     [SerializeField] ShowPlayerHandState showHandState;
     [SerializeField] RectTransform iconArea;
+
+    [SerializeField] Image treasureActImage;
+
     [SerializeField] GameObject iconPrefab;
 
     Dictionary<Base_StatusEffectData, GameObject> dictionaly_SED_Icon = new();
@@ -72,6 +75,12 @@ public class PlayerPresenter : MonoBehaviour
 
                 dictionaly_SED_Icon.Remove(x.Key);
             }
+
+        }).AddTo(this);
+
+        Base_TreasureData.onAct.Subscribe(x =>
+        {
+            treasureActImage.sprite = x.icon;
 
         }).AddTo(this);
     }

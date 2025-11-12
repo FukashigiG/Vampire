@@ -35,6 +35,8 @@ public class DefeatCount_HealTreasure : Base_TreasureData
             {
                 status.HealHP((int)(status.maxHP * (float)(healRatio_Percent / 100)));
 
+                subject_OnAct.OnNext(this);
+
                 count = 0;
             }
 

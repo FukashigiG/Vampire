@@ -34,8 +34,6 @@ public class BlazeReloadTreasure : Base_ReloadActionTreasure
         // ‹K’è‚Ì”‚É’B‚µ‚Ä‚¢‚È‚¢‚È‚çreturn
         if (count < border) return;
 
-        Debug.Log("”­“®");
-
         // ’†S
         Vector2 posi = status.transform.position;
 
@@ -52,5 +50,7 @@ public class BlazeReloadTreasure : Base_ReloadActionTreasure
         }
 
         if (effect != null) Instantiate(effect, status.transform.position, Quaternion.identity);
+
+        base.ReloadAction(status, knives);
     }
 }

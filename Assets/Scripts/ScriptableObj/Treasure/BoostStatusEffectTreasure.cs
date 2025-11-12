@@ -34,7 +34,12 @@ public class BoostStatusEffectTreasure : Base_TreasureData
 
                 EnemyStatus.onGetStatusEffect.Subscribe(c =>
                 {
-                    if (c.effect == targetEffect) c.duration += amount_ExtraDuration;
+                    if (c.effect == targetEffect)
+                    {
+                        c.duration += amount_ExtraDuration;
+
+                        subject_OnAct.OnNext(this);
+                    }
 
                 }).AddTo(disposables);
 
@@ -44,7 +49,12 @@ public class BoostStatusEffectTreasure : Base_TreasureData
 
                 status.onGetStatusEffect.Subscribe(c =>
                 {
-                    if (c.statusEffect == targetEffect) c.duration += amount_ExtraDuration;
+                    if (c.statusEffect == targetEffect)
+                    {
+                        c.duration += amount_ExtraDuration;
+
+                        subject_OnAct.OnNext(this);
+                    }
 
                 }).AddTo(disposables);
 

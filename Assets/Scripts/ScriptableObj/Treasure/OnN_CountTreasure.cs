@@ -39,6 +39,9 @@ public class OnN_CountTreasure : Base_TreasureData
                                              addedKnifeAbility.effectID);
 
                 _throw.knifeData.abilities.Add(ablty);
+
+                // ”­“®‚ð’Ê’m
+                subject_OnAct.OnNext(this);
             }
 
         }).AddTo(disposables);

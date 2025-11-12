@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754f3f008366eb046905d487f14ef77c, type: 3}
   m_Name: DamageToBuff_Power
   m_EditorClassIdentifier: 
-  uniqueIP: 235251
-  _name: "\u65AC\u6483\u306E\u50B7\u8DE1"
-  _description: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u3068\u3001\u5C11\u3057\u306E\u9593\u3001\u529B\u304C\u4E0A\u6607\u3059\u308B"
-  icon: {fileID: 0}
+  <uniqueIP>k__BackingField: 0
+  <_name>k__BackingField: "\u53CD\u6483\u306E\u72FC\u7159"
+  <_description>k__BackingField: 
+  <icon>k__BackingField: {fileID: 0}
   statusEffect: {fileID: 11400000, guid: f63f06ece45123449bb043df727168e8, type: 2}
   effectID: damagetopower
   duration: 4

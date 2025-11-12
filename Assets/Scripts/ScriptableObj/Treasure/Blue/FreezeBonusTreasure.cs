@@ -67,6 +67,9 @@ public class FreezeBonusTreasure : Base_TreasureData
 
             Instantiate(fx, center, Quaternion.identity);
 
+            // ”­“®‚ð’Ê’m
+            subject_OnAct.OnNext(this);
+
             // ‘Ò‚Â
             try
             {

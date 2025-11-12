@@ -46,8 +46,11 @@ public class TimerTrigger_BlazeandBuffTreasure : Base_TreasureData
 
             isCooling = true;
 
+            status.ApplyStatusEffect(statusEffect_1, effectID_1, effectDuration, amount1);
             status.ApplyStatusEffect(statusEffect_2, effectID_2, effectDuration, amount2);
-            status.ApplyStatusEffect(statusEffect_2, effectID_2, effectDuration, amount2);
+
+            // ”­“®‚ð’Ê’m
+            subject_OnAct.OnNext(this);
 
             // ‘Ò‚Â
             try

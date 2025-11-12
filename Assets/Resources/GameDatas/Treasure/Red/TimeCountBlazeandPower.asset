@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd61ea7dc0a2d8a41baf7a7aea526a2f, type: 3}
   m_Name: TimeCountBlazeandPower
   m_EditorClassIdentifier: 
-  uniqueIP: 1245513
-  _name: "\u767A\u706B\u3059\u308B\u52C7\u6C17"
-  _description: "\u4E00\u5B9A\u6642\u9593\u3054\u3068\u306B\u3001\u30CA\u30A4\u30D5\u3092\u6295\u3052\u308B\u3068\u3059\u3053\u3057\u306E\u9593\u81EA\u8EAB\u304C\u706B\u708E\u72B6\u614B\u306B\u306A\u308A\u3001\u653B\u6483\u529B\u304C\u5897\u3059"
-  icon: {fileID: 0}
+  <uniqueIP>k__BackingField: 1323
+  <_name>k__BackingField: "\u8EAB\u3092\u7126\u304C\u3059\u6B32\u671B"
+  <_description>k__BackingField: "\u305F\u307E\u306B\u706B\u708E\u72B6\u614B\u3068\u30D0\u30D5\u3092\u5F97\u308B"
+  <icon>k__BackingField: {fileID: 21300000, guid: c95dac9e40269284ea9a8e27d22522c1, type: 3}
   coolDownSeconds: 16
   effectDuration: 4
   blazeEffectID: timecountblaze

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b95c77e8d589b242adcc68f93583649, type: 3}
   m_Name: ATKBuffReload
   m_EditorClassIdentifier: 
-  uniqueIP: 301
-  _name: "\u30D1\u30EF\u30FC\u30EA\u30ED\u30FC\u30C9"
-  _description: "\u30CA\u30A4\u30D5\u306E\u30EA\u30ED\u30FC\u30C9\u6642\u3001\u5C11\u3057\u306E\u9593\u653B\u6483\u304C\u4E0A\u304C\u308B"
-  icon: {fileID: 0}
+  <uniqueIP>k__BackingField: 12
+  <_name>k__BackingField: "\u30D1\u30EF\u30FC\u30EA\u30ED\u30FC\u30C9"
+  <_description>k__BackingField: "\u30EA\u30ED\u30FC\u30C9\u6642\u3001\u4E00\u77AC\u529B\u304C\u4E0A\u304C\u308B"
+  <icon>k__BackingField: {fileID: 21300000, guid: afff29c6f1ce0fc4da4f457b911611a1, type: 3}
   statusEffect: {fileID: 11400000, guid: f63f06ece45123449bb043df727168e8, type: 2}
-  duration: 1
-  amount_percent: 30
+  duration: 2
+  amount_percent: 60
   effectID: 6753rb

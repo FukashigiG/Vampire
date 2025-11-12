@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9bd6ff00e02b974d96d61ca1aaeb664, type: 3}
   m_Name: CriticalBonus_Speed
   m_EditorClassIdentifier: 
-  uniqueIP: 3236
-  _name: "\u7834\u811A\u306E\u795F\u308A\u76EE"
-  _description: "\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u3092\u98DF\u3089\u3063\u305F\u6575\u306E\u79FB\u52D5\u901F\u5EA6\u304C\u6570\u79D2\u9593\u4E0B\u304C\u308B"
-  icon: {fileID: 0}
+  <uniqueIP>k__BackingField: 171
+  <_name>k__BackingField: "\u7834\u811A\u306E\u795F\u308A\u76EE"
+  <_description>k__BackingField: "\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u3092\u53D7\u3051\u305F\u6575\u306B\u920D\u8DB3\u3092\u4ED8\u4E0E"
+  <icon>k__BackingField: {fileID: 21300000, guid: ffcccc4f605b1c440afe8203a0e3d4f0, type: 3}
   statusEffect: {fileID: 11400000, guid: 42661e1fdb3375143be323f0c530cc5b, type: 2}
   effectID: bonusSpeed
   duration: 5

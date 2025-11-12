@@ -29,6 +29,8 @@ public class DamageToBuffTreasure : Base_TreasureData
         {
             status.ApplyStatusEffect(statusEffect, effectID, duration, amount);
 
+            subject_OnAct.OnNext(this);
+
         }).AddTo(disposables);
     }
 }

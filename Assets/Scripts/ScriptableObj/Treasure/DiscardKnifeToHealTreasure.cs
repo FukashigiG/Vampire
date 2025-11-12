@@ -45,6 +45,9 @@ public class DiscardKnifeToHealTreasure : Base_TreasureData
             // 回復
             status.HealHP(status.maxHP * healAmount_Percent / 100);
 
+            // 発動を通知
+            subject_OnAct.OnNext(this);
+
             // クールタイムに移行
             isCooling = true;
 

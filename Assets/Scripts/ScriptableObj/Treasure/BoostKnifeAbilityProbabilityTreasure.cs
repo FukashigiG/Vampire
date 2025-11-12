@@ -38,6 +38,8 @@ public class BoostKnifeAbilityProbabilityTreasure : Base_TreasureData
             {
                 // î≠ê∂ämó¶Çè„Ç∞ÇÈ
                 matchedAbility.probability_Percent += amount_Boost_Percentage;
+
+                subject_OnAct.OnNext(this);
             }
         })
         .AddTo(disposables);

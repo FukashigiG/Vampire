@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61da99641d4ec3e4faaefda0ffed21cd, type: 3}
   m_Name: RedCount_BoostPower
   m_EditorClassIdentifier: 
-  uniqueIP: 8978675
-  _name: "\u84C4\u7A4D\u3059\u308B\u8D64"
-  _description: "20\u672C\u8D64\u3044\u30CA\u30A4\u30D5\u3092\u6295\u3052\u308B\u305F\u3073\u3001\u305D\u306E\u5A01\u529B\u3092\u5E95\u4E0A\u3052\u3059\u308B\n\u4E0A\u6607\u5BEE\u306F\u767A\u52D5\u3059\u308B\u305F\u3073\u306B\u5897\u3048\u308B\uFF08\u4E0A\u9650\u30A2\u30EA\uFF09"
-  icon: {fileID: 0}
+  <uniqueIP>k__BackingField: 121
+  <_name>k__BackingField: "\u84C4\u7A4D\u3059\u308B\u8D64"
+  <_description>k__BackingField: "\u8D64\u30CA\u30A4\u30D5\u3092\u6295\u3052\u308B\u307B\u3069\u30CA\u30A4\u30D5\u306E\u5C5E\u6027\u5024\u4E0A\u6607"
+  <icon>k__BackingField: {fileID: 21300000, guid: 5285ac60db12982429dd578277adc043, type: 3}
   targetElement: 1
   border_Count: 20
   bonusAmount_Each: 1

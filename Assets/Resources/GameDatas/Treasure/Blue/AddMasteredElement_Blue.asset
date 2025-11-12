@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1fd572fb59b0b489d7fc9c5d1482a9, type: 3}
   m_Name: AddMasteredElement_Blue
   m_EditorClassIdentifier: 
-  uniqueIP: 0
-  _name: "\u51CD\u3066\u3064\u304F\u9B42"
-  _description: "\u5F97\u610F\u5C5E\u6027\u306B\u9752\u3092\u8FFD\u52A0\u3059\u308B"
-  icon: {fileID: 0}
+  <uniqueIP>k__BackingField: 3232
+  <_name>k__BackingField: "\u51CD\u3066\u3064\u304F\u9B42"
+  <_description>k__BackingField: "\u5F97\u610F\u5C5E\u6027\u306B\u9752\u3092\u8FFD\u52A0"
+  <icon>k__BackingField: {fileID: 0}
   <addedElement>k__BackingField: 2
