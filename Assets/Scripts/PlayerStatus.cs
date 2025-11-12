@@ -21,14 +21,21 @@ public class PlayerStatus : Base_MobStatus
     // プレイヤー専用ステータス群
     int base_Luck;
     int base_EyeSight;
+    float base_CoolTime_ThrowKnife = 0.15f;
+    float base_Time_ReloadKnives = 1.5f; // ここ2つは基本この数値で固定なので数値割り当て済みにしてる
     int base_Limit_DrawKnife;
+    
 
     public int enhancementRate_Luck = 0;
     public int enhancementRate_EyeSight = 0;
+    public int enhancementRate_CoolTime_ThrowKnife = 0;
+    public int enhancementRate_Time_ReloadKnives;
     public int enhancement_Limit_DrawKnife = 0;
 
     public int luck { get { return (int)(base_Luck * (1f + (enhancementRate_Defence / 100f))); } }
     public int eyeSight { get { return (int)(base_EyeSight * (1f + (enhancementRate_EyeSight / 100f))); } }
+    public float coolTime_ThrowKnife { get { return (base_CoolTime_ThrowKnife * (1f + (enhancementRate_CoolTime_ThrowKnife / 100f))); } }
+    public float time_ReloadKnives { get { return (base_Time_ReloadKnives * (1f + (enhancementRate_Time_ReloadKnives / 100f))); } }
     // ドロー上限のみ計算方法が異なり、増減量がパーセントでなくそのままの数値で扱われる
     public int limit_DrawKnife { get { return base_Limit_DrawKnife + enhancement_Limit_DrawKnife; } }
 

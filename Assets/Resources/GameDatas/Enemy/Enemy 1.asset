@@ -23,4 +23,6 @@ MonoBehaviour:
   prefab: {fileID: 9151170032971857288, guid: a78d6c856990e6443a0c6b7b2a539d4a, type: 3}
   dropItems:
   - prefab: {fileID: 270761467918423833, guid: e31f728fb94c834468be24cd54e2a5d2, type: 3}
-    dropRate_Parcentage: 20
+    dropRate_Parcentage: 5
+  - prefab: {fileID: 270761467918423833, guid: 63f1b1a5d2bf379408e23318d9c36fa4, type: 3}
+    dropRate_Parcentage: 5

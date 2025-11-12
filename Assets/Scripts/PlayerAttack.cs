@@ -11,9 +11,6 @@ public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] KnifeData defKnife;
 
-    [SerializeField] float coolTime_ThrowKnife;
-    [SerializeField] float time_ReloadKnives;
-
     [SerializeField] LayerMask targetLayer;
 
     PlayerStatus status;
@@ -30,19 +27,17 @@ public class PlayerAttack : MonoBehaviour
     Subject<List<KnifeData_RunTime>> subject_OnReload = new();
     public IObservable<List<KnifeData_RunTime>> onReload => subject_OnReload;
 
-    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-    CancellationToken _token;
+    // 攻撃サイクル用トークンソース
+    CancellationTokenSource cancellationTokenSource;
 
     private void Awake()
     {
         status = GetComponent<PlayerStatus>();
-
-        _token = cancellationTokenSource.Token;
     }
 
     void Start()
     {
-        AttackTask(_token).Forget();
+        StartAttakLoop();
     }
 
     private void Update()
@@ -50,44 +45,60 @@ public class PlayerAttack : MonoBehaviour
         targetEnemy = FindEnemy();
     }
 
-    // 攻撃サイクル処理
+    // 攻撃サイクルを開始、停止and再開
+    void StartAttakLoop()
+    {
+        if(cancellationTokenSource != null)
+        {
+            cancellationTokenSource.Cancel();
+            cancellationTokenSource.Dispose();
+        }
+
+        cancellationTokenSource = new CancellationTokenSource();
+
+        // OnDestroyトークンと元々あるソースのトークンの合成？
+        var linkedToken = CancellationTokenSource.CreateLinkedTokenSource(
+            cancellationTokenSource.Token,
+            this.GetCancellationTokenOnDestroy()
+            ).Token;
+
+        AttackTask(linkedToken).Forget();
+
+    }
+
     async UniTask AttackTask(CancellationToken token)
     {
-        while (true)
+        try
         {
-            await Reload();
-
-            await ThrowKnives(_token);
-        }
-    }
-
-    // 攻撃対象の探索
-    GameObject FindEnemy()
-    {
-
-        //一定範囲内の敵を配列に格納
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, status.eyeSight, targetLayer);
-
-        GameObject nearestObject = null;
-        float shortestDistance = Mathf.Infinity; // 無限大で初期化
-
-        // 一番近い敵を探索
-        foreach (Collider2D hit in hits)
-        {
-            float Distance = Vector2.Distance(transform.position, hit.transform.position);
-
-            if(Distance < shortestDistance )
+            while (true)
             {
-                shortestDistance = Distance;
-                nearestObject = hit.gameObject;
+                // リロード、攻撃の合間にキャンセルされてないか確認
+
+                token.ThrowIfCancellationRequested();
+
+                await Reload(token);
+
+                token.ThrowIfCancellationRequested();
+
+                await ThrowKnives(token);
             }
         }
+        catch
+        {
 
-        return nearestObject;
+        }
+        finally
+        {
+
+        }
     }
 
-    async UniTask Reload()
+    async UniTask Reload(CancellationToken token)
     {
+        // 外部にawaitで利用されているこの関数では、try{}catch{}を使ってはならない（キャンセルが外部に伝わらなくなってしまうため）
+
+        await UniTask.Delay((int)(status.time_ReloadKnives * 500), cancellationToken: token);
+
         hand = status.inventory.runtimeKnives
                             .OrderBy(x => UnityEngine.Random.value)// 順番をシャッフルして参照（元のリストをいじるわけではない）
                             .Take(status.limit_DrawKnife)// 上から上限まで引く
@@ -98,7 +109,9 @@ public class PlayerAttack : MonoBehaviour
         // 購読先による検知、介入のための発行
         subject_OnReload.OnNext(hand);
 
-        await UniTask.Delay((int)(time_ReloadKnives * 1000));
+        await UniTask.Delay((int)(status.time_ReloadKnives * 500), cancellationToken: token);
+
+        // この処理が2つのdelayで挟まれてるのは、待機時間の真ん中でリロード処理をしたいため
     }
 
     async UniTask ThrowKnives(CancellationToken token)
@@ -129,14 +142,44 @@ public class PlayerAttack : MonoBehaviour
             // xを初期化
             x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife, status, isElementMatched);
 
-            await UniTask.Delay((int)(coolTime_ThrowKnife * 1000), cancellationToken: token);
+            // ステータスの持つ数値の分だけ待機
+            await UniTask.Delay((int)(status.coolTime_ThrowKnife * 1000), cancellationToken: token);
         }
+    }
+
+    // 攻撃対象の探索
+    GameObject FindEnemy()
+    {
+
+        //一定範囲内の敵を配列に格納
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, status.eyeSight, targetLayer);
+
+        GameObject nearestObject = null;
+        float shortestDistance = Mathf.Infinity; // 無限大で初期化
+
+        // 一番近い敵を探索
+        foreach (Collider2D hit in hits)
+        {
+            float Distance = Vector2.Distance(transform.position, hit.transform.position);
+
+            if (Distance < shortestDistance)
+            {
+                shortestDistance = Distance;
+                nearestObject = hit.gameObject;
+            }
+        }
+
+        return nearestObject;
     }
 
     private void OnDestroy()
     {
-        cancellationTokenSource.Cancel();
-        cancellationTokenSource.Dispose();
+        if(cancellationTokenSource != null)
+        {
+            cancellationTokenSource.Cancel();
+            cancellationTokenSource.Dispose();
+            cancellationTokenSource = null;
+        }
 
         subject_OnThrowKnife.Dispose();
 

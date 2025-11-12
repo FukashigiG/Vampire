@@ -22,8 +22,8 @@ MonoBehaviour:
   <eyeSight>k__BackingField: 4
   <limit_DrawKnives>k__BackingField: 4
   <initialKnives>k__BackingField:
-  - {fileID: 11400000, guid: bff7ee63a3be10a4fbefe86e378f1f49, type: 2}
-  - {fileID: 11400000, guid: bff7ee63a3be10a4fbefe86e378f1f49, type: 2}
+  - {fileID: 11400000, guid: bd9df514f7f01734981467e7effaef2b, type: 2}
+  - {fileID: 11400000, guid: bd9df514f7f01734981467e7effaef2b, type: 2}
   <initialTreasures>k__BackingField:
   - {fileID: 11400000, guid: 4cd2e0a1bf5a7554da6a24b41e885ffa, type: 2}
   <masteredElement>k__BackingField: 1

@@ -35,6 +35,9 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     public bool damageOverTime;
     public bool onRegeneration;
 
+    float ratio_SlipDamage = 2;
+    float ratio_Regene = 4;
+
     protected Subject<(Vector2 position, int amount)> subject_OnDamaged = new Subject<(Vector2, int)>();
     protected Subject<Unit> subject_OnSecond = new Subject<Unit>();
     protected static Subject<(Base_MobStatus status, Base_StatusEffectData effect, float duration, int amount)> subject_OnGetStatusEffect = new();
@@ -85,9 +88,9 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     void SecondUpdate()
     {
         // スリップダメージを受ける設定なら、
-        if (damageOverTime) TakeDamage(maxHP / 100 * 2);
+        if (damageOverTime) TakeDamage((int)((float)maxHP / 100f * ratio_SlipDamage));
         // リジェネを受ける設定なら、
-        if (onRegeneration) HealHP(maxHP / 100 * 4);
+        if (onRegeneration) HealHP((int)((float)maxHP / 100f * ratio_Regene));
 
         // 毎秒の通知
         subject_OnSecond.OnNext(Unit.Default);

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cce64de696db4b74a9cc0f22b589f732, type: 3}
+  m_Name: Ricochet
+  m_EditorClassIdentifier: 
+  <effectName>k__BackingField: "\u8DF3\u5F3E"
+  <description>k__BackingField: "\u6575\u306B\u30D2\u30C3\u30C8\u3059\u308B\u3068\u3001\u6D88\u3048\u308B\u4EE3\u308F\u308A\u306B\u5225\u306E\u65B9\u5411\u3078\u9032\u3093\u3067\u3044\u304F"
+  <effectOnThrown>k__BackingField: 0
+  <effectOnHit>k__BackingField: 1

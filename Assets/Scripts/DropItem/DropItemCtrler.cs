@@ -8,7 +8,7 @@ public class DropItemCtrler : MonoBehaviour
 {
     enum EventEnum
     {
-        getKnife, getTreasure, driveKnife
+        getKnife, getTreasure, driveKnife, heal
     }
 
     [SerializeField] EventEnum eventEnum;
@@ -46,6 +46,10 @@ public class DropItemCtrler : MonoBehaviour
 
             case EventEnum.driveKnife:
                 GameEventDirector.Instance.TriggerEvent(GameEventDirector.Events.driveKnife);
+                break;
+
+            case EventEnum.heal:
+                if (collision.TryGetComponent(out PlayerStatus component)) component.HealHP(component.maxHP / 12);
                 break;
         }
 

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
+  m_Name: "\u8DF3\u5F3E\u30C6\u30B9\u30C8\u7528\u30CA\u30A4\u30D5\u30C7\u30FC\u30BF"
+  m_EditorClassIdentifier: 
+  <sprite>k__BackingField: {fileID: 21300000, guid: 469683009e289a547aec5276a7e71a60, type: 3}
+  <sprite_Defolme>k__BackingField: {fileID: 21300000, guid: a177636700e088c4080e891d48af7089, type: 3}
+  <color>k__BackingField: {r: 0.8207547, g: 0, b: 0, a: 1}
+  <_name>k__BackingField: test
+  <rarity>k__BackingField: 2
+  <element>k__BackingField: 1
+  <power>k__BackingField: 22
+  <elementPower>k__BackingField: 22
+  <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
+  <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: edc689687b1d4fc47a87ba0f3d1128e2, type: 3}
+  description: "\u546A\u308F\u308C\u305F\u540D\u5200...\u306E\u7834\u7247\n\u6295\u3052\u308B\u305F\u3073\u5DF1\u306E\u4F53\u304C\u8755\u307E\u308C\u308B"
+  <abilities>k__BackingField:
+  - abilityLogic: {fileID: 11400000, guid: 9ae334e7f608d5a4caeb6cee56bbf70b, type: 2}
+    probability_Percent: 100
+    modifire: 5
+    effectID: testData_Rico
