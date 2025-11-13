@@ -114,6 +114,7 @@ public class PlayerAttack : MonoBehaviour
         hand = status.inventory.runtimeKnives
                             .OrderBy(x => UnityEngine.Random.value)// 順番をシャッフルして参照（元のリストをいじるわけではない）
                             .Take(status.limit_DrawKnife)// 上から上限まで引く
+                            .Select(originalData => new KnifeData_RunTime(originalData))// Selectでオリジナルを元にした新しいインスタンスを
                             .ToList();
 
         //Debug.Log($"ナイフは{hand.Count}本");
@@ -137,9 +138,7 @@ public class PlayerAttack : MonoBehaviour
             Vector2 dir = (targetEnemy.transform.position - this.transform.position).normalized;
 
             // エディタ上で登録されたナイフデータを取得
-            // データのコピーを扱うことで、PlayerInventry内のナイフデータが書き換えられる事故を防ぐ
-            // ぶっちゃけavailableKnivesの時点でコピーにすべき
-            var knife = new KnifeData_RunTime(hand[i]);
+            var knife = hand[i];
 
             // 購読先による介入のための発行
             subject_OnThrowKnife.OnNext((knife, i));
@@ -194,7 +193,13 @@ public class PlayerAttack : MonoBehaviour
         // 既に割り当て済みならReturn
         if(charaAbility != null) return;
 
-        charaAbility = ability;
+        // 渡されたものの新規インスタンスを生成、それを代入
+        charaAbility = UnityEngine.Object.Instantiate(ability);
+
+        // 初期化
+        charaAbility.Initialize(status);
+
+
     }
 
     // アビリティチャージ
@@ -219,7 +224,7 @@ public class PlayerAttack : MonoBehaviour
         charaAbilityChargeValue.Value = 0;
 
         // charaAbility内の関数を実行
-        charaAbility.ActivateAbility(status);
+        charaAbility.ActivateAbility();
     }
 
     private void OnDestroy()

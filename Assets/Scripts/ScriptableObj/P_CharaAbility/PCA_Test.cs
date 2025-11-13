@@ -9,8 +9,8 @@ public class PCA_Test : Base_P_CharaAbility
 
     [SerializeField] GameObject fx;
 
-    public override void ActivateAbility(PlayerStatus status)
+    public override void ActivateAbility()
     {
-        Instantiate(fx, status.transform.position, Quaternion.identity);
+        Instantiate(fx, player.transform.position, Quaternion.identity);
     }
 }

@@ -191,7 +191,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         if(isCritical) damagePoint *= 2;
 
         // –hŒä–³‹‚Å‚È‚¢‚È‚çA–hŒäŒvZ
-        if (!isIgnoreDefence) damagePoint = (int)((float)damagePoint / (((float)K + defence) / (float)K));
+        if (!isIgnoreDefence) damagePoint = (int)(damagePoint / ((float)(K + defence) / K));
         // damagePoint‚ğ0ˆÈ‰º‚É‚µ‚È‚¢
         if (damagePoint < 0) damagePoint = 0;
 
