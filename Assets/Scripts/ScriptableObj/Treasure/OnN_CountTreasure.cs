@@ -36,7 +36,7 @@ public class OnN_CountTreasure : Base_TreasureData
                 var ablty = new KnifeAbility(UnityEngine.Object.Instantiate(addedKnifeAbility.abilityLogic),
                                              addedKnifeAbility.effectID);
 
-                _throw.knifeData.abilities.Add(ablty);
+                _throw.abilities.Add(ablty);
 
                 // ”­“®‚ð’Ê’m
                 subject_OnAct.OnNext(this);

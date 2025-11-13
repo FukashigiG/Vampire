@@ -28,14 +28,14 @@ public class AddKnifeAbilityTreasure : Base_TreasureData
         status.attack.onThrowKnife.Subscribe(_throw =>
         {
             // 対象のアビリティーロジックがあれば、それを取得
-            KnifeAbility matchedAbility = _throw.knifeData.abilities
+            KnifeAbility matchedAbility = _throw.abilities
                 .FirstOrDefault(effect => effect.abilityLogic.effectName == ability.abilityLogic.effectName);
 
             // そのナイフデータの属性が対象でないなら無視、または既にこの能力を持ってるなら無視
-            if (_throw.knifeData.element != targetEnum || matchedAbility != null) return;
+            if (_throw.element != targetEnum || matchedAbility != null) return;
 
             // 引数で渡されたナイフのデータに、特定の特殊能力を追加
-            _throw.knifeData.abilities.Add(ability);
+            _throw.abilities.Add(ability);
 
             subject_OnAct.OnNext(this);
         })

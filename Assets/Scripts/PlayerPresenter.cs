@@ -44,7 +44,7 @@ public class PlayerPresenter : MonoBehaviour
 
         status.attack.onThrowKnife.Subscribe(value =>
         {
-            showHandState.Thrown(value.index);
+            showHandState.Thrown();
 
         }).AddTo(this);
 

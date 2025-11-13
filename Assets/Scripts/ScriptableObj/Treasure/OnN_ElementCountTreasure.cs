@@ -34,7 +34,7 @@ public class OnN_ElementCountTreasure : Base_TreasureData
         // 特定の属性を投げるたびカウントをプラス
         status.attack.onThrowKnife.Subscribe(_throw =>
         {
-            if (_throw.knifeData.element == targetElement)
+            if (_throw.element == targetElement)
             {
                 count++;
 
@@ -46,7 +46,7 @@ public class OnN_ElementCountTreasure : Base_TreasureData
 
                     if(cullentBouns >= bonusLimit) cullentBouns = bonusLimit;
 
-                    _throw.knifeData.power += cullentBouns;
+                    _throw.power += cullentBouns;
 
                     // 発動を通知
                     subject_OnAct.OnNext(this);

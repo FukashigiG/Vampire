@@ -34,7 +34,7 @@ public class OnN_Charge_Boost_EP_Treasure : Base_TreasureData
 
             if (count >= border)
             {
-                _throw.knifeData.elementPower += amount_Plus;
+                _throw.elementPower += amount_Plus;
 
                 // ”­“®‚ð’Ê’m
                 subject_OnAct.OnNext(this);

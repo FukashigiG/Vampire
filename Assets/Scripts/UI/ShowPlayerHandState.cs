@@ -25,7 +25,7 @@ public class ShowPlayerHandState : MonoBehaviour
         }
     }
 
-    public void Thrown(int index)
+    public void Thrown()
     {
         Destroy(this.transform.GetChild(0).gameObject);
     }

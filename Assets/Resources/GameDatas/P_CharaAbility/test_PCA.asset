@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcac5836389a61b47944ede54aeb76c0, type: 3}
   m_Name: test_PCA
   m_EditorClassIdentifier: 
+  <abilityName>k__BackingField: "\u30C6\u30B9\u30C8\u7528\u30C7\u30FC\u30BF"
+  <explanation>k__BackingField: "\u305D\u306E\u5834\u306B\u304D\u308C\u3044\u306A\u82B1\u706B\u3092\u751F\u6210"
   <requireChargeValue>k__BackingField: 10
   fx: {fileID: 8791802859087666345, guid: 123f658d32429214abe6e56b09ca0263, type: 3}

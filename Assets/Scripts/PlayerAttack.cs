@@ -17,6 +17,7 @@ public class PlayerAttack : MonoBehaviour
 
     GameObject targetEnemy;
 
+    // いわゆる手札
     List<KnifeData_RunTime> hand = new List<KnifeData_RunTime>();
 
     public Base_P_CharaAbility charaAbility {  get; private set; }
@@ -25,11 +26,12 @@ public class PlayerAttack : MonoBehaviour
 
     // アビリティチャージ量
     ReactiveProperty<int> charaAbilityChargeValue = new ReactiveProperty<int>();
+    // ↑の参照部分公開用
     public IReadOnlyReactiveProperty<int> abilityChargeValue => charaAbilityChargeValue;
 
     // ナイフ初期化直前に発行、秘宝効果で編集できるように
-    Subject<(KnifeData_RunTime knifeData, int index)> subject_OnThrowKnife = new Subject<(KnifeData_RunTime, int)>();
-    public IObservable<(KnifeData_RunTime knifeData, int index)> onThrowKnife => subject_OnThrowKnife;
+    Subject<KnifeData_RunTime> subject_OnThrowKnife = new Subject<KnifeData_RunTime>();
+    public IObservable<KnifeData_RunTime> onThrowKnife => subject_OnThrowKnife;
 
     // リロード時に発行、
     Subject<List<KnifeData_RunTime>> subject_OnReload = new();
@@ -109,27 +111,24 @@ public class PlayerAttack : MonoBehaviour
     {
         // 外部にawaitで利用されているこの関数では、try{}catch{}を使ってはならない（キャンセルが外部に伝わらなくなってしまうため）
 
-        await UniTask.Delay((int)(status.time_ReloadKnives * 500), cancellationToken: token);
-
-        hand = status.inventory.runtimeKnives
+        List<KnifeData_RunTime> drawnKnives = status.inventory.runtimeKnives
                             .OrderBy(x => UnityEngine.Random.value)// 順番をシャッフルして参照（元のリストをいじるわけではない）
-                            .Take(status.limit_DrawKnife)// 上から上限まで引く
-                            .Select(originalData => new KnifeData_RunTime(originalData))// Selectでオリジナルを元にした新しいインスタンスを
+                            .Take(status.limit_DrawKnife)// 上から上限まで
                             .ToList();
+
+        SetHand(drawnKnives);
 
         //Debug.Log($"ナイフは{hand.Count}本");
 
         // 購読先による検知、介入のための発行
         subject_OnReload.OnNext(hand);
 
-        await UniTask.Delay((int)(status.time_ReloadKnives * 500), cancellationToken: token);
-
-        // この処理が2つのdelayで挟まれてるのは、待機時間の真ん中でリロード処理をしたいため
+        await UniTask.Delay((int)(status.time_ReloadKnives * 1000), cancellationToken: token);
     }
 
     async UniTask ThrowKnives(CancellationToken token)
     {
-        for (int i = 0; i < hand.Count; i++)
+        while(hand.Count > 0)
         {
             // 攻撃範囲内に敵が現れるまで待つ
             await UniTask.WaitUntil(() => targetEnemy != null, cancellationToken: token);
@@ -137,11 +136,11 @@ public class PlayerAttack : MonoBehaviour
             // 攻撃対象の方向をVec2型で取得
             Vector2 dir = (targetEnemy.transform.position - this.transform.position).normalized;
 
-            // エディタ上で登録されたナイフデータを取得
-            var knife = hand[i];
+            // handの先頭を取得
+            var knife = hand[0];
 
             // 購読先による介入のための発行
-            subject_OnThrowKnife.OnNext((knife, i));
+            subject_OnThrowKnife.OnNext(knife);
 
             // ナイフを生成、それをxと置く
             // 編集された可能性のあるKnifeDataで処理を続行
@@ -151,13 +150,32 @@ public class PlayerAttack : MonoBehaviour
             bool isElementMatched = status.masteredElements.Contains(knife.element);
 
             // xを初期化
+            // この文以降でxを参照してはならない（Initialize）
             x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife, status, isElementMatched);
+
+            // handの先頭を削除
+            hand.RemoveAt(0);
 
             // ナイフを1本投げるごとにアビリティチャージ
             AbilityCharge();
 
             // ステータスの持つ数値の分だけ待機
             await UniTask.Delay((int)(status.coolTime_ThrowKnife * 1000), cancellationToken: token);
+        }
+    }
+
+    public void SetHand(List<KnifeData_RunTime> list = null, KnifeData_RunTime knife = null)
+    {
+        if (list != null)
+        {
+            // Selectでオリジナルを元にした新しいインスタンスを
+            // inventry内のオリジナルデータを渡されることを想定している
+            hand = list.Select(originalData => new KnifeData_RunTime(originalData)).ToList();
+        }
+
+        if (knife != null)
+        {
+            hand.Add(new KnifeData_RunTime(knife));
         }
     }
 

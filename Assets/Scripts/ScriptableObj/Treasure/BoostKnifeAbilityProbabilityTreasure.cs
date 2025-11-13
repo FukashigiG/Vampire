@@ -31,7 +31,7 @@ public class BoostKnifeAbilityProbabilityTreasure : Base_TreasureData
         status.attack.onThrowKnife.Subscribe(_throw =>
         {
             // 対象のアビリティーロジックがあれば、それを取得
-            KnifeAbility matchedAbility = _throw.knifeData.abilities
+            KnifeAbility matchedAbility = _throw.abilities
                 .FirstOrDefault(effect => effect.abilityLogic.GetType() == targetType);
 
             if (matchedAbility != null)
