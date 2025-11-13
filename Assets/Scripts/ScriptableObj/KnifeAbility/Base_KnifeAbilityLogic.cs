@@ -8,6 +8,8 @@ public abstract class Base_KnifeAbilityLogic : ScriptableObject, IOnHitSpecialEf
 {
     // このアビリティの名前
     [field: SerializeField] public string effectName { get; private set; }
+    // 発動率
+    [SerializeField] public int probability_Percent = 100; // デフォルト値
     // 能力の詳細説明テキスト
     [field: SerializeField, Multiline(6)] public string description { get; private set; }
 
@@ -36,7 +38,7 @@ public abstract class Base_KnifeAbilityLogic : ScriptableObject, IOnHitSpecialEf
     
 
     // 特殊効果処理
-    public virtual void ActivateAbility(Base_MobStatus status, GameObject knifeObject, KnifeData_RunTime knifeData, float modifire, string effectID)
+    public virtual void ActivateAbility(Base_MobStatus status, GameObject knifeObject, KnifeData_RunTime knifeData, string effectID)
     {
 
 

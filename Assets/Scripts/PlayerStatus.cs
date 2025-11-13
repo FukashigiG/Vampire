@@ -102,6 +102,9 @@ public class PlayerStatus : Base_MobStatus
             inventory.AddTreasure(y);
         }
 
+        // ƒLƒƒƒ‰ƒAƒrƒŠƒeƒB‚ð“n‚·
+        attack.SetCharaAbility(playerCharaData.charaAbility);
+
         //”CˆÓ‚Ì“G‚ªŽ€‚ñ‚¾‚çEXPƒQƒbƒg
         EnemyStatus.onDie.Subscribe(x => GetEXP(x.value)).AddTo( disposables );
     }

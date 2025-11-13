@@ -37,7 +37,7 @@ public class BoostKnifeAbilityProbabilityTreasure : Base_TreasureData
             if (matchedAbility != null)
             {
                 // î≠ê∂ämó¶Çè„Ç∞ÇÈ
-                matchedAbility.probability_Percent += amount_Boost_Percentage;
+                matchedAbility.abilityLogic.probability_Percent += amount_Boost_Percentage;
 
                 subject_OnAct.OnNext(this);
             }

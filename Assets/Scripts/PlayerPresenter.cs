@@ -17,6 +17,8 @@ public class PlayerPresenter : MonoBehaviour
 
     [SerializeField] Image treasureActImage;
 
+    [SerializeField] Image charaAbilityChargeValue;
+
     [SerializeField] GameObject iconPrefab;
 
     Dictionary<Base_StatusEffectData, GameObject> dictionaly_SED_Icon = new();
@@ -81,6 +83,12 @@ public class PlayerPresenter : MonoBehaviour
         Base_TreasureData.onAct.Subscribe(x =>
         {
             treasureActImage.sprite = x.icon;
+
+        }).AddTo(this);
+
+        status.attack.abilityChargeValue.Subscribe(x =>
+        {
+            charaAbilityChargeValue.fillAmount = (float)x / (float)status.attack.charaAbility.requireChargeValue;
 
         }).AddTo(this);
     }

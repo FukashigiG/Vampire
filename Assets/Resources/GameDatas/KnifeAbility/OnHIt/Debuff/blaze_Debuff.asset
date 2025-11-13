@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: blaze_Debuff
   m_EditorClassIdentifier: 
   <effectName>k__BackingField: "\u706B\u708E"
+  probability_Percent: 80
   <description>k__BackingField: "\u30D2\u30C3\u30C8\u3057\u305F\u6575\u3092\u706B\u708E\u72B6\u614B\u306B\u3059\u308B"
   <effectOnThrown>k__BackingField: 0
   <effectOnHit>k__BackingField: 1
-  dulation: 1
+  dulation: 5
   amount_percent: 0
   statusEffect: {fileID: 11400000, guid: c5e621a7aaad6d040b55e8f7d994b305, type: 2}

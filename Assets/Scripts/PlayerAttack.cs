@@ -19,6 +19,14 @@ public class PlayerAttack : MonoBehaviour
 
     List<KnifeData_RunTime> hand = new List<KnifeData_RunTime>();
 
+    public Base_P_CharaAbility charaAbility {  get; private set; }
+
+
+
+    // アビリティチャージ量
+    ReactiveProperty<int> charaAbilityChargeValue = new ReactiveProperty<int>();
+    public IReadOnlyReactiveProperty<int> abilityChargeValue => charaAbilityChargeValue;
+
     // ナイフ初期化直前に発行、秘宝効果で編集できるように
     Subject<(KnifeData_RunTime knifeData, int index)> subject_OnThrowKnife = new Subject<(KnifeData_RunTime, int)>();
     public IObservable<(KnifeData_RunTime knifeData, int index)> onThrowKnife => subject_OnThrowKnife;
@@ -27,12 +35,16 @@ public class PlayerAttack : MonoBehaviour
     Subject<List<KnifeData_RunTime>> subject_OnReload = new();
     public IObservable<List<KnifeData_RunTime>> onReload => subject_OnReload;
 
+
+
     // 攻撃サイクル用トークンソース
     CancellationTokenSource cancellationTokenSource;
 
     private void Awake()
     {
         status = GetComponent<PlayerStatus>();
+
+        charaAbilityChargeValue.Value = 0;
     }
 
     void Start()
@@ -46,7 +58,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // 攻撃サイクルを開始、停止and再開
-    void StartAttakLoop()
+    public void StartAttakLoop()
     {
         if(cancellationTokenSource != null)
         {
@@ -142,10 +154,14 @@ public class PlayerAttack : MonoBehaviour
             // xを初期化
             x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife, status, isElementMatched);
 
+            // ナイフを1本投げるごとにアビリティチャージ
+            AbilityCharge();
+
             // ステータスの持つ数値の分だけ待機
             await UniTask.Delay((int)(status.coolTime_ThrowKnife * 1000), cancellationToken: token);
         }
     }
+
 
     // 攻撃対象の探索
     GameObject FindEnemy()
@@ -170,6 +186,40 @@ public class PlayerAttack : MonoBehaviour
         }
 
         return nearestObject;
+    }
+
+    // 外部からキャラアビリティをセットするための関数
+    public void SetCharaAbility(Base_P_CharaAbility ability)
+    {
+        // 既に割り当て済みならReturn
+        if(charaAbility != null) return;
+
+        charaAbility = ability;
+    }
+
+    // アビリティチャージ
+    public void AbilityCharge(int value = 1)
+    {
+        // アビリティが無いならリターン
+        if (charaAbility == null) return;
+
+        charaAbilityChargeValue.Value += value;
+    }
+
+    // アビリティの実行
+    public void ExecuteCharaAbility()
+    {
+        // アビリティがないならリターン
+        if (charaAbility == null) return;
+
+        // 必要なチャージ量に届いてなければリターン
+        if (charaAbilityChargeValue.Value < charaAbility.requireChargeValue) return;
+
+        // アビリティチャージ量をリセット
+        charaAbilityChargeValue.Value = 0;
+
+        // charaAbility内の関数を実行
+        charaAbility.ActivateAbility(status);
     }
 
     private void OnDestroy()

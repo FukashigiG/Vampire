@@ -46,12 +46,14 @@ public class KnifeData : ScriptableObject
 [System.Serializable]
 public class KnifeAbility
 {
+    // やっぱ発動率と数値はアビリティごとの固有値にしたいわ
+
     // 発動する能力
     [SerializeField] public Base_KnifeAbilityLogic abilityLogic;
     // 発動率
-    [SerializeField] public int probability_Percent = 100; // デフォルト値
+    //[SerializeField] public int probability_Percent = 100; // デフォルト値
     // 効果倍率
-    [SerializeField] public float modifire = 1.0f; // デフォルト値
+    //[SerializeField] public float modifire = 1.0f; // デフォルト値
     // 効果ID 状態変化系効果の際等で使用される
     [SerializeField] public string effectID;
 
@@ -64,10 +66,10 @@ public class KnifeAbility
         // 1～100の乱数が発動確率以内なら、特殊効果を発動
         int randomNum = Random.Range(1, 101);
 
-        if (randomNum <= probability_Percent)
+        if (randomNum <= abilityLogic.probability_Percent)
         {
             // 効果処理
-            abilityLogic.ActivateAbility(status, knifeObj, knifeData, modifire, effectID);
+            abilityLogic.ActivateAbility(status, knifeObj, knifeData, effectID);
         }
     }
 
@@ -80,19 +82,17 @@ public class KnifeAbility
         // 1～100の乱数が発動確率以内なら、特殊効果を発動
         int randomNum = Random.Range(1, 101);
 
-        if (randomNum <= probability_Percent)
+        if (randomNum <= abilityLogic.probability_Percent)
         {
             // 効果処理
-            abilityLogic.ActivateAbility(status, knifeObj, knifeData, modifire, effectID);
+            abilityLogic.ActivateAbility(status, knifeObj, knifeData, effectID);
         }
     }
 
     // コンストラクタ
-    public KnifeAbility(Base_KnifeAbilityLogic abilityLogic, int probability_Percent, float modifire, string effectID)
+    public KnifeAbility(Base_KnifeAbilityLogic abilityLogic, string effectID)
     {
         this.abilityLogic = abilityLogic;
-        this.probability_Percent = probability_Percent;
-        this.modifire = modifire;
         this.effectID = effectID;
     }
 }

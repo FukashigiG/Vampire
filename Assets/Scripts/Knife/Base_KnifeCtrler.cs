@@ -50,7 +50,7 @@ public class Base_KnifeCtrler : MonoBehaviour
             if (ability != null)
             {
                 // ブースト状態でないなら、発動率半減
-                if (!isBoosted) ability.probability_Percent /= 2;
+                if (!isBoosted) ability.abilityLogic.probability_Percent /= 2;
 
                 // ヒット時の特殊処理を実行
                 // 相手のステータス、自分のポジションとナイフデータを渡す
@@ -88,7 +88,7 @@ public class Base_KnifeCtrler : MonoBehaviour
                 if (ability != null)
                 {
                     // ブースト状態でないなら、発動率半減
-                    if (!isBoosted) ability.probability_Percent /= 2;
+                    if (!isBoosted) ability.abilityLogic.probability_Percent /= 2;
 
                     // ヒット時の特殊処理を実行
                     // 相手のステータス、自分のポジションとナイフデータを渡す

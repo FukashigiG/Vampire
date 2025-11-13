@@ -27,4 +27,10 @@ public class PlayerController : SingletonMono<PlayerController>
 
         _rigidbody.AddForce(inputValue * _status.moveSpeed);
     }
+
+    // ‚±‚ÌŠÖ”‚ÍPlayerInput‚É‚æ‚Á‚ÄŒÄ‚Î‚ê‚é
+    public void OnAbility()
+    {
+        _status.attack.ExecuteCharaAbility();
+    }
 }

@@ -7,10 +7,12 @@ public class KAL_DamageForPlayer : Base_KnifeAbilityLogic
 {
     // 投擲時プレイヤーはダメージを受ける
 
-    public override void ActivateAbility(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData, float modifire, string effectID)
-    {
-        base.ActivateAbility (status, knifeObj, knifeData, modifire, effectID);
+    [SerializeField] int value_Damage;
 
-        status.TakeDamage(1 * (int)modifire);
+    public override void ActivateAbility(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData, string effectID)
+    {
+        base.ActivateAbility (status, knifeObj, knifeData, effectID);
+
+        status.TakeDamage(value_Damage);
     }
 }

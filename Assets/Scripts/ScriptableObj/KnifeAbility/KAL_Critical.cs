@@ -18,9 +18,9 @@ public class KAL_Critical : Base_KnifeAbilityLogic
     [SerializeField] GameObject efect;
 
     // Œø‰Ê‚ª”­“®‚µ‚Ä‰‚ß‚Ätrue‚É‚È‚é
-    public override void ActivateAbility(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData, float modifire, string effectID)
+    public override void ActivateAbility(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData, string effectID)
     {
-        base.ActivateAbility(status, knifeObj, knifeData, modifire, effectID);
+        base.ActivateAbility(status, knifeObj, knifeData, effectID);
 
         _critical = true;
 

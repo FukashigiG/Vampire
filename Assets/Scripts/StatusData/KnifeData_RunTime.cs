@@ -69,8 +69,6 @@ public class KnifeData_RunTime
                 // 新しいKnifeAbilityインスタンスを生成してAddする
                 KnifeAbility newAbility = new KnifeAbility(
                     UnityEngine.Object.Instantiate(ability.abilityLogic),
-                    ability.probability_Percent,
-                    ability.modifire,
                     ability.effectID
                 );
                 abilities.Add(newAbility);
@@ -101,8 +99,6 @@ public class KnifeData_RunTime
                 // 新しいKnifeAbilityインスタンスを生成してAddする
                 KnifeAbility newAbility = new KnifeAbility(
                     UnityEngine.Object.Instantiate(ability.abilityLogic),
-                    ability.probability_Percent,
-                    ability.modifire,
                     ability.effectID
                 );
                 abilities.Add(newAbility);

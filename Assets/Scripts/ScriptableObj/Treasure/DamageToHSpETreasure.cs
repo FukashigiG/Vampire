@@ -34,7 +34,7 @@ public class DamageToHSpETreasure : Base_TreasureData
         {
             if (!standBy) return;
 
-            _throw.knifeData.abilities.Add(new KnifeAbility(UnityEngine.Object.Instantiate(knifeAbility.abilityLogic), knifeAbility.probability_Percent, knifeAbility.modifire, knifeAbility.effectID));
+            _throw.knifeData.abilities.Add(new KnifeAbility(UnityEngine.Object.Instantiate(knifeAbility.abilityLogic), knifeAbility.effectID));
 
             subject_OnAct.OnNext(this);
 

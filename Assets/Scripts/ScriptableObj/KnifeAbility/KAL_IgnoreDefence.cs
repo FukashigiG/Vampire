@@ -14,9 +14,9 @@ public class KAL_IgnoreDefence : Base_KnifeAbilityLogic
         get { return _ignoreDefence; } 
     }
 
-    public override void ActivateAbility(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData, float modifire, string effectID)
+    public override void ActivateAbility(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData, string effectID)
     {
-        base.ActivateAbility(status, knifeObj, knifeData, modifire, effectID);
+        base.ActivateAbility(status, knifeObj, knifeData, effectID);
 
         _ignoreDefence = true;
     }

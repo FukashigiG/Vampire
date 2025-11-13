@@ -7,9 +7,9 @@ public class KAL_VanishOnThrow : Base_KnifeAbilityLogic
 {
     // è¡ñ≈Ç∑ÇÈ
 
-    public override void ActivateAbility(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData, float modifire, string effectID)
+    public override void ActivateAbility(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData, string effectID)
     {
-        base.ActivateAbility (status, knifeObj, knifeData, modifire, effectID);
+        base.ActivateAbility (status, knifeObj, knifeData, effectID);
 
         Destroy(knifeObj);
     }

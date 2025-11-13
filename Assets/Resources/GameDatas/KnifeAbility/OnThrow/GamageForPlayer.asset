@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: GamageForPlayer
   m_EditorClassIdentifier: 
   <effectName>k__BackingField: "\u81EA\u50B7"
-  <description>k__BackingField: "\u6295\u64F2\u6642\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B"
   probability_Percent: 60
+  <description>k__BackingField: "\u6295\u64F2\u6642\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B"
   <effectOnThrown>k__BackingField: 1
   <effectOnHit>k__BackingField: 0
+  value_Damage: 4
