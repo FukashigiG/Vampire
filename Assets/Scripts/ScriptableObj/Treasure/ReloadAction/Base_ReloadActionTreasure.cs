@@ -27,7 +27,7 @@ public class Base_ReloadActionTreasure : Base_TreasureData
         .AddTo(disposables);
     }
 
-    public virtual void ReloadAction(PlayerStatus status, List<KnifeData_RunTime> knives)
+    public virtual void ReloadAction(PlayerStatus status, ReactiveCollection<KnifeData_RunTime> knives)
     {
         // ”­“®‚ð’Ê’m
         subject_OnAct.OnNext(this);

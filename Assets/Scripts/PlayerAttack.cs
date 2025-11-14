@@ -6,6 +6,7 @@ using System.Threading;
 using UniRx;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class PlayerAttack : MonoBehaviour
     GameObject targetEnemy;
 
     // いわゆる手札
-    List<KnifeData_RunTime> hand = new List<KnifeData_RunTime>();
+    ReactiveCollection<KnifeData_RunTime> hand = new ReactiveCollection<KnifeData_RunTime>();
+    public IReadOnlyReactiveCollection<KnifeData_RunTime> hand_RC => hand;
 
     public Base_P_CharaAbility charaAbility {  get; private set; }
 
@@ -34,8 +36,8 @@ public class PlayerAttack : MonoBehaviour
     public IObservable<KnifeData_RunTime> onThrowKnife => subject_OnThrowKnife;
 
     // リロード時に発行、
-    Subject<List<KnifeData_RunTime>> subject_OnReload = new();
-    public IObservable<List<KnifeData_RunTime>> onReload => subject_OnReload;
+    Subject<ReactiveCollection<KnifeData_RunTime>> subject_OnReload = new();
+    public IObservable<ReactiveCollection<KnifeData_RunTime>> onReload => subject_OnReload;
 
 
 
@@ -99,7 +101,7 @@ public class PlayerAttack : MonoBehaviour
         }
         catch
         {
-
+            
         }
         finally
         {
@@ -110,6 +112,9 @@ public class PlayerAttack : MonoBehaviour
     async UniTask Reload(CancellationToken token)
     {
         // 外部にawaitで利用されているこの関数では、try{}catch{}を使ってはならない（キャンセルが外部に伝わらなくなってしまうため）
+
+        // まず手持ちを空にする
+        hand.Clear();
 
         List<KnifeData_RunTime> drawnKnives = status.inventory.runtimeKnives
                             .OrderBy(x => UnityEngine.Random.value)// 順番をシャッフルして参照（元のリストをいじるわけではない）
@@ -170,7 +175,8 @@ public class PlayerAttack : MonoBehaviour
         {
             // Selectでオリジナルを元にした新しいインスタンスを
             // inventry内のオリジナルデータを渡されることを想定している
-            hand = list.Select(originalData => new KnifeData_RunTime(originalData)).ToList();
+            // AddRangeを用いることでそれら一つ一つが通知される
+            hand.AddRange(list.Select(originalData => new KnifeData_RunTime(originalData)));
         }
 
         if (knife != null)

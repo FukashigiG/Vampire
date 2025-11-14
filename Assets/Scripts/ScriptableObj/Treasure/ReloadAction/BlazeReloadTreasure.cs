@@ -24,7 +24,7 @@ public class BlazeReloadTreasure : Base_ReloadActionTreasure
     [SerializeField] LayerMask targetLayer;
     [SerializeField] GameObject effect;
 
-    public override void ReloadAction(PlayerStatus status, List<KnifeData_RunTime> knives)
+    public override void ReloadAction(PlayerStatus status, ReactiveCollection<KnifeData_RunTime> knives)
     {
         // リロードした際の、N属性のナイフの数を数える
         int count = knives.Count(x => x.element == targetElement);

@@ -26,41 +26,48 @@ public class PlayerPresenter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // プレイヤーのステータスを取得
         status = GetComponent<PlayerStatus>();
 
+        // HP変動を購読、ゲージ更新
         status.hitPoint.Subscribe(value =>
         {
             playerHPGauge.SetGauge(value, status.maxHP);
 
         }).AddTo(this);
-
-        status.attack.onReload.Subscribe(list =>
+        
+        // 手持ちにナイフが加えられるのを購読、
+        status.attack.hand_RC.ObserveAdd().Subscribe(knifeData=>
         {
-            var sprits = list.Select(knifeData => knifeData.sprite).ToList();
+            var sprite = knifeData.Value.sprite;
 
-            showHandState.ShowReloadResult(sprits);
+            showHandState.AddedKnifeInHand(sprite, knifeData.Index);
 
         }).AddTo(this);
 
-        status.attack.onThrowKnife.Subscribe(value =>
+        // 手持ちからナイフが投げられる、取り除かれるのを購読
+        status.attack.hand_RC.ObserveRemove().Subscribe(knifeData =>
         {
-            showHandState.Thrown();
+            showHandState.RemoveKnifeInHand(knifeData.Index);
 
         }).AddTo(this);
 
+        status.attack.hand_RC.ObserveReset().Subscribe(_ =>
+        {
+            showHandState.ResetAll();
+
+        }).AddTo(this);
+
+        // 経験値変動を購読、ゲージを更新
         status.exp.Subscribe(value =>
         {
             playerEXPGauge.fillAmount = (float)value / (float)status.requiredEXP_LvUp;
 
         }).AddTo(this);
 
+        // 状態変化を購読、アイコンを生成・表示
         status.activeStatusTypeCounts.ObserveAdd().Subscribe(x =>
         {
-            if (! dictionaly_SED_Icon.ContainsKey(x.Key))
-            {
-                
-            }
-
             GameObject obj = Instantiate(iconPrefab, iconArea);
 
             obj.GetComponent<Image>().sprite = x.Key.icon;
@@ -69,6 +76,7 @@ public class PlayerPresenter : MonoBehaviour
 
         }).AddTo(this);
 
+        // 状態変化終了を購読、アイコンを破棄
         status.activeStatusTypeCounts.ObserveRemove().Subscribe(x =>
         {
             if (dictionaly_SED_Icon.ContainsKey(x.Key))
@@ -80,12 +88,14 @@ public class PlayerPresenter : MonoBehaviour
 
         }).AddTo(this);
 
+        // 秘宝の発動を購読、表示
         Base_TreasureData.onAct.Subscribe(x =>
         {
             treasureActImage.sprite = x.icon;
 
         }).AddTo(this);
 
+        // キャラアビリティチャージ変動を購読、ゲージを更新
         status.attack.abilityChargeValue.Subscribe(x =>
         {
             charaAbilityChargeValue.fillAmount = (float)x / (float)status.attack.charaAbility.requireChargeValue;

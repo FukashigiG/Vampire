@@ -8,25 +8,26 @@ public class ShowPlayerHandState : MonoBehaviour
     [SerializeField] GameObject KnifeImagePrefeb;
     [SerializeField] float width;
 
-    public void ShowReloadResult(List<Sprite> sprites)
+    public void AddedKnifeInHand(Sprite sprite, int index)
     {
-        foreach (Transform x in this.transform)
-        {
-            Destroy(x.gameObject);
-        }
+        GameObject x = Instantiate(KnifeImagePrefeb, Vector2.zero, Quaternion.identity, this.transform);
 
-        for (int i = 0; i < sprites.Count; i++)
-        {
-            GameObject x = Instantiate(KnifeImagePrefeb, Vector2.zero, Quaternion.identity, this.transform);
+        x.transform.GetChild(0).GetComponent<Image>().sprite = sprite;
 
-            x.transform.GetChild(0).GetComponent<Image>().sprite = sprites[i];
+        var rect = x.GetComponent<RectTransform>();
 
-            x.GetComponent<RectTransform>().anchoredPosition = Vector2.up * width * -i;
-        }
+        rect.SetSiblingIndex(index);
+
+        rect.anchoredPosition = Vector2.up * width * -index;
     }
 
-    public void Thrown()
+    public void RemoveKnifeInHand(int index)
     {
-        Destroy(this.transform.GetChild(0).gameObject);
+        Destroy(this.transform.GetChild(index).gameObject);
+    }
+
+    public void ResetAll()
+    {
+        foreach (Transform t in this.transform) Destroy(t.gameObject);
     }
 }
