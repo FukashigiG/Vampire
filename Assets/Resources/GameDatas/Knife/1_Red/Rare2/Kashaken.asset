@@ -18,13 +18,13 @@ MonoBehaviour:
   <_name>k__BackingField: "\u706B\u8ECA\u5263"
   <rarity>k__BackingField: 1
   <element>k__BackingField: 1
-  <power>k__BackingField: 28
-  <elementPower>k__BackingField: 12
+  <power>k__BackingField: 17
+  <elementPower>k__BackingField: 8
   <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
   <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: edc689687b1d4fc47a87ba0f3d1128e2, type: 3}
-  description: "\u624B\u88CF\u5263\u306E\u30DE\u30A4\u30C1\u30A7\u30F3\n\u30D2\u30C3\u30C8\u3057\u305F\u6575\u3092\u706B\u708E\u72B6\u614B\u306B\u3067\u304D\u308B"
+  description: "\u624B\u88CF\u5263\u306E\u30DE\u30A4\u30C1\u30A7\u30F3\n\u8DF3\u5F3E\u3068\u706B\u708E\u4ED8\u4E0E"
   <abilities>k__BackingField:
   - abilityLogic: {fileID: 11400000, guid: 25ce60272dc82d74bae73533fa4ce7d2, type: 2}
-    probability_Percent: 60
-    modifire: 4
-    effectID: kasyaken_blaze4
+    effectID: kasyaken_blaze0
+  - abilityLogic: {fileID: 11400000, guid: 9ae334e7f608d5a4caeb6cee56bbf70b, type: 2}
+    effectID: kasyaken_rico1

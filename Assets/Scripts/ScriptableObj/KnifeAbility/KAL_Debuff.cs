@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewKnifeAbility", menuName = "Game Data/KnifeAbility/debuff")]
+[CreateAssetMenu(fileName = "NewKnifeAbility", menuName = "Game Data/KnifeAbility/de_buff")]
 public class KAL_Debuff : Base_KnifeAbilityLogic
 {
     // ‘ÎÛ‚Éó‘Ô•Ï‰»

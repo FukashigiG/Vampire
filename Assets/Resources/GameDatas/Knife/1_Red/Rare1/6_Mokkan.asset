@@ -18,13 +18,11 @@ MonoBehaviour:
   <_name>k__BackingField: "\u6728\u7C21"
   <rarity>k__BackingField: 1
   <element>k__BackingField: 1
-  <power>k__BackingField: 20
+  <power>k__BackingField: 29
   <elementPower>k__BackingField: 8
   <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
   <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: edc689687b1d4fc47a87ba0f3d1128e2, type: 3}
   description: "\u305F\u307E\u306B\u30D2\u30C3\u30C8\u3057\u305F\u76F8\u624B\u3092\u706B\u708E\u72B6\u614B\u306B\u3059\u308B\n\u7279\u6B8A\u72B6\u614B\u7570\u5E38\u67A0"
   <abilities>k__BackingField:
-  - abilityLogic: {fileID: 11400000, guid: 25ce60272dc82d74bae73533fa4ce7d2, type: 2}
-    probability_Percent: 55
-    modifire: 4
-    effectID: mokkan520
+  - abilityLogic: {fileID: 11400000, guid: 4ac9d2494d869304fa3d46da23ee73d1, type: 2}
+    effectID: mokkan0

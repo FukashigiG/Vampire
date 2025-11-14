@@ -18,13 +18,11 @@ MonoBehaviour:
   <_name>k__BackingField: "\u624B\u88CF\u5263"
   <rarity>k__BackingField: 1
   <element>k__BackingField: 1
-  <power>k__BackingField: 34
-  <elementPower>k__BackingField: 8
+  <power>k__BackingField: 29
+  <elementPower>k__BackingField: 5
   <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
   <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: edc689687b1d4fc47a87ba0f3d1128e2, type: 3}
-  description: "\u5F97\u610F\u30C7\u30D0\u30D5\u67A02"
+  description: "\u8DF3\u5F3E\u3092\u6301\u3064"
   <abilities>k__BackingField:
-  - abilityLogic: {fileID: 11400000, guid: 978de80d34433e24cbc3be3e9e3c73ad, type: 2}
-    probability_Percent: 60
-    modifire: 4
-    effectID: shuriken_def_debuff807
+  - abilityLogic: {fileID: 11400000, guid: 9ae334e7f608d5a4caeb6cee56bbf70b, type: 2}
+    effectID: riko_syuriken

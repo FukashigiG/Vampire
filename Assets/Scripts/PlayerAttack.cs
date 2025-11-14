@@ -144,6 +144,9 @@ public class PlayerAttack : MonoBehaviour
             // handの先頭を取得
             var knife = hand[0];
 
+            // handの先頭を削除 早めに済ませておく
+            hand.RemoveAt(0);
+
             // 購読先による介入のための発行
             subject_OnThrowKnife.OnNext(knife);
 
@@ -158,9 +161,6 @@ public class PlayerAttack : MonoBehaviour
             // この文以降でxを参照してはならない（Initialize）
             x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife, status, isElementMatched);
 
-            // handの先頭を削除
-            hand.RemoveAt(0);
-
             // ナイフを1本投げるごとにアビリティチャージ
             AbilityCharge();
 
@@ -169,6 +169,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    // リストまたは単体のナイフを手持ちに加える
     public void SetHand(List<KnifeData_RunTime> list = null, KnifeData_RunTime knife = null)
     {
         if (list != null)
@@ -185,6 +186,16 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    // N番目のナイフを手持ちから捨てる
+    public void TrashKnife(int index)
+    {
+        hand.RemoveAt(index);
+    }
+
+    public int GetHandCount()
+    {
+        return hand.Count;
+    }
 
     // 攻撃対象の探索
     GameObject FindEnemy()
@@ -250,6 +261,8 @@ public class PlayerAttack : MonoBehaviour
         // charaAbility内の関数を実行
         charaAbility.ActivateAbility();
     }
+
+
 
     private void OnDestroy()
     {

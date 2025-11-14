@@ -18,13 +18,11 @@ MonoBehaviour:
   <_name>k__BackingField: "\u5341\u624B"
   <rarity>k__BackingField: 1
   <element>k__BackingField: 1
-  <power>k__BackingField: 34
-  <elementPower>k__BackingField: 8
+  <power>k__BackingField: 35
+  <elementPower>k__BackingField: 5
   <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
   <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: edc689687b1d4fc47a87ba0f3d1128e2, type: 3}
   description: "\u30D2\u30C3\u30C8\u3057\u305F\u6575\u306E\u653B\u6483\u529B\u3092\u4E0B\u3052\u308B\u3053\u3068\u304C\u3042\u308B\n\u5F97\u610F\u30C7\u30D0\u30D5\u67A01"
   <abilities>k__BackingField:
   - abilityLogic: {fileID: 11400000, guid: 4b6f398294e82ae42a167c9a2f835009, type: 2}
-    probability_Percent: 60
-    modifire: 4
     effectID: jitte_atk10

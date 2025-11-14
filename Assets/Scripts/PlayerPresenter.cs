@@ -11,13 +11,13 @@ public class PlayerPresenter : MonoBehaviour
     PlayerStatus status;
 
     [SerializeField] UI_PlayerHPGauge playerHPGauge;
-    [SerializeField] Image playerEXPGauge;
+    [SerializeField] UI_PlayerAbilityCharge playerAbilityCharge;
     [SerializeField] ShowPlayerHandState showHandState;
     [SerializeField] RectTransform iconArea;
 
     [SerializeField] Image treasureActImage;
 
-    [SerializeField] Image charaAbilityChargeValue;
+    [SerializeField] Image expGauge;
 
     [SerializeField] GameObject iconPrefab;
 
@@ -61,7 +61,10 @@ public class PlayerPresenter : MonoBehaviour
         // 経験値変動を購読、ゲージを更新
         status.exp.Subscribe(value =>
         {
-            playerEXPGauge.fillAmount = (float)value / (float)status.requiredEXP_LvUp;
+            float ratio = (float)value / (float)status.requiredEXP_LvUp;
+
+            expGauge.fillAmount = ratio;
+            
 
         }).AddTo(this);
 
@@ -98,7 +101,9 @@ public class PlayerPresenter : MonoBehaviour
         // キャラアビリティチャージ変動を購読、ゲージを更新
         status.attack.abilityChargeValue.Subscribe(x =>
         {
-            charaAbilityChargeValue.fillAmount = (float)x / (float)status.attack.charaAbility.requireChargeValue;
+            float ratio = (float)x / (float)status.attack.charaAbility.requireChargeValue;
+
+            playerAbilityCharge.SetGauge(ratio);
 
         }).AddTo(this);
     }

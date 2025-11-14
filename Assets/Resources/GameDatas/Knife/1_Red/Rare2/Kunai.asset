@@ -18,13 +18,11 @@ MonoBehaviour:
   <_name>k__BackingField: "\u82E6\u7121"
   <rarity>k__BackingField: 2
   <element>k__BackingField: 1
-  <power>k__BackingField: 36
-  <elementPower>k__BackingField: 8
+  <power>k__BackingField: 40
+  <elementPower>k__BackingField: 5
   <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
   <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: edc689687b1d4fc47a87ba0f3d1128e2, type: 3}
   description: "\u305F\u307E\u306B\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u304C\u767A\u751F\u3059\u308B"
   <abilities>k__BackingField:
   - abilityLogic: {fileID: 11400000, guid: c21406ad570655744a5f2abbf1afa16c, type: 2}
-    probability_Percent: 30
-    modifire: 1
     effectID: kunai_ctl_100
