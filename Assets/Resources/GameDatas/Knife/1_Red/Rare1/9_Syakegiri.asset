@@ -22,5 +22,7 @@ MonoBehaviour:
   <elementPower>k__BackingField: 5
   <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
   <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: edc689687b1d4fc47a87ba0f3d1128e2, type: 3}
-  description: "\u57FA\u790E\u7684\u306A\u30B9\u30DA\u30C3\u30AF"
-  <abilities>k__BackingField: []
+  description: "\u30A6\u30ED\u30B3\u3092\u3068\u308B\u306E\u306B\u3082\u6700\u9069"
+  <abilities>k__BackingField:
+  - abilityLogic: {fileID: 11400000, guid: 03356ed03e8bdd74ea1b4816ef14b3ff, type: 2}
+    effectID: syakegiri_defdebuff0

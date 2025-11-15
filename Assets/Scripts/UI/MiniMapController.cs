@@ -11,24 +11,24 @@ public class MiniMapController : SingletonMono<MiniMapController>
 
     [SerializeField] float mapScale;
 
-    Dictionary<Base_MobStatus, RectTransform> enemyDictionary = new Dictionary<Base_MobStatus, RectTransform>();
-    Dictionary<DropItemCtrler, RectTransform> itemDictionary = new Dictionary<DropItemCtrler, RectTransform>();
+    Dictionary<EnemyStatus, RectTransform> enemyDictionary = new();
+    Dictionary<DropItemCtrler, RectTransform> itemDictionary = new();
 
     [SerializeField] Transform playerTransform;
 
     void Start()
     {
-        // いずれかの敵が死んだとき
-        EnemyStatus.onDie.Subscribe(x =>
+        // いずれかの敵が消える時
+        EnemyStatus.onDestroy.Subscribe(x =>
         {
             // そいつがdictionaryに登録されてるやつなら、
-            if (enemyDictionary.ContainsKey(x.status))
+            if (enemyDictionary.ContainsKey(x))
             {
                 // アイコンを破壊
-                Destroy(enemyDictionary[x.status].gameObject);
+                Destroy(enemyDictionary[x].gameObject);
 
                 // 辞書から削除
-                enemyDictionary.Remove(x.status);
+                enemyDictionary.Remove(x);
             }
 
         }).AddTo(this);
@@ -76,7 +76,7 @@ public class MiniMapController : SingletonMono<MiniMapController>
         enemyDictionary.Add(enemyStatus, icon.GetComponent<RectTransform>());
     }
 
-    // 新しく生成された敵オブジェクトに対して
+    // 新しく生成されたアイテムオブジェクトに対して
     public void NewItemInstance(DropItemCtrler dropItemCtrler)
     {
         // アイコンを生成

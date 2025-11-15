@@ -18,13 +18,11 @@ MonoBehaviour:
   <_name>k__BackingField: "\u30E0\u30E9\u30DE\u30B5"
   <rarity>k__BackingField: 2
   <element>k__BackingField: 1
-  <power>k__BackingField: 44
+  <power>k__BackingField: 55
   <elementPower>k__BackingField: 22
   <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
   <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: edc689687b1d4fc47a87ba0f3d1128e2, type: 3}
   description: "\u546A\u308F\u308C\u305F\u540D\u5200...\u306E\u7834\u7247\n\u6295\u3052\u308B\u305F\u3073\u5DF1\u306E\u4F53\u304C\u8755\u307E\u308C\u308B"
   <abilities>k__BackingField:
   - abilityLogic: {fileID: 11400000, guid: 35cff4b335b417f489ff77044298b1a6, type: 2}
-    probability_Percent: 100
-    modifire: 5
     effectID: muramasa_dmg_589

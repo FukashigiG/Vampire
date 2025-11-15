@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Power_Buff_M
   m_EditorClassIdentifier: 
   <effectName>k__BackingField: "\u731B\u52C7\u5316"
-  probability_Percent: 100
+  probability_Percent: 40
   <description>k__BackingField: "\u4E00\u5B9A\u6642\u9593\u3001\u529B\u304C\u307E\u3042\u307E\u3042\u4E0A\u304C\u308B"
   <effectOnThrown>k__BackingField: 1
   <effectOnHit>k__BackingField: 0

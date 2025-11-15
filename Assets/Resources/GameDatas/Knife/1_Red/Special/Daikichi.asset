@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
+  m_Name: Daikichi
+  m_EditorClassIdentifier: 
+  <sprite>k__BackingField: {fileID: 21300000, guid: 617eaab5d25fecd4288d8d603bdaca47, type: 3}
+  <sprite_Defolme>k__BackingField: {fileID: 21300000, guid: a177636700e088c4080e891d48af7089, type: 3}
+  <color>k__BackingField: {r: 0.8207547, g: 0, b: 0, a: 1}
+  <_name>k__BackingField: "\u5927\u5409"
+  <rarity>k__BackingField: 5
+  <element>k__BackingField: 1
+  <power>k__BackingField: 1
+  <elementPower>k__BackingField: 1
+  <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
+  <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: edc689687b1d4fc47a87ba0f3d1128e2, type: 3}
+  description: "\u5927\u5409\u306E\u68D2\n\u3044\u3044\u611F\u3058\u306E\u3054\u5229\u76CA\u304C\u6388\u3051\u3089\u308C\u308B"
+  <abilities>k__BackingField:
+  - abilityLogic: {fileID: 11400000, guid: e872f1b9d826dae499b35db12a401da8, type: 2}
+    effectID: omikuji_vanish0
+  - abilityLogic: {fileID: 11400000, guid: c101397b7d006b846b880f8719c5e0ab, type: 2}
+    effectID: omikuji_heal1
+  - abilityLogic: {fileID: 11400000, guid: 7e2052a4c058a844d9b60d0aba891c2c, type: 2}
+    effectID: omikuji_def_buff2
+  - abilityLogic: {fileID: 11400000, guid: fd624f303f1f2f74895cfe268e5eb2c4, type: 2}
+    effectID: omikuji_atk_buff3
+  - abilityLogic: {fileID: 11400000, guid: f096bcab631b62944bd91faac68559cb, type: 2}
+    effectID: omikuji_charge4

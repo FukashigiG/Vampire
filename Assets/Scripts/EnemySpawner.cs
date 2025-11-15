@@ -113,7 +113,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         {
             Instantiate(effect_DeleteEnemy, x.transform.position, Quaternion.identity);
 
-            x.GetComponent<EnemyStatus>().Die();
+            Destroy(x.gameObject);
         }
     }
 

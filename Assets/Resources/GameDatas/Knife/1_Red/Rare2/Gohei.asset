@@ -18,11 +18,13 @@ MonoBehaviour:
   <_name>k__BackingField: "\u5FA1\u5E63"
   <rarity>k__BackingField: 2
   <element>k__BackingField: 1
-  <power>k__BackingField: 35
+  <power>k__BackingField: 1
   <elementPower>k__BackingField: 5
   <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
   <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: edc689687b1d4fc47a87ba0f3d1128e2, type: 3}
   description: "\u5DEB\u5973\u3055\u3093\u304C\u6301\u3063\u3066\u308B\u3001\u30AE\u30B6\u30AE\u30B6\u306E\u7D19\u304C\u4ED8\u3044\u305F\u30A2\u30EC"
   <abilities>k__BackingField:
-  - abilityLogic: {fileID: 11400000, guid: 556c2567eda4d8345b46e217c0df369f, type: 2}
-    effectID: ninpou_Bunshin0
+  - abilityLogic: {fileID: 11400000, guid: e872f1b9d826dae499b35db12a401da8, type: 2}
+    effectID: gohei_vanish0
+  - abilityLogic: {fileID: 11400000, guid: 20d8ccf8df02bc54bb9224f2df45cf10, type: 2}
+    effectID: gohei_inst1

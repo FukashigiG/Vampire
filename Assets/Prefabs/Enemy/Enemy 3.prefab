@@ -187,5 +187,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4557447ebf3801469a480c7168cff85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enhancementRate_Defence: 0
+  enhancementRate_Power: 0
+  enhancementRate_MoveSpeed: 0
+  actable: 0
+  isArrowDamage: 0
+  isArrowHit: 0
+  damageOverTime: 0
+  onRegeneration: 0
   _enemyData: {fileID: 11400000, guid: 1ae3bd09da03121468b625be4be0a00b, type: 2}
+  fx_Die: {fileID: 1429954232896169633, guid: be90e1b495922e24898d7585c8f53b72, type: 3}
   damageTxt: {fileID: 8935918345617990812, guid: abadf68d7c030fd42a22e1efd81531ef, type: 3}
