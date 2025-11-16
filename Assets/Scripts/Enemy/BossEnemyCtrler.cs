@@ -13,10 +13,13 @@ public class BossEnemyCtrler : Base_EnemyCtrler
         EnemyStatus.onDie.Subscribe(x => onDie(x.status)).AddTo(this);
     }
 
+    protected override void HandleAI()
+    {
+        
+    }
+
     void onDie(Base_MobStatus stat)
     {
         if (stat != _enemyStatus) return;
-
-        GameEventDirector.Instance.TriggerEvent(GameEventDirector.Events.getTreasure);
     }
 }
