@@ -9,6 +9,10 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
 {
     // 遠距離射撃型
 
+    [SerializeField] GameObject bulletPreffab;
+
+    [SerializeField] float friquentry_Shot;
+
     // Updateにて使用される変数　それ以外のとこでは参照のみにしてね
     // 処理負荷軽減のため外に出してるよ
     float distance;
@@ -20,8 +24,6 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
     bool attackable = true;
 
     CancellationToken token;
-
-    [SerializeField] GameObject bulletPreffab;
 
     protected override void Awake()
     {
@@ -47,11 +49,11 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
             // 角度を求める
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-            Instantiate(bulletPreffab, transform.position, Quaternion.Euler(0, 0, angle));
+            Instantiate(bulletPreffab, transform.position, Quaternion.FromToRotation(Vector2.up, dir));
 
             attackable = false;
 
-            StandBy(attackable, token).Forget();
+            StandBy(token).Forget();
         }
         else
         {
@@ -59,10 +61,10 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
         }
     }
 
-    async UniTask StandBy(bool x, CancellationToken token)
+    async UniTask StandBy(CancellationToken token)
     {
-        await UniTask.Delay(1000, cancellationToken: token);
+        await UniTask.Delay((int)(friquentry_Shot * 1000), cancellationToken: token);
 
-        x = true;
+        attackable = true;
     }
 }
