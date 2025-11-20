@@ -2,18 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBulletCtrler : MonoBehaviour
+public class EP_Bullet : Base_EnemyProps
 {
     [SerializeField] float speed = 6f;
-    [SerializeField] int damage = 3;
     [SerializeField] float lifeTime = 5f;
 
     float timeCount = 0;
-
-    public void Initialie()
-    {
-
-    }
 
     void Update()
     {

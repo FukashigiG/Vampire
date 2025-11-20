@@ -30,7 +30,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
         SpawnTask(token).Forget();
 
-        EnemyStatus.onDie.Subscribe(x => CountMobDie()).AddTo(disposables);
+        //EnemyStatus.onDie.Subscribe(x => CountMobDie()).AddTo(disposables);
 
         count_Die = 0;
     }
@@ -94,18 +94,6 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         return enemy[x];
     }
 
-    void CountMobDie()
-    {
-        count_Die++;
-
-        if(count_Die >= 10)
-        {
-            SpawnBoss();
-
-            count_Die = 0;
-        }
-    }
-
     // 現存の敵を全削除
     public void DestroyAllEnemies()
     {
@@ -121,7 +109,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     {
         Vector2 randomPoint = SpawnPointRottery();
 
-        var x = Instantiate(bossEnemy, randomPoint, Quaternion.identity, parent_Enemy);
+        GameObject x = Instantiate(bossEnemy, randomPoint, Quaternion.identity, parent_Enemy);
 
         // ウエーブ数の倍率ブーストを渡したうえでの初期化
         x.GetComponent<EnemyStatus>().Initialize(1 + GameAdmin.Instance.waveCount * GameAdmin.Instance.waveBoostMultiplier);

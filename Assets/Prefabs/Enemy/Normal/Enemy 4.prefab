@@ -180,7 +180,7 @@ MonoBehaviour:
   isArrowHit: 0
   damageOverTime: 0
   onRegeneration: 0
-  _enemyData: {fileID: 11400000, guid: 1ae3bd09da03121468b625be4be0a00b, type: 2}
+  _enemyData: {fileID: 11400000, guid: 15eb28f8382342b458ac582d3a0b9adb, type: 2}
   fx_Die: {fileID: 1429954232896169633, guid: be90e1b495922e24898d7585c8f53b72, type: 3}
   damageTxt: {fileID: 8935918345617990812, guid: abadf68d7c030fd42a22e1efd81531ef, type: 3}
 --- !u!114 &749693924398612247

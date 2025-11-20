@@ -47,8 +47,14 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
      * また、プレイヤー側で単一のSubjectを購読するだけで、
      * 全ての敵の撃破イベントをキャッチできる*/
 
+    // 同一効果（xxナイフのバフ、yy秘宝の火炎）などの重複を防ぐための管理
     Dictionary<string, CancellationTokenSource> activeStatusEffects = new();
+    // 同種の効果（何かしらがトリガーの火炎、凍結など）を管理
     public ReactiveDictionary<Base_StatusEffectData, int> activeStatusTypeCounts = new();
+
+    // 被ダメージ数値を書き換える際に使用されるフィルター
+    // バグ防止のためにもフィルターは複数使えるべきではないのでは？
+    public List<System.Func<int, int>> damageFilters {  get; private set; } = new();
 
     SpriteRenderer _renderer;
     Collider2D _collider;
@@ -209,22 +215,38 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     }
 
     // ダメージ処理
-    public virtual void TakeDamage(int value)
+    public virtual int TakeDamage(int value)
     {
-        if(! isArrowDamage) return;
+        if (!isArrowDamage) return 0;
 
-        if (value > 0) subject_OnDamaged.OnNext((transform.position, value));
+        // フィルターにダメージ数値を通す（量がかわる）
+        foreach(var filter in damageFilters)
+        {
+            value = filter(value);
+        }
 
-        if (value > 0) _hitPoint.Value -= value;
+        if (value <= 0) return 0;
+
+        // ダメージを受けることを通知
+        // これにより、ここで扱うvalueの値は変わらない
+        // （値のコピーが渡される）
+        subject_OnDamaged.OnNext((transform.position, value));
+
+        // hpからvalue分マイナスする
+        _hitPoint.Value -= value;
 
         if (_hitPoint.Value <= 0)
         {
+            // hpがないなら死亡判定処理
             Die();
         }
         else
         {
+            // 生きてるなら演出
             damageFlash().Forget();
         }
+
+        return value;
     }
 
     /*

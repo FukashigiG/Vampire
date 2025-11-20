@@ -9,17 +9,10 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
 {
     // 遠距離射撃型
 
-    [SerializeField] GameObject bulletPreffab;
-
-    [SerializeField] float friquentry_Shot;
-
     // Updateにて使用される変数　それ以外のとこでは参照のみにしてね
     // 処理負荷軽減のため外に出してるよ
     float distance;
     Vector2 dir;
-
-    // ステータスから代入される変数
-    float range = 6f;
 
     bool attackable = true;
 
@@ -41,7 +34,7 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
         dir = (target.position - this.transform.position).normalized;
 
         // 攻撃対象が射程内なら発射、そうでないなら移動
-        if(distance <= range)
+        if(distance <= _enemyStatus.range_Shot)
         {
             // 攻撃可能状態でなければ待機
             if (! attackable) return;
@@ -49,7 +42,7 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
             // 角度を求める
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-            Instantiate(bulletPreffab, transform.position, Quaternion.FromToRotation(Vector2.up, dir));
+            Instantiate(_enemyStatus.bullet_Prefab, transform.position, Quaternion.FromToRotation(Vector2.up, dir));
 
             attackable = false;
 
@@ -63,7 +56,7 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
 
     async UniTask StandBy(CancellationToken token)
     {
-        await UniTask.Delay((int)(friquentry_Shot * 1000), cancellationToken: token);
+        await UniTask.Delay((int)(_enemyStatus.friquentry_Shot * 1000), cancellationToken: token);
 
         attackable = true;
     }

@@ -7,7 +7,7 @@ public abstract class Base_EnemyCtrler : MonoBehaviour
 {
     [SerializeField] LayerMask targetLayer;
 
-    protected Transform target;
+    public Transform target {  get; protected set; }
 
     protected EnemyStatus _enemyStatus;
 
@@ -17,13 +17,13 @@ public abstract class Base_EnemyCtrler : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         target = PlayerController.Instance.transform;
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+     protected virtual void FixedUpdate()
     {
         if (_enemyStatus.actable == false) return;
 
@@ -33,17 +33,5 @@ public abstract class Base_EnemyCtrler : MonoBehaviour
     }
 
     protected abstract void HandleAI();
-
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        // もし当たったものがダメージを受けるものだったらダメージを与える
-        if (collision.gameObject.TryGetComponent(out Base_MobStatus ms))
-        {
-            ms?.GetAttack(_enemyStatus.power, 0, transform.position);
-
-            //Instantiate(knifeData.hitEffect, transform.position, Quaternion.identity);
-        }
-    }
 
 }

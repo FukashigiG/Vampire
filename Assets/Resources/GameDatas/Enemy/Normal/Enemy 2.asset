@@ -12,15 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
   m_Name: Enemy 2
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: daae71d6e4ef7434c8ea4af4ec857a49, type: 3}
-  _name: "\u65752_\u30A2\u30BF\u30C3\u30AB\u30FC"
-  hp: 40
-  power: 27
-  defense: 25
-  moveSpeed: 14
-  weight: 0.4
-  amount_EXP: 0
-  prefab: {fileID: 9151170032971857288, guid: 609dd6bb37305c84aa460a97003a6ad6, type: 3}
+  <sprite>k__BackingField: {fileID: 21300000, guid: daae71d6e4ef7434c8ea4af4ec857a49, type: 3}
+  <_name>k__BackingField: "\u30E2\u30D6\u306B"
+  <description>k__BackingField: "\u3044\u3044\u3044\u3044\u3044\u3044\u3044"
+  <actType>k__BackingField: 0
+  <hp>k__BackingField: 50
+  <power>k__BackingField: 30
+  <defense>k__BackingField: 20
+  <moveSpeed>k__BackingField: 10
+  _range_Shot: 0
+  _friquentry_Shot: 0
+  _bulletPrefab: {fileID: 0}
+  <amount_EXP>k__BackingField: 1
+  <prefab>k__BackingField: {fileID: 9151170032971857288, guid: 609dd6bb37305c84aa460a97003a6ad6, type: 3}
   dropItems:
   - prefab: {fileID: 270761467918423833, guid: e31f728fb94c834468be24cd54e2a5d2, type: 3}
     dropRate_Parcentage: 5

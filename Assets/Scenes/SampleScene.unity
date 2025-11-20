@@ -3051,10 +3051,7 @@ MonoBehaviour:
   parent_Enemy: {fileID: 1113652509}
   effect_DeleteEnemy: {fileID: 2533848353679586684, guid: 350ff592921c0124e983e434646c2cf4, type: 3}
   enemy:
-  - {fileID: 9151170032971857288, guid: a78d6c856990e6443a0c6b7b2a539d4a, type: 3}
-  - {fileID: 9151170032971857288, guid: 609dd6bb37305c84aa460a97003a6ad6, type: 3}
-  - {fileID: 9151170032971857288, guid: d1fcad5396cc08f4b9cbdb9debebbc50, type: 3}
-  - {fileID: 9151170032971857288, guid: 334e5cd8564c5204d826f0d73dd63b92, type: 3}
+  - {fileID: 9151170032971857288, guid: 6bc3e1b72ce273c49bc4c09b3f758c6b, type: 3}
   bossEnemy: {fileID: 9151170032971857288, guid: eb0f25b9613ab654ab4c06cdfb28d2a9, type: 3}
   interval_Spawn: 0.8
 --- !u!1001 &774598390

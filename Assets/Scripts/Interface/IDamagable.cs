@@ -8,5 +8,5 @@ public interface IDamagable
 
     bool GetAttack(int dmg, int elementDmg, Vector2 damagedPosi, bool isCritical, bool isIgnoreDefence);
 
-    void TakeDamage(int dmg);
+    int TakeDamage(int dmg);
 }

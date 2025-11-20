@@ -143,9 +143,11 @@ public class PlayerStatus : Base_MobStatus
     }
 
     // ƒ_ƒ[ƒW‚ğó‚¯‚éˆ—
-    public override void TakeDamage(int value)
+    public override int TakeDamage(int value)
     {
-        base.TakeDamage(value);
+        int trueValue = base.TakeDamage(value);
+
+        return trueValue;
     }
 
     public override void HealHP(int x)
