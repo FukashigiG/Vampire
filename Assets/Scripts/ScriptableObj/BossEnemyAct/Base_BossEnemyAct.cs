@@ -8,7 +8,8 @@ using UnityEngine.UI;
 public abstract class Base_BossEnemyAct : ScriptableObject
 {
     [field: SerializeField] public string actionName {  get; private set; }
-    [field: SerializeField] public float range {  get; private set; }
+    [field: SerializeField] public float range_Min {  get; private set; }
+    [field: SerializeField] public float range_Max {  get; private set; }
 
     public enum ActType { Move, Attack}
     [field: SerializeField] public ActType actType { get; private set; }

@@ -42,6 +42,12 @@ public class EnemyStatus : Base_MobStatus
         base.Start();
 
         GetComponent<SpriteRenderer>().sprite = _enemyData.sprite;
+
+        // 自分を初期化
+        Initialize(1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
+
+        // ミニマップに自身を登録させる
+        MiniMapController.Instance.NewEnemyInstance(this);
     }
 
     public void Initialize(float multiplier)

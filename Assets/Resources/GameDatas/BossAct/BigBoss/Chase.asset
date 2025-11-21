@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Chase
   m_EditorClassIdentifier: 
   <actionName>k__BackingField: 
-  <range>k__BackingField: 99
+  <range_Min>k__BackingField: 0
+  <range_Max>k__BackingField: 999
   <actType>k__BackingField: 0
   speed: 1.3

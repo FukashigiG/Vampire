@@ -8,9 +8,32 @@ using System.Linq;
 
 public class EnemyCtrler_BigBoss : Base_EnemyCtrler
 {
+    [System.Serializable]
+    class BossAction
+    {
+        [field: SerializeField] public Base_BossEnemyAct actionLogic { get; private set; } // 処理部分
+        [SerializeField, Range(0, 100)] int baseWeight = 50; // 基礎確率の重み
+        [SerializeField, Range(0.1f, 0.9f)] float decayRate = 0.5f; // 連続使用時の重み減衰率
+
+        // 内部計算用
+        [HideInInspector] public int currentWeight { get; private set; }
+
+        // 現在の重みを減衰率で減らす
+        public void Initialize_CullentWeight()
+        {
+            currentWeight = baseWeight;
+        }
+
+        // 重みを初期化
+        public void DeceyCullentWeight()
+        {
+            currentWeight = (int)(currentWeight * decayRate);
+        }
+    }
+
     // ボスの行動
 
-    [SerializeField] List<Base_BossEnemyAct> actions;
+    [SerializeField] List<BossAction> actions;
 
     bool attackable = true;
 
@@ -26,6 +49,12 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
     protected override void Start()
     {
         base.Start();
+
+        // それぞれのactionの重みを初期化
+        foreach (var act in actions)
+        {
+            act.Initialize_CullentWeight();
+        }
 
         LifeCycle().Forget();
     }
@@ -54,9 +83,55 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
     {
         float distance = (target.position - this.transform.position).magnitude;
 
-        // 射程内の行動を取得
-        List<Base_BossEnemyAct> a = actions.Where(x => x.range >= distance).ToList();
+        // 適正範囲の行動を取得
+        List<BossAction> collectRangeActions = actions.Where(x => x.actionLogic.range_Min <= distance && x.actionLogic.range_Max >= distance).ToList();
 
-        return a[0];
+        Dictionary<BossAction, int> finalWeights = new();
+        int totalWeight = 0;
+
+        // 重みと紐づける登録
+        foreach (BossAction act in collectRangeActions)
+        {
+            // 最長距離が短い技ほど発動確率を上げるための処理
+            int finalyWeight = (int)(act.currentWeight * (10f / act.actionLogic.range_Max));
+
+            // 重みが１未満にならないように調整
+            if (finalyWeight <= 0) finalyWeight = 1;
+
+            // 最終的な重みを辞書で紐づけ
+            finalWeights.Add(act, finalyWeight);
+            // 
+            totalWeight += act.currentWeight;
+        }
+
+        int randomPoint = Random.Range(1, totalWeight + 1);
+
+        float currentSum = 0f;
+        BossAction selectedAction = null;
+
+        // 重み抽選
+        foreach (var pair in finalWeights)
+        {
+            currentSum += pair.Value;
+            if (randomPoint <= currentSum)
+            {
+                selectedAction = pair.Key;
+                break;
+            }
+        }
+
+        // 選ばれた技は重みを減らす（連続使用確率を下げる）
+        selectedAction.DeceyCullentWeight();
+
+        // 選ばれなかった行動の重みを初期化
+        foreach (var act in actions)
+        {
+            if(act != selectedAction)
+            {
+                act.Initialize_CullentWeight();
+            }
+        }
+
+        return selectedAction.actionLogic;
     }
 }

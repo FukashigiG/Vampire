@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Punch
   m_EditorClassIdentifier: 
   <actionName>k__BackingField: 
-  <range>k__BackingField: 2
+  <range_Min>k__BackingField: 0
+  <range_Max>k__BackingField: 4
   <actType>k__BackingField: 1
   attackDetectObje: {fileID: 8782759202650464566, guid: 54a4b7bca65b56b469a622eba113bab9, type: 3}
   baseDamage: 50

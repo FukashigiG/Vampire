@@ -48,7 +48,7 @@ public class EnemyCtrler_Boss : Base_EnemyCtrler
         float distance = (target.position - this.transform.position).magnitude;
 
         // Ë’ö“à‚Ìs“®‚ğæ“¾
-        List<Base_BossEnemyAct> a = actions.Where(x => x.range >= distance).ToList();
+        List<Base_BossEnemyAct> a = actions.Where(x => x.range_Max >= distance).ToList();
 
         return a[0];
     }

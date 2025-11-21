@@ -48,10 +48,12 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
                 var enemy = x.GetComponent<EnemyStatus>();
 
                 // ウエーブ数の倍率ブーストを渡したうえでの初期化
-                enemy.Initialize(1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
+                // enemy.Initialize(1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
+                // 仕様変更：初期化はステータス自身にやらせる
 
                 // ミニマップ管理人に、新しく生まれたことを知らせる
-                MiniMapController.Instance.NewEnemyInstance(enemy);
+                //MiniMapController.Instance.NewEnemyInstance(enemy);
+                // 仕様変更：これもステータス自身にやらせる
 
                 await UniTask.Delay((int)(interval_Spawn * 1000), cancellationToken: token);
 
