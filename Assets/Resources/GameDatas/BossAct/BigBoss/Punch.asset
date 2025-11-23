@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12632baf0538e7488e272126945eb41, type: 3}
   m_Name: Punch
   m_EditorClassIdentifier: 
-  <actionName>k__BackingField: 
+  <actionName>k__BackingField: "\u30D1\u30F3\u30C1"
   <range_Min>k__BackingField: 0
   <range_Max>k__BackingField: 4
+  delayTime: 0.8
   <actType>k__BackingField: 1
   attackDetectObje: {fileID: 8782759202650464566, guid: 54a4b7bca65b56b469a622eba113bab9, type: 3}
-  baseDamage: 50
-  elementDamage: 5
+  warningPrefab: {fileID: 5595648858755892628, guid: 9c956cabe1981c34a96d85fa2c044000, type: 3}
+  damageMultiplier: 1
+  forwardDistance: 2
+  rangeType: 0
+  size_Width: 4
+  size_Vertical: 2
+  size_Radius: 0

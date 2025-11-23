@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
   m_Name: Daikichi
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: 617eaab5d25fecd4288d8d603bdaca47, type: 3}
+  <sprite>k__BackingField: {fileID: -2095343380508541430, guid: a85b32bc6a0f22649b4f567146f22f95, type: 3}
   <sprite_Defolme>k__BackingField: {fileID: 21300000, guid: a177636700e088c4080e891d48af7089, type: 3}
   <color>k__BackingField: {r: 0.8207547, g: 0, b: 0, a: 1}
   <_name>k__BackingField: "\u5927\u5409"

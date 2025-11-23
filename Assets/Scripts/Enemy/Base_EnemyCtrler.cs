@@ -9,7 +9,7 @@ public abstract class Base_EnemyCtrler : MonoBehaviour
 
     public Transform target {  get; protected set; }
 
-    protected EnemyStatus _enemyStatus;
+    public EnemyStatus _enemyStatus { get; protected set; }
 
     protected virtual void Awake()
     {

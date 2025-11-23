@@ -4,10 +4,14 @@ using UniRx;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 using System.Threading;
+using UnityEngine.UIElements;
 
 public class Base_MobStatus : MonoBehaviour, IDamagable
 {
-    public int maxHP {  get; protected set; }
+    [SerializeField] GameObject damageTxt;
+    protected Color color_DamageTxt;
+
+    public int maxHP { get; protected set; }
 
     protected ReactiveProperty<int> _hitPoint = new ReactiveProperty<int>();
     public ReadOnlyReactiveProperty<int> hitPoint => _hitPoint.ToReadOnlyReactiveProperty();
@@ -23,7 +27,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     public int enhancementRate_MoveSpeed = 0;
 
     // 基礎ステータスとバフを計算した結果を返すプロパティ
-    public int defence { get {  return (int)(base_Defence * (1f + (enhancementRate_Defence / 100f))); } }
+    public int defence { get { return (int)(base_Defence * (1f + (enhancementRate_Defence / 100f))); } }
     public int power { get { return (int)(base_Power * (1f + (enhancementRate_Power / 100f))); } }
     public int moveSpeed { get { return (int)(base_MoveSpeed * (1f + (enhancementRate_MoveSpeed / 100f))); } }
 
@@ -37,6 +41,9 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
     float ratio_SlipDamage = 2;
     float ratio_Regene = 4;
+
+    public int applied_AllowKnickBack = 0;
+    bool allowKnickBack => applied_AllowKnickBack == 0;
 
     protected Subject<(Vector2 position, int amount)> subject_OnDamaged = new Subject<(Vector2, int)>();
     protected Subject<Unit> subject_OnSecond = new Subject<Unit>();
@@ -235,6 +242,14 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         // hpからvalue分マイナスする
         _hitPoint.Value -= value;
 
+        //ダメージテキストを出す処理
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, transform.position);
+
+        var x = Instantiate(damageTxt, screenPoint, Quaternion.identity, GameObject.Find("Parent_DamageTxt").transform);
+
+        x.GetComponent<DamageTxtCtrler>().Initialize(value, color_DamageTxt);
+
+
         if (_hitPoint.Value <= 0)
         {
             // hpがないなら死亡判定処理
@@ -282,6 +297,8 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     // ノックバック
     public virtual void KnockBack(Vector2 damagedPosi, float power)
     {
+        if(! allowKnickBack) return;
+
         var damageDir = (damagedPosi - (Vector2)transform.position).normalized;
 
         transform.Translate(damageDir * -0.25f);

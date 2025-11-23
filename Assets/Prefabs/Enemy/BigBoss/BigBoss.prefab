@@ -53,6 +53,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -96,6 +99,7 @@ BoxCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9151170032971857288}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -119,7 +123,8 @@ BoxCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,12 +135,11 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &7396028624555884689
 Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -146,8 +150,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -172,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4557447ebf3801469a480c7168cff85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageTxt: {fileID: 8935918345617990812, guid: abadf68d7c030fd42a22e1efd81531ef, type: 3}
   enhancementRate_Defence: 0
   enhancementRate_Power: 0
   enhancementRate_MoveSpeed: 0
@@ -182,7 +187,6 @@ MonoBehaviour:
   onRegeneration: 0
   _enemyData: {fileID: 11400000, guid: 148b96ab06e03514fbadcf994f41237a, type: 2}
   fx_Die: {fileID: 1429954232896169633, guid: be90e1b495922e24898d7585c8f53b72, type: 3}
-  damageTxt: {fileID: 8935918345617990812, guid: abadf68d7c030fd42a22e1efd81531ef, type: 3}
 --- !u!114 &-6237789552094120079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +203,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   actions:
-  - {fileID: 11400000, guid: 68d07afdda9e3064ebb21252c055a095, type: 2}
-  - {fileID: 11400000, guid: 6f922240848249841b54b9249d3ccc43, type: 2}
-  - {fileID: 11400000, guid: b1c93b3b44adaa742b9909ee8957b13f, type: 2}
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: be27275d33e6af24cb31ff2519ff6be8, type: 2}
+    baseWeight: 50
+    decayRate: 0.5
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: b1c93b3b44adaa742b9909ee8957b13f, type: 2}
+    baseWeight: 50
+    decayRate: 0.5
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 68d07afdda9e3064ebb21252c055a095, type: 2}
+    baseWeight: 50
+    decayRate: 0.5
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: a01a0cd59db549e4abb1f95159ec670b, type: 2}
+    baseWeight: 50
+    decayRate: 0.5
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 6f922240848249841b54b9249d3ccc43, type: 2}
+    baseWeight: 50
+    decayRate: 0.5

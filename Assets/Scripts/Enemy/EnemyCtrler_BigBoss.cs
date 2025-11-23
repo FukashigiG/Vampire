@@ -5,6 +5,8 @@ using System.Threading;
 using UnityEngine;
 using UniRx;
 using System.Linq;
+using System;
+using Random = UnityEngine.Random;
 
 public class EnemyCtrler_BigBoss : Base_EnemyCtrler
 {
@@ -18,18 +20,21 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
         // 内部計算用
         [HideInInspector] public int currentWeight { get; private set; }
 
-        // 現在の重みを減衰率で減らす
+        // 重みを初期化
         public void Initialize_CullentWeight()
         {
             currentWeight = baseWeight;
         }
 
-        // 重みを初期化
+        // 現在の重みを減衰率で減らす
         public void DeceyCullentWeight()
         {
             currentWeight = (int)(currentWeight * decayRate);
         }
     }
+
+    static Subject<Base_BossEnemyAct> subject_OnAct = new Subject<Base_BossEnemyAct>();
+    public static IObservable<Base_BossEnemyAct> onAct => subject_OnAct;
 
     // ボスの行動
 
@@ -73,6 +78,8 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
         {
             Base_BossEnemyAct act = DecideNextAction();
 
+            subject_OnAct.OnNext(act);
+
             await act.Action(this);
 
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: token);
@@ -86,22 +93,31 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
         // 適正範囲の行動を取得
         List<BossAction> collectRangeActions = actions.Where(x => x.actionLogic.range_Min <= distance && x.actionLogic.range_Max >= distance).ToList();
 
-        Dictionary<BossAction, int> finalWeights = new();
+        Dictionary<BossAction, int> weightDictionaly = new();
         int totalWeight = 0;
 
         // 重みと紐づける登録
         foreach (BossAction act in collectRangeActions)
         {
             // 最長距離が短い技ほど発動確率を上げるための処理
-            int finalyWeight = (int)(act.currentWeight * (10f / act.actionLogic.range_Max));
+            int finalyWeight;
+
+            if (act.actionLogic.range_Max < 10f)
+            {
+                finalyWeight = (int)(act.currentWeight * (10f / act.actionLogic.range_Max));
+            }
+            else
+            {
+                finalyWeight = act.currentWeight;
+            }
 
             // 重みが１未満にならないように調整
             if (finalyWeight <= 0) finalyWeight = 1;
 
             // 最終的な重みを辞書で紐づけ
-            finalWeights.Add(act, finalyWeight);
+            weightDictionaly.Add(act, finalyWeight);
             // 
-            totalWeight += act.currentWeight;
+            totalWeight += finalyWeight;
         }
 
         int randomPoint = Random.Range(1, totalWeight + 1);
@@ -110,7 +126,7 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
         BossAction selectedAction = null;
 
         // 重み抽選
-        foreach (var pair in finalWeights)
+        foreach (var pair in weightDictionaly)
         {
             currentSum += pair.Value;
             if (randomPoint <= currentSum)

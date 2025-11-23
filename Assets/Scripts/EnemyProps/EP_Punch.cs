@@ -3,22 +3,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Punch_BossProps : Base_EnemyProps
+public class EP_Punch : Base_EnemyProps
 {
-    [SerializeField] GameObject fx_Child;
+    [SerializeField] BoxCollider2D boxCollider;
+    [SerializeField] CircleCollider2D circleCollider;
 
-    public override void Initialie(int dmg, int elementDmg)
+    public void Initialie_OR(int dmg, int elementDmg, AttackRangeType rangeType, float forwardDistance, float size_X = 0, float size_Y = 0, float size_Radius = 0)
     {
         base.Initialie(dmg, elementDmg);
 
-        fx_Child.transform.parent = null;
+        switch (rangeType)
+        {
+            case AttackRangeType.box:
+                boxCollider.size = new Vector2 (size_X, size_Y);
+                boxCollider.offset = new Vector2 (0, forwardDistance);
+                boxCollider.enabled = true;
+                break;
 
-        WaitAndDestroy().Forget();
+            case AttackRangeType.circle:
+                circleCollider.radius = size_Radius;
+                circleCollider.offset = new Vector2 (0, forwardDistance);
+                circleCollider.enabled = true;
+                break;
+
+            default:
+                
+                break;
+        }
+
+        Action().Forget();
     }
 
-    async UniTask WaitAndDestroy()
+    async UniTask Action()
     {
-        await UniTask.Delay(500, cancellationToken: this.GetCancellationTokenOnDestroy());
+        await UniTask.Delay(200, cancellationToken: this.GetCancellationTokenOnDestroy());
 
         Destroy(gameObject);
     }

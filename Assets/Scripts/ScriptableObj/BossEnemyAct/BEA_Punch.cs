@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,20 +8,34 @@ using UnityEngine;
 public class BEA_Punch : Base_BossEnemyAct
 {
     [SerializeField] GameObject attackDetectObje;
-    [SerializeField] int baseDamage;
-    [SerializeField] int elementDamage;
+    [SerializeField] GameObject warningPrefab;
+    [SerializeField] float damageMultiplier;
+    [SerializeField] float forwardDistance;
+
+    [SerializeField] AttackRangeType rangeType;
+
+    bool isBox => rangeType == AttackRangeType.box;
+    bool isCircle => rangeType == AttackRangeType.circle;
+
+    [ShowIf("isBox"), SerializeField] float size_Width = 0;
+    [ShowIf("isBox"), SerializeField] float size_Vertical = 0;
+
+    [ShowIf("isCircle"), SerializeField] float size_Radius = 0;
 
     public async override UniTask Action(Base_EnemyCtrler ctrler)
     {
         var token = ctrler.GetCancellationTokenOnDestroy();
 
-        await UniTask.Delay(500, cancellationToken: token);
-
+        // プレイヤーの方向を取得
         Vector2 dir = (ctrler.target.position - ctrler.transform.position).normalized;
 
-        GameObject x = Instantiate(attackDetectObje, ctrler.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
+        // 警告オブジェクトを生成、初期化、アニメーション終了まで待つ
+        GameObject warning = Instantiate(warningPrefab, ctrler.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
+        await warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, rangeType, forwardDistance, size_Width, size_Vertical, size_Radius);
 
-        x.GetComponent<Base_EnemyProps>().Initialie(baseDamage, elementDamage);
+        // 本命の攻撃判定オブジェクトを生成、初期化
+        GameObject x = Instantiate(attackDetectObje, ctrler.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
+        x.GetComponent<EP_Punch>().Initialie_OR((int)(ctrler._enemyStatus.power * damageMultiplier), 0, rangeType, forwardDistance, size_Width, size_Vertical, size_Radius);
 
         await UniTask.Delay(1000, cancellationToken: token);
     }

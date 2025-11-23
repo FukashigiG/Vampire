@@ -86,6 +86,8 @@ public class PlayerStatus : Base_MobStatus
         base_Limit_DrawKnife = playerCharaData.limit_DrawKnives;
 
         masteredElements.Add(playerCharaData.masteredElement);
+
+        color_DamageTxt = Color.red;
     }
 
     protected override void Start()

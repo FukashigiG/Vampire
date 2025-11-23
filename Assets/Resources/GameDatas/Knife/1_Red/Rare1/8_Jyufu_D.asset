@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
   m_Name: 8_Jyufu_D
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: b6d409bd05200234c9b16813fc82a859, type: 3}
+  <sprite>k__BackingField: {fileID: -5858912793792764570, guid: df501cf965461964eae1d5cba91a3b12, type: 3}
   <sprite_Defolme>k__BackingField: {fileID: 21300000, guid: a177636700e088c4080e891d48af7089, type: 3}
   <color>k__BackingField: {r: 0.8207547, g: 0, b: 0, a: 1}
   <_name>k__BackingField: "\u546A\u7B26\u30FB\u5FCD\u8010"

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1bc0b7dc6c17d54e9597cf08e06373c, type: 3}
   m_Name: Chase
   m_EditorClassIdentifier: 
-  <actionName>k__BackingField: 
+  <actionName>k__BackingField: "\u8FFD\u8DE1"
   <range_Min>k__BackingField: 0
-  <range_Max>k__BackingField: 999
+  <range_Max>k__BackingField: 99
+  delayTime: 0
   <actType>k__BackingField: 0
   speed: 1.3

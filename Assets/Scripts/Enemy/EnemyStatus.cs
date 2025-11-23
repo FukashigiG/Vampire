@@ -9,7 +9,6 @@ public class EnemyStatus : Base_MobStatus
 {
     [SerializeField] EnemyData _enemyData;
     [SerializeField] GameObject fx_Die;
-    [SerializeField] GameObject damageTxt;
 
     public Base_EnemyCtrler ctrler {  get; private set; }
 
@@ -35,6 +34,8 @@ public class EnemyStatus : Base_MobStatus
         base.Awake();
 
         ctrler = GetComponent<Base_EnemyCtrler>();
+
+        color_DamageTxt = Color.white;
     }
 
     protected override void Start()
@@ -75,21 +76,6 @@ public class EnemyStatus : Base_MobStatus
             // 起動
             ability.ApplyAbility(this, disposables);
         }
-    }
-
-    public override int TakeDamage(int value)
-    {
-        // base内で引数の値が変動するため、こういう書き方をしている
-        int trueValue = base.TakeDamage(value);
-
-        //ダメージテキストを出す処理
-        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, transform.position);
-
-        var x = Instantiate(damageTxt, screenPoint, Quaternion.identity, GameObject.Find("Parent_DamageTxt").transform);
-
-        x.GetComponent<DamageTxtCtrler>().Initialize(trueValue);
-
-        return trueValue;
     }
 
     public override void Die()

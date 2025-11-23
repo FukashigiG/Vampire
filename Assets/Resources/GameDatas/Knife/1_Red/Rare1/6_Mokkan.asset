@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
   m_Name: 6_Mokkan
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: f4e8e2f13346f7945bba2d3a94f13298, type: 3}
+  <sprite>k__BackingField: {fileID: -5253296371892053853, guid: 09877686af475804cae5ba123aeabdf1, type: 3}
   <sprite_Defolme>k__BackingField: {fileID: 21300000, guid: a177636700e088c4080e891d48af7089, type: 3}
   <color>k__BackingField: {r: 0.8207547, g: 0, b: 0, a: 1}
   <_name>k__BackingField: "\u6728\u7C21"

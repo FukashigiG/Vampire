@@ -12,10 +12,11 @@ public class DamageTxtCtrler : MonoBehaviour
 
     [SerializeField] float life;
 
-    public void Initialize(int dmg)
+    public void Initialize(int dmg, Color color)
     {
         GetComponent<RectTransform>().anchoredPosition += new Vector2(Random.Range(-10f, 10f), Random.Range(-10f, 10f));
 
+        txt.color = color;
         txt.text = dmg.ToString();
 
         transform.localScale = new Vector3(2.4f, 2.4f, 1f);

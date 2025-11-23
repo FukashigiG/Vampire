@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
   m_Name: "Ninpouden\uFF3FBunshin"
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: 617eaab5d25fecd4288d8d603bdaca47, type: 3}
+  <sprite>k__BackingField: {fileID: -7433814581481742413, guid: 419c83bbb15d476409242fab79ecfe50, type: 3}
   <sprite_Defolme>k__BackingField: {fileID: 21300000, guid: a177636700e088c4080e891d48af7089, type: 3}
   <color>k__BackingField: {r: 0.8207547, g: 0, b: 0, a: 1}
   <_name>k__BackingField: "\u5FCD\u6CD5\u4F1D\u30FB\u5206\u8EAB"
