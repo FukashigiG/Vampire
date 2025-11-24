@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using System.Threading;
+using System.Linq;
 
 public class EnemySpawner : SingletonMono<EnemySpawner>
 {
     [SerializeField] Transform parent_Enemy;
     [SerializeField] GameObject effect_DeleteEnemy;
 
-    [SerializeField] GameObject[] enemy;
     [SerializeField] GameObject bossEnemy;
 
     [SerializeField] float interval_Spawn;
@@ -22,17 +22,21 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     // これ１つで沢山のDisposableなやつらに対応可能らしい
     private CompositeDisposable disposables = new CompositeDisposable();
 
+    List<EnemyData> normalEnemyList;
+
     int count_Die;
 
     void Start()
     {
         token = _cancellationTokenSource.Token;
 
-        SpawnTask(token).Forget();
-
-        //EnemyStatus.onDie.Subscribe(x => CountMobDie()).AddTo(disposables);
+        // エディタ上に登録された通常敵のリストを取得
+        var x = Resources.LoadAll<EnemyData>("GameDatas/Enemy/Normal");
+        normalEnemyList = new List<EnemyData>(x);
 
         count_Die = 0;
+
+        SpawnTask(token).Forget();
     }
 
     async UniTask SpawnTask(CancellationToken token)
@@ -91,9 +95,36 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
     GameObject EnemyLottery()
     {
-        int x = Random.Range(0, enemy.Length);
+        int[] weight_Rank = { 50, 20, 5 };
 
-        return enemy[x];
+        int sum = 75;
+
+        int randomPoint = Random.Range(1, sum + 1);
+
+        int cullent = 0;
+        EnemyData spawnTargetData = null;
+
+        for (int i = 0; i < weight_Rank.Length; i++)
+        {
+            cullent += weight_Rank[i];
+
+            if (cullent >= randomPoint)
+            {
+                var targetList = normalEnemyList
+                            .Where(x => x.rank == i + 1)
+                            .ToList();
+
+                spawnTargetData = targetList[Random.Range(0, targetList.Count)];
+
+                Debug.Log(i);
+
+                break;
+            }
+        }
+
+        
+
+        return spawnTargetData.prefab;
     }
 
     // 現存の敵を全削除

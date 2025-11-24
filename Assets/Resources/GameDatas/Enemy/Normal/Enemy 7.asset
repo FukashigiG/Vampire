@@ -15,6 +15,7 @@ MonoBehaviour:
   <sprite>k__BackingField: {fileID: 21300000, guid: 2539a5f9018a16b43b7371dfcc3980a1, type: 3}
   <_name>k__BackingField: "\u30E2\u30D6\u306A\u306A"
   <description>k__BackingField: "\u308F\u30FC\u3077\u3057\u3085\u30FC\u305F\u30FC"
+  <rank>k__BackingField: 3
   <actType>k__BackingField: 1
   <hp>k__BackingField: 40
   <power>k__BackingField: 20

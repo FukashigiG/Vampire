@@ -15,6 +15,7 @@ MonoBehaviour:
   <sprite>k__BackingField: {fileID: 21300000, guid: 2539a5f9018a16b43b7371dfcc3980a1, type: 3}
   <_name>k__BackingField: "\u30E2\u30D6\u3055\u3093"
   <description>k__BackingField: "\u3046\u3046\u3046\u3046"
+  <rank>k__BackingField: 1
   <actType>k__BackingField: 0
   <hp>k__BackingField: 50
   <power>k__BackingField: 30
@@ -24,6 +25,7 @@ MonoBehaviour:
   _friquentry_Shot: 0
   _bulletPrefab: {fileID: 0}
   <amount_EXP>k__BackingField: 1
+  <statusAbilities>k__BackingField: []
   <prefab>k__BackingField: {fileID: 9151170032971857288, guid: d1fcad5396cc08f4b9cbdb9debebbc50, type: 3}
   dropItems:
   - prefab: {fileID: 270761467918423833, guid: e31f728fb94c834468be24cd54e2a5d2, type: 3}

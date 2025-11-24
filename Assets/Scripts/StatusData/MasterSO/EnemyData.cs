@@ -11,17 +11,12 @@ public class EnemyData : ScriptableObject
     [field: SerializeField] public string _name {  get; private set; }
     [field: SerializeField, Multiline(6)] public string description { get; private set; }
 
-    public enum EnemyRank
-    {
-        Normal, Boss, BigBoss, Event
-    }
-
-    [field: SerializeField] public EnemyRank rank { get; private set; }
+    [field: SerializeField, Range(1, 3)] public int rank { get; private set; } = 1;
 
 
     public enum EnemyActType
     {
-        Infight, Shooter
+        Infight, Shooter, BigBoss
     }
 
     [field: SerializeField] public EnemyActType actType {  get; private set; }
