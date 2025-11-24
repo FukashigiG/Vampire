@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 9d36a0982e8cc294a802b093b324f8fe
+guid: c488fff648f819b4e965f73b04b3544e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8581515531174760201
-    second: K_P_Omikuji_0
+      213: 7671214654135638909
+    second: mendama_3_0
+  - first:
+      213: 2223872827557622215
+    second: mendama_3_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,53 +99,49 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: K_P_Omikuji_0
+      name: mendama_3_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 12
-        width: 148
-        height: 377
+        x: 0
+        y: 0
+        width: 200
+        height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 90f4b26a8eaa71770800000000000000
-      internalID: 8581515531174760201
+      spriteID: d7b96878511a57a60800000000000000
+      internalID: 7671214654135638909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mendama_3_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c13738dd88ccde10800000000000000
+      internalID: 2223872827557622215
       vertices: []
       indices: 
       edges: []
@@ -151,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 50bc020dd114a4648af6b81a50a6fd4f
     internalID: 0
     vertices: []
     indices: 
@@ -159,9 +158,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":2.0,"y":1.0},"gridSpriteSize":{"x":200.0,"y":200.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      K_P_Omikuji_0: 8581515531174760201
+      mendama_3_0: 7671214654135638909
+      mendama_3_1: 2223872827557622215
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

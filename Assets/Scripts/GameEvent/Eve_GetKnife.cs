@@ -31,6 +31,8 @@ public class Eve_GetKnife : Base_EventCtrler
     {
         base.OnEnable();
 
+        window_ShowDiscription.gameObject.SetActive(false);
+
         GenerateButtons();
     }
 
@@ -104,6 +106,8 @@ public class Eve_GetKnife : Base_EventCtrler
     {
         //プレイヤーに抽選されたナイフの追加
         PlayerController.Instance._status.inventory.AddKnife(knifeData);
+
+        window_ShowDiscription.gameObject.SetActive(false );
 
         //パネルを閉じる
         this.gameObject.SetActive(false);
