@@ -138,9 +138,6 @@ public class PlayerAttack : MonoBehaviour
             // 攻撃範囲内に敵が現れるまで待つ
             await UniTask.WaitUntil(() => targetEnemy != null, cancellationToken: token);
 
-            // 攻撃対象の方向をVec2型で取得
-            Vector2 dir = (targetEnemy.transform.position - this.transform.position).normalized;
-
             // handの先頭を取得
             var knife = hand[0];
 
@@ -150,18 +147,45 @@ public class PlayerAttack : MonoBehaviour
             // 購読先による介入のための発行
             subject_OnThrowKnife.OnNext(knife);
 
-            // ナイフを生成、それをxと置く
-            // 編集された可能性のあるKnifeDataで処理を続行
-            var x = Instantiate(knife.prefab, this.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
+            int count_multiKnife = knife.count_Multiple;
 
-            // ナイフの属性がプレイヤーの得意属性か否か
-            bool isElementMatched = status.masteredElements.Contains(knife.element);
+            // 攻撃対象の方向をVec2型で取得
+            Vector2 dir = (targetEnemy.transform.position - this.transform.position).normalized;
 
-            // xを初期化
-            // この文以降でxを参照してはならない（Initialize）
-            x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife, status, isElementMatched);
+            // それをQuaternionに変換
+            Quaternion baseRotation = Quaternion.FromToRotation(Vector2.up, dir);
 
-            // ナイフを1本投げるごとにアビリティチャージ
+            // ナイフ重複度だけオブジェクトを生成
+            for (int i = 0; i < count_multiKnife; i++)
+            {
+                float angleOffset = 0;
+
+                // 重複カウントが２以上なら以下の計算を実行
+                if(count_multiKnife > 1)
+                {
+                    // 今投げる角度を求める
+                    angleOffset = Mathf.Lerp(-10 / 2f, 10 / 2f, (float)i / (count_multiKnife - 1));
+                }
+
+                // Quaternionに変換
+                Quaternion rotationOffset = Quaternion.Euler(0, 0, angleOffset);
+
+                // ベースの方向と合成
+                Quaternion finalRotation = baseRotation * rotationOffset;
+
+                // ナイフを生成、それをxと置く
+                // 編集された可能性のあるKnifeDataで処理を続行
+                var x = Instantiate(knife.prefab, this.transform.position, finalRotation);
+
+                // ナイフの属性がプレイヤーの得意属性か否か
+                bool isElementMatched = status.masteredElements.Contains(knife.element);
+
+                // xを初期化
+                // この文以降でこのxを参照してはならない（Initialize）
+                x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife, status, isElementMatched);
+            }
+
+            // ナイフを1回投げるごとにアビリティチャージ
             AbilityCharge();
 
             // ステータスの持つ数値の分だけ待機

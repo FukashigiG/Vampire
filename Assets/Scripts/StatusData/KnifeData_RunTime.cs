@@ -35,6 +35,9 @@ public class KnifeData_RunTime
     public int power;
     public int elementPower;
 
+    // 所持時のナイフ重複度数
+    [Range(0, 10)] public int count_Multiple = 1;
+
     public GameObject prefab { get; private set; }
 
     public GameObject hitEffect;
@@ -87,6 +90,7 @@ public class KnifeData_RunTime
         element = data.element;
         power = data.power;
         elementPower = data.elementPower;
+        count_Multiple = data.count_Multiple;
         prefab = data.prefab;
         hitEffect = data.hitEffect;
         description = data.description;

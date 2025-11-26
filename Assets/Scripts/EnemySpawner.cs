@@ -116,8 +116,6 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
                 spawnTargetData = targetList[Random.Range(0, targetList.Count)];
 
-                Debug.Log(i);
-
                 break;
             }
         }

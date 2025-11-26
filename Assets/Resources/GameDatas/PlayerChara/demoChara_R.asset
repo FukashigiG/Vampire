@@ -19,7 +19,7 @@ MonoBehaviour:
   <defense>k__BackingField: 40
   <moveSpeed>k__BackingField: 10
   <luck>k__BackingField: 0
-  <eyeSight>k__BackingField: 4
+  <eyeSight>k__BackingField: 12
   <limit_DrawKnives>k__BackingField: 4
   <initialKnives>k__BackingField:
   - {fileID: 11400000, guid: 28c195926bc5a5f4da94eff1ea7c5a16, type: 2}

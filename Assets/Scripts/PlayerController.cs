@@ -65,8 +65,6 @@ public class PlayerController : SingletonMono<PlayerController>
 
             float dotProduct = Vector2.Dot(queue, inputValue.normalized);
 
-            Debug.Log(dotProduct);
-
             // 各キューと比較して、Nフレーム前の入力と現在の入力ベクトルの内積を計算 (正規化して方向のみを比較)
             // Dot < 0 ならば、角度は90度より大きい
             if (dotProduct <= 0f)

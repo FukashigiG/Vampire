@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UniRx;
 using UnityEngine;
 
@@ -28,11 +29,28 @@ public class PlayerInventory : MonoBehaviour
     // ナイフを入手する処理
     public void AddKnife(KnifeData_RunTime x)
     {
-        // 渡されたナイフのデータを元に初期化したランタイム用ナイフデータ
-        var y = new KnifeData_RunTime(x);
+        // その名前のナイフを既に持ってるか、持ってたら取得
+        var known = runtimeKnives.FirstOrDefault(knife => knife._name == x._name);
 
-        // リストに加える
-        runtimeKnives.Add(y);
+        if (known == null)
+        {
+            // 渡されたナイフのデータを元に初期化したランタイム用ナイフデータ
+            var y = new KnifeData_RunTime(x);
+
+            // リストに加える
+            runtimeKnives.Add(y);
+
+            Debug.Log("Add");
+        }
+        else
+        {
+            // 持っていたら、そのナイフの重複度数をプラス
+            known.count_Multiple++;
+
+            Debug.Log(known.count_Multiple);
+        }
+
+        
     }
 
     public bool RemoveKnife(KnifeData_RunTime x)
