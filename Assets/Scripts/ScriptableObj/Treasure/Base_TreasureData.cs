@@ -7,7 +7,6 @@ using UnityEngine;
 //[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/zzzDont")]
 public abstract class Base_TreasureData : ScriptableObject
 {
-    [field:SerializeField] public int uniqueIP { get; private set; }
     [field:SerializeField] public string _name {  get; private set; }
     [field:SerializeField,TextArea] public string _description {  get; private set; }
     [field:SerializeField] public Sprite icon {  get; private set; }

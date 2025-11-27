@@ -66,6 +66,11 @@ public class GameEventDirector : SingletonMono<GameEventDirector>
         GameAdmin.Instance.ResumeGame();
     }
 
+    public void AAA(Base_GameEvent _event)
+    {
+
+    }
+
     private void OnDestroy()
     {
         _cancellationTokenSource.Cancel();
