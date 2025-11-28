@@ -28,6 +28,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     public int waveCount = 0;
 
+    int pauseCount = 0;
+
      // ‚PƒEƒF[ƒu‚ ‚½‚è‚Ì“G‚Ì‹­‰»”{—¦
     public float waveBoostMultiplier {  get; private set; }
     [SerializeField] float _waveBoostMultiplier;
@@ -157,13 +159,20 @@ public class GameAdmin : SingletonMono<GameAdmin>
     // ˆê’â~
     public void PauseGame()
     {
+        pauseCount++;
+
         Time.timeScale = 0f;
     }
 
     // ÄŠJ
     public void ResumeGame()
     {
-        Time.timeScale = 1f;
+        pauseCount--;
+
+        if (pauseCount == 0)
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     public void ReTry_Kari()

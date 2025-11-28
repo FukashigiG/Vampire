@@ -8,6 +8,8 @@ using UniRx;
 
 public class PausePanelCtrler : MonoBehaviour
 {
+    [SerializeField] GameObject body;
+
     // 一覧となるオブジェクトのTransform
     // Instantiate時に親の引数として渡す
     [SerializeField] Transform knifeArea;
@@ -110,13 +112,17 @@ public class PausePanelCtrler : MonoBehaviour
     // パネル表示
     void TogglePanel(InputAction.CallbackContext context)
     {
-        this.gameObject.SetActive(true);
+        body.SetActive(true);
+
+        GameAdmin.Instance.PauseGame();
     }
 
     // パネル非表示
     public void CloseThis()
     {
-        this.gameObject.SetActive(false);
+        body.SetActive(false);
+
+        GameAdmin.Instance.ResumeGame();
     }
 
     // このオブジェクトが破棄されるときに、購読をすべて解除

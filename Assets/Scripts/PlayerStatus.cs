@@ -133,7 +133,7 @@ public class PlayerStatus : Base_MobStatus
         lvUp.OnNext(Unit.Default);
 
         // 獲得イベントを実行
-        GameEventDirector.Instance.TriggerEvent(GameEventDirector.Events.getTreasure);
+        //GameEventDirector.Instance.TriggerEvent(GameEventDirector.Events.getTreasure);
     }
 
     // 攻撃を受ける処理

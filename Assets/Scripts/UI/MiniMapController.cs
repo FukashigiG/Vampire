@@ -12,7 +12,7 @@ public class MiniMapController : SingletonMono<MiniMapController>
     [SerializeField] float mapScale;
 
     Dictionary<EnemyStatus, RectTransform> enemyDictionary = new();
-    Dictionary<DropItemCtrler, RectTransform> itemDictionary = new();
+    Dictionary<Base_DropItemCtrler, RectTransform> itemDictionary = new();
 
     [SerializeField] Transform playerTransform;
 
@@ -77,7 +77,7 @@ public class MiniMapController : SingletonMono<MiniMapController>
     }
 
     // 新しく生成されたアイテムオブジェクトに対して
-    public void NewItemInstance(DropItemCtrler dropItemCtrler)
+    public void NewItemInstance(Base_DropItemCtrler dropItemCtrler)
     {
         // アイコンを生成
         GameObject icon = Instantiate(itemIcon, this.transform);

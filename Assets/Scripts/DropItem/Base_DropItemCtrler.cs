@@ -4,15 +4,8 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class DropItemCtrler : MonoBehaviour
+public abstract class Base_DropItemCtrler : MonoBehaviour
 {
-    enum EventEnum
-    {
-        getKnife, getTreasure, driveKnife, heal
-    }
-
-    [SerializeField] EventEnum eventEnum;
-
     [SerializeField] float lifeSpan;
 
     float elapsedTime;
@@ -34,7 +27,7 @@ public class DropItemCtrler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        switch (eventEnum)
+        /*switch (eventEnum)
         {
             case EventEnum.getKnife:
                 GameEventDirector.Instance.TriggerEvent(GameEventDirector.Events.getKnife);
@@ -51,10 +44,14 @@ public class DropItemCtrler : MonoBehaviour
             case EventEnum.heal:
                 if (collision.TryGetComponent(out PlayerStatus component)) component.HealHP(component.maxHP / 12);
                 break;
-        }
+        }*/
+
+        TriggerAction();
 
         Destroy(this.gameObject);
     }
+
+    protected abstract void TriggerAction();
 
     private void OnDestroy()
     {

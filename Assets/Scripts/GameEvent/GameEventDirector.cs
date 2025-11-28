@@ -32,24 +32,9 @@ public class GameEventDirector : SingletonMono<GameEventDirector>
         driveKnife
     }
 
-    public void TriggerEvent(Events _event)
+    public void TriggerEvent(GameEventData eventData)
     {
-        //EventAsync(_token).Forget();
-
-        /*switch( _event )
-        {
-            case Events.getKnife:
-                EventAsync(panel_GetKnife, _cancellationToken).Forget();
-                break;
-
-            case Events.getTreasure:
-                EventAsync(panel_GetTreasure, _cancellationToken).Forget();
-                break;
-
-            case Events.driveKnife:
-                EventAsync(panel_DriveKnife, _cancellationToken).Forget();
-                break;
-        }*/
+        EventAsync(eventData, _token).Forget();
     }
 
     async UniTask EventAsync(GameEventData eventData, CancellationToken token)

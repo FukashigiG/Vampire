@@ -3,6 +3,10 @@ using UnityEngine.UI;
 
 public class GameEventViewer : SingletonMono<GameEventViewer>
 {
+    // ゲーム内イベント発動時、その内容を表示するUI用スクリプト
+
+    [SerializeField] GameObject body_Panel;
+
     [SerializeField] Text titleText;
     [SerializeField] Text descriptionText;
 
@@ -14,7 +18,7 @@ public class GameEventViewer : SingletonMono<GameEventViewer>
 
     public void ShowEvent(GameEventData _event)
     {
-        this.gameObject.SetActive(true);
+        body_Panel.SetActive(true);
 
         titleText.text = _event.eventTitle;
         descriptionText.text = _event.description;

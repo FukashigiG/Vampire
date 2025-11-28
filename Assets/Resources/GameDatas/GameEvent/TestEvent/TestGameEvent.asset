@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameEventData
   <eventTitle>k__BackingField: "\u3053\u308C\u306F\u6B63\u3057\u3044\u8868\u793A\u3060"
   <description>k__BackingField: "\u30D7\u30ED\u30B0\u30E9\u30E0\u306F\u6B63\u5E38\u306B\u52D5\u3044\u3066\u3044\u308B\u304B\uFF1F"
-  <eventOptionLogic>k__BackingField: []
+  <eventOptionLogic>k__BackingField:
+  - {fileID: 11400000, guid: 820b5596bce986747ac0453c899bd454, type: 2}
+  - {fileID: 11400000, guid: 7de312df1b509e24f9bc2a6ac830c724, type: 2}
