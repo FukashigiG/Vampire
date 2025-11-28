@@ -6,10 +6,6 @@ using UnityEngine;
 
 public class GameEventDirector : SingletonMono<GameEventDirector>
 {
-    /*[SerializeField] GameObject panel_GetKnife;
-    [SerializeField] GameObject panel_GetTreasure;
-    [SerializeField] GameObject panel_DriveKnife;*/
-
     CancellationToken _token;
 
     private void Awake()
@@ -19,33 +15,50 @@ public class GameEventDirector : SingletonMono<GameEventDirector>
 
     private void Start()
     {
-        /*panel_GetKnife.GetComponent<Eve_GetKnife>().Initialize();
-        panel_GetTreasure.GetComponent<Eve_GetTreasure>().Initialize();
-        panel_DriveKnife.GetComponent<Eve_DriveKnife>().Initialize();*/
+
     }
 
-    public enum Events
+    enum EventsType { getSome, _event }
+
+    public void Trigger_GetSome()
     {
-        getKnife,
-        getTreasure,
-        fusionKnives,
-        driveKnife
+        EventAsync(EventsType.getSome, _token).Forget();
     }
 
-    public void TriggerEvent(GameEventData eventData)
+    public void Trigger_Event(GameEventData eventData)
     {
-        EventAsync(eventData, _token).Forget();
+        EventAsync(EventsType._event , _token, eventData).Forget();
     }
 
-    async UniTask EventAsync(GameEventData eventData, CancellationToken token)
+    async UniTask EventAsync(EventsType type, CancellationToken token, GameEventData eventData = null)
     {
         // ゲームの一時停止
         GameAdmin.Instance.PauseGame();
 
-        // パネルを開く
-        GameEventViewer.Instance.ShowEvent(eventData);
+        GameObject panel = null;
 
-        GameObject panel = GameEventViewer.Instance.gameObject;
+        switch (type)
+        {
+            case EventsType.getSome:
+
+                // パネルを開く
+                GetSomeoneViewer.Instance.ShowEvent();
+
+                panel = GetSomeoneViewer.Instance.body_Panel;
+
+                break;
+
+            case EventsType._event:
+
+                // パネルを開く
+                GameEventViewer.Instance.ShowEvent(eventData);
+
+                panel = GameEventViewer.Instance.body_Panel;
+
+                break;
+        }
+
+
 
         // パネルが閉じるまで待つ
         await UniTask.WaitUntil(() => panel.activeSelf == false, cancellationToken: token);

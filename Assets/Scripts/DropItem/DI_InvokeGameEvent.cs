@@ -6,6 +6,6 @@ public class DI_InvokeGameEvent : Base_DropItemCtrler
 
     protected override void TriggerAction()
     {
-        GameEventDirector.Instance.TriggerEvent(gameEventData);
+        GameEventDirector.Instance.Trigger_Event(gameEventData);
     }
 }

@@ -5,7 +5,7 @@ public class GameEventViewer : SingletonMono<GameEventViewer>
 {
     // ゲーム内イベント発動時、その内容を表示するUI用スクリプト
 
-    [SerializeField] GameObject body_Panel;
+    [field:SerializeField] public GameObject body_Panel {  get; private set; }
 
     [SerializeField] Text titleText;
     [SerializeField] Text descriptionText;
@@ -37,23 +37,19 @@ public class GameEventViewer : SingletonMono<GameEventViewer>
             {
                 option.Action();
 
-                this.gameObject.SetActive(false);
+                ClosePanel();
             });
         }
     }
 
-    void DisposeButtons()
+    void ClosePanel()
     {
         //buttonAreaの子オブジェクトを全削除
         foreach (Transform button in buttonArea)
         {
             Destroy(button.gameObject);
         }
-    }
 
-    // このパネルが閉じるとき（activeSelfがfalseになるとき）
-    void OnDisable()
-    {
-        DisposeButtons();
+        body_Panel.SetActive(false);
     }
 }
