@@ -17,6 +17,11 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 
     [SerializeField] TypeAndWeight[] typeAndWeight;
 
+    private void Awake()
+    {
+        
+    }
+
     public void ShowEvent()
     {
         body_Panel.SetActive(true);
@@ -25,8 +30,20 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
         {
             button.onClick.AddListener(() =>
             {
-                ClosePanel();
+                ShowDiscription(null);
             });
+        }
+    }
+
+    void ShowDiscription(Base_PlayerItem item)
+    {
+        if (item is KnifeData knife)
+        {
+
+        } 
+        else if(item is Base_TreasureData treasure)
+        {
+
         }
     }
 

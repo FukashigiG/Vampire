@@ -50,7 +50,7 @@ public class AKBtn_Detail : MonoBehaviour
             }
         }
 
-        t_Description.text += knifeData.description;
+        t_Description.text += knifeData.flavortext;
 
     }
 }

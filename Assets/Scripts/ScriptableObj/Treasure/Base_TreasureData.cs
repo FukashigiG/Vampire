@@ -5,11 +5,8 @@ using UniRx;
 using UnityEngine;
 
 //[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/zzzDont")]
-public abstract class Base_TreasureData : ScriptableObject
+public abstract class Base_TreasureData : Base_PlayerItem
 {
-    [field:SerializeField] public string _name {  get; private set; }
-    [field:SerializeField,TextArea] public string _description {  get; private set; }
-    [field:SerializeField] public Sprite icon {  get; private set; }
 
     protected static Subject<Base_TreasureData> subject_OnAct = new Subject<Base_TreasureData>();
     public static IObservable<Base_TreasureData> onAct => subject_OnAct;

@@ -23,8 +23,6 @@ public class CustomList : Collection<KnifeAbility>
 public class KnifeData_RunTime
 {
     public Sprite sprite { get; private set; }
-    public Sprite sprite_Defolme { get; private set; }
-    public Color color { get; private set; }
 
     public string _name { get; private set; }
 
@@ -42,8 +40,7 @@ public class KnifeData_RunTime
 
     public GameObject hitEffect;
 
-    // ↓をつけるとエディタ上で長いテキストも扱いやすくなる
-    [Multiline(6)] public string description;
+    public string flavortext;
 
     // 特殊効果
     public CustomList abilities {  get; private set; } = new CustomList();
@@ -52,8 +49,6 @@ public class KnifeData_RunTime
     public KnifeData_RunTime(KnifeData data)
     {
         sprite = data.sprite;
-        sprite_Defolme = data.sprite_Defolme;
-        color = data.color;
         _name = data._name;
         rarity = data.rarity;
         element = data.element;
@@ -61,7 +56,7 @@ public class KnifeData_RunTime
         elementPower = data.elementPower;
         prefab = data.prefab;
         hitEffect = data.hitEffect;
-        description = data.description;
+        flavortext = data.flavortext;
 
         // ナイフに登録されていた各HSpEを初期化したものをリストに加える
         foreach (var ability in data.abilities)
@@ -83,8 +78,6 @@ public class KnifeData_RunTime
     public KnifeData_RunTime(KnifeData_RunTime data)
     {
         sprite = data.sprite;
-        sprite_Defolme = data.sprite_Defolme;
-        color = data.color;
         _name = data._name;
         rarity = data.rarity;
         element = data.element;
@@ -93,7 +86,7 @@ public class KnifeData_RunTime
         count_Multiple = data.count_Multiple;
         prefab = data.prefab;
         hitEffect = data.hitEffect;
-        description = data.description;
+        flavortext = data.flavortext;
 
         foreach (var ability in data.abilities)
         {

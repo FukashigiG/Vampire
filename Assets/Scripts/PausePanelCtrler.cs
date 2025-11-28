@@ -94,7 +94,7 @@ public class PausePanelCtrler : MonoBehaviour
     void OnTreasureAdded(Base_TreasureData treasureData)
     {
         var imageObj = Instantiate(treasureImagePrefab, treasureArea);
-        imageObj.GetComponent<Image>().sprite = treasureData.icon;
+        imageObj.GetComponent<Image>().sprite = treasureData.sprite;
 
         treasureImageDictionaty[treasureData] = imageObj;
     }

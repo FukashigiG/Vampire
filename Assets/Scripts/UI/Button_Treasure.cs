@@ -40,10 +40,10 @@ public class Button_Treasure : MonoBehaviour
     {
         treasureData = x;
 
-        image_Sprite.sprite = treasureData.icon;
+        image_Sprite.sprite = treasureData.sprite;
 
         text_Name_Kari.text = treasureData._name;
-        text_Description_Kari.text = treasureData._description;
+        text_Description_Kari.text = treasureData.flavortext;
 
         //detailWindow.GetComponent<AKBtn_Detail>().Initialize(knifeData);
 
