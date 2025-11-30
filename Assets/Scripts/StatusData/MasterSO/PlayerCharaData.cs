@@ -22,7 +22,7 @@ public class PlayerCharaData : ScriptableObject
     // 初期所持ナイフ
     [field: SerializeField] public KnifeData[] initialKnives { get; private set; }
     // 初期所持秘宝
-    [field: SerializeField] public Base_TreasureData[] initialTreasures { get; private set; }
+    [field: SerializeField] public TreasureData[] initialTreasures { get; private set; }
     // キャラクターアビリティ
     [field: SerializeField] public Base_P_CharaAbility charaAbility { get; private set; }
     // 得意属性

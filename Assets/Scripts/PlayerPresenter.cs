@@ -92,7 +92,7 @@ public class PlayerPresenter : MonoBehaviour
         }).AddTo(this);
 
         // ”é•ó‚Ì”­“®‚ğw“ÇA•\¦
-        Base_TreasureData.onAct.Subscribe(x =>
+        TreasureData.onAct.Subscribe(x =>
         {
             treasureActImage.sprite = x.sprite;
 

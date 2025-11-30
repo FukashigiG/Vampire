@@ -1,0 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UniRx;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/TreasureLogic/AddHSpE")]
+public class TL_AdditionKnifeAbility : Base_TreasureLogic
+{
+    // 所持している間、プレイヤーの扱う特定の属性のナイフに特殊能力を追加
+
+    [field: SerializeField] public Element targetEnum {  get; private set; }
+
+    [field: SerializeField] public KnifeAbility ability {  get; private set; }
+
+    public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
+    {
+        status.attack.onThrowKnife.Subscribe(_throw =>
+        {
+            // 対象のアビリティーロジックがあれば、それを取得
+            KnifeAbility matchedAbility = _throw.abilities
+                .FirstOrDefault(effect => effect.abilityLogic.effectName == ability.abilityLogic.effectName);
+
+            // そのナイフデータの属性が対象でないなら無視、または既にこの能力を持ってるなら無視
+            if (_throw.element != targetEnum || matchedAbility != null) return;
+
+            // 引数で渡されたナイフのデータに、特定の特殊能力を追加
+            _throw.abilities.Add(ability);
+
+            subject_OnAct.OnNext(Unit.Default);
+        })
+        .AddTo(disposables);
+    }
+}

@@ -8,10 +8,10 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public ReactiveCollection<KnifeData_RunTime> runtimeKnives { get; private set; } = new ReactiveCollection<KnifeData_RunTime>();
-    public ReactiveCollection<Base_TreasureData> runtimeTreasure { get; private set; } = new();
+    public ReactiveCollection<TreasureData> runtimeTreasure { get; private set; } = new();
 
     // アイテムとそのイベント購読を紐付けて管理する
-    private readonly Dictionary<Base_TreasureData, CompositeDisposable> _itemDisposables = new Dictionary<Base_TreasureData, CompositeDisposable>();
+    private readonly Dictionary<TreasureData, CompositeDisposable> _itemDisposables = new Dictionary<TreasureData, CompositeDisposable>();
 
 
     PlayerStatus status;
@@ -64,7 +64,7 @@ public class PlayerInventory : MonoBehaviour
     }
 
     // 秘宝を入手する処理
-    public void AddTreasure(Base_TreasureData x)
+    public void AddTreasure(TreasureData x)
     {
         //if (runtimeTreasure.Contains(x)) return; // 同じアイテムは追加しない
 
@@ -74,19 +74,17 @@ public class PlayerInventory : MonoBehaviour
         // リストに加える
         runtimeTreasure.Add(y);
 
-        // 秘宝の、入手時の処理を実行
-        y.OnAdd(status);
-
         // この秘宝に対するCompositeDisposableを新規作成
         var disposables = new CompositeDisposable();
         _itemDisposables.Add(y, disposables);
 
-        y.SubscribeToEvent(status, disposables);
+        // 秘宝の、入手時の処理を実行
+        y.OnAdd(status, disposables);
 
         //Debug.Log($"{y._name} を取得した！");
     }
 
-    public void RemoveTreasure(Base_TreasureData x)
+    public void RemoveTreasure(TreasureData x)
     {
         if(! runtimeTreasure.Contains(x)) return; // もしその秘宝を持ってないなら無視
 

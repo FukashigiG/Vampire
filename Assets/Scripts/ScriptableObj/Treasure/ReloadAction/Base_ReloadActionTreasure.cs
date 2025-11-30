@@ -4,19 +4,11 @@ using UniRx;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/Reload/base")]
-public class Base_ReloadActionTreasure : Base_TreasureData
+public class Base_ReloadActionTreasure : Base_TreasureLogic
 {
     // 所持している間、プレイヤーのリロードに反応して
 
-    public override void OnAdd(PlayerStatus status)
-    {
 
-    }
-
-    public override void OnRemove(PlayerStatus status)
-    {
-
-    }
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
@@ -30,6 +22,6 @@ public class Base_ReloadActionTreasure : Base_TreasureData
     public virtual void ReloadAction(PlayerStatus status, ReactiveCollection<KnifeData_RunTime> knives)
     {
         // 発動を通知
-        subject_OnAct.OnNext(this);
+        subject_OnAct.OnNext(Unit.Default);
     }
 }

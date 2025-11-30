@@ -16,7 +16,7 @@ public class PlayerCharaData_RunTime
     public float eyeSight;
 
     public KnifeData[] initialKnives;
-    public Base_TreasureData[] initialTreasures;
+    public TreasureData[] initialTreasures;
 
     public Element masteredElement;
 

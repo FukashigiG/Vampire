@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/FreezeBonus")]
-public class FreezeBonusTreasure : Base_TreasureData
+[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/TreasureLogic/FreezeBonus")]
+public class TL_FreezeBonus : Base_TreasureLogic
 {
     // Š‚µ‚Ä‚¢‚éŠÔA“Á’è‚Ìó‘ÔˆÙí‚Ì“G‚ª€‚Ê‚ÆAüˆÍ‚É‚¢‚½‘¼‚Ì“G‚ğó‘ÔˆÙí‚É‚·‚é
     // —áF“€Œ‹‚É‚È‚Á‚½“G‚ÌüˆÍ‚Ì“G‚Ì‘f‘‚³‚ğ‰º‚°‚é
@@ -26,16 +26,6 @@ public class FreezeBonusTreasure : Base_TreasureData
     [Header("‚»‚Ì‘¼")]
     [SerializeField] float coolDownSeconds;
     [SerializeField] GameObject fx;
-
-    public override void OnAdd(PlayerStatus status)
-    {
-
-    }
-
-    public override void OnRemove(PlayerStatus status)
-    {
-
-    }
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
@@ -68,7 +58,7 @@ public class FreezeBonusTreasure : Base_TreasureData
             Instantiate(fx, center, Quaternion.identity);
 
             // ”­“®‚ğ’Ê’m
-            subject_OnAct.OnNext(this);
+            subject_OnAct.OnNext(Unit.Default);
 
             // ‘Ò‚Â
             try

@@ -26,7 +26,7 @@ public class KnifeData_RunTime
 
     public string _name { get; private set; }
 
-    public int rarity { get; private set; }
+    public int rank { get; private set; }
 
     public Element element;
 
@@ -50,7 +50,7 @@ public class KnifeData_RunTime
     {
         sprite = data.sprite;
         _name = data._name;
-        rarity = data.rarity;
+        rank = data.rank;
         element = data.element;
         power = data.power;
         elementPower = data.elementPower;
@@ -79,7 +79,7 @@ public class KnifeData_RunTime
     {
         sprite = data.sprite;
         _name = data._name;
-        rarity = data.rarity;
+        rank = data.rank;
         element = data.element;
         power = data.power;
         elementPower = data.elementPower;

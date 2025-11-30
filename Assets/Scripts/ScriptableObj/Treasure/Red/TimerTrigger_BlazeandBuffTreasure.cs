@@ -5,8 +5,8 @@ using UnityEngine;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 
-[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/TimerTrigger_BlazeandBuff")]
-public class TimerTrigger_BlazeandBuffTreasure : Base_TreasureData
+[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/TreasureLogic/TimerTrigger_BlazeandBuff")]
+public class TimerTrigger_BlazeandBuffTreasure : Base_TreasureLogic
 {
     // 一定時間ごとに、ナイフを投げると自身が火炎状態とバフを受ける
 
@@ -24,16 +24,6 @@ public class TimerTrigger_BlazeandBuffTreasure : Base_TreasureData
     [SerializeField] string effectID_2;
     [SerializeField] int amount2;
 
-    public override void OnAdd(PlayerStatus status)
-    {
-
-    }
-
-    public override void OnRemove(PlayerStatus status)
-    {
-
-    }
-
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
         bool isCooling = false;
@@ -50,7 +40,7 @@ public class TimerTrigger_BlazeandBuffTreasure : Base_TreasureData
             status.ApplyStatusEffect(statusEffect_2, effectID_2, effectDuration, amount2);
 
             // 発動を通知
-            subject_OnAct.OnNext(this);
+            subject_OnAct.OnNext(Unit.Default);
 
             // 待つ
             try

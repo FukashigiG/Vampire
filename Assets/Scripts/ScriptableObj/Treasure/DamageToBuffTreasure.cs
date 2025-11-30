@@ -4,7 +4,7 @@ using UniRx;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/DamageToBuff")]
-public class DamageToBuffTreasure : Base_TreasureData
+public class DamageToBuffTreasure : Base_TreasureLogic
 {
     // 所持している間、プレイヤーが攻撃を受けるとバフが入る
 
@@ -13,23 +13,13 @@ public class DamageToBuffTreasure : Base_TreasureData
     [SerializeField] float duration;
     [SerializeField] int amount;
 
-    public override void OnAdd(PlayerStatus status)
-    {
-        
-    }
-
-    public override void OnRemove(PlayerStatus status)
-    {
-        
-    }
-
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
         status.onDamaged.Subscribe(x =>
         {
             status.ApplyStatusEffect(statusEffect, effectID, duration, amount);
 
-            subject_OnAct.OnNext(this);
+            subject_OnAct.OnNext(Unit.Default);
 
         }).AddTo(disposables);
     }

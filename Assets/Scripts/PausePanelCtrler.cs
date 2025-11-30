@@ -26,7 +26,7 @@ public class PausePanelCtrler : MonoBehaviour
 
     // 所持ナイフ/秘宝欄に生成されたオブジェクトを管理するためのもの
     Dictionary<KnifeData_RunTime, GameObject> knifeImageDictionaty = new();
-    Dictionary<Base_TreasureData, GameObject> treasureImageDictionaty = new();
+    Dictionary<TreasureData, GameObject> treasureImageDictionaty = new();
 
     private void Awake()
     {
@@ -91,7 +91,7 @@ public class PausePanelCtrler : MonoBehaviour
     }
 
     // 秘宝が追加された際
-    void OnTreasureAdded(Base_TreasureData treasureData)
+    void OnTreasureAdded(TreasureData treasureData)
     {
         var imageObj = Instantiate(treasureImagePrefab, treasureArea);
         imageObj.GetComponent<Image>().sprite = treasureData.sprite;
@@ -100,7 +100,7 @@ public class PausePanelCtrler : MonoBehaviour
     }
 
     // 秘宝が削除された際
-    void OnTreasureRemoved(Base_TreasureData treasureData)
+    void OnTreasureRemoved(TreasureData treasureData)
     {
         if (treasureImageDictionaty.TryGetValue(treasureData, out var obj))
         {

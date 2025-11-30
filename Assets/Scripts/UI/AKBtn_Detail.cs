@@ -26,7 +26,7 @@ public class AKBtn_Detail : MonoBehaviour
         knifeData = data;
 
         t_Name.text = knifeData._name;
-        t_Rare.text = "Rarity : " + knifeData.rarity;
+        t_Rare.text = "Rarity : " + knifeData.rank;
         t_Attribute.text = "Attribute : " + knifeData.element;
         t_Power.text = "Attack : " + knifeData.power;
 

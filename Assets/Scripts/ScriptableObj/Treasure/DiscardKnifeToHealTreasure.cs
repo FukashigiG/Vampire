@@ -5,23 +5,13 @@ using UnityEngine;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 
-[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/DiscardKnifeToHeal")]
-public class DiscardKnifeToHealTreasure : Base_TreasureData
+[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/TreasureLogic/DiscardKnifeToHeal")]
+public class DiscardKnifeToHealTreasure : Base_TreasureLogic
 {
     // 所持している間、数秒に一度、ダメージを受けるとランダムなナイフを消費して回復
 
     [SerializeField] int healAmount_Percent;
     [SerializeField] float coolDownSeconds;
-
-    public override void OnAdd(PlayerStatus status)
-    {
-
-    }
-
-    public override void OnRemove(PlayerStatus status)
-    {
-
-    }
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
@@ -46,7 +36,7 @@ public class DiscardKnifeToHealTreasure : Base_TreasureData
             status.HealHP(status.maxHP * healAmount_Percent / 100);
 
             // 発動を通知
-            subject_OnAct.OnNext(this);
+            subject_OnAct.OnNext(Unit.Default);
 
             // クールタイムに移行
             isCooling = true;

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afabba9b6a2584f43b7792cf4847cf68, type: 3}
+  m_Name: DefeatBlazed_Explosion
+  m_EditorClassIdentifier: 
+  <_name>k__BackingField: "\u706B\u708E\u7206\u7834"
+  <flavortext>k__BackingField: 
+  <rank>k__BackingField: 1
+  <sprite>k__BackingField: {fileID: 0}
+  <element>k__BackingField: 0
+  statusEffect: {fileID: 11400000, guid: 8ee89ac241c31d44b9e118106387ae82, type: 2}
+  effect: {fileID: 3599841958050145209, guid: 8965d9b29e491a34c803876d952104d2, type: 3}
+  radius: 1.6
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  coolDownSeconds: 0.5

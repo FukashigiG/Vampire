@@ -18,15 +18,15 @@ public class Button_Treasure : MonoBehaviour
 
     Animator _animator;
 
-    Base_TreasureData treasureData;
+    TreasureData treasureData;
 
     //押されたときに飛ばす通知
     //ゲーム終了時にはGameAdminにDisposeされる
-    public static Subject<Base_TreasureData> clicked { get; private set; } = new Subject<Base_TreasureData>();
+    public static Subject<TreasureData> clicked { get; private set; } = new Subject<TreasureData>();
 
     // カーソルが重なった、外れたら飛ばす通知
-    public Subject<Base_TreasureData> pointerEntered { get; private set; } = new Subject<Base_TreasureData>();
-    public Subject<Base_TreasureData> pointerExited { get; private set; } = new Subject<Base_TreasureData>();
+    public Subject<TreasureData> pointerEntered { get; private set; } = new Subject<TreasureData>();
+    public Subject<TreasureData> pointerExited { get; private set; } = new Subject<TreasureData>();
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class Button_Treasure : MonoBehaviour
     }
 
     // 初期化
-    public void Initialize(Base_TreasureData x)
+    public void Initialize(TreasureData x)
     {
         treasureData = x;
 

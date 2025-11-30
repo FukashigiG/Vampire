@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 245c80f82e3736146926b98e27be719b, type: 3}
+  m_Name: FreezeBonus
+  m_EditorClassIdentifier: 
+  <_name>k__BackingField: 
+  <flavortext>k__BackingField: 
+  <rank>k__BackingField: 1
+  <sprite>k__BackingField: {fileID: 0}
+  <element>k__BackingField: 0
+  targetStatusEffect: {fileID: 11400000, guid: c5e621a7aaad6d040b55e8f7d994b305, type: 2}
+  radius: 2.4
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  statusEffect: {fileID: 11400000, guid: 42661e1fdb3375143be323f0c530cc5b, type: 2}
+  effectID: freezebonus
+  duration: 3
+  amount_Debuff: 50
+  coolDownSeconds: 1
+  fx: {fileID: 4042064883163603568, guid: 5680c6783d569a045a60b74f7bd8271b, type: 3}

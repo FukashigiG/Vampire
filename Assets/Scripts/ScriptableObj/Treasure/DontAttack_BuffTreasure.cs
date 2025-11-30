@@ -5,8 +5,7 @@ using UnityEngine;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 
-[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/DontAttack_Buff")]
-public class DontAttack_BuffTreasure : Base_TreasureData
+public class DontAttack_BuffTreasure : Base_TreasureLogic
 {
     // Š‚µ‚Ä‚¢‚éŠÔA“Á’è‚Ìó‘Ô•Ï‰»Œø‰Ê‚ğó‚¯‚½“G‚Ì€–S‚É”½‰‚µ‚ÄA‚»‚Ì“G‚ÌüˆÍ‚ÉA€‚ñ‚¾“G‚ÌÅ‘åHP‚Ì”¼•ª‚Åƒ_ƒ[ƒW
     // ‚ß‚¿‚á‚ß‚¿‚áì‚è‚©‚¯‚Å‚·
@@ -17,17 +16,6 @@ public class DontAttack_BuffTreasure : Base_TreasureData
     [SerializeField] LayerMask targetLayer;
     [SerializeField] float coolDownSeconds;
 
-    
-
-    public override void OnAdd(PlayerStatus status)
-    {
-
-    }
-
-    public override void OnRemove(PlayerStatus status)
-    {
-
-    }
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {

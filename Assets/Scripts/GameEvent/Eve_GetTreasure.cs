@@ -13,7 +13,7 @@ public class Eve_GetTreasure : Base_EventCtrler
 {
     [SerializeField] GameObject treasureButtonObj;
 
-    List<Base_TreasureData> allTreasures;
+    List<TreasureData> allTreasures;
 
     PlayerInventory playerInventory;
 
@@ -24,10 +24,10 @@ public class Eve_GetTreasure : Base_EventCtrler
         playerInventory = PlayerController.Instance._status.inventory;
 
         // ゲームに登録された全ての秘宝を配列として取得
-        var x = Resources.LoadAll<Base_TreasureData>("GameDatas/Treasure");
+        var x = Resources.LoadAll<TreasureData>("GameDatas/Treasure");
 
         // 配列をListに変換、treasuresに格納
-        allTreasures = new List<Base_TreasureData>(x);
+        allTreasures = new List<TreasureData>(x);
     }
 
     protected override void OnEnable()
@@ -39,7 +39,7 @@ public class Eve_GetTreasure : Base_EventCtrler
         HashSet<string> excludedIDs = new HashSet<string>(playerInventory.runtimeTreasure.Select(x => x._name));
 
         // Playerの持ってない秘宝のリストを作成
-        List<Base_TreasureData> availableTreasures = allTreasures
+        List<TreasureData> availableTreasures = allTreasures
             .Where(treasureAsset => !excludedIDs.Contains(treasureAsset._name))
             .ToList();
 
@@ -55,7 +55,7 @@ public class Eve_GetTreasure : Base_EventCtrler
             if (availableTreasures.Count <= 0) break;
 
             //選択肢となる秘宝を決定
-            Base_TreasureData treasureData = availableTreasures[0];
+            TreasureData treasureData = availableTreasures[0];
 
             // ボタンを指定のTransform下に生成
             var buttonObj = Instantiate(treasureButtonObj, buttonArea);
@@ -76,7 +76,7 @@ public class Eve_GetTreasure : Base_EventCtrler
         }
     }
 
-    void Choice(Base_TreasureData treasureData)
+    void Choice(TreasureData treasureData)
     {
         //　選択された秘宝をインベントリに追加
         playerInventory.AddTreasure(treasureData);
