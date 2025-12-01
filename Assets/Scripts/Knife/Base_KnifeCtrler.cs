@@ -74,7 +74,7 @@ public class Base_KnifeCtrler : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         // もし当たったものがダメージを受けるものだったらダメージを与える
-        if(collision.TryGetComponent(out Base_MobStatus ms))
+        if(collision.TryGetComponent(out EnemyStatus ms))
         {
             bool shouldDestroyThis = true;
             bool is_ignoreDefence = false;

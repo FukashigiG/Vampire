@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/Reload/BuffReload")]
-public class BuffReloadTreasure : Base_ReloadActionTreasure
+[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/TreasureLogic/Reload/BuffReload")]
+public class TL_BuffReload : Base_TL_ReloadAction
 {
     public Base_StatusEffectData statusEffect;
 

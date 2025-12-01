@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/DamageToBuff")]
-public class DamageToBuffTreasure : Base_TreasureLogic
+[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/TreasureLogic/DamageToBuff")]
+public class TL_DamageToBuff : Base_TreasureLogic
 {
     // 所持している間、プレイヤーが攻撃を受けるとバフが入る
 

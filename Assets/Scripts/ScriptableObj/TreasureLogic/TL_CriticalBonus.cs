@@ -20,6 +20,8 @@ public class TL_CriticalBonus : Base_TreasureLogic
         {
             targetStatus.ApplyStatusEffect(statusEffect, effectID, duration ,amount_Debuff);
 
+            Debug.Log("asa");
+
             // ”­“®‚ð’Ê’m
             subject_OnAct.OnNext(Unit.Default);
 

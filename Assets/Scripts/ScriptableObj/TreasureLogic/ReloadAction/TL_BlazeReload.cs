@@ -4,8 +4,8 @@ using UniRx;
 using UnityEngine;
 using System.Linq;
 
-[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/Reload/BlazeReload")]
-public class BlazeReloadTreasure : Base_ReloadActionTreasure
+[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/TreasureLogic/Reload/BlazeReload")]
+public class TL_BlazeReload : Base_TL_ReloadAction
 {
     // リロード時、N属性のナイフがM本以上含まれていれば、周囲の敵にデバフ
 

@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/Treasure Data/Reload/base")]
-public class Base_ReloadActionTreasure : Base_TreasureLogic
+public class Base_TL_ReloadAction : Base_TreasureLogic
 {
     // 所持している間、プレイヤーのリロードに反応して
-
-
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {

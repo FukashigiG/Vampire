@@ -61,7 +61,7 @@ public class KnifeAbility
     }
 
     // ナイフがヒットした時に呼ばれる
-    public virtual void OnHit(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData)
+    public virtual void OnHit(EnemyStatus status, GameObject knifeObj, KnifeData_RunTime knifeData)
     {
         // 変数がfalseなら無視
         if (! abilityLogic.effectOnHit) return;

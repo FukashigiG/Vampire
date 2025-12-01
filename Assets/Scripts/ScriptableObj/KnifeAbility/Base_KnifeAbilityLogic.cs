@@ -40,8 +40,6 @@ public abstract class Base_KnifeAbilityLogic : ScriptableObject, IOnHitSpecialEf
     // “ÁêŒø‰Êˆ—
     public virtual void ActivateAbility(Base_MobStatus status, GameObject knifeObject, KnifeData_RunTime knifeData, string effectID)
     {
-
-
         // ”­“®’Ê’m
         onEffectActived.OnNext(status);
     }
