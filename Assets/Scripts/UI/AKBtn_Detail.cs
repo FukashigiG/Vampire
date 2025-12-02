@@ -44,9 +44,9 @@ public class AKBtn_Detail : MonoBehaviour
             {
                 GameObject a = Instantiate(HSpE_TxtObj, area_HSpE.transform);
 
-                var d = a.GetComponent<Detail_HSpE>();
+                //var d = a.GetComponent<Detail_HSpE>();
 
-                d.Initialize(effect);
+                //d.Initialize(effect);
             }
         }
 

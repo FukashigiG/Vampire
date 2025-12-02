@@ -16,14 +16,15 @@ public class TL_CriticalBonus : Base_TreasureLogic
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
         // クリティカル発動の発動を購読
-        KAL_Critical.onEffectActived.Subscribe(targetStatus  =>
+        Base_KnifeAbilityLogic.onEffectActived.Subscribe(x  =>
         {
-            targetStatus.ApplyStatusEffect(statusEffect, effectID, duration ,amount_Debuff);
+            if(x.logic is KAL_Critical)
+            {
+                x.target.ApplyStatusEffect(statusEffect, effectID, duration, amount_Debuff);
 
-            Debug.Log("asa");
-
-            // 発動を通知
-            subject_OnAct.OnNext(Unit.Default);
+                // 発動を通知
+                subject_OnAct.OnNext(Unit.Default);
+            }
 
         }).AddTo(disposables);
     }

@@ -24,3 +24,5 @@ MonoBehaviour:
   <abilities>k__BackingField:
   - abilityLogic: {fileID: 11400000, guid: a30a44b39e20fc04c8641f803993707d, type: 2}
     effectID: omiyagepower111
+  - abilityLogic: {fileID: 11400000, guid: 17e860b8c320c3048b0b573d69e74311, type: 2}
+    effectID: omiyagepower111

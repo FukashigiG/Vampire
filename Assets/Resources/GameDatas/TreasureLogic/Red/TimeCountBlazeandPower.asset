@@ -12,17 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd61ea7dc0a2d8a41baf7a7aea526a2f, type: 3}
   m_Name: TimeCountBlazeandPower
   m_EditorClassIdentifier: 
-  <_name>k__BackingField: "\u8EAB\u3092\u7126\u304C\u3059\u6B32\u671B"
-  <flavortext>k__BackingField: 
-  <rank>k__BackingField: 1
-  <sprite>k__BackingField: {fileID: 0}
-  <element>k__BackingField: 0
-  coolDownSeconds: 16
   effectDuration: 4
-  blazeEffectID: timecountblaze
-  statusEffect_1: {fileID: 11400000, guid: 8ee89ac241c31d44b9e118106387ae82, type: 2}
-  effectID_1: thfds
-  amount1: 1
-  statusEffect_2: {fileID: 11400000, guid: f63f06ece45123449bb043df727168e8, type: 2}
-  effectID_2: khjdt
-  amount2: 40
+  coolTime: 10
+  effects:
+  - statusEffect: {fileID: 11400000, guid: 8ee89ac241c31d44b9e118106387ae82, type: 2}
+    effectID: tc_blaze
+    amount: 0
+  - statusEffect: {fileID: 11400000, guid: f63f06ece45123449bb043df727168e8, type: 2}
+    effectID: tc_Buf_Atk
+    amount: 50

@@ -12,13 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
   m_Name: KingdomKnife 3
   m_EditorClassIdentifier: 
-  <_name>k__BackingField: "\u738B\u65CF\u306E\u30CA\u30A4\u30D5"
+  <_name>k__BackingField: "\u30C7\u30E2\u30FB\u9752R2\u30FBNo2"
   <flavortext>k__BackingField: 
   <rank>k__BackingField: 2
   <sprite>k__BackingField: {fileID: 21300000, guid: 0b584fad21745fd47ac0dbf5bddebb31, type: 3}
   <element>k__BackingField: 2
-  <power>k__BackingField: 30
-  <elementPower>k__BackingField: 10
+  <power>k__BackingField: 17
+  <elementPower>k__BackingField: 17
   <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
   <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: 8652acaeb0d9ebe438a44cecb3c3046d, type: 3}
-  <abilities>k__BackingField: []
+  <abilities>k__BackingField:
+  - abilityLogic: {fileID: 11400000, guid: 64a7fa6f166c7874a8b840e67572635d, type: 2}
+    effectID: jytdjrge444
+  - abilityLogic: {fileID: 11400000, guid: 03356ed03e8bdd74ea1b4816ef14b3ff, type: 2}
+    effectID: htah65uhs
+  - abilityLogic: {fileID: 11400000, guid: 705569ce2c278984ba3438c97fd89126, type: 2}
+    effectID: aaaasdafhgrhkk

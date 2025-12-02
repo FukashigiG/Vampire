@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43cf86051909534589a21ee1dafaff1, type: 3}
+  m_Name: freeze_Debuff_L
+  m_EditorClassIdentifier: 
+  <effectName>k__BackingField: "\u6975\u51CD\u7D50"
+  probability_Percent: 100
+  <description>k__BackingField: "\u30D2\u30C3\u30C8\u3057\u305F\u6575\u3092\u6570\u79D2\u9593\u51CD\u7D50\u3055\u305B\u308B"
+  <effectOnThrown>k__BackingField: 0
+  <effectOnHit>k__BackingField: 1
+  dulation: 3
+  amount_percent: 0
+  statusEffect: {fileID: 11400000, guid: c5e621a7aaad6d040b55e8f7d994b305, type: 2}

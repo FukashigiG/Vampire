@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using Random = UnityEngine.Random;
+using Unity.VisualScripting;
 
 
 public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
@@ -17,8 +18,24 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 
     [SerializeField] Text txt_Type;
     [SerializeField] Text txt_ItemName;
+    [SerializeField] Text txt_Rareity;
+    [SerializeField] Text txt_Element;
+
+    [SerializeField] GameObject descriptionArea_Knife;
+    [SerializeField] Text txt_BaseATK_Knife;
+    [SerializeField] Text txt_ElementATK_Knife;
+    [SerializeField] Icon_KnifeAbility[] KA_Icons;
+
+    [SerializeField] GameObject descriptionArea_Treasure;
+    [SerializeField] Text description_Treasure;
 
     enum ItemType { knife, treasure}
+
+    Dictionary<ItemType, int> itemTypeWeight = new Dictionary<ItemType, int>();
+    int sum_TypeWeight = 0;
+    Dictionary<Element, int> elementsWeight = new Dictionary<Element, int>();
+    Dictionary<int, int> rankWeight = new Dictionary<int, int>();
+    int sum_rankWeight = 0;
 
     Base_PlayerItem currentSelected;
 
@@ -30,6 +47,26 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
         button_Decide.onClick.AddListener(Decision);
 
         LoadGameData();
+
+        itemTypeWeight.Add(ItemType.knife, 70);
+        itemTypeWeight.Add(ItemType.treasure, 30);
+        foreach (var index in itemTypeWeight)
+        {
+            sum_TypeWeight += index.Value;
+        }
+
+        elementsWeight.Add(Element.Red, 10);
+        elementsWeight.Add(Element.Blue, 10);
+        elementsWeight.Add(Element.Yellow, 10);
+        elementsWeight.Add(Element.White, 10);
+
+        rankWeight.Add(1, 40);
+        rankWeight.Add(2, 25);
+        rankWeight.Add(3, 8);
+        foreach (var index in rankWeight)
+        {
+            sum_rankWeight += index.Value;
+        }
     }
 
     void LoadGameData()
@@ -87,15 +124,57 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 
     void ShowDiscription(Base_PlayerItem item)
     {
+        descriptionArea_Knife.SetActive(false);
+        descriptionArea_Treasure.SetActive(false);
+        foreach(var button in KA_Icons)
+        {
+            button.gameObject.SetActive(false);
+        } 
+
         txt_ItemName.text = item._name;
+
+        switch (item.element)
+        {
+            case Element.White:
+                txt_Element.text = "白";
+                break;
+
+            case Element.Red:
+                txt_Element.text = "赤";
+                break;
+
+            case Element.Blue:
+                txt_Element.text = "青";
+                break;
+
+            case Element.Yellow:
+                txt_Element.text = "黄";
+                break;
+        }
+
+        txt_Rareity.text = item.rank.ToString();
 
         if (item is KnifeData knife)
         {
             txt_Type.text = "ナイフ";
-        } 
-        else if(item is TreasureData treasure)
+
+            descriptionArea_Knife.SetActive(true);
+
+            txt_BaseATK_Knife.text = $"基礎攻撃力：{knife.power}";
+            txt_ElementATK_Knife.text = $"属性攻撃力：{knife.elementPower}";
+
+            for (int i = 0; i < knife.abilities.Count; i++)
+            {
+                KA_Icons[i].Initialize(knife.abilities[i]);
+            }
+        }
+        else if (item is TreasureData treasure)
         {
             txt_Type.text = "秘宝";
+
+            descriptionArea_Treasure.SetActive(true);
+
+            description_Treasure.text = treasure.description;
         }
 
 
@@ -105,85 +184,92 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
     {
         ItemType targetType = Lottery_Type();
         int targetRank = Lottery_Rank();
-        Debug.Log($"{targetType}, {targetRank}");
+        Element targetElement = Lottery_Element();
 
         List<Base_PlayerItem> candidates = new List<Base_PlayerItem>();
 
         switch (targetType)
         {
             case ItemType.knife:
-                candidates.AddRange(_cachedKnives.Where(x => x.rank == targetRank));
+                candidates.AddRange(_cachedKnives.Where(x => x.rank == targetRank && x.element == targetElement));
                 break;
 
             case ItemType.treasure:
-                candidates.AddRange(_cachedTreasures.Where(x => x.rank == targetRank));
+                candidates.AddRange(_cachedTreasures.Where(x => x.rank == targetRank && x.element == targetElement));
                 break;
 
             default:
-                candidates.AddRange(_cachedKnives.Where(x => x.rank == targetRank));
+                candidates.AddRange(_cachedKnives.Where(x => x.rank == targetRank && x.element == targetElement));
                 break;
         }
+
+        if (candidates.Count == 0) return null;
 
         return candidates[Random.Range(0, candidates.Count)];
     }
 
     ItemType Lottery_Type()
     {
-        int[] weight_Type = { 70, 30 };
-
-        int sum = 100;
-
-        int randomPoint = Random.Range(1, sum + 1);
+        int randomPoint = Random.Range(1, sum_TypeWeight + 1);
 
         int cullemt = 0;
 
-        for (int i = 0; i < weight_Type.Length; i++)
+        foreach (var index in itemTypeWeight)
         {
-            cullemt += weight_Type[i];
+            cullemt += index.Value;
 
-            if(cullemt >= randomPoint)
-            {
-                switch (i)
-                {
-                    case 0:
-                        return ItemType.knife;
-
-                    case 1:
-                        return ItemType.treasure;
-                }
-            }
+            if (cullemt >= randomPoint) return index.Key;
         }
 
         return ItemType.knife;
     }
 
-    int Lottery_Rank()
+    Element Lottery_Element()
     {
-        int[] weight_Rank = { 40, 25, 10 };
+        Dictionary<Element, int> newElementsWeight = new Dictionary<Element, int>(elementsWeight);
+        int sum_ElementWeight = 0;
 
-        int sum = 75;
+        // キーのみを取り出したリストを作成
+        List<Element> keys = newElementsWeight.Keys.ToList();
 
-        int randomPoint = Random.Range(1, sum + 1);
+        // プレイヤーの得意属性なら比重を加算し、その合計を取得
+        // Dictionaryを対象にforeachループさせると、コレクションの中身を変えられない仕様なのでListをかませる
+        foreach (var key in keys)
+        {
+            if (PlayerController.Instance._status.masteredElements.Contains(key)) newElementsWeight[key] += 50;
+            sum_ElementWeight += newElementsWeight[key];
+        }
+
+        int randomPoint = Random.Range(1, sum_ElementWeight + 1);
 
         int cullemt = 0;
 
-        for (int i = 0; i < weight_Rank.Length; i++)
+        foreach (var index in newElementsWeight)
         {
-            cullemt += weight_Rank[i];
+            cullemt += index.Value;
 
             if (cullemt >= randomPoint)
             {
-                switch (i)
-                {
-                    case 0:
-                        return 1;
+                return index.Key;
+            }
+        }
 
-                    case 1:
-                        return 2;
+        return Element.White;
+    }
 
-                    case 2:
-                        return 3;
-                }
+    int Lottery_Rank()
+    {
+        int randomPoint = Random.Range(1, sum_rankWeight + 1);
+
+        int cullemt = 0;
+
+        foreach (var index in rankWeight)
+        {
+            cullemt += index.Value;
+
+            if(cullemt >= randomPoint)
+            {
+                return index.Key;
             }
         }
 

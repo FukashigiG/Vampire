@@ -34,13 +34,13 @@ public abstract class Base_KnifeAbilityLogic : ScriptableObject, IOnHitSpecialEf
     }
 
     // Œø‰Ê‚ª”­“®‚µ‚½‚É’Ê’m‚ğ”ò‚Î‚·
-    public static Subject<Base_MobStatus> onEffectActived = new Subject<Base_MobStatus>();
+    public static Subject<(Base_KnifeAbilityLogic logic, Base_MobStatus target)> onEffectActived = new Subject<(Base_KnifeAbilityLogic, Base_MobStatus)>();
     
 
     // “ÁêŒø‰Êˆ—
     public virtual void ActivateAbility(Base_MobStatus status, GameObject knifeObject, KnifeData_RunTime knifeData, string effectID)
     {
         // ”­“®’Ê’m
-        onEffectActived.OnNext(status);
+        onEffectActived.OnNext((this, status));
     }
 }

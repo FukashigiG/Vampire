@@ -29,6 +29,8 @@ public class TL_BoostKnifeAbilityProbability : Base_TreasureLogic
                 // î≠ê∂ämó¶Çè„Ç∞ÇÈ
                 matchedAbility.abilityLogic.probability_Percent += amount_Boost_Percentage;
 
+                Debug.Log(matchedAbility.abilityLogic.probability_Percent);
+
                 subject_OnAct.OnNext(Unit.Default);
             }
         })

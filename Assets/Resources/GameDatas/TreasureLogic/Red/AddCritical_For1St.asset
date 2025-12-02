@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e783d91fcfc01941bb93b9b448b050e, type: 3}
+  m_Name: AddCritical_For1St
+  m_EditorClassIdentifier: Assembly-CSharp::TL_AddK_Ability_For1st
+  knifeAbility:
+    abilityLogic: {fileID: 11400000, guid: c21406ad570655744a5f2abbf1afa16c, type: 2}
+    effectID: 1stAddCritical

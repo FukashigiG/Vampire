@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
+  m_Name: Daigonome 1
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureData
+  <_name>k__BackingField: "\u7B2C\u4E94\u306E\u76EE"
+  <flavortext>k__BackingField: "\u6D41\u77F3\u306B\u591A\u3059\u304E\u3067\u306F\uFF1F"
+  <rank>k__BackingField: 2
+  <sprite>k__BackingField: {fileID: 0}
+  <element>k__BackingField: 1
+  <description>k__BackingField: "\u91CD\u8907\u5EA65\u4EE5\u4E0A\u306E\u30CA\u30A4\u30D5\u306E\u653B\u6483\u529B\u3092\u4E0A\u3052\u308B"
+  <logic>k__BackingField: {fileID: 11400000, guid: db30f914d903c694bbe61fea6de2b609, type: 2}

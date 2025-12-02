@@ -12,13 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56886800cc0bbf44bf6d2fd5bb2916f, type: 3}
   m_Name: BlazeReload
   m_EditorClassIdentifier: 
-  <_name>k__BackingField: "\u958B\u773C\u30FB\u8D64\u71B1"
-  <flavortext>k__BackingField: 
-  <rank>k__BackingField: 1
-  <sprite>k__BackingField: {fileID: 0}
-  <element>k__BackingField: 0
   targetElement: 1
-  border: 4
+  border: 3
   statusEffect: {fileID: 11400000, guid: 8ee89ac241c31d44b9e118106387ae82, type: 2}
   effectID: blazereload553
   duration: 5
