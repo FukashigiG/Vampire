@@ -12,12 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9365982d708bb0c40a7475cda17673bd, type: 3}
   m_Name: BoostFreezeDuration
   m_EditorClassIdentifier: 
-  <_name>k__BackingField: "\u5438\u71B1\u5264"
-  <flavortext>k__BackingField: 
-  <rank>k__BackingField: 1
-  <sprite>k__BackingField: {fileID: 0}
-  <element>k__BackingField: 0
   isTargetEnemy: 1
   targetEffect: {fileID: 11400000, guid: c5e621a7aaad6d040b55e8f7d994b305, type: 2}
-  amount_ExtraDuration: 0.6
+  amount_ExtraDuration: 0.5
   amount_: 0
