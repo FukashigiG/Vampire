@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17189b5f1ae2f9f4a816f514838d97ee, type: 3}
-  m_Name: DefenceRaiseTreasure
+  m_Script: {fileID: 11500000, guid: 3b95c77e8d589b242adcc68f93583649, type: 3}
+  m_Name: DefBuffReload
   m_EditorClassIdentifier: 
-  ratio: 20
-  _status: 1
+  statusEffect: {fileID: 11400000, guid: 8424f9f5fc7684440a4042d65733ec2a, type: 2}
+  duration: 1
+  amount_percent: 60
+  effectID: jydtrht66
