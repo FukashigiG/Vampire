@@ -12,16 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d56886800cc0bbf44bf6d2fd5bb2916f, type: 3}
   m_Name: FreezeReload
   m_EditorClassIdentifier: 
-  <_name>k__BackingField: 
-  <flavortext>k__BackingField: 
-  <rank>k__BackingField: 1
-  <sprite>k__BackingField: {fileID: 0}
-  <element>k__BackingField: 0
   targetElement: 2
-  border: 4
+  border: 3
   statusEffect: {fileID: 11400000, guid: c5e621a7aaad6d040b55e8f7d994b305, type: 2}
   effectID: hyougaT634
-  duration: 0.6
+  duration: 0.8
   amount: 0
   radius: 4
   targetLayer:
