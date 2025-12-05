@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f205a3582d268d74eae54267bc381797, type: 3}
   m_Name: ESA_Warp
   m_EditorClassIdentifier: 
-  <skillName>k__BackingField: "\u30EF\u30FC\u30D7"
+  <_name>k__BackingField: "\u30EF\u30FC\u30D7"
   <description>k__BackingField: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u3068\u5F8C\u65B9\u306B\u30EF\u30FC\u30D7\u3059\u308B"
+  <icon>k__BackingField: {fileID: 0}
   distance: 3
   fx_Warp: {fileID: 2708598583397607911, guid: 84e02b21d2249604083feccea206d958, type: 3}

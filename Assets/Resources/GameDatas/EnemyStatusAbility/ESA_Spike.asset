@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8197938c050d9cc478a825950a955f4f, type: 3}
   m_Name: ESA_Spike
   m_EditorClassIdentifier: 
-  <skillName>k__BackingField: "\u30B9\u30D1\u30A4\u30AF"
+  <_name>k__BackingField: "\u30B9\u30D1\u30A4\u30AF"
   <description>k__BackingField: "\u30CE\u30C3\u30AF\u30D0\u30C3\u30AF\u7121\u52B9"
+  <icon>k__BackingField: {fileID: 0}

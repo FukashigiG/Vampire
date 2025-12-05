@@ -31,7 +31,7 @@ public class KnifeData : Base_PlayerItem
 }
 
 [System.Serializable]
-public class KnifeAbility
+public class KnifeAbility : IDiscribing
 {
     // やっぱ発動率と数値はアビリティごとの固有値にしたいわ
 
@@ -43,6 +43,9 @@ public class KnifeAbility
     //[SerializeField] public float modifire = 1.0f; // デフォルト値
     // 効果ID 状態変化系効果の際等で使用される
     [SerializeField] public string effectID;
+
+    public string _name => abilityLogic.name;
+    public string description => abilityLogic.description;
 
     // ナイフが投げられたときに呼ばれる
     public virtual void OnThrown(PlayerStatus status, GameObject knifeObj, KnifeData_RunTime knifeData)

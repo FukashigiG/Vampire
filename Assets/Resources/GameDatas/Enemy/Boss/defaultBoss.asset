@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: defaultBoss
   m_EditorClassIdentifier: 
   <sprite>k__BackingField: {fileID: 21300000, guid: f3a964194160e724db7a797dc01a7871, type: 3}
-  <_name>k__BackingField: 
+  <_name>k__BackingField: "\u5DE8\u4EBA"
   <description>k__BackingField: 
   <rank>k__BackingField: 0
-  <actType>k__BackingField: 0
+  <actType>k__BackingField: 2
   <hp>k__BackingField: 2000
   <power>k__BackingField: 50
   <defense>k__BackingField: 12

@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Icon_KnifeAbility : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Icon_ESA : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] Text txt_Name;
+    [SerializeField] Image iconImage;
 
-    KnifeAbility knifeAbility;
+    Base_EnemyStatusAbilityData esad;
 
-    public void Initialize(KnifeAbility _knifeAbility)
+    public void Initialize(Base_EnemyStatusAbilityData _esad)
     {
-        if(_knifeAbility == null)
+        if(_esad == null)
         {
             gameObject.SetActive(false);
             return;
@@ -20,16 +20,16 @@ public class Icon_KnifeAbility : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
         gameObject.SetActive(true);
 
-        knifeAbility = _knifeAbility;
+        esad = _esad;
 
-        txt_Name.text = knifeAbility.abilityLogic.effectName;
+        iconImage.sprite = esad.icon;
     }
 
     public void OnPointerEnter(PointerEventData data)
     {
         // 詳細ウインドウの表示
 
-        UI_ShowAbilityDetail.Instance.Show(knifeAbility);
+        UI_ShowAbilityDetail.Instance.Show(esad);
 
         //detailWindow.SetActive(true);
     }

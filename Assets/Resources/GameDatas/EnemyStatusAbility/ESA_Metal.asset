@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766e420b3cec4e5408095cb66e547570, type: 3}
   m_Name: ESA_Metal
   m_EditorClassIdentifier: 
-  <skillName>k__BackingField: "\u30E1\u30BF\u30EB"
+  <_name>k__BackingField: "\u30E1\u30BF\u30EB"
   <description>k__BackingField: "\u5168\u3066\u306E\u30C0\u30E1\u30FC\u30B8\u304C1\u306B\u306A\u308B"
+  <icon>k__BackingField: {fileID: 0}
