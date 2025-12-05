@@ -6,11 +6,7 @@ using UnityEngine.UI;
 
 public class Icon_KnifeAbility : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] GameObject detailWindow;
-
     [SerializeField] Text txt_Name;
-    [SerializeField] Text txt_Name_DetailWindow;
-    [SerializeField] Text txt_Description;
 
     KnifeAbility knifeAbility;
 
@@ -27,21 +23,22 @@ public class Icon_KnifeAbility : MonoBehaviour, IPointerEnterHandler, IPointerEx
         knifeAbility = _knifeAbility;
 
         txt_Name.text = knifeAbility.abilityLogic.effectName;
-        txt_Name_DetailWindow.text = knifeAbility.abilityLogic.effectName;
-        txt_Description.text = knifeAbility.abilityLogic.description;
-
-        detailWindow.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData data)
     {
         // 詳細ウインドウの表示
-        detailWindow.SetActive(true);
+
+        UI_Detail_KnifeAbility.Instance.Show(knifeAbility);
+
+        //detailWindow.SetActive(true);
     }
 
     // カーソルが外れたとき
     public void OnPointerExit(PointerEventData data)
     {
-        detailWindow.SetActive(false);
+        UI_Detail_KnifeAbility.Instance.Hide();
+
+        //detailWindow.SetActive(false);
     }
 }
