@@ -101,7 +101,7 @@ public class PlayerPresenter : MonoBehaviour
         // キャラアビリティチャージ変動を購読、ゲージを更新
         status.attack.abilityChargeValue.Subscribe(x =>
         {
-            float ratio = (float)x / (float)status.attack.charaAbility.requireChargeValue;
+            float ratio = (float)x / status.attack.charaAbility.requireChargeValue;
 
             playerAbilityCharge.SetGauge(ratio);
 

@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class TitleSceneManager : SingletonMono<TitleSceneManager>
 {
-    public void GoSelectScene()
+    [SerializeField] StageDataHolder dataHolder;
+
+    private void Awake()
     {
-        SceneLoader.Instance.Load("SelectScene");
+        Time.timeScale = 1.0f;
+    }
+
+    public void GoButtle()
+    {
+        dataHolder.SetData(CharaSelect_Director.Instance.cullentSelected);
+
+        SceneLoader.Instance.Load("SampleScene");
     }
 }

@@ -4,31 +4,40 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 
-public class CharaSelect_Director : MonoBehaviour
+public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
 {
-    [SerializeField] GameObject prefab_Btn;
+    [SerializeField] GameObject prefab_Btn_CharaSelect;
 
     [SerializeField] GameObject bodyPanel;
     [SerializeField] Button btn_Open;
     [SerializeField] Button btn_Close;
+    [SerializeField] Button btn_GoButtle;
+    [SerializeField] List<Button> btns_knife;
+    [SerializeField] List<Button> btns_Treasure;
     [SerializeField] Transform btnArea;
+    [SerializeField] Transform KnifeArea;
+    [SerializeField] Transform TreasureArea;
     [SerializeField] Text txt_CharaName;
     [SerializeField] Text txt_Element;
-    [SerializeField] Text txt_EnemyDiscription;
+    [SerializeField] Text txt_ChataAbilityName;
+    [SerializeField] Text txt_ChataAbilityDiscription;
     [SerializeField] List<Text> txts_Status;
 
     List<PlayerCharaData> charas = new List<PlayerCharaData>();
+
+    public PlayerCharaData cullentSelected { get; private set; } = null;
 
     private void Awake()
     {
         btn_Open.onClick.AddListener(OpenPanel);
         btn_Close.onClick.AddListener(ClosePanel);
+        btn_GoButtle.onClick.AddListener(GoButtle);
 
         charas = Resources.LoadAll<PlayerCharaData>("GameDatas/PlayerChara").ToList();
 
         foreach (PlayerCharaData _chara in charas)
         {
-            var obj = Instantiate(prefab_Btn, btnArea);
+            var obj = Instantiate(prefab_Btn_CharaSelect, btnArea);
 
             var btn = obj.GetComponent<CharaSelect_Button>();
 
@@ -45,6 +54,22 @@ public class CharaSelect_Director : MonoBehaviour
 
     void SetInfo(PlayerCharaData data)
     {
+        foreach(var btn in btns_knife)
+        {
+            btn.onClick.RemoveAllListeners();
+
+            btn.gameObject.SetActive(false);
+        }
+
+        foreach(var btn in btns_Treasure)
+        {
+            btn.onClick.RemoveAllListeners();
+
+            btn.gameObject.SetActive(false);
+        }
+
+        cullentSelected = data;
+
         txt_CharaName.text = data._name;
 
         switch (data.masteredElement)
@@ -70,6 +95,37 @@ public class CharaSelect_Director : MonoBehaviour
         txts_Status[1].text = "çUåÇóÕ : " + data.power;
         txts_Status[2].text = "ñhå‰óÕ : " + data.defense;
         txts_Status[3].text = "à⁄ìÆë¨ìx : " + data.moveSpeed;
+
+        txt_ChataAbilityName.text = "ïKéEãZÅF" + data.charaAbility.abilityName;
+        txt_ChataAbilityDiscription.text = data.charaAbility.explanation;
+
+        for (int i = 0; i < data.initialKnives.Count(); i++)
+        {
+            btns_knife[i].gameObject.SetActive(true);
+
+            btns_knife[i].GetComponent<Image>().sprite = data.initialKnives[i].sprite;
+
+            int index = i;
+
+            btns_knife[i].onClick.AddListener(() =>
+            {
+                UI_ShowPlayerItemInfo.Instance.ShowPanel(data.initialKnives.ToList<Base_PlayerItem>(), index);
+            });
+        }
+
+        for (int i = 0; i < data.initialTreasures.Count(); i++)
+        {
+            btns_Treasure[i].gameObject.SetActive(true);
+
+            btns_Treasure[i].GetComponent<Image>().sprite = data.initialTreasures[i].sprite;
+
+            int index = i;
+
+            btns_Treasure[i].onClick.AddListener(() =>
+            {
+                UI_ShowPlayerItemInfo.Instance.ShowPanel(data.initialTreasures.ToList<Base_PlayerItem>(), index);
+            });
+        }
     }
 
     void OpenPanel()
@@ -80,5 +136,12 @@ public class CharaSelect_Director : MonoBehaviour
     void ClosePanel()
     {
         bodyPanel.SetActive(false);
+    }
+
+    void GoButtle()
+    {
+        if(cullentSelected == null) return;
+
+        TitleSceneManager.Instance.GoButtle();
     }
 }

@@ -15,6 +15,7 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 
     [SerializeField] Button[] buttons_Option;
     [SerializeField] Button button_Decide;
+    [SerializeField] Button button_Skip;
 
     [SerializeField] Text txt_Type;
     [SerializeField] Text txt_ItemName;
@@ -45,6 +46,7 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
     private void Awake()
     {
         button_Decide.onClick.AddListener(Decision);
+        button_Skip.onClick.AddListener(ClosePanel);
 
         LoadGameData();
 
@@ -104,6 +106,14 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
                 ShowDiscription(_item);
             });
         }
+
+        descriptionArea_Knife.SetActive(false);
+        descriptionArea_Treasure.SetActive(false);
+
+        txt_ItemName.text = "";
+        txt_Rareity.text = "";
+        txt_Element.text = "";
+        txt_Type.text = "";
     }
 
     void Decision()

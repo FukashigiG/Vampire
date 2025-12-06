@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System.Linq;
 using UniRx;
+using System.Collections.Specialized;
 
 public class PausePanelCtrler : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public class PausePanelCtrler : MonoBehaviour
 
     private void Awake()
     {
-        // 初期がアクティブでないオブジェクトへのアタッチを想定のため、AwakeやStartは上手く動作しない
+
     }
 
     // 初期化
@@ -76,6 +77,14 @@ public class PausePanelCtrler : MonoBehaviour
 
         // 辞書に登録
         knifeImageDictionaty[knifeData] = imageObj;
+
+        imageObj.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            // ヒエラルキー参照でボタンが何番目か取得する
+            int index = imageObj.transform.GetSiblingIndex();
+
+            UI_ShowPlayerItemInfo.Instance.ShowPanel(knifeImageDictionaty.Keys.ToList<Base_PlayerItem>(), index);
+        });
     }
 
     // ナイフが削除された際
@@ -97,6 +106,14 @@ public class PausePanelCtrler : MonoBehaviour
         imageObj.GetComponent<Image>().sprite = treasureData.sprite;
 
         treasureImageDictionaty[treasureData] = imageObj;
+
+        imageObj.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            // ヒエラルキー参照でボタンが何番目か取得する
+            int index = imageObj.transform.GetSiblingIndex();
+
+            UI_ShowPlayerItemInfo.Instance.ShowPanel(treasureImageDictionaty.Keys.ToList<Base_PlayerItem>(), index);
+        });
     }
 
     // 秘宝が削除された際

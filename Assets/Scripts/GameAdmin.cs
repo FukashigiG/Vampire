@@ -44,6 +44,11 @@ public class GameAdmin : SingletonMono<GameAdmin>
     // 購読のライフサイクルを管理するためのDisposable
     CompositeDisposable disposables = new CompositeDisposable();
 
+    private void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
+
     void Start()
     {
         _cancellationToken = _cancellationTokenSource.Token;
@@ -53,6 +58,15 @@ public class GameAdmin : SingletonMono<GameAdmin>
         waveBoostMultiplier = _waveBoostMultiplier;
 
         _spawner = spawner_Obj.GetComponent<EnemySpawner>();
+
+
+        PlayerController.Instance._status.onDie
+            .Where(x => x.status == PlayerController.Instance._status)
+            .Subscribe(x =>
+        {
+            GameOver();
+
+        }).AddTo(this);
 
         GameProgression().Forget();
     }
@@ -178,6 +192,13 @@ public class GameAdmin : SingletonMono<GameAdmin>
     public void ReTry_Kari()
     {
         SceneLoader.Instance.Load("TitleScene");
+    }
+
+    void GameOver()
+    {
+        PauseGame();
+
+        PlayerDiedPanelDirector.Instance.ShowPanel();
     }
 
     //GameAdminの消失時、つまりゲームシーン終了時の処理

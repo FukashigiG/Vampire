@@ -9,9 +9,9 @@ using UnityEngine.UI;
 public class PlayerStatus : Base_MobStatus
 {
     // 仮実装
-    [SerializeField] GameObject panel_Die;
+    [SerializeField] StageDataHolder holder;
 
-    [field : SerializeField] public PlayerCharaData playerCharaData {  get; private set; }
+     public PlayerCharaData playerCharaData {  get; private set; }
 
     public PlayerInventory inventory { get; private set; }
     public PlayerAttack attack { get; private set; }
@@ -61,14 +61,14 @@ public class PlayerStatus : Base_MobStatus
     public IObservable<(Base_MobStatus status, Base_StatusEffectData statusEffect, float duration, int amount)> onGetStatusEffect => subject_OnGetStatusEffect;
     public IObservable<(Base_MobStatus status, int value)> onDie=> subject_OnDie;
 
-
-
     // 購読のライフサイクルを管理するためのDisposable
     // これ１つで沢山のDisposableなやつらに対応可能らしい
     private CompositeDisposable disposables = new CompositeDisposable();
 
     protected override void Awake()
     {
+        playerCharaData = holder.selectedChara;
+
         base.Awake();
 
         inventory = GetComponent<PlayerInventory>();
@@ -88,6 +88,9 @@ public class PlayerStatus : Base_MobStatus
         masteredElements.Add(playerCharaData.masteredElement);
 
         color_DamageTxt = Color.red;
+
+        // キャラアビリティを渡す
+        attack.SetCharaAbility(playerCharaData.charaAbility);
     }
 
     protected override void Start()
@@ -103,9 +106,6 @@ public class PlayerStatus : Base_MobStatus
         {
             inventory.AddTreasure(y);
         }
-
-        // キャラアビリティを渡す
-        attack.SetCharaAbility(playerCharaData.charaAbility);
 
         //任意の敵が死んだらEXPゲット
         EnemyStatus.onDie.Subscribe(x => GetEXP(x.value)).AddTo( disposables );

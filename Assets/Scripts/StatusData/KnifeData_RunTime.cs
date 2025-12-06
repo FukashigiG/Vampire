@@ -20,16 +20,8 @@ public class CustomList : Collection<KnifeAbility>
     }
 }
 
-public class KnifeData_RunTime
+public class KnifeData_RunTime : Base_PlayerItem
 {
-    public Sprite sprite { get; private set; }
-
-    public string _name { get; private set; }
-
-    public int rank { get; private set; }
-
-    public Element element;
-
     public int power;
     public int elementPower;
 
@@ -39,8 +31,6 @@ public class KnifeData_RunTime
     public GameObject prefab { get; private set; }
 
     public GameObject hitEffect;
-
-    public string flavortext;
 
     // “ÁŽêŒø‰Ê
     public CustomList abilities {  get; private set; } = new CustomList();
