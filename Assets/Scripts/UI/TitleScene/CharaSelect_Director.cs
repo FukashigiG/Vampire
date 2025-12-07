@@ -12,8 +12,8 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
     [SerializeField] Button btn_Open;
     [SerializeField] Button btn_Close;
     [SerializeField] Button btn_GoButtle;
-    [SerializeField] List<Button> btns_knife;
-    [SerializeField] List<Button> btns_Treasure;
+    [SerializeField] List<UI_PlayerItemButton> btns_Knife;
+    [SerializeField] List<UI_PlayerItemButton> btns_Treasure;
     [SerializeField] Transform btnArea;
     [SerializeField] Transform KnifeArea;
     [SerializeField] Transform TreasureArea;
@@ -54,16 +54,16 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
 
     void SetInfo(PlayerCharaData data)
     {
-        foreach(var btn in btns_knife)
+        foreach(var btn in btns_Knife)
         {
-            btn.onClick.RemoveAllListeners();
+            btn.onClicked.RemoveAllListeners();
 
             btn.gameObject.SetActive(false);
         }
 
         foreach(var btn in btns_Treasure)
         {
-            btn.onClick.RemoveAllListeners();
+            btn.onClicked.RemoveAllListeners();
 
             btn.gameObject.SetActive(false);
         }
@@ -101,13 +101,13 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
 
         for (int i = 0; i < data.initialKnives.Count(); i++)
         {
-            btns_knife[i].gameObject.SetActive(true);
+            btns_Knife[i].gameObject.SetActive(true);
 
-            btns_knife[i].GetComponent<Image>().sprite = data.initialKnives[i].sprite;
+            btns_Knife[i].SetData(data.initialKnives[i]);
 
             int index = i;
 
-            btns_knife[i].onClick.AddListener(() =>
+            btns_Knife[i].onClicked.AddListener((x) =>
             {
                 UI_ShowPlayerItemInfo.Instance.ShowPanel(data.initialKnives.ToList<Base_PlayerItem>(), index);
             });
@@ -117,11 +117,11 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
         {
             btns_Treasure[i].gameObject.SetActive(true);
 
-            btns_Treasure[i].GetComponent<Image>().sprite = data.initialTreasures[i].sprite;
+            btns_Treasure[i].SetData(data.initialTreasures[i]);
 
             int index = i;
 
-            btns_Treasure[i].onClick.AddListener(() =>
+            btns_Treasure[i].onClicked.AddListener((x) =>
             {
                 UI_ShowPlayerItemInfo.Instance.ShowPanel(data.initialTreasures.ToList<Base_PlayerItem>(), index);
             });

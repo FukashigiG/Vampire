@@ -25,6 +25,7 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
     [SerializeField] GameObject descriptionArea_Knife;
     [SerializeField] Text txt_BaseATK_Knife;
     [SerializeField] Text txt_ElementATK_Knife;
+    [SerializeField] Text txt_multipleCount;
     [SerializeField] Icon_KnifeAbility[] KA_Icons;
 
     [SerializeField] GameObject descriptionArea_Treasure;
@@ -42,6 +43,8 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 
     List<KnifeData> _cachedKnives;
     List<TreasureData> _cachedTreasures;
+
+    List<Base_PlayerItem> lotteriedItems = new List<Base_PlayerItem>();
 
     private void Awake()
     {
@@ -81,11 +84,14 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
     public void ShowEvent()
     {
         currentSelected = null;
+        lotteriedItems.Clear();
 
         body_Panel.SetActive(true);
 
         foreach(var button  in buttons_Option)
         {
+            button.gameObject.SetActive(true);
+
             button.onClick.RemoveAllListeners();
 
             Base_PlayerItem _item = GetRandomItem();
@@ -96,6 +102,8 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
                 button.gameObject.SetActive(false); 
                 continue;
             }
+
+            lotteriedItems.Add(_item);
 
             button.GetComponent<Image>().sprite = _item.sprite;
 
@@ -177,6 +185,17 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
             {
                 KA_Icons[i].Initialize(knife.abilities[i]);
             }
+
+            var isKnown = PlayerController.Instance._status.inventory.runtimeKnives.FirstOrDefault(x => x._name == knife._name);
+
+            if (isKnown == null)
+            {
+                txt_multipleCount.text = "";
+            }
+            else
+            {
+                txt_multipleCount.text = $"重複度：{isKnown.count_Multiple} → {isKnown.count_Multiple + 1}";
+            }
         }
         else if (item is TreasureData treasure)
         {
@@ -205,7 +224,15 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
                 break;
 
             case ItemType.treasure:
-                candidates.AddRange(_cachedTreasures.Where(x => x.rank == targetRank && x.element == targetElement));
+
+                HashSet<string> excludedIDs = new HashSet<string>(PlayerController.Instance._status.inventory.runtimeTreasure.Select(x => x._name));
+
+                // Playerの持ってない秘宝のリストを作成
+                List<TreasureData> availableTreasures = _cachedTreasures
+                    .Where(treasureAsset => !excludedIDs.Contains(treasureAsset._name))
+                    .ToList();
+
+                candidates.AddRange(availableTreasures.Where(x => x.rank == targetRank && x.element == targetElement));
                 break;
 
             default:

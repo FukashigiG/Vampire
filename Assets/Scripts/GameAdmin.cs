@@ -9,8 +9,6 @@ using UnityEngine.UI;
 
 public class GameAdmin : SingletonMono<GameAdmin>
 {
-    [SerializeField] GameObject spawner_Obj;
-
     [SerializeField] GameObject panel_LvUp;
 
     [SerializeField] Text txt_WaveCount;
@@ -22,17 +20,14 @@ public class GameAdmin : SingletonMono<GameAdmin>
     CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _cancellationToken;
 
-    bool onGame;
-
-    EnemySpawner _spawner;
-
     public int waveCount = 0;
 
     int pauseCount = 0;
 
      // １ウェーブあたりの敵の強化倍率
-    public float waveBoostMultiplier {  get; private set; }
-    [SerializeField] float _waveBoostMultiplier;
+    [field: SerializeField] public float waveBoostMultiplier {  get; private set; }
+
+    [SerializeField] StageData initialStage;
 
     public enum WaveState
     {
@@ -47,19 +42,14 @@ public class GameAdmin : SingletonMono<GameAdmin>
     private void Awake()
     {
         Time.timeScale = 1.0f;
+
+        _cancellationToken = _cancellationTokenSource.Token;
+
+        UpdateWave(initialStage);
     }
 
     void Start()
     {
-        _cancellationToken = _cancellationTokenSource.Token;
-
-        onGame = true;
-
-        waveBoostMultiplier = _waveBoostMultiplier;
-
-        _spawner = spawner_Obj.GetComponent<EnemySpawner>();
-
-
         PlayerController.Instance._status.onDie
             .Where(x => x.status == PlayerController.Instance._status)
             .Subscribe(x =>
@@ -69,6 +59,13 @@ public class GameAdmin : SingletonMono<GameAdmin>
         }).AddTo(this);
 
         GameProgression().Forget();
+    }
+
+    void UpdateWave(StageData stageData)
+    {
+        EnemySpawner.Instance.SetEnemies(stageData.enemyList);
+
+        GameEventDirector.Instance.SetEvents(stageData.eventList);
     }
 
     //全体的なゲームの進行を管理
@@ -92,10 +89,10 @@ public class GameAdmin : SingletonMono<GameAdmin>
             await UniTask.Yield(PlayerLoopTiming.Update);
 
             // 既存の敵を全除去
-            _spawner.DestroyAllEnemies();
+            EnemySpawner.Instance.DestroyAllEnemies();
 
             // ボス生成
-            var x = _spawner.SpawnBoss();
+            var x = EnemySpawner.Instance.SpawnBoss();
 
             if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス出現";
 

@@ -15,28 +15,28 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
     [SerializeField] float interval_Spawn;
 
-    CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
     CancellationToken token;
 
     // 購読のライフサイクルを管理するためのDisposable
     // これ１つで沢山のDisposableなやつらに対応可能らしい
     private CompositeDisposable disposables = new CompositeDisposable();
 
-    List<EnemyData> normalEnemyList;
-
-    int count_Die;
+    List<EnemyData> normalEnemyList = new List<EnemyData>();
 
     void Start()
     {
-        token = _cancellationTokenSource.Token;
-
-        // エディタ上に登録された通常敵のリストを取得
-        var x = Resources.LoadAll<EnemyData>("GameDatas/Enemy/Normal");
-        normalEnemyList = new List<EnemyData>(x);
-
-        count_Die = 0;
+        token = this.GetCancellationTokenOnDestroy();
 
         SpawnTask(token).Forget();
+    }
+
+    public void SetEnemies(List<EnemyData> list)
+    {
+        normalEnemyList.Clear();
+
+        normalEnemyList = list;
+
+        Debug.Log(normalEnemyList.Count);
     }
 
     async UniTask SpawnTask(CancellationToken token)
@@ -65,9 +65,9 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
                 await UniTask.WaitUntil(() => GameAdmin.Instance._waveState == GameAdmin.WaveState.zako, PlayerLoopTiming.Update, token);
             }
         }
-        catch
+        catch(System.Exception e)
         {
-
+            Debug.LogException(e); // 修正: エラー内容をコンソールに出す
         }
         finally
         {
@@ -114,13 +114,15 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
                             .Where(x => x.rank == i + 1)
                             .ToList();
 
+                Debug.Log(i + "," + targetList.Count);
+
                 spawnTargetData = targetList[Random.Range(0, targetList.Count)];
 
                 break;
             }
         }
 
-        
+        Debug.Log(spawnTargetData._name);
 
         return spawnTargetData.prefab;
     }
@@ -151,8 +153,5 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     private void OnDestroy()
     {
         disposables.Dispose();
-
-        _cancellationTokenSource.Cancel();
-        _cancellationTokenSource.Dispose();
     }
 }

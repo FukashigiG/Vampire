@@ -8,6 +8,8 @@ public class GameEventDirector : SingletonMono<GameEventDirector>
 {
     CancellationToken _token;
 
+    List<GameEventData> events = new List<GameEventData>();
+
     private void Awake()
     {
         _token = this.GetCancellationTokenOnDestroy();
@@ -18,6 +20,13 @@ public class GameEventDirector : SingletonMono<GameEventDirector>
 
     }
 
+    public void SetEvents(List<GameEventData> _events)
+    {
+        events.Clear();
+
+        events = _events;
+    }
+
     enum EventsType { getSome, _event }
 
     public void Trigger_GetSome()
@@ -25,8 +34,11 @@ public class GameEventDirector : SingletonMono<GameEventDirector>
         EventAsync(EventsType.getSome, _token).Forget();
     }
 
-    public void Trigger_Event(GameEventData eventData)
+    public void Trigger_Event()
     {
+        // ‚±‚ê‚ð‚Ç‚¤Žæ“¾‚·‚é‚©
+        GameEventData eventData = events[0]; 
+
         EventAsync(EventsType._event , _token, eventData).Forget();
     }
 

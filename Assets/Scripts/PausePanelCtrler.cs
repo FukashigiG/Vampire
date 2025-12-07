@@ -16,9 +16,8 @@ public class PausePanelCtrler : MonoBehaviour
     [SerializeField] Transform knifeArea;
     [SerializeField] Transform treasureArea;
 
-    // 生成される
-    [SerializeField] GameObject knifeImagePrefab;
-    [SerializeField] GameObject treasureImagePrefab;
+    // 生成されるもの
+    [SerializeField] GameObject prefab_ItemButton;
 
     PlayerInventory playerInventory;
 
@@ -72,16 +71,16 @@ public class PausePanelCtrler : MonoBehaviour
     void OnKnifeAdded(KnifeData_RunTime knifeData)
     {
         // ナイフ一覧に新たに生成
-        var imageObj = Instantiate(knifeImagePrefab, knifeArea);
-        imageObj.GetComponent<Image>().sprite = knifeData.sprite;
+        var itemButton = Instantiate(prefab_ItemButton, knifeArea).GetComponent<UI_PlayerItemButton>();
+        itemButton.SetData(knifeData);
 
         // 辞書に登録
-        knifeImageDictionaty[knifeData] = imageObj;
+        knifeImageDictionaty[knifeData] = itemButton.gameObject;
 
-        imageObj.GetComponent<Button>().onClick.AddListener(() =>
+        itemButton.onClicked.AddListener((x) =>
         {
             // ヒエラルキー参照でボタンが何番目か取得する
-            int index = imageObj.transform.GetSiblingIndex();
+            int index = itemButton.transform.GetSiblingIndex();
 
             UI_ShowPlayerItemInfo.Instance.ShowPanel(knifeImageDictionaty.Keys.ToList<Base_PlayerItem>(), index);
         });
@@ -102,15 +101,15 @@ public class PausePanelCtrler : MonoBehaviour
     // 秘宝が追加された際
     void OnTreasureAdded(TreasureData treasureData)
     {
-        var imageObj = Instantiate(treasureImagePrefab, treasureArea);
-        imageObj.GetComponent<Image>().sprite = treasureData.sprite;
+        var itemBtn = Instantiate(prefab_ItemButton, treasureArea).GetComponent<UI_PlayerItemButton>();
+        itemBtn.SetData(treasureData);
 
-        treasureImageDictionaty[treasureData] = imageObj;
+        treasureImageDictionaty[treasureData] = itemBtn.gameObject;
 
-        imageObj.GetComponent<Button>().onClick.AddListener(() =>
+        itemBtn.GetComponent<Button>().onClick.AddListener(() =>
         {
             // ヒエラルキー参照でボタンが何番目か取得する
-            int index = imageObj.transform.GetSiblingIndex();
+            int index = itemBtn.transform.GetSiblingIndex();
 
             UI_ShowPlayerItemInfo.Instance.ShowPanel(treasureImageDictionaty.Keys.ToList<Base_PlayerItem>(), index);
         });
