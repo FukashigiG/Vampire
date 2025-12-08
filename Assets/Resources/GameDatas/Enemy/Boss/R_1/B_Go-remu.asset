@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
+  m_Name: B_Go-remu
+  m_EditorClassIdentifier: 
+  <sprite>k__BackingField: {fileID: 21300000, guid: f3a964194160e724db7a797dc01a7871, type: 3}
+  <_name>k__BackingField: "\u30B4\u30FC\u30EC\u30E0"
+  <description>k__BackingField: 
+  <rank>k__BackingField: 1
+  <actType>k__BackingField: 2
+  <hp>k__BackingField: 2000
+  <power>k__BackingField: 50
+  <defense>k__BackingField: 12
+  <moveSpeed>k__BackingField: 10
+  _range_Shot: 0
+  _friquentry_Shot: 0
+  _bulletPrefab: {fileID: 0}
+  <amount_EXP>k__BackingField: 0
+  <statusAbilities>k__BackingField:
+  - {fileID: 11400000, guid: 6a9722d8d25f74c4c86416d92100bf0c, type: 2}
+  <prefab>k__BackingField: {fileID: 0}
+  dropItems:
+  - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}
+    dropRate_Parcentage: 100

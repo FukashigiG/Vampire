@@ -17,17 +17,21 @@ public class GameAdmin : SingletonMono<GameAdmin>
     [SerializeField] int num_Wave;
     [SerializeField] float minute_Wave;
 
+    [SerializeField] StageData initialStage;
+
+    [SerializeField] GameObject item_WarpStage;
+
     CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _cancellationToken;
 
-    public int waveCount = 0;
+    public int waveCount { get; private set; } = 0;
+
+    public StageData currentStage { get; private set; }
 
     int pauseCount = 0;
 
      // １ウェーブあたりの敵の強化倍率
     [field: SerializeField] public float waveBoostMultiplier {  get; private set; }
-
-    [SerializeField] StageData initialStage;
 
     public enum WaveState
     {
@@ -45,70 +49,65 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
         _cancellationToken = _cancellationTokenSource.Token;
 
-        UpdateWave(initialStage);
+        currentStage = initialStage;
     }
 
-    void Start()
+    private void Start()
     {
         PlayerController.Instance._status.onDie
             .Where(x => x.status == PlayerController.Instance._status)
             .Subscribe(x =>
-        {
-            GameOver();
+            {
+                GameOver();
 
-        }).AddTo(this);
-
-        GameProgression().Forget();
+            }).AddTo(this);
     }
 
-    void UpdateWave(StageData stageData)
+    public void UpdateWave(StageData stageData)
     {
         EnemySpawner.Instance.SetEnemies(stageData.enemyList);
 
         GameEventDirector.Instance.SetEvents(stageData.eventList);
+
+        WaveProgression().Forget();
     }
 
     //全体的なゲームの進行を管理
-    async UniTask GameProgression()
+    async UniTask WaveProgression()
     {
-        while (true)
-        {
-            waveCount++;
+        waveCount++;
 
-            txt_WaveCount.text = "Wave : " + waveCount;
+        txt_WaveCount.text = "Wave : " + waveCount;
 
-            // ウェーブの状態変数の更新
-            _waveState = WaveState.zako;
+        // ウェーブの状態変数の更新
+        _waveState = WaveState.zako;
 
-            //ウェーブの時間待つ
-            await WaitWithWave(minute_Wave, _cancellationToken);
-            // キャンセル済みかチェック
-            _cancellationToken.ThrowIfCancellationRequested();
+        //ウェーブの時間待つ
+        await WaitWithWave(minute_Wave, _cancellationToken);
+        // キャンセル済みかチェック
+        _cancellationToken.ThrowIfCancellationRequested();
 
-            // UI更新を正しく行うための1フレ待ち
-            await UniTask.Yield(PlayerLoopTiming.Update);
+        // UI更新を正しく行うための1フレ待ち
+        await UniTask.Yield(PlayerLoopTiming.Update);
 
-            // 既存の敵を全除去
-            EnemySpawner.Instance.DestroyAllEnemies();
+        // 既存の敵を全除去
+        EnemySpawner.Instance.Stop_SpawnTask();
 
-            // ボス生成
-            var x = EnemySpawner.Instance.SpawnBoss();
+        // ボス生成
+        var x = EnemySpawner.Instance.SpawnBoss();
 
-            if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス出現";
+        if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス出現";
 
-            // ウェーブの状態変数の更新
-            _waveState = WaveState.boss;
+        // ウェーブの状態変数の更新
+        _waveState = WaveState.boss;
 
-            // ボス討伐まで待つ
-            await UniTask.WaitUntil(() => x == null, PlayerLoopTiming.Update, _cancellationToken);
-            _cancellationToken.ThrowIfCancellationRequested();
+        // ボス討伐まで待つ
+        await UniTask.WaitUntil(() => x == null, PlayerLoopTiming.Update, _cancellationToken);
+        _cancellationToken.ThrowIfCancellationRequested();
 
-            if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス撃破";
+        if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス撃破";
 
-            // 1秒待つ
-            await UniTask.Delay(1000, ignoreTimeScale: false, PlayerLoopTiming.Update, _cancellationToken);
-            _cancellationToken.ThrowIfCancellationRequested();
-        }
+        Instantiate(item_WarpStage, Vector2.zero, Quaternion.identity);
     }
 
     async UniTask WaitWithWave(float min, CancellationToken token)

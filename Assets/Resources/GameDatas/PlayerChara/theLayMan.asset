@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: theLayMan
   m_EditorClassIdentifier: 
   <sprite>k__BackingField: {fileID: 0}
-  <_name>k__BackingField: 
+  <_name>k__BackingField: "\u30B6\u30FB\u30EC\u30A4\u30DE\u30F3"
   <hp>k__BackingField: 200
-  <power>k__BackingField: 40
-  <defense>k__BackingField: 40
+  <power>k__BackingField: 30
+  <defense>k__BackingField: 30
   <moveSpeed>k__BackingField: 6
   <luck>k__BackingField: 0
   <eyeSight>k__BackingField: 4
+  <limit_DrawKnives>k__BackingField: 0
   <initialKnives>k__BackingField:
   - {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
-  - {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
   <initialTreasures>k__BackingField: []
+  <charaAbility>k__BackingField: {fileID: 0}
   <masteredElement>k__BackingField: 0
   <prefab>k__BackingField: {fileID: 0}

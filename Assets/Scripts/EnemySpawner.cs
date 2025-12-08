@@ -15,7 +15,10 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
     [SerializeField] float interval_Spawn;
 
+    CancellationTokenSource tokenSource = new CancellationTokenSource();
     CancellationToken token;
+
+    bool onMove = false;
 
     // 購読のライフサイクルを管理するためのDisposable
     // これ１つで沢山のDisposableなやつらに対応可能らしい
@@ -23,11 +26,9 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
     List<EnemyData> normalEnemyList = new List<EnemyData>();
 
-    void Start()
+    void Awake()
     {
-        token = this.GetCancellationTokenOnDestroy();
-
-        SpawnTask(token).Forget();
+        token = tokenSource.Token;
     }
 
     public void SetEnemies(List<EnemyData> list)
@@ -36,13 +37,15 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
         normalEnemyList = list;
 
-        Debug.Log(normalEnemyList.Count);
+        SpawnTask(token).Forget();
     }
 
     async UniTask SpawnTask(CancellationToken token)
     {
         try
         {
+            onMove = true;
+
             while (true)
             {
                 Vector2 randomPoint = SpawnPointRottery();
@@ -65,7 +68,11 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
                 await UniTask.WaitUntil(() => GameAdmin.Instance._waveState == GameAdmin.WaveState.zako, PlayerLoopTiming.Update, token);
             }
         }
-        catch(System.Exception e)
+        catch (System.OperationCanceledException)
+        {
+            // キャンセルされたのでループを抜ける。ログは出さない。
+        }
+        catch (System.Exception e)
         {
             Debug.LogException(e); // 修正: エラー内容をコンソールに出す
         }
@@ -114,23 +121,23 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
                             .Where(x => x.rank == i + 1)
                             .ToList();
 
-                Debug.Log(i + "," + targetList.Count);
-
                 spawnTargetData = targetList[Random.Range(0, targetList.Count)];
 
                 break;
             }
         }
 
-        Debug.Log(spawnTargetData._name);
-
         return spawnTargetData.prefab;
     }
 
-    // 現存の敵を全削除
-    public void DestroyAllEnemies()
+    public void Stop_SpawnTask()
     {
-        foreach(Transform x in parent_Enemy)
+        tokenSource.Cancel();
+        tokenSource.Dispose();
+        tokenSource = new CancellationTokenSource();
+        token = tokenSource.Token;
+
+        foreach (Transform x in parent_Enemy)
         {
             Instantiate(effect_DeleteEnemy, x.transform.position, Quaternion.identity);
 

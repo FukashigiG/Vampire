@@ -21,7 +21,7 @@ public class PlayerController : SingletonMono<PlayerController>
 
     bool standOfBoost = false;
 
-    void Start()
+    void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = GetComponent<PlayerInput>();

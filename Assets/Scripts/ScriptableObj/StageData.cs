@@ -10,4 +10,5 @@ public class StageData : ScriptableObject
     [field: SerializeField, Range(1, 3)] public int stageRank {  get; private set; }
     [field: SerializeField] public List<EnemyData> enemyList {  get; private set; }
     [field: SerializeField] public List<GameEventData> eventList {  get; private set; }
+    [field: SerializeField] public EnemyData bossEnemy {  get; private set; }
 }

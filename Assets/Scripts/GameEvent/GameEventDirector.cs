@@ -34,6 +34,11 @@ public class GameEventDirector : SingletonMono<GameEventDirector>
         EventAsync(EventsType.getSome, _token).Forget();
     }
 
+    public void Trigger_StageWarp()
+    {
+        Viewer_StageSelect.Instance.ShowEvent();
+    }
+
     public void Trigger_Event()
     {
         // ‚±‚ê‚ð‚Ç‚¤Žæ“¾‚·‚é‚©
