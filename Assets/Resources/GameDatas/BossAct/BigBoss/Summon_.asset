@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Summon_
   m_EditorClassIdentifier: 
   <actionName>k__BackingField: "\u53EC\u559A"
-  <range_Min>k__BackingField: 12
+  <range_Min>k__BackingField: 0
   <range_Max>k__BackingField: 20
   delayTime: 0
   <actType>k__BackingField: 1
-  fx_Summon: {fileID: 9151170032971857288, guid: a78d6c856990e6443a0c6b7b2a539d4a, type: 3}
-  summonedEnemy: {fileID: 4903989986093316332, guid: 01d71035c48de0a4593068434cd53906, type: 3}
+  fx_Summon: {fileID: 4903989986093316332, guid: 01d71035c48de0a4593068434cd53906, type: 3}
+  summonedEnemyData: {fileID: 11400000, guid: 3bf2d451fa1aca542bad37db9cd632f2, type: 2}
   num_summonEnemy: 5

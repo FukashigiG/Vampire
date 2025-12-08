@@ -33,11 +33,11 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
     // 特殊状態
     // これらの変数はステータスエフェクトからのみ書き換えられなければならない
-    public bool actable;// { get; protected set; }
-    public bool isArrowDamage;// {  get; protected set; }
-    public bool isArrowHit;// {  get; protected set; }
-    public bool damageOverTime;
-    public bool onRegeneration;
+    public bool actable = true;// { get; protected set; }
+    public bool isArrowDamage = true;// {  get; protected set; }
+    public bool isArrowHit = true;// {  get; protected set; }
+    public bool damageOverTime = false;
+    public bool onRegeneration = false;
 
     float ratio_SlipDamage = 2;
     float ratio_Regene = 4;
@@ -72,12 +72,6 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     {
         _renderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
-
-        actable = true;
-        isArrowDamage = true;
-        isArrowHit = true;
-        damageOverTime = false;
-        onRegeneration = false;
     }
 
     protected virtual void Start()

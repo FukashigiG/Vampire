@@ -22,6 +22,7 @@ public class EnemyData : ScriptableObject
     [field: SerializeField] public EnemyActType actType {  get; private set; }
     bool isInfight => actType == EnemyActType.Infight;
     bool isShooter => actType == EnemyActType.Shooter;
+    bool isBigBoss => actType == EnemyActType.BigBoss;
 
     [field: SerializeField] public int hp {  get; private set; }
     [field: SerializeField] public int power {  get; private set; }
@@ -44,8 +45,6 @@ public class EnemyData : ScriptableObject
 
     [field: SerializeField] public List<Base_EnemyStatusAbilityData> statusAbilities {  get; private set; }
 
-    [field: SerializeField] public GameObject prefab {  get; private set; }
-
     [Serializable] public class DropItem
     {
         public GameObject prefab;
@@ -54,4 +53,14 @@ public class EnemyData : ScriptableObject
     }
 
     public DropItem[] dropItems;
+
+    [Serializable] public class BossActionData
+    {
+        [field: SerializeField] public Base_BossEnemyAct actionLogic { get; private set; }
+        [field: SerializeField, Range(0, 100)] public int baseWeight { get; private set; } = 50;
+        [field: SerializeField, Range(0.1f, 0.9f)] public float decayRate { get; private set; } = 0.5f;
+    }
+
+    [ShowIf("isBigBoss"), SerializeField] List<BossActionData> _bossActions;
+    public List<BossActionData> bossActions => _bossActions;
 }

@@ -5443,7 +5443,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent_Enemy: {fileID: 1113652509}
   effect_DeleteEnemy: {fileID: 2533848353679586684, guid: 350ff592921c0124e983e434646c2cf4, type: 3}
+  prefab_NormalEnemy_Infight: {fileID: 9151170032971857288, guid: a78d6c856990e6443a0c6b7b2a539d4a, type: 3}
+  prefab_NormalEnemy_Shooter: {fileID: 9151170032971857288, guid: c084dc283576fa74a8cad3bd1aad3d36, type: 3}
   bossEnemy: {fileID: 9151170032971857288, guid: eb0f25b9613ab654ab4c06cdfb28d2a9, type: 3}
+  bossData: {fileID: 11400000, guid: 148b96ab06e03514fbadcf994f41237a, type: 2}
   interval_Spawn: 0.8
 --- !u!1001 &774598390
 PrefabInstance:
@@ -9900,7 +9903,7 @@ MonoBehaviour:
   txt_WaveCount: {fileID: 935835504}
   txt_TimeLimit_Wave: {fileID: 1316949030}
   num_Wave: 4
-  minute_Wave: 1
+  minute_Wave: 0.1
   initialStage: {fileID: 11400000, guid: 45fe6a9709d151a468685435afa9aad2, type: 2}
   item_WarpStage: {fileID: 270761467918423833, guid: 19663bb03d8b1e54c972e4ceb543e222, type: 3}
   <waveBoostMultiplier>k__BackingField: 0
@@ -12493,9 +12496,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: d91bf72238158cb45add6f1c0f6e33c0, type: 2}
     - target: {fileID: 6570142216724946382, guid: f12098574e22e1348b250adcf8c39505, type: 3}
+      propertyPath: actable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570142216724946382, guid: f12098574e22e1348b250adcf8c39505, type: 3}
       propertyPath: panel_Die
       value: 
       objectReference: {fileID: 725958155}
+    - target: {fileID: 6570142216724946382, guid: f12098574e22e1348b250adcf8c39505, type: 3}
+      propertyPath: isArrowHit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6570142216724946382, guid: f12098574e22e1348b250adcf8c39505, type: 3}
+      propertyPath: isArrowDamage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6570142216724946382, guid: f12098574e22e1348b250adcf8c39505, type: 3}
       propertyPath: <playerCharaData>k__BackingField
       value: 

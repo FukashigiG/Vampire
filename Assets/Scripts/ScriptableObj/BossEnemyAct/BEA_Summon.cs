@@ -7,10 +7,10 @@ using UnityEngine;
 public class BEA_Summon : Base_BossEnemyAct
 {
     [SerializeField] GameObject fx_Summon;
-    [SerializeField] GameObject summonedEnemy;
+    [SerializeField] EnemyData summonedEnemyData;
     [SerializeField] int num_summonEnemy;
 
-    float spawnRadius = 4f;
+    float spawnRadius = 2.4f;
 
     public async override UniTask Action(Base_EnemyCtrler ctrler)
     {
@@ -32,7 +32,7 @@ public class BEA_Summon : Base_BossEnemyAct
         foreach (var pos in spawnPosies)
         {
             Instantiate(fx_Summon, pos, Quaternion.identity);
-            Instantiate(summonedEnemy, pos, Quaternion.identity);
+            EnemySpawner.Instance.SpawnEnemy(summonedEnemyData, pos);
         }
 
         await UniTask.Delay(1000 * 2, cancellationToken: token);

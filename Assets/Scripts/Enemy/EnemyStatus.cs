@@ -7,9 +7,9 @@ using Random = UnityEngine.Random;
 
 public class EnemyStatus : Base_MobStatus
 {
-    [SerializeField] EnemyData _enemyData;
     [SerializeField] GameObject fx_Die;
 
+    public EnemyData _enemyData { get; private set; }
     public Base_EnemyCtrler ctrler {  get; private set; }
 
     public float range_Shot { get; private set; } = 0f;
@@ -34,25 +34,18 @@ public class EnemyStatus : Base_MobStatus
         base.Awake();
 
         ctrler = GetComponent<Base_EnemyCtrler>();
-
-        color_DamageTxt = Color.white;
     }
 
-    protected override void Start()
+    public void Initialize(EnemyData data, float multiplier)
     {
-        base.Start();
-
-        GetComponent<SpriteRenderer>().sprite = _enemyData.sprite;
-
-        // 自分を初期化
-        Initialize(1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
+        // ステータスデータの取得
+        _enemyData = data;
 
         // ミニマップに自身を登録させる
         MiniMapController.Instance.NewEnemyInstance(this);
-    }
 
-    public void Initialize(float multiplier)
-    {
+        color_DamageTxt = Color.white;
+
         maxHP = (int)((float)_enemyData.hp * multiplier);
         _hitPoint.Value = maxHP;
 

@@ -11,14 +11,16 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     [SerializeField] Transform parent_Enemy;
     [SerializeField] GameObject effect_DeleteEnemy;
 
+    [SerializeField] GameObject prefab_NormalEnemy_Infight;
+    [SerializeField] GameObject prefab_NormalEnemy_Shooter;
+
     [SerializeField] GameObject bossEnemy;
+    [SerializeField] EnemyData bossData;
 
     [SerializeField] float interval_Spawn;
 
     CancellationTokenSource tokenSource = new CancellationTokenSource();
     CancellationToken token;
-
-    bool onMove = false;
 
     // 購読のライフサイクルを管理するためのDisposable
     // これ１つで沢山のDisposableなやつらに対応可能らしい
@@ -35,7 +37,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     {
         normalEnemyList.Clear();
 
-        normalEnemyList = list;
+        normalEnemyList = new List<EnemyData>(list);
 
         SpawnTask(token).Forget();
     }
@@ -44,37 +46,29 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     {
         try
         {
-            onMove = true;
-
-            while (true)
+            while (GameAdmin.Instance._waveState == GameAdmin.WaveState.zako)
             {
-                Vector2 randomPoint = SpawnPointRottery();
+                Vector2 randomPoint = SpawnPointRottery(); // 敵の生成場所を取得
 
-                var x = Instantiate(EnemyLottery(), randomPoint, Quaternion.identity, parent_Enemy);
+                var data = EnemyLottery(); // 敵のデータを取得
 
-                var enemy = x.GetComponent<EnemyStatus>();
-
-                // ウエーブ数の倍率ブーストを渡したうえでの初期化
-                // enemy.Initialize(1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
-                // 仕様変更：初期化はステータス自身にやらせる
+                SpawnEnemy(data, randomPoint); // 生成
 
                 // ミニマップ管理人に、新しく生まれたことを知らせる
                 //MiniMapController.Instance.NewEnemyInstance(enemy);
-                // 仕様変更：これもステータス自身にやらせる
+                // 仕様変更：ステータス自身にやらせる
 
+                // 待つ
                 await UniTask.Delay((int)(interval_Spawn * 1000), cancellationToken: token);
-
-                // ザコ狩りウェーブまで待つ
-                await UniTask.WaitUntil(() => GameAdmin.Instance._waveState == GameAdmin.WaveState.zako, PlayerLoopTiming.Update, token);
             }
         }
         catch (System.OperationCanceledException)
         {
-            // キャンセルされたのでループを抜ける。ログは出さない。
+            // キャンセルされたのでループを抜ける（ログは出さない）
         }
         catch (System.Exception e)
         {
-            Debug.LogException(e); // 修正: エラー内容をコンソールに出す
+            Debug.LogException(e); // エラー内容をログに出す
         }
         finally
         {
@@ -82,6 +76,34 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         }
     }
 
+    // 与えられたデータと座標を元に敵オブジェクトを生成、初期化
+    // 外部が新たに敵を出したい場合にもこれを利用させる
+    public void SpawnEnemy(EnemyData data, Vector2 spawnPoint)
+    {
+        GameObject targetPrefab = null;
+
+        // 敵のタイプにあわせたプレハブを取得
+        // それぞれことなるタイプのエネミーコントローラがアタッチされてる
+        switch (data.actType)
+        {
+            case EnemyData.EnemyActType.Infight:
+                targetPrefab = prefab_NormalEnemy_Infight;
+                break;
+
+            case EnemyData.EnemyActType.Shooter:
+                targetPrefab = prefab_NormalEnemy_Shooter;
+                break;
+        }
+
+        // 生成
+        var x = Instantiate(targetPrefab, spawnPoint, Quaternion.identity, parent_Enemy);
+
+        // データとウエーブ数の倍率ブーストを渡したうえで初期化させる
+        x.GetComponent<EnemyStatus>()
+        .Initialize(data, 1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
+    }
+
+    // 生成場所の抽選
     Vector2 SpawnPointRottery()
     {
         Vector2 randomPoint;
@@ -100,7 +122,8 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         return randomPoint;
     }
 
-    GameObject EnemyLottery()
+    // 出現させる敵のデータを抽選
+    EnemyData EnemyLottery()
     {
         int[] weight_Rank = { 50, 20, 5 };
 
@@ -127,7 +150,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
             }
         }
 
-        return spawnTargetData.prefab;
+        return spawnTargetData;
     }
 
     public void Stop_SpawnTask()
@@ -152,7 +175,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         GameObject x = Instantiate(bossEnemy, randomPoint, Quaternion.identity, parent_Enemy);
 
         // ウエーブ数の倍率ブーストを渡したうえでの初期化
-        x.GetComponent<EnemyStatus>().Initialize(1 + GameAdmin.Instance.waveCount * GameAdmin.Instance.waveBoostMultiplier);
+        x.GetComponent<EnemyStatus>().Initialize(bossData, 1 + GameAdmin.Instance.waveCount * GameAdmin.Instance.waveBoostMultiplier);
 
         return x;
     }

@@ -27,7 +27,22 @@ MonoBehaviour:
   <amount_EXP>k__BackingField: 0
   <statusAbilities>k__BackingField:
   - {fileID: 11400000, guid: 6a9722d8d25f74c4c86416d92100bf0c, type: 2}
-  <prefab>k__BackingField: {fileID: 0}
   dropItems:
   - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}
     dropRate_Parcentage: 100
+  _bossActions:
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: be27275d33e6af24cb31ff2519ff6be8, type: 2}
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.5
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: b1c93b3b44adaa742b9909ee8957b13f, type: 2}
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.5
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: a01a0cd59db549e4abb1f95159ec670b, type: 2}
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.5
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 68d07afdda9e3064ebb21252c055a095, type: 2}
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.5
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 6f922240848249841b54b9249d3ccc43, type: 2}
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.5

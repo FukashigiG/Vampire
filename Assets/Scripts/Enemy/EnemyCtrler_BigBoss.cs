@@ -10,26 +10,30 @@ using Random = UnityEngine.Random;
 
 public class EnemyCtrler_BigBoss : Base_EnemyCtrler
 {
-    [System.Serializable]
     class BossAction
     {
-        [field: SerializeField] public Base_BossEnemyAct actionLogic { get; private set; } // 処理部分
-        [SerializeField, Range(0, 100)] int baseWeight = 50; // 基礎確率の重み
-        [SerializeField, Range(0.1f, 0.9f)] float decayRate = 0.5f; // 連続使用時の重み減衰率
+        public EnemyData.BossActionData data {  get; private set; }
 
         // 内部計算用
         [HideInInspector] public int currentWeight { get; private set; }
 
+        public BossAction(EnemyData.BossActionData _data)
+        {
+            data = _data;
+
+            Initialize_CullentWeight();
+        }
+
         // 重みを初期化
         public void Initialize_CullentWeight()
         {
-            currentWeight = baseWeight;
+            currentWeight = data.baseWeight;
         }
 
         // 現在の重みを減衰率で減らす
         public void DeceyCullentWeight()
         {
-            currentWeight = (int)(currentWeight * decayRate);
+            currentWeight = (int)(currentWeight * data.decayRate);
         }
     }
 
@@ -37,8 +41,7 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
     public static IObservable<Base_BossEnemyAct> onAct => subject_OnAct;
 
     // ボスの行動
-
-    [SerializeField] List<BossAction> actions;
+    List<BossAction> actions = new List<BossAction>();
 
     bool attackable = true;
 
@@ -56,9 +59,9 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
         base.Start();
 
         // それぞれのactionの重みを初期化
-        foreach (var act in actions)
+        foreach (var actData in _enemyStatus._enemyData.bossActions)
         {
-            act.Initialize_CullentWeight();
+            actions.Add(new BossAction(actData));
         }
 
         LifeCycle().Forget();
@@ -91,7 +94,7 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
         float distance = (target.position - this.transform.position).magnitude;
 
         // 適正範囲の行動を取得
-        List<BossAction> collectRangeActions = actions.Where(x => x.actionLogic.range_Min <= distance && x.actionLogic.range_Max >= distance).ToList();
+        List<BossAction> collectRangeActions = actions.Where(x => x.data.actionLogic.range_Min <= distance && x.data.actionLogic.range_Max >= distance).ToList();
 
         Dictionary<BossAction, int> weightDictionaly = new();
         int totalWeight = 0;
@@ -102,9 +105,9 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
             // 最長距離が短い技ほど発動確率を上げるための処理
             int finalyWeight;
 
-            if (act.actionLogic.range_Max < 10f)
+            if (act.data.actionLogic.range_Max < 10f)
             {
-                finalyWeight = (int)(act.currentWeight * (10f / act.actionLogic.range_Max));
+                finalyWeight = (int)(act.currentWeight * (10f / act.data.actionLogic.range_Max));
             }
             else
             {
@@ -148,6 +151,6 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
             }
         }
 
-        return selectedAction.actionLogic;
+        return selectedAction.data.actionLogic;
     }
 }

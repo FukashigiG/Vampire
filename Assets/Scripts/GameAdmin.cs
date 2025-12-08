@@ -65,11 +65,11 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     public void UpdateWave(StageData stageData)
     {
+        WaveProgression().Forget(); // 先にこれを実行しておかないと、waveStateが更新されずスポナーが機能しない
+
         EnemySpawner.Instance.SetEnemies(stageData.enemyList);
 
         GameEventDirector.Instance.SetEvents(stageData.eventList);
-
-        WaveProgression().Forget();
     }
 
     //全体的なゲームの進行を管理

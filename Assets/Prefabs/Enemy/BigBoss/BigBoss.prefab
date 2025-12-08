@@ -56,6 +56,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -77,6 +79,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -180,12 +183,12 @@ MonoBehaviour:
   enhancementRate_Defence: 0
   enhancementRate_Power: 0
   enhancementRate_MoveSpeed: 0
-  actable: 0
-  isArrowDamage: 0
-  isArrowHit: 0
+  actable: 1
+  isArrowDamage: 1
+  isArrowHit: 1
   damageOverTime: 0
   onRegeneration: 0
-  _enemyData: {fileID: 11400000, guid: 148b96ab06e03514fbadcf994f41237a, type: 2}
+  applied_AllowKnickBack: 0
   fx_Die: {fileID: 1429954232896169633, guid: be90e1b495922e24898d7585c8f53b72, type: 3}
 --- !u!114 &-6237789552094120079
 MonoBehaviour:
@@ -202,19 +205,3 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  actions:
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: be27275d33e6af24cb31ff2519ff6be8, type: 2}
-    baseWeight: 50
-    decayRate: 0.5
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: b1c93b3b44adaa742b9909ee8957b13f, type: 2}
-    baseWeight: 50
-    decayRate: 0.5
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 68d07afdda9e3064ebb21252c055a095, type: 2}
-    baseWeight: 50
-    decayRate: 0.5
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: a01a0cd59db549e4abb1f95159ec670b, type: 2}
-    baseWeight: 50
-    decayRate: 0.5
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 6f922240848249841b54b9249d3ccc43, type: 2}
-    baseWeight: 50
-    decayRate: 0.5

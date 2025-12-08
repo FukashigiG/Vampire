@@ -46,8 +46,6 @@ public class PlayerInventory : MonoBehaviour
         {
             // 持っていたら、そのナイフの重複度数をプラス
             known.count_Multiple++;
-
-            Debug.Log(known.count_Multiple);
         }
 
         
