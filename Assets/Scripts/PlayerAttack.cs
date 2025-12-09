@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
 
     PlayerStatus status;
 
-    GameObject targetEnemy;
+    public GameObject targetEnemy {  get; private set; }
 
     // ‚¢‚í‚ä‚éŽèŽD
     ReactiveCollection<KnifeData_RunTime> hand = new ReactiveCollection<KnifeData_RunTime>();
