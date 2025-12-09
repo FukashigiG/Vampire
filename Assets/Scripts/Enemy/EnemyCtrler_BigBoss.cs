@@ -17,6 +17,8 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
         // 内部計算用
         [HideInInspector] public int currentWeight { get; private set; }
 
+        public bool isExecuted { get; set; } = false;
+
         public BossAction(EnemyData.BossActionData _data)
         {
             data = _data;
@@ -44,6 +46,9 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
     List<BossAction> actions = new List<BossAction>();
 
     bool attackable = true;
+
+    // 行動回数：行動が何回目か
+    int cullentActCount = 0;
 
     CancellationToken token;
 
@@ -79,6 +84,8 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
     {
         while (true)
         {
+            cullentActCount++;
+
             Base_BossEnemyAct act = DecideNextAction();
 
             subject_OnAct.OnNext(act);
@@ -91,10 +98,46 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
 
     Base_BossEnemyAct DecideNextAction()
     {
+        // N回目の行動として設定されてるやつを探す
+        var XXX = actions.Find(x => x.data.triggerType == EnemyData.BossActionData.TriggerType.SpecifiedActCount && x.data.targetActCount == cullentActCount);
+        // あったらそれのact部分を返して終わり
+        if (XXX != null)
+        {
+            var act = XXX.data.actionLogic;
+
+            // 発動が1回制限タイプなら、リストから削除
+            // 普通は設定されてる想定
+            // というかどっちみち1回しか発動しなくね？？？
+            // やっぱ制限とか無しに削除していいわ
+            /*if (XXX.data.isOneTimeOnry) */actions.Remove(XXX);
+
+            return XXX.data.actionLogic;
+        }
+
+        // HPがN%を下回ったときの行動として設定されていて、条件を満たしてるやつを探す
+        var YYY = actions.Find(x => x.data.triggerType == EnemyData.BossActionData.TriggerType.HpThreshold && (_enemyStatus.hitPoint.Value / _enemyStatus.maxHP) * 100 <= x.data.thresholdHpRate_Percent);
+        // あったらそれのact部分を返して終わり
+        if (YYY != null)
+        {
+            var act = YYY.data.actionLogic;
+
+            // リストから削除
+            // 削除しないと無限に発動してしまうため
+            actions.Remove(YYY);
+
+            return YYY.data.actionLogic;
+        }
+
+        Debug.Log(actions.Count);
+
+        // プレイヤーとの距離を取得
         float distance = (target.position - this.transform.position).magnitude;
 
-        // 適正範囲の行動を取得
-        List<BossAction> collectRangeActions = actions.Where(x => x.data.actionLogic.range_Min <= distance && x.data.actionLogic.range_Max >= distance).ToList();
+        // 通常抽選タイプのうち、適正範囲の行動を取得
+        List<BossAction> collectRangeActions = actions
+            .Where(x => x.data.triggerType == EnemyData.BossActionData.TriggerType.WeightRandom)
+            .Where(x => x.data.actionLogic.range_Min <= distance && x.data.actionLogic.range_Max >= distance)
+            .ToList();
 
         Dictionary<BossAction, int> weightDictionaly = new();
         int totalWeight = 0;

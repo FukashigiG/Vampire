@@ -4,6 +4,9 @@ public class Bullet_SpilitCtrler : MonoBehaviour
 {
     [SerializeField] float speed = 5f;
 
+    float lifeTime = 4f;
+    float elapsedTime = 0;
+
     int damagePoint = 0;
 
     public void Initialize(int damage)
@@ -13,6 +16,10 @@ public class Bullet_SpilitCtrler : MonoBehaviour
 
     void Update()
     {
+        elapsedTime += Time.deltaTime;
+
+        if (elapsedTime >= lifeTime) Destroy(gameObject);
+
         transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
 
