@@ -9960,7 +9960,7 @@ MonoBehaviour:
   txt_WaveCount: {fileID: 935835504}
   txt_TimeLimit_Wave: {fileID: 1316949030}
   num_Wave: 4
-  minute_Wave: 0.1
+  minute_Wave: 1
   initialStage: {fileID: 11400000, guid: 45fe6a9709d151a468685435afa9aad2, type: 2}
   item_WarpStage: {fileID: 270761467918423833, guid: 19663bb03d8b1e54c972e4ceb543e222, type: 3}
   <waveBoostMultiplier>k__BackingField: 0
@@ -10521,12 +10521,10 @@ MonoBehaviour:
   body_Panel: {fileID: 1189365566}
   buttons_Option:
   - {fileID: 489974912}
-  - {fileID: 489974912}
+  - {fileID: 700799771}
   - {fileID: 1620797106}
   button_Decide: {fileID: 676863075}
   txt_StageName: {fileID: 699754178}
-  list_Stage_Wave:
-  - {fileID: 11400000, guid: ab47394a929f1104d8a82b2b9a7efad6, type: 2}
 --- !u!222 &1777187169
 CanvasRenderer:
   m_ObjectHideFlags: 0
