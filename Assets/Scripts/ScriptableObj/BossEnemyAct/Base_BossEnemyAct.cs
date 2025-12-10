@@ -17,10 +17,8 @@ public abstract class Base_BossEnemyAct : ScriptableObject
     [field: SerializeField] public ActType actType { get; private set; }
 
 
-    CancellationToken token;
-
     // ‚±‚Ì“_‚Å‚Íasync‚Í‹Lq‚µ‚Ä‚È‚­‚Ä‚à‚¢‚¢‚ç‚µ‚¢
-    public virtual UniTask Action(Base_EnemyCtrler ctrler)
+    public virtual UniTask Action(Base_EnemyCtrler ctrler, CancellationToken token)
     {
         return UniTask.CompletedTask;
     }

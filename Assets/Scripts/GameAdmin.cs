@@ -107,7 +107,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
         if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス撃破";
 
-        Instantiate(item_WarpStage, Vector2.zero, Quaternion.identity);
+        // ウェーブ終了時の処理
+        OnWaveFinish();
     }
 
     async UniTask WaitWithWave(float min, CancellationToken token)
@@ -151,20 +152,11 @@ public class GameAdmin : SingletonMono<GameAdmin>
         }
     }
 
-    /*
-    async UniTask ShowLevelUpUIAsync()
+    void OnWaveFinish()
     {
-        if (panel_LvUp.activeSelf) return;
-
-        panel_LvUp.SetActive(true);
-
-        PauseGame();
-
-        await UniTask.WaitUntil(() => panel_LvUp.activeSelf == false);
-
-        ResumeGame();
+        // ワープゲート生成
+        Instantiate(item_WarpStage, Vector2.zero, Quaternion.identity);
     }
-    */
 
     // 一時停止
     public void PauseGame()

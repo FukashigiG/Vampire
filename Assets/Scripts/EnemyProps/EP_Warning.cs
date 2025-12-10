@@ -33,7 +33,16 @@ public class EP_Warning : MonoBehaviour
 
         showObj.SetActive(true);
 
-        await showObj.transform.GetChild(0).transform.DOScale(Vector3.one, delayTime).ToUniTask(cancellationToken: token);
+
+        try
+        {
+            await showObj.transform.GetChild(0).transform.DOScale(Vector3.one, delayTime).ToUniTask(cancellationToken: token);
+
+        }
+        catch
+        {
+            throw;
+        }
 
         Destroy(this.gameObject);
     }

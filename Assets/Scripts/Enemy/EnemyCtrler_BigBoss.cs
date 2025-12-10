@@ -82,17 +82,26 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
 
     async UniTask LifeCycle()
     {
-        while (true)
+        try
         {
-            cullentActCount++;
+            while (true)
+            {
+                cullentActCount++;
 
-            Base_BossEnemyAct act = DecideNextAction();
+                Base_BossEnemyAct act = DecideNextAction();
 
-            subject_OnAct.OnNext(act);
+                subject_OnAct.OnNext(act);
 
-            await act.Action(this);
+                await act.Action(this, token);
 
-            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: token);
+                Debug.Log("oppo");
+
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: token);
+            }
+        }
+        catch
+        {
+            Debug.Log("wwwww");
         }
     }
 

@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,11 +12,9 @@ public class BEA_Chase : Base_BossEnemyAct
 
     Transform target;
 
-    public async override UniTask Action(Base_EnemyCtrler ctrler)
+    public async override UniTask Action(Base_EnemyCtrler ctrler, CancellationToken token)
     {
         float elapsedTime = 0f;
-
-        var token = ctrler.GetCancellationTokenOnDestroy();
 
         target = ctrler.target;
 

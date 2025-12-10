@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewBossEnemyAct", menuName = "Game Data/BossEnemyAct/Summon")]
@@ -12,10 +13,8 @@ public class BEA_Summon : Base_BossEnemyAct
 
     float spawnRadius = 2.4f;
 
-    public async override UniTask Action(Base_EnemyCtrler ctrler)
+    public async override UniTask Action(Base_EnemyCtrler ctrler, CancellationToken token)
     {
-        var token = ctrler.GetCancellationTokenOnDestroy();
-
         Vector2 center = ctrler.transform.position;
 
         Vector2[] spawnPosies = new Vector2[num_summonEnemy];
