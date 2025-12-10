@@ -94,14 +94,14 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
 
                 await act.Action(this, token);
 
-                Debug.Log("oppo");
+                Debug.Log("afterAct");
 
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: token);
             }
         }
-        catch
+        catch (OperationCanceledException)
         {
-            Debug.Log("wwwww");
+            Debug.Log("canceled");
         }
     }
 

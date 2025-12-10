@@ -36,17 +36,16 @@ public class BEA_Punch : Base_BossEnemyAct
         {
             // 初期化、アニメーション終了まで待つ
             await warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, rangeType, forwardDistance, size_Width, size_Vertical, size_Radius);
+
+            // こいつはキャンセル時はちゃんと呼ばれないっぽい
+            Debug.Log("afterAnim");
         }
         catch(OperationCanceledException)
         {
-            Debug.Log("??????");
-
-            // キャンセルされたら（Destroyされたら）、警告を消して終了
-            //if (warning != null) Destroy(warning);
-            throw; // キャンセル例外を上位（Controller）に投げる
+            // キャンセルされたら、警告を消して終了
+            if (warning != null) Destroy(warning);
+            throw; // キャンセル例外を上位に投げる
         }
-
-        //token.ThrowIfCancellationRequested();
 
         // 本命の攻撃判定オブジェクトを生成、初期化
         GameObject x = Instantiate(attackDetectObje, ctrler.transform.position, Quaternion.FromToRotation(Vector2.up, dir));

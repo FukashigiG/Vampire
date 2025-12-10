@@ -82,8 +82,6 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
         {
             int targetRank = Lottery_StageRank(); // 1~3のランダムなランクを取得
 
-            Debug.Log(targetRank);
-
             List<StageData> xxx = candiData
                 .Where(x => x.stageRank == targetRank)// 抽選されたランクのやつを取得
                 .OrderBy(x => UnityEngine.Random.value)// 順序シャッフル

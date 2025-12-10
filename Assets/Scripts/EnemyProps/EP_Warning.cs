@@ -36,7 +36,9 @@ public class EP_Warning : MonoBehaviour
 
         try
         {
-            await showObj.transform.GetChild(0).transform.DOScale(Vector3.one, delayTime).ToUniTask(cancellationToken: token);
+            // TweenCancelBehaviour.KillAndCancelAwaitが超重要！！！！！！！
+            // これをつけることによって初めて、キャンセル時に例外としてthrowしてくれる
+            await showObj.transform.GetChild(0).transform.DOScale(Vector3.one, delayTime).ToUniTask(TweenCancelBehaviour.KillAndCancelAwait, token);
 
         }
         catch
