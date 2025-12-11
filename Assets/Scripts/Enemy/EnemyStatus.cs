@@ -1,8 +1,10 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using static EnemyData;
 using Random = UnityEngine.Random;
 
 public class EnemyStatus : Base_MobStatus
@@ -12,6 +14,9 @@ public class EnemyStatus : Base_MobStatus
     public EnemyData _enemyData { get; private set; }
     public Base_EnemyCtrler ctrler {  get; private set; }
 
+    public EnemyData.ShotType shotType {  get; private set; }
+    public int num_Bullet {  get; private set; }
+    public float divergenceAngle {  get; private set; }
     public float range_Shot { get; private set; } = 0f;
     public float friquentry_Shot { get; private set; } = 0f;
     public GameObject bullet_Prefab { get; private set; }
@@ -53,9 +58,12 @@ public class EnemyStatus : Base_MobStatus
         base_Defence = (int)(_enemyData.defense * multiplier);
         base_MoveSpeed = (int)(_enemyData.moveSpeed * multiplier);
 
-        // もしシューター型なら射程、発射頻度も代入
+        // もしシューター型なら射程、発射頻度等も代入
         if(_enemyData.actType == EnemyData.EnemyActType.Shooter)
         {
+            shotType = _enemyData.shotType;
+            num_Bullet = _enemyData.num_Bullet;
+            divergenceAngle = _enemyData.divergenceAngle;
             range_Shot = _enemyData.range_Shot;
             friquentry_Shot = _enemyData.friquentry_Shot;
             bullet_Prefab = _enemyData.bulletPrefab;

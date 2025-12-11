@@ -154,8 +154,18 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     void OnWaveFinish()
     {
-        // ワープゲート生成
-        Instantiate(item_WarpStage, Vector2.zero, Quaternion.identity);
+        switch (waveCount)
+        {
+            case <= 5:
+                // ワープゲート生成
+                Instantiate(item_WarpStage, Vector2.zero, Quaternion.identity);
+                break;
+
+            default:
+                break;
+        }
+
+        
     }
 
     // 一時停止

@@ -20,9 +20,6 @@ public class EnemyData : ScriptableObject
     }
 
     [field: SerializeField] public EnemyActType actType {  get; private set; }
-    bool isInfight => actType == EnemyActType.Infight;
-    bool isShooter => actType == EnemyActType.Shooter;
-    bool isBigBoss => actType == EnemyActType.BigBoss;
 
     [field: SerializeField] public int hp {  get; private set; }
     [field: SerializeField] public int power {  get; private set; }
@@ -30,15 +27,34 @@ public class EnemyData : ScriptableObject
 
     [field: SerializeField] public float moveSpeed {  get; private set; }
 
-    // もしシュータータイプなら、射程の項目も表示する
+    // もしシュータータイプなら、射程等の項目も表示する
     // showIfを使ってると{get;set;}が使えないので、別途参照用のプロパティを用意
-    [ShowIf("isShooter"), SerializeField] float _range_Shot = 0;
+    public enum ShotType
+    {
+       OneShot, RapidFire
+    }
+
+    [ShowIf("actType", EnemyActType.Shooter), SerializeField] ShotType _shotType = ShotType.OneShot;
+    public ShotType shotType => _shotType;
+
+    // 発射する弾の数
+    [ShowIf("actType", EnemyActType.Shooter), SerializeField, Range(1, 20)] int _num_Bullet = 1;
+    public int num_Bullet => _num_Bullet;
+
+    // 弾の発散角度
+    [ShowIf("actType", EnemyActType.Shooter), SerializeField, Range(0, 360)] float _divergenceAngle = 0;
+    public float divergenceAngle => _divergenceAngle;
+
+    // 攻撃対象探知距離
+    [ShowIf("actType", EnemyActType.Shooter), SerializeField] float _range_Shot = 0;
     public float range_Shot => _range_Shot;
 
-    [ShowIf("isShooter"), SerializeField] float _friquentry_Shot = 0;
+    // 発射頻度
+    [ShowIf("actType", EnemyActType.Shooter), SerializeField] float _friquentry_Shot = 0;
     public float friquentry_Shot => _friquentry_Shot;
 
-    [ShowIf("isShooter"), SerializeField] GameObject _bulletPrefab;
+    // 弾となるオブジェクトのプレハブ
+    [ShowIf("actType", EnemyActType.Shooter), SerializeField] GameObject _bulletPrefab;
     public GameObject bulletPrefab => _bulletPrefab;
 
     [field: SerializeField] public float amount_EXP {  get; private set; }

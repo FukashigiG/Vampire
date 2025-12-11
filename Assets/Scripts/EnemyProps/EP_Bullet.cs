@@ -22,7 +22,7 @@ public class EP_Bullet : Base_EnemyProps
     {
         if (collision.gameObject.TryGetComponent(out Base_MobStatus ms))
         {
-            ms.GetAttack(damage, 0, transform.position);
+            ms.GetAttack(damage, elementDamage, transform.position);
 
             Destroy(this.gameObject);
         }

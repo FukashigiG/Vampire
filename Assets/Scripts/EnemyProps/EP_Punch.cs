@@ -10,7 +10,7 @@ public class EP_Punch : Base_EnemyProps
 
     public void Initialie_OR(int dmg, int elementDmg, AttackRangeType rangeType, float forwardDistance, float size_X = 0, float size_Y = 0, float size_Radius = 0)
     {
-        base.Initialie(dmg, elementDmg);
+        base.Initialize(dmg, elementDmg);
 
         switch (rangeType)
         {

@@ -40,13 +40,11 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
             if (! attackable) return;
 
             // 角度を求める
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
-            Instantiate(_enemyStatus.bullet_Prefab, transform.position, Quaternion.FromToRotation(Vector2.up, dir));
+            Quaternion baseRotation = Quaternion.FromToRotation(Vector2.up, dir);
 
             attackable = false;
 
-            StandBy(token).Forget();
+            ShotTask(baseRotation, token).Forget();
         }
         else
         {
@@ -54,8 +52,62 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
         }
     }
 
-    async UniTask StandBy(CancellationToken token)
+    async UniTask ShotTask(Quaternion baseRotation, CancellationToken token)
     {
+        float angleOffset = 0;
+        GameObject bullet = null;
+
+        switch (_enemyStatus.shotType)
+        {
+            // 単射タイプの挙動
+            case EnemyData.ShotType.OneShot:
+
+                for (int i = 0; i < _enemyStatus.num_Bullet; i++)
+                {
+                    // 弾の数が２以上なら以下の計算を実行
+                    if (_enemyStatus.num_Bullet > 1)
+                    {
+                        // 今投げる角度を求める
+                        angleOffset = Mathf.Lerp(_enemyStatus.divergenceAngle * -1 / 2, _enemyStatus.divergenceAngle / 2, (float)i / (_enemyStatus.num_Bullet - 1));
+                    }
+
+                    // Quaternionに変換
+                    Quaternion rotationOffset = Quaternion.Euler(0, 0, angleOffset);
+
+                    // ベースの方向と合成
+                    Quaternion finalRotation = baseRotation * rotationOffset;
+
+                    // 弾を生成
+                    bullet = Instantiate(_enemyStatus.bullet_Prefab, this.transform.position, finalRotation);
+
+                    // 弾を初期化
+                    bullet.GetComponent<EP_Bullet>().Initialize(1, 0);
+                }
+
+                break;
+
+            // 連射タイプの挙動
+            case EnemyData.ShotType.RapidFire:
+
+                Quaternion targetRotation;
+
+                // 中心角度からランダムにずらして弾をばらまく
+                for(int i = 0; i < _enemyStatus.num_Bullet; i++)
+                {
+                    angleOffset = Random.Range(_enemyStatus.divergenceAngle * -1 / 2, _enemyStatus.divergenceAngle / 2);
+
+                    targetRotation = baseRotation * Quaternion.Euler(0, 0, angleOffset);
+
+                    bullet = Instantiate(_enemyStatus.bullet_Prefab, transform.position, targetRotation);
+
+                    bullet.GetComponent<EP_Bullet>().Initialize(1, 0);
+
+                    await UniTask.Delay((int)(75), cancellationToken: token);
+                }
+
+                break;
+        }
+
         await UniTask.Delay((int)(_enemyStatus.friquentry_Shot * 1000), cancellationToken: token);
 
         attackable = true;

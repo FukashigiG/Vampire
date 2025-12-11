@@ -94,7 +94,7 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
 
                 await act.Action(this, token);
 
-                Debug.Log("afterAct");
+                token.ThrowIfCancellationRequested();
 
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: token);
             }

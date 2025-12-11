@@ -38,7 +38,7 @@ public class BEA_Punch : Base_BossEnemyAct
             await warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, rangeType, forwardDistance, size_Width, size_Vertical, size_Radius);
 
             // ‚±‚¢‚Â‚ÍƒLƒƒƒ“ƒZƒ‹Žž‚Í‚¿‚á‚ñ‚ÆŒÄ‚Î‚ê‚È‚¢‚Á‚Û‚¢
-            Debug.Log("afterAnim");
+            //Debug.Log("afterAnim");
         }
         catch(OperationCanceledException)
         {
