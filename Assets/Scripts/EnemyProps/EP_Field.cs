@@ -7,7 +7,7 @@ public class EP_Field : Base_EnemyProps
 
     Base_FieldEffectLogic effectLogic = null;
 
-    float friquentry;
+    float friquentry = 1f;
 
     float elapsedTime = 0;
 
@@ -16,11 +16,11 @@ public class EP_Field : Base_EnemyProps
     {
         base.Initialize(baseDamage, elementDamage);
 
-        transform.localScale = new Vector3(radius * 2, radius * 2, 1);
-
         effectLogic = _effectLogic;
 
-        if (effectLogic != null) Debug.Log("aa");
+        Debug.Log(effectLogic.name);
+
+        transform.localScale = new Vector3(radius * 2, radius * 2, 1);
     }
 
     // 毎効果処理
@@ -48,11 +48,13 @@ public class EP_Field : Base_EnemyProps
         switch (effectLogic.effectTarget)
         {
             case Base_FieldEffectLogic.Target.player:
+
                 if (! collision.TryGetComponent(out PlayerStatus player)) return;
                 status = player;
                 break;
 
             case Base_FieldEffectLogic.Target.Enemy:
+
                 if (!collision.TryGetComponent(out EnemyStatus enemy)) return;
                 status = enemy;
                 break;
@@ -65,7 +67,7 @@ public class EP_Field : Base_EnemyProps
     private void OnTriggerExit2D(Collider2D collision)
     {
         // それが生き物で
-        if (!TryGetComponent(out Base_MobStatus status)) return;
+        if (!collision.TryGetComponent(out Base_MobStatus status)) return;
 
         // 効果適用リストに入ってるなら
         if(effectings.Contains(status)) RemoveEffect(status);

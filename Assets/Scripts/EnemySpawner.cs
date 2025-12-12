@@ -59,8 +59,10 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
                 //MiniMapController.Instance.NewEnemyInstance(enemy);
                 // 仕様変更：ステータス自身にやらせる
 
+                float interval = 0.4f + (4 - GameAdmin.Instance.currentStage.stageRank) * 0.3f;
+
                 // 待つ
-                await UniTask.Delay((int)(interval_Spawn * 1000), cancellationToken: token);
+                await UniTask.Delay((int)(interval * 1000), cancellationToken: token);
             }
         }
         catch (System.OperationCanceledException)
@@ -132,24 +134,25 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     {
         int[] weight_Rank = { 50, 20, 5 };
 
-        int sum = 75;
+        int sum = 0;
+
+        foreach(var enemy in normalEnemyList)
+        {
+            sum += weight_Rank[enemy.rank - 1];
+        }
 
         int randomPoint = Random.Range(1, sum + 1);
 
         int cullent = 0;
         EnemyData spawnTargetData = null;
 
-        for (int i = 0; i < weight_Rank.Length; i++)
+        foreach (var enemy in normalEnemyList)
         {
-            cullent += weight_Rank[i];
+            cullent += weight_Rank[enemy.rank - 1];
 
             if (cullent >= randomPoint)
             {
-                var targetList = normalEnemyList
-                            .Where(x => x.rank == i + 1)
-                            .ToList();
-
-                spawnTargetData = targetList[Random.Range(0, targetList.Count)];
+                spawnTargetData = enemy;
 
                 break;
             }

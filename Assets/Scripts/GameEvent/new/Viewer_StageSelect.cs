@@ -28,8 +28,10 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
     {
         body_Panel.SetActive(true);
 
+        // ボタンの数だけ、ランダムなステージを取得
         List<StageData> selected = Lottery_Stage(buttons_Option.Count());
 
+        // それぞれのボタンに対して
         for (int i = 0; i < buttons_Option.Count(); i++)
         {
             buttons_Option[i].gameObject.SetActive(true);

@@ -27,6 +27,8 @@ MonoBehaviour:
   _range_Shot: 6
   _friquentry_Shot: 1.5
   _bulletPrefab: {fileID: 6002114493564059005, guid: 0a6c8aadb52c5fe4da7944597213d7a1, type: 3}
+  _fieldLogic: {fileID: 0}
+  _radius_FieldSize: 0
   <amount_EXP>k__BackingField: 1
   <statusAbilities>k__BackingField: []
   dropItems:

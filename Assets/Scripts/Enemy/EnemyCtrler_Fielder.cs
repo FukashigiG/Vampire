@@ -12,9 +12,9 @@ public class EnemyCtrler_Fielder : Base_EnemyCtrler
     {
         base.Start();
 
-        Instantiate(prefab_Field, this.transform);
+        GameObject obj = Instantiate(prefab_Field, this.transform);
 
-        prefab_Field.GetComponent<EP_Field>().Initialize_Field(_enemyStatus._enemyData.fieldLogic, _enemyStatus._enemyData.radius_FieldSize, 0, _enemyStatus.power);
+        obj.GetComponent<EP_Field>().Initialize_Field(_enemyStatus._enemyData.fieldLogic, _enemyStatus._enemyData.radius_FieldSize, 0, _enemyStatus.power);
     }
 
     protected override void HandleAI()
