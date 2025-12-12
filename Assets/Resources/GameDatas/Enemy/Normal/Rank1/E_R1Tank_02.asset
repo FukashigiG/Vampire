@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
-  m_Name: E_R1Shooter01
+  m_Name: E_R1Tank_02
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: 3aa51288fb99e3a4ca2d8d3336f40d3a, type: 3}
-  <_name>k__BackingField: "R1\u30B7\u30E5\u30FC\u30BF\u30FC01"
-  <description>k__BackingField: "\u57FA\u790E\u7684\u306A\u30E9\u30F3\u30AF\uFF11\u306E\u30B7\u30E5\u30FC\u30BF\u30FC\u30A8\u30CD\u30DF\u30FC\n\u30EF\u30F3\u30B7\u30E7\u30C3\u30C8\u578B\u3067\u30011\u3064\u306E\u5F3E\u3092\u767A\u5C04"
+  <sprite>k__BackingField: {fileID: 21300000, guid: 2539a5f9018a16b43b7371dfcc3980a1, type: 3}
+  <_name>k__BackingField: "R1\u30BF\u30F3\u30AF01"
+  <description>k__BackingField: "R1\u306E\u57FA\u672C\u7684\u306A\u30BF\u30F3\u30AF\u30FB\u30A4\u30F3\u30D5\u30A1\u30A4\u30BF\u30FC\u30A8\u30CD\u30DF\u30FC\u306E\u6BCE\u30C1\u30A7\u30F3\n\u4F53\u529B\u304C\u3055\u3089\u306B\u4F4E\u3044\u4EE3\u308F\u308A\u306B\u7D20\u65E9\u3055\u304C\u9AD8\u3044"
   <rank>k__BackingField: 1
-  <actType>k__BackingField: 1
-  <hp>k__BackingField: 40
-  <power>k__BackingField: 20
-  <defense>k__BackingField: 20
-  <moveSpeed>k__BackingField: 8
+  <actType>k__BackingField: 0
+  <hp>k__BackingField: 38
+  <power>k__BackingField: 16
+  <defense>k__BackingField: 60
+  <moveSpeed>k__BackingField: 12
   _shotType: 0
   _num_Bullet: 1
   _divergenceAngle: 0
-  _range_Shot: 6
-  _friquentry_Shot: 1.5
-  _bulletPrefab: {fileID: 6002114493564059005, guid: 0a6c8aadb52c5fe4da7944597213d7a1, type: 3}
+  _range_Shot: 0
+  _friquentry_Shot: 0
+  _bulletPrefab: {fileID: 0}
   <amount_EXP>k__BackingField: 1
   <statusAbilities>k__BackingField: []
   dropItems:

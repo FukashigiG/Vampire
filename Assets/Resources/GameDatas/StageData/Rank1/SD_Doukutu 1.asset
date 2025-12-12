@@ -10,15 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c01ee19ad823a3745b523ac3af8a8109, type: 3}
-  m_Name: SD_Doukutu
+  m_Name: SD_Doukutu 1
   m_EditorClassIdentifier: Assembly-CSharp::StageData
-  <stageName>k__BackingField: "\u6D1E\u7A9F"
+  <stageName>k__BackingField: "\u30C6\u30B9\u30C8\u7528"
   <stageRank>k__BackingField: 1
   <enemyList>k__BackingField:
-  - {fileID: 11400000, guid: 3bf2d451fa1aca542bad37db9cd632f2, type: 2}
-  - {fileID: 11400000, guid: 1ae3bd09da03121468b625be4be0a00b, type: 2}
-  - {fileID: 11400000, guid: 2ac3071320021a4478570f14e7d14f6a, type: 2}
   - {fileID: 11400000, guid: b490c65ceb194ae4ea85515f0b095e68, type: 2}
-  - {fileID: 11400000, guid: 483179645f73c264d9d3ee6f71a3cb36, type: 2}
   <eventList>k__BackingField: []
   <bossEnemy>k__BackingField: {fileID: 0}

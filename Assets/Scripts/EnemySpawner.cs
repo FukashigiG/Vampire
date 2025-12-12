@@ -13,6 +13,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
     [SerializeField] GameObject prefab_NormalEnemy_Infight;
     [SerializeField] GameObject prefab_NormalEnemy_Shooter;
+    [SerializeField] GameObject prefab_NormalEnemy_Fielder;
 
     [SerializeField] GameObject bossEnemy;
     [SerializeField] EnemyData bossData;
@@ -92,6 +93,10 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
             case EnemyData.EnemyActType.Shooter:
                 targetPrefab = prefab_NormalEnemy_Shooter;
+                break;
+
+            case EnemyData.EnemyActType.Fielder:
+                targetPrefab = prefab_NormalEnemy_Fielder;
                 break;
         }
 

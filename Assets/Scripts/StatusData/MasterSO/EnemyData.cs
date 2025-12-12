@@ -16,8 +16,11 @@ public class EnemyData : ScriptableObject
 
     public enum EnemyActType
     {
-        Infight, Shooter, BigBoss
+        Infight, Shooter, Fielder, BigBoss
     }
+
+    [Header("基礎ステータス設定事項")]
+
 
     [field: SerializeField] public EnemyActType actType {  get; private set; }
 
@@ -33,6 +36,8 @@ public class EnemyData : ScriptableObject
     {
        OneShot, RapidFire
     }
+
+    [Header("シューター設定事項")]
 
     [ShowIf("actType", EnemyActType.Shooter), SerializeField] ShotType _shotType = ShotType.OneShot;
     public ShotType shotType => _shotType;
@@ -57,8 +62,20 @@ public class EnemyData : ScriptableObject
     [ShowIf("actType", EnemyActType.Shooter), SerializeField] GameObject _bulletPrefab;
     public GameObject bulletPrefab => _bulletPrefab;
 
+    [Header("フィールダー設定事項")]
+    // もしフィールダータイプなら、フィールドの半径なども表示
+
+    // フィールド効果
+    [ShowIf("actType", EnemyActType.Fielder), SerializeField] Base_FieldEffectLogic _fieldLogic;
+    public Base_FieldEffectLogic fieldLogic => _fieldLogic;
+
+    // フィールドの半径
+    [ShowIf("actType", EnemyActType.Fielder), SerializeField] float _radius_FieldSize;
+    public float radius_FieldSize => _radius_FieldSize;
+
     [field: SerializeField] public float amount_EXP {  get; private set; }
 
+    [Header("ステータスアビリティ設定")]
     [field: SerializeField] public List<Base_EnemyStatusAbilityData> statusAbilities {  get; private set; }
 
     [Serializable] public class DropItem
@@ -68,6 +85,7 @@ public class EnemyData : ScriptableObject
         public int dropRate_Parcentage;
     }
 
+    [Header("ドロップアイテム設定")]
     public DropItem[] dropItems;
 
     [Serializable] public class BossActionData

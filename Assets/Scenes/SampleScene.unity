@@ -5445,6 +5445,7 @@ MonoBehaviour:
   effect_DeleteEnemy: {fileID: 2533848353679586684, guid: 350ff592921c0124e983e434646c2cf4, type: 3}
   prefab_NormalEnemy_Infight: {fileID: 9151170032971857288, guid: a78d6c856990e6443a0c6b7b2a539d4a, type: 3}
   prefab_NormalEnemy_Shooter: {fileID: 9151170032971857288, guid: c084dc283576fa74a8cad3bd1aad3d36, type: 3}
+  prefab_NormalEnemy_Fielder: {fileID: 9151170032971857288, guid: ca364a879bfca594f99a36fe2d833728, type: 3}
   bossEnemy: {fileID: 9151170032971857288, guid: eb0f25b9613ab654ab4c06cdfb28d2a9, type: 3}
   bossData: {fileID: 11400000, guid: 148b96ab06e03514fbadcf994f41237a, type: 2}
   interval_Spawn: 0.8
