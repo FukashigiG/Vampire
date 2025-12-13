@@ -8,6 +8,8 @@ public class ESA_Warp : Base_EnemyStatusAbilityData
 {
     // 攻撃を受けると後方にワープする
 
+    [SerializeField] bool warpForBack = true;
+
     [SerializeField] float distance;
 
     [SerializeField] GameObject fx_Warp;
@@ -23,7 +25,16 @@ public class ESA_Warp : Base_EnemyStatusAbilityData
 
             Vector2 dir = (playerPosi - (Vector2)status.transform.position).normalized;
 
-            status.transform.Translate(dir * distance * -1f);
+            switch (warpForBack)
+            {
+                case true:
+                    status.transform.Translate(dir * distance * -1f);
+                    break;
+
+                case false:
+                    status.transform.Translate(dir * distance);
+                    break;
+            }
 
             // 移動場所にエフェクト生成
             Instantiate(fx_Warp, status.transform.position, Quaternion.identity);

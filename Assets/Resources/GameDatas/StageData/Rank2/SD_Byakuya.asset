@@ -15,10 +15,10 @@ MonoBehaviour:
   <stageName>k__BackingField: "\u767D\u591C"
   <stageRank>k__BackingField: 2
   <enemyList>k__BackingField:
-  - {fileID: 11400000, guid: 3bf2d451fa1aca542bad37db9cd632f2, type: 2}
   - {fileID: 11400000, guid: 1ae3bd09da03121468b625be4be0a00b, type: 2}
+  - {fileID: 11400000, guid: b490c65ceb194ae4ea85515f0b095e68, type: 2}
   - {fileID: 11400000, guid: 483179645f73c264d9d3ee6f71a3cb36, type: 2}
-  - {fileID: 11400000, guid: 15eb28f8382342b458ac582d3a0b9adb, type: 2}
+  - {fileID: 11400000, guid: 6c6fea0a20ec22449b6c42eb9da3d76f, type: 2}
   - {fileID: 11400000, guid: ce631daabe97cf8448311002ecd1d38e, type: 2}
   <eventList>k__BackingField:
   - {fileID: 11400000, guid: ac194bcf2fb561d4180efa3587755a2f, type: 2}

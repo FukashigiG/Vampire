@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
-  m_Name: E_R2BuffFielder
+  m_Name: E_R2SpdBuffFielder
   m_EditorClassIdentifier: 
   <sprite>k__BackingField: {fileID: 21300000, guid: 3aa51288fb99e3a4ca2d8d3336f40d3a, type: 3}
-  <_name>k__BackingField: "R1\u30D5\u30A3\u30FC\u30EB\u30C0\u30FC01"
+  <_name>k__BackingField: "R2\u30D0\u30D5\u30D5\u30A3\u30FC\u30EB\u30C0\u30FC01"
   <description>k__BackingField: "R2\u306E\u30D5\u30A3\u30FC\u30EB\u30C0\u30FC\u30A8\u30CD\u30DF\u30FC\n\u5E83\u7BC4\u56F2\u306E\u6575\u306E\u7D20\u65E9\u3055\u3092\u4E0A\u6607\u3055\u305B\u308B\n\u5F8C\u65B9\u30EF\u30FC\u30D7\u3082\u6301\u3064"
   <rank>k__BackingField: 1
   <actType>k__BackingField: 2
   <hp>k__BackingField: 52
   <power>k__BackingField: 20
   <defense>k__BackingField: 20
-  <moveSpeed>k__BackingField: 2
+  <moveSpeed>k__BackingField: 6
   _shotType: 0
   _num_Bullet: 1
   _divergenceAngle: 0
