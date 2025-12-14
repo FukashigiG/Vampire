@@ -8,21 +8,22 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewBossEnemyAct", menuName = "Game Data/BossEnemyAct/Chase")]
 public class BEA_Chase : Base_BossEnemyAct
 {
-    [SerializeField] float speed;
-
-    Transform target;
-
+    [Header("‰½•bŠÔ’ÇÕ‚·‚é‚©")]
+    [SerializeField] float lifeTime_Action = 5f;
+    [Header("’ÇÕ‚ğ’†’f‚·‚é‹——£")]
+    [SerializeField] float distance_WrapUpAction = 4f;
+ 
     public async override UniTask Action(Base_EnemyCtrler ctrler, CancellationToken token)
     {
         float elapsedTime = 0f;
 
-        target = ctrler.target;
+        Transform target = ctrler.target;
 
-        while (elapsedTime < 5f)
+        while (elapsedTime < lifeTime_Action)
         {
             Vector2 dir = (target.position - ctrler.transform.position).normalized;
 
-            ctrler.transform.Translate(dir * speed * Time.deltaTime);
+            ctrler.transform.Translate(dir * ctrler._enemyStatus.moveSpeed / 10 * Time.deltaTime);
 
             float distance = (target.position - ctrler.transform.position).magnitude;
 

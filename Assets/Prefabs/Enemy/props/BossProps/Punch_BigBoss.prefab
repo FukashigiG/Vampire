@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 3381110147834909502}
   circleCollider: {fileID: 7892832340530939156}
+  isInstant: 1
 --- !u!61 &3381110147834909502
 BoxCollider2D:
   m_ObjectHideFlags: 0

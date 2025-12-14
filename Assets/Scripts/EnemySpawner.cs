@@ -16,7 +16,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     [SerializeField] GameObject prefab_NormalEnemy_Fielder;
 
     [SerializeField] GameObject bossEnemy;
-    [SerializeField] EnemyData bossData;
+    
 
     [SerializeField] float interval_Spawn;
 
@@ -28,17 +28,20 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     private CompositeDisposable disposables = new CompositeDisposable();
 
     List<EnemyData> normalEnemyList = new List<EnemyData>();
+    EnemyData bossData;
 
     void Awake()
     {
         token = tokenSource.Token;
     }
 
-    public void SetEnemies(List<EnemyData> list)
+    public void SetEnemies(List<EnemyData> list, EnemyData _bossData)
     {
         normalEnemyList.Clear();
 
         normalEnemyList = new List<EnemyData>(list);
+
+        bossData = _bossData;
 
         SpawnTask(token).Forget();
     }
@@ -184,6 +187,8 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
         // ウエーブ数の倍率ブーストを渡したうえでの初期化
         x.GetComponent<EnemyStatus>().Initialize(bossData, 1 + GameAdmin.Instance.waveCount * GameAdmin.Instance.waveBoostMultiplier);
+
+        UI_BossHPGauge.Instance.Initialize(x);
 
         return x;
     }

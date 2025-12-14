@@ -67,7 +67,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
     {
         WaveProgression().Forget(); // 先にこれを実行しておかないと、waveStateが更新されずスポナーが機能しない
 
-        EnemySpawner.Instance.SetEnemies(stageData.enemyList);
+        EnemySpawner.Instance.SetEnemies(stageData.enemyList, stageData.bossEnemy);
 
         GameEventDirector.Instance.SetEvents(stageData.eventList);
     }

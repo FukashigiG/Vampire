@@ -17,7 +17,7 @@ MonoBehaviour:
   <hp>k__BackingField: 200
   <power>k__BackingField: 40
   <defense>k__BackingField: 40
-  <moveSpeed>k__BackingField: 10
+  <moveSpeed>k__BackingField: 8
   <luck>k__BackingField: 0
   <eyeSight>k__BackingField: 4
   <limit_DrawKnives>k__BackingField: 4

@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
-  m_Name: defaultBoss
+  m_Name: B_Lizard
   m_EditorClassIdentifier: 
   <sprite>k__BackingField: {fileID: 21300000, guid: f3a964194160e724db7a797dc01a7871, type: 3}
-  <_name>k__BackingField: "\u5DE8\u4EBA"
+  <_name>k__BackingField: "\u30EA\u30B6\u30FC\u30C9"
   <description>k__BackingField: 
-  <rank>k__BackingField: 0
+  <rank>k__BackingField: 1
   <actType>k__BackingField: 3
-  <hp>k__BackingField: 200
-  <power>k__BackingField: 50
+  <hp>k__BackingField: 2000
+  <power>k__BackingField: 40
   <defense>k__BackingField: 12
-  <moveSpeed>k__BackingField: 10
+  <moveSpeed>k__BackingField: 38
   _shotType: 0
   _num_Bullet: 1
   _divergenceAngle: 0
@@ -37,8 +37,8 @@ MonoBehaviour:
     dropRate_Parcentage: 100
   _bossActions:
   - <actionLogic>k__BackingField: {fileID: 11400000, guid: be27275d33e6af24cb31ff2519ff6be8, type: 2}
-    <triggerType>k__BackingField: 1
-    <targetActCount>k__BackingField: 1
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
     <thresholdHpRate_Percent>k__BackingField: 0
     <baseWeight>k__BackingField: 50
     <decayRate>k__BackingField: 0.5
@@ -46,23 +46,29 @@ MonoBehaviour:
     <triggerType>k__BackingField: 0
     <targetActCount>k__BackingField: 0
     <thresholdHpRate_Percent>k__BackingField: 0
-    <baseWeight>k__BackingField: 50
-    <decayRate>k__BackingField: 0.5
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: a01a0cd59db549e4abb1f95159ec670b, type: 2}
-    <triggerType>k__BackingField: 1
-    <targetActCount>k__BackingField: 2
-    <thresholdHpRate_Percent>k__BackingField: 0
-    <baseWeight>k__BackingField: 50
-    <decayRate>k__BackingField: 0.5
+    <baseWeight>k__BackingField: 60
+    <decayRate>k__BackingField: 0.35
   - <actionLogic>k__BackingField: {fileID: 11400000, guid: 68d07afdda9e3064ebb21252c055a095, type: 2}
     <triggerType>k__BackingField: 0
     <targetActCount>k__BackingField: 0
     <thresholdHpRate_Percent>k__BackingField: 0
     <baseWeight>k__BackingField: 50
     <decayRate>k__BackingField: 0.5
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 6f922240848249841b54b9249d3ccc43, type: 2}
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 8feb19f7288450443b89d8c612ca8efd, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.3
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: a01a0cd59db549e4abb1f95159ec670b, type: 2}
     <triggerType>k__BackingField: 0
     <targetActCount>k__BackingField: 0
     <thresholdHpRate_Percent>k__BackingField: 0
     <baseWeight>k__BackingField: 50
     <decayRate>k__BackingField: 0.5
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 35afd6301723b584287f8a5bf60cb1d4, type: 2}
+    <triggerType>k__BackingField: 2
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 50
+    <baseWeight>k__BackingField: 0
+    <decayRate>k__BackingField: 0

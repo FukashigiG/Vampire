@@ -9,19 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c12632baf0538e7488e272126945eb41, type: 3}
-  m_Name: Punch
+  m_Script: {fileID: 11500000, guid: ef2e0f31c1bc3ce43820ddaacab0ed25, type: 3}
+  m_Name: Charge
   m_EditorClassIdentifier: 
-  <actionName>k__BackingField: "\u30D1\u30F3\u30C1"
+  <actionName>k__BackingField: "\u7A81\u9032"
   <range_Min>k__BackingField: 0
-  <range_Max>k__BackingField: 4
-  delayTime: 0.8
-  <actType>k__BackingField: 1
+  <range_Max>k__BackingField: 12
+  delayTime: 0.85
+  <actType>k__BackingField: 0
   attackDetectObje: {fileID: 8782759202650464566, guid: 54a4b7bca65b56b469a622eba113bab9, type: 3}
-  warningPrefab: {fileID: 5595648858755892628, guid: 9c956cabe1981c34a96d85fa2c044000, type: 3}
+  moveAmount: 12
+  time: 0.8
   damageMultiplier: 1
-  forwardDistance: 2
-  rangeType: 0
-  size_Width: 4
-  size_Vertical: 2
-  size_Radius: 0
+  yokoku: {fileID: 5595648858755892628, guid: 9c956cabe1981c34a96d85fa2c044000, type: 3}

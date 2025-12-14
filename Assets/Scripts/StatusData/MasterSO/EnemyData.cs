@@ -113,6 +113,7 @@ public class EnemyData : ScriptableObject
         [field: SerializeField, Range(0.1f, 0.9f)] public float decayRate { get; private set; } = 0.5f;
     }
 
-    [ShowIf("isBigBoss"), SerializeField] List<BossActionData> _bossActions;
+    [Header("ビッグボス設定事項")]
+    [ShowIf("actType", EnemyActType.BigBoss), SerializeField] List<BossActionData> _bossActions;
     public List<BossActionData> bossActions => _bossActions;
 }

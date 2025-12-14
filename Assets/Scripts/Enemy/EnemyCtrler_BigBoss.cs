@@ -124,7 +124,7 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
         }
 
         // HP‚ªN%‚ð‰º‰ñ‚Á‚½‚Æ‚«‚Ìs“®‚Æ‚µ‚ÄÝ’è‚³‚ê‚Ä‚¢‚ÄAðŒ‚ð–ž‚½‚µ‚Ä‚é‚â‚Â‚ð’T‚·
-        var YYY = actions.Find(x => x.data.triggerType == EnemyData.BossActionData.TriggerType.HpThreshold && (_enemyStatus.hitPoint.Value / _enemyStatus.maxHP) * 100 <= x.data.thresholdHpRate_Percent);
+        var YYY = actions.Find(x => x.data.triggerType == EnemyData.BossActionData.TriggerType.HpThreshold && ((float)_enemyStatus.hitPoint.Value / _enemyStatus.maxHP) * 100f <= x.data.thresholdHpRate_Percent);
         // ‚ ‚Á‚½‚ç‚»‚ê‚Ìact•”•ª‚ð•Ô‚µ‚ÄI‚í‚è
         if (YYY != null)
         {

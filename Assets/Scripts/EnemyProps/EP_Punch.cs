@@ -8,7 +8,7 @@ public class EP_Punch : Base_EnemyProps
     [SerializeField] BoxCollider2D boxCollider;
     [SerializeField] CircleCollider2D circleCollider;
 
-    public void Initialie_OR(int dmg, int elementDmg, AttackRangeType rangeType, float forwardDistance, float size_X = 0, float size_Y = 0, float size_Radius = 0)
+    public void Initialie_OR(int dmg, int elementDmg, AttackRangeType rangeType, float forwardDistance, float size_X = 0, float size_Y = 0, float size_Radius = 0, bool isInstant = true)
     {
         base.Initialize(dmg, elementDmg);
 
@@ -31,12 +31,12 @@ public class EP_Punch : Base_EnemyProps
                 break;
         }
 
-        Action().Forget();
+        if(isInstant) WaitAndDestroy().Forget();
     }
 
-    async UniTask Action()
+    async UniTask WaitAndDestroy()
     {
-        await UniTask.Delay(200, cancellationToken: this.GetCancellationTokenOnDestroy());
+        await UniTask.DelayFrame(12, cancellationToken: this.GetCancellationTokenOnDestroy());
 
         Destroy(gameObject);
     }
