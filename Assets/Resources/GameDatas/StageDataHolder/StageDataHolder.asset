@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: StageDataHolder
   m_EditorClassIdentifier: Assembly-CSharp::StageDataHolder
   updatable: 1
-  <selectedChara>k__BackingField: {fileID: 11400000, guid: a9eff1ab0a9deda47b80ddacb9142678, type: 2}
+  <selectedChara>k__BackingField: {fileID: 11400000, guid: c5837e0905e889a44890b52e8c1e5263, type: 2}

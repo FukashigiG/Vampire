@@ -11,6 +11,8 @@ public class EP_Field : Base_EnemyProps
 
     float elapsedTime = 0;
 
+    public float cullentRadius => transform.localScale.x / 2f;
+
     // èâä˙âª
     public void Initialize_Field(Base_FieldEffectLogic _effectLogic, float radius, int baseDamage, int elementDamage)
     {
@@ -18,8 +20,12 @@ public class EP_Field : Base_EnemyProps
 
         effectLogic = _effectLogic;
 
-        Debug.Log(effectLogic.name);
+        SetScale(radius);
+    }
 
+    // ëÂÇ´Ç≥
+    public void SetScale(float radius)
+    {
         transform.localScale = new Vector3(radius * 2, radius * 2, 1);
     }
 

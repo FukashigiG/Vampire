@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eee2c715f941b2f4c90e5fe39ff444f4, type: 3}
-  m_Name: FELogic_Buff_SPD
+  m_Name: FELogic_Buff_Atk
   m_EditorClassIdentifier: Assembly-CSharp::FEL_Buff
   <effectTarget>k__BackingField: 1
-  effectType: 1
+  effectType: 0

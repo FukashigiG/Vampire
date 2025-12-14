@@ -132,7 +132,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     // 出現させる敵のデータを抽選
     EnemyData EnemyLottery()
     {
-        int[] weight_Rank = { 50, 20, 5 };
+        int[] weight_Rank = { 9, 7, 4 };
 
         int sum = 0;
 

@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewFieldLogic", menuName = "Game Data/FieldLogic/Buff")]
 public class FEL_Buff : Base_FieldEffectLogic
 {
-    public enum EffectType { atk, def, spd}
+    [Serializable] enum EffectType { atk, def, spd}
 
     [SerializeField] EffectType effectType = EffectType.spd;
 

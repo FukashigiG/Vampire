@@ -8,13 +8,20 @@ public class EnemyCtrler_Fielder : Base_EnemyCtrler
 
     [SerializeField] GameObject prefab_Field;
 
+    public EP_Field field { get; private set; }
+
     protected override void Start()
     {
         base.Start();
 
-        GameObject obj = Instantiate(prefab_Field, this.transform);
+        // フィールドオブジェクトを生成
+        var obj = Instantiate(prefab_Field, this.transform);
 
-        obj.GetComponent<EP_Field>().Initialize_Field(_enemyStatus._enemyData.fieldLogic, _enemyStatus._enemyData.radius_FieldSize, 0, _enemyStatus.power);
+        // 変数に代入
+        field = obj.GetComponent<EP_Field>();
+
+        // 初期化
+        field.Initialize_Field(_enemyStatus._enemyData.fieldLogic, _enemyStatus._enemyData.radius_FieldSize, 0, _enemyStatus.power);
     }
 
     protected override void HandleAI()
