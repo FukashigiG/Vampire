@@ -31,19 +31,30 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     public int power { get { return (int)(base_Power * (1f + (enhancementRate_Power / 100f))); } }
     public int moveSpeed { get { return (int)(base_MoveSpeed * (1f + (enhancementRate_MoveSpeed / 100f))); } }
 
-    // 特殊状態
-    // これらの変数はステータスエフェクトからのみ書き換えられなければならない
-    public bool actable = true;// { get; protected set; }
-    public bool isArrowDamage = true;// {  get; protected set; }
-    public bool isArrowHit = true;// {  get; protected set; }
-    public bool damageOverTime = false;
-    public bool onRegeneration = false;
+    // 特殊状態ズ
+    // カウントが１以上ならfalseとなるタイプと、0の状態ならfalseになる奴がある
+    public bool actable => count_Actable <= 0;
+    public int count_Actable = 0;
+
+    public bool permission_Damage => count_PermissionDamage <= 0;
+    public int count_PermissionDamage = 0;
+
+    public bool permission_Hit => count_PermissionHit <= 0;
+    public int count_PermissionHit = 0;
+
+    public bool onDamageOverTime => count_PermissionDamageOverTime > 0;
+    public int count_PermissionDamageOverTime = 0;
+    
+    public bool onRegeneration => count_PermissionRegeneration > 0;
+    public int count_PermissionRegeneration = 0;
+
+    bool permission_KnickBack => count_PermissionKnickBack <= 0;
+    public int count_PermissionKnickBack = 0;
+
 
     float ratio_SlipDamage = 2;
     float ratio_Regene = 4;
 
-    public int applied_AllowKnickBack = 0;
-    bool allowKnickBack => applied_AllowKnickBack == 0;
 
     protected Subject<(Vector2 position, int amount)> subject_OnDamaged = new Subject<(Vector2, int)>();
     protected Subject<Unit> subject_OnSecond = new Subject<Unit>();
@@ -57,7 +68,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     // 同一効果（xxナイフのバフ、yy秘宝の火炎）などの重複を防ぐための管理
     Dictionary<string, CancellationTokenSource> activeStatusEffects = new();
     // 同種の効果（何かしらがトリガーの火炎、凍結など）を管理
-    public ReactiveDictionary<Base_StatusEffectData, int> activeStatusTypeCounts = new();
+    public ReactiveDictionary<Base_StatusEffectData, int> activeStatusTypeCounts { get; private set; } = new();
 
     // 被ダメージ数値を書き換える際に使用されるフィルター
     // バグ防止のためにもフィルターは複数使えるべきではないのでは？
@@ -95,7 +106,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     void SecondUpdate()
     {
         // スリップダメージを受ける設定なら、
-        if (damageOverTime) TakeDamage((int)((float)maxHP / 100f * ratio_SlipDamage));
+        if (onDamageOverTime) TakeDamage((int)((float)maxHP / 100f * ratio_SlipDamage));
         // リジェネを受ける設定なら、
         if (onRegeneration) HealHP((int)((float)maxHP / 100f * ratio_Regene));
 
@@ -190,7 +201,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     public virtual bool GetAttack(int damagePoint, int elementPoint, Vector2 damagedPosi, bool isCritical = false, bool isIgnoreDefence = false)
     {
         //被撃許容状態でないなら、falseを返して処理を終了する
-        if(! isArrowHit) return false;
+        if(! permission_Hit) return false;
 
         int K = 50;
 
@@ -218,7 +229,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     // ダメージ処理
     public virtual int TakeDamage(int value)
     {
-        if (!isArrowDamage) return 0;
+        if (! permission_Damage) return 0;
 
         // フィルターにダメージ数値を通す（量がかわる）
         foreach(var filter in damageFilters)
@@ -291,7 +302,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     // ノックバック
     public virtual void KnockBack(Vector2 damagedPosi, float power)
     {
-        if(! allowKnickBack) return;
+        if(! permission_KnickBack) return;
 
         var damageDir = (damagedPosi - (Vector2)transform.position).normalized;
 

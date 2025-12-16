@@ -39,8 +39,6 @@ public class PlayerAttack : MonoBehaviour
     Subject<ReactiveCollection<KnifeData_RunTime>> subject_OnReload = new();
     public IObservable<ReactiveCollection<KnifeData_RunTime>> onReload => subject_OnReload;
 
-
-
     // 攻撃サイクル用トークンソース
     CancellationTokenSource cancellationTokenSource;
 
@@ -96,16 +94,20 @@ public class PlayerAttack : MonoBehaviour
 
                 token.ThrowIfCancellationRequested();
 
-                await ThrowKnives(token);
+                await ThrowAllHands(token);
             }
         }
-        catch
+        catch (OperationCanceledException)
         {
-            
+            // キャンセル時は正常終了なので何もしない
         }
-        finally
+        catch (System.Exception e)
         {
+            // 【重要】エラー原因を特定するためにログを出す
+            Debug.LogException(e);
 
+            // エラーでループが止まると困る場合は、ここで再帰呼び出しや復帰処理が必要ですが、
+            // まずはログを出して原因を突き止めるのが先決です。
         }
     }
 
@@ -131,12 +133,18 @@ public class PlayerAttack : MonoBehaviour
         await UniTask.Delay((int)(status.time_ReloadKnives * 1000), cancellationToken: token);
     }
 
-    async UniTask ThrowKnives(CancellationToken token)
+    async UniTask ThrowAllHands(CancellationToken token)
     {
         while(hand.Count > 0)
         {
-            // 攻撃範囲内に敵が現れるまで待つ
-            await UniTask.WaitUntil(() => targetEnemy != null, cancellationToken: token);
+            // 攻撃範囲内に敵が現れる,かつ行動可能になるまで待つ
+            await UniTask.WaitUntil(() => targetEnemy != null && status.actable, cancellationToken: token);
+
+            // 何かしらの理由で手札が無かったらループを抜けてリロードへ
+            if (hand.Count == 0)
+            {
+                break; 
+            }
 
             // handの先頭を取得
             var knife = hand[0];
@@ -144,53 +152,58 @@ public class PlayerAttack : MonoBehaviour
             // handの先頭を削除 早めに済ませておく
             hand.RemoveAt(0);
 
-            // 購読先による介入のための発行
-            subject_OnThrowKnife.OnNext(knife);
-
-            int count_multiKnife = knife.count_Multiple;
-
             // 攻撃対象の方向をVec2型で取得
             Vector2 dir = (targetEnemy.transform.position - this.transform.position).normalized;
 
             // それをQuaternionに変換
             Quaternion baseRotation = Quaternion.FromToRotation(Vector2.up, dir);
 
-            // ナイフ重複度だけオブジェクトを生成
-            for (int i = 0; i < count_multiKnife; i++)
-            {
-                float angleOffset = 0;
-
-                // 重複カウントが２以上なら以下の計算を実行
-                if(count_multiKnife > 1)
-                {
-                    // 今投げる角度を求める
-                    angleOffset = Mathf.Lerp(-10 / 2f, 10 / 2f, (float)i / (count_multiKnife - 1));
-                }
-
-                // Quaternionに変換
-                Quaternion rotationOffset = Quaternion.Euler(0, 0, angleOffset);
-
-                // ベースの方向と合成
-                Quaternion finalRotation = baseRotation * rotationOffset;
-
-                // ナイフを生成、それをxと置く
-                // 編集された可能性のあるKnifeDataで処理を続行
-                var x = Instantiate(knife.prefab, this.transform.position, finalRotation);
-
-                // ナイフの属性がプレイヤーの得意属性か否か
-                bool isElementMatched = status.masteredElements.Contains(knife.element);
-
-                // xを初期化
-                // この文以降でこのxを参照してはならない（Initialize）
-                x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife, status, isElementMatched);
-            }
-
-            // ナイフを1回投げるごとにアビリティチャージ
-            AbilityCharge();
+            ThrowKnife(knife, baseRotation);
 
             // ステータスの持つ数値の分だけ待機
             await UniTask.Delay((int)(status.coolTime_ThrowKnife * 1000), cancellationToken: token);
         }
+    }
+
+    public void ThrowKnife(KnifeData_RunTime knife, Quaternion baseRotation)
+    {
+        // 購読先による介入のための発行
+        subject_OnThrowKnife.OnNext(knife);
+
+        int count_multiKnife = knife.count_Multiple;
+
+        // ナイフ重複度だけオブジェクトを生成
+        for (int i = 0; i < count_multiKnife; i++)
+        {
+            float angleOffset = 0;
+
+            // 重複カウントが２以上なら以下の計算を実行
+            if (count_multiKnife > 1)
+            {
+                // 今投げる角度を求める
+                angleOffset = Mathf.Lerp(-10 / 2f, 10 / 2f, (float)i / (count_multiKnife - 1));
+            }
+
+            // Quaternionに変換
+            Quaternion rotationOffset = Quaternion.Euler(0, 0, angleOffset);
+
+            // ベースの方向と合成
+            Quaternion finalRotation = baseRotation * rotationOffset;
+
+            // ナイフを生成、それをxと置く
+            // 編集された可能性のあるKnifeDataで処理を続行
+            var x = Instantiate(knife.prefab, this.transform.position, finalRotation);
+
+            // ナイフの属性がプレイヤーの得意属性か否か
+            bool isElementMatched = status.masteredElements.Contains(knife.element);
+
+            // xを初期化
+            // この文以降でこのxを参照してはならない（Initialize）
+            x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife, status, isElementMatched);
+        }
+
+        // ナイフを1回投げるごとにアビリティチャージ
+        AbilityCharge();
     }
 
     // リストまたは単体のナイフを手持ちに加える
@@ -271,7 +284,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // アビリティの実行
-    public void ExecuteCharaAbility()
+    public async UniTask ExecuteCharaAbility()
     {
         // アビリティがないならリターン
         if (charaAbility == null) return;
@@ -279,11 +292,30 @@ public class PlayerAttack : MonoBehaviour
         // 必要なチャージ量に届いてなければリターン
         if (charaAbilityChargeValue.Value < charaAbility.requireChargeValue) return;
 
+        // 行動可能状態でないならリターン
+        if(! status.actable) return;
+
         // アビリティチャージ量をリセット
         charaAbilityChargeValue.Value = 0;
 
-        // charaAbility内の関数を実行
-        charaAbility.ActivateAbility();
+        // アビリティ中はダメージを受けず、ノックバックせず、他の行動を許可しない
+        status.count_Actable++;
+        status.count_PermissionDamage++;
+        status.count_PermissionKnickBack++;
+
+        var token = this.GetCancellationTokenOnDestroy();
+
+        try
+        {
+            // charaAbility内の関数を実行
+            await charaAbility.ActivateAbility(token);
+        }
+        finally
+        {
+            status.count_Actable--;
+            status.count_PermissionDamage--;
+            status.count_PermissionKnickBack--;
+        }
     }
 
 

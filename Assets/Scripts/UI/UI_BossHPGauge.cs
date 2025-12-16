@@ -21,9 +21,15 @@ public class UI_BossHPGauge : SingletonMono<UI_BossHPGauge>
         {
             gauge.fillAmount = (float)x / status.maxHP;
 
-            Debug.Log((float)x / status.maxHP);
-
         }).AddTo(bossObj);
+
+        EnemyStatus.onDie
+            .Where(x => x.status == status)
+            .Subscribe(x =>
+        {
+            body.SetActive(false);
+
+        }).AddTo(status);
 
         txt_BossName.text = status._enemyData._name;
 

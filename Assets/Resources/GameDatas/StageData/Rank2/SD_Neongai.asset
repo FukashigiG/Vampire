@@ -20,7 +20,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fe1d1841b164b1d4f8e21e7a1fb79bdb, type: 2}
   - {fileID: 11400000, guid: 03802b206875dea49bc0af43dd5a966f, type: 2}
   - {fileID: 11400000, guid: 81cd32dfc7cfc294b9b490ed61edd936, type: 2}
-  <eventList>k__BackingField:
-  - {fileID: 11400000, guid: ac194bcf2fb561d4180efa3587755a2f, type: 2}
-  - {fileID: 11400000, guid: 0e493bc62265c5e41ab925cae955535e, type: 2}
-  <bossEnemy>k__BackingField: {fileID: 0}
+  <eventList>k__BackingField: []
+  <bossEnemy>k__BackingField: {fileID: 11400000, guid: 148b96ab06e03514fbadcf994f41237a, type: 2}

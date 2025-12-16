@@ -1,5 +1,7 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UniRx;
 using UnityEngine;
 
@@ -22,5 +24,5 @@ public abstract class Base_P_CharaAbility : ScriptableObject
     }
 
     // –{Œø‰Ê
-    public abstract void ActivateAbility();
+    public abstract UniTask ActivateAbility(CancellationToken token);
 }

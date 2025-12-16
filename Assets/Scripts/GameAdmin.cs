@@ -30,6 +30,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     int pauseCount = 0;
 
+    bool arrow_AccessToSecretStage = false;
+
      // ÇPÉEÉFÅ[ÉuÇ†ÇΩÇËÇÃìGÇÃã≠âªî{ó¶
     [field: SerializeField] public float waveBoostMultiplier {  get; private set; }
 
@@ -161,6 +163,18 @@ public class GameAdmin : SingletonMono<GameAdmin>
                 Instantiate(item_WarpStage, Vector2.zero, Quaternion.identity);
                 break;
 
+            case 6:
+
+                if (arrow_AccessToSecretStage)
+                {
+
+                }
+                else
+                {
+                    ClearGame();
+                }
+
+                break;
             default:
                 break;
         }
@@ -190,6 +204,13 @@ public class GameAdmin : SingletonMono<GameAdmin>
     public void ReTry_Kari()
     {
         SceneLoader.Instance.Load("TitleScene");
+    }
+
+    void ClearGame()
+    {
+        PauseGame();
+
+        UI_ClearGame.Instance.ShowPanel();
     }
 
     void GameOver()

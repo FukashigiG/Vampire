@@ -139,9 +139,11 @@ public class PlayerStatus : Base_MobStatus
     // 攻撃を受ける処理
     public override bool GetAttack(int damagePoint, int elementPoint, Vector2 damagedPosi, bool isCritical = false, bool isIgnoreDefence = false)
     {
-        return base.GetAttack(damagePoint, elementPoint, damagedPosi, isCritical, isIgnoreDefence);
+        bool x = base.GetAttack(damagePoint, elementPoint, damagedPosi, isCritical, isIgnoreDefence);
 
-        //BeInvincible(1f).Forget();
+        if(x == true) BeInvincible(1f).Forget();
+
+        return x;
     }
 
     // ダメージを受ける処理
@@ -190,7 +192,7 @@ public class PlayerStatus : Base_MobStatus
     // 指定秒数間むてきになる
     async UniTask BeInvincible(float sec)
     {
-        isArrowDamage = false;
+        count_PermissionHit += 1;
 
         try
         {
@@ -202,7 +204,7 @@ public class PlayerStatus : Base_MobStatus
         }
         finally
         {
-            isArrowDamage = true;
+            count_PermissionHit -= 1;
         }
     }
 

@@ -10,14 +10,14 @@ public class ESA_Spike : Base_EnemyStatusAbilityData
 
     public override void ApplyAbility(EnemyStatus status, CompositeDisposable disposables)
     {
-        status.applied_AllowKnickBack += 1;
+        status.count_PermissionKnickBack += 1;
 
         // ‰½‚©‚µ‚ç‚Å”jŠü‚³‚ê‚½‚ç‰ðœ
         Disposable.Create(() =>
         {
             if(status != null)
             {
-                status.applied_AllowKnickBack -= 1;
+                status.count_PermissionKnickBack -= 1;
             }
 
         }).AddTo(disposables);

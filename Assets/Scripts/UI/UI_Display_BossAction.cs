@@ -17,6 +17,4 @@ public class UI_Display_BossAction : MonoBehaviour
 
         }).AddTo(this);
     }
-
-    
 }

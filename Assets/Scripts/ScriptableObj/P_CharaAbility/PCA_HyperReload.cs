@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
+using System.Threading;
 
 [CreateAssetMenu(fileName = "New_PCA", menuName = "Game Data/P_CharaAbility/HyperReload")]
 public class PCA_HyperReload : Base_P_CharaAbility
@@ -35,12 +36,14 @@ public class PCA_HyperReload : Base_P_CharaAbility
         }).AddTo(player);
     }
 
-    public override void ActivateAbility()
+    public override UniTask ActivateAbility(CancellationToken token)
     {
         onEnhance = true;
 
         player.attack.StartAttakLoop();
 
         player.HealHP((int)((float)player.maxHP * (float)ratio_Heal_Parcent / 100f));
+
+        return UniTask.CompletedTask;
     }
 }

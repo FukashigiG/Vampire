@@ -14,23 +14,23 @@ public class SED_Special : Base_StatusEffectData
         switch (targetType)
         {
             case Type.actable:
-                target.actable = false;
+                target.count_Actable++;
                 break;
 
             case Type.arrowDamage:
-                target.isArrowDamage = false; 
+                target.count_PermissionDamage++;
                 break;
 
             case Type.arrowHit:
-                target.isArrowHit = false;
+                target.count_PermissionHit++;
                 break;
 
             case Type.blaze:
-                target.damageOverTime = true;
+                target.count_PermissionDamageOverTime++;
                 break;
 
             case Type.regene:
-                target.onRegeneration = true;
+                target.count_PermissionRegeneration++;
                 break;
         }
     }
@@ -40,23 +40,23 @@ public class SED_Special : Base_StatusEffectData
         switch (targetType)
         {
             case Type.actable:
-                if (! target.IsStatusEffectTypeActive(this)) target.actable = true;
+                target.count_Actable--;
                 break;
 
             case Type.arrowDamage:
-                if (! target.IsStatusEffectTypeActive(this)) target.isArrowDamage = true;
+                target.count_PermissionDamage--;
                 break;
 
             case Type.arrowHit:
-                if (! target.IsStatusEffectTypeActive(this)) target.isArrowHit = true;
+                target.count_PermissionHit--;
                 break;
 
             case Type.blaze:
-                if (!target.IsStatusEffectTypeActive(this)) target.damageOverTime = false;
-                break ;
+                target.count_PermissionDamageOverTime--;
+                break;
 
             case Type.regene:
-                if (!target.IsStatusEffectTypeActive(this)) target.onRegeneration = false;
+                target.count_PermissionRegeneration--;
                 break;
 
         }

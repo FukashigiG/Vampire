@@ -17,7 +17,7 @@ MonoBehaviour:
   <enemyList>k__BackingField:
   - {fileID: 11400000, guid: 3bf2d451fa1aca542bad37db9cd632f2, type: 2}
   - {fileID: 11400000, guid: 1ae3bd09da03121468b625be4be0a00b, type: 2}
-  - {fileID: 11400000, guid: 24c359eeeeed7b04dbad96359bf261a2, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 15eb28f8382342b458ac582d3a0b9adb, type: 2}
   - {fileID: 11400000, guid: ce631daabe97cf8448311002ecd1d38e, type: 2}
   - {fileID: 11400000, guid: 99788027786e6364ab884077e303a4a7, type: 2}
@@ -25,4 +25,4 @@ MonoBehaviour:
   <eventList>k__BackingField:
   - {fileID: 11400000, guid: ac194bcf2fb561d4180efa3587755a2f, type: 2}
   - {fileID: 11400000, guid: 0e493bc62265c5e41ab925cae955535e, type: 2}
-  <bossEnemy>k__BackingField: {fileID: 0}
+  <bossEnemy>k__BackingField: {fileID: 11400000, guid: 148b96ab06e03514fbadcf994f41237a, type: 2}

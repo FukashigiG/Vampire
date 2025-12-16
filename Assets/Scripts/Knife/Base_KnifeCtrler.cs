@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Playables;
 using UnityEngine;
+using DG.Tweening;
+using Cysharp.Threading.Tasks;
 
 public class Base_KnifeCtrler : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class Base_KnifeCtrler : MonoBehaviour
 
     // ナイフが強化状態かを示す
     bool isBoosted = false;
+
+    bool isActive = true;
 
     protected virtual void Start()
     {
@@ -58,7 +62,6 @@ public class Base_KnifeCtrler : MonoBehaviour
 
             }
         }
-
     }
 
     protected virtual void FixedUpdate()
@@ -66,13 +69,18 @@ public class Base_KnifeCtrler : MonoBehaviour
         // 進む
         transform.Translate(Vector2.up * (speed * 0.2f) * Time.fixedDeltaTime);
 
+        // 既にアクティブ状態でないならReturn
+        if (!isActive) return;
+
         // 寿命
         lifeTime -= Time.fixedDeltaTime;
-        if(lifeTime <= 0 ) Destroy(this.gameObject);
+        if(lifeTime <= 0 ) DisappearAndDestroy(false).Forget();
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
+        if(! isActive) return;
+
         // もし当たったものがダメージを受けるものだったらダメージを与える
         if(collision.TryGetComponent(out EnemyStatus ms))
         {
@@ -104,11 +112,35 @@ public class Base_KnifeCtrler : MonoBehaviour
                 }
             }
 
-            ms?.GetAttack((int)((power + speed * 0.75f) / 2), elementPower, transform.position, is_critical, is_ignoreDefence);
+            int DMG = (int)((power + speed * 0.75f) / 2);
+
+            if (shouldDestroyThis)
+            {
+                this.transform.parent = collision.transform;
+
+                DisappearAndDestroy(true).Forget();
+            }
+
+            ms?.GetAttack(DMG, elementPower, transform.position, is_critical, is_ignoreDefence);
 
             Instantiate(knifeData.hitEffect, transform.position, Quaternion.identity);
-
-            if (shouldDestroyThis) Destroy(this.gameObject);
         }
+    }
+
+    async UniTask DisappearAndDestroy(bool isHit)
+    {
+        if(isHit) speed = 0;
+
+        isActive = false;
+
+        GetComponent<Collider2D>().enabled = false;
+
+        var token = this.GetCancellationTokenOnDestroy();
+
+        if (isHit) await UniTask.Delay(1000, cancellationToken: token);
+
+        await GetComponent<SpriteRenderer>().DOFade(0, 0.5f).ToUniTask(TweenCancelBehaviour.KillAndCancelAwait, cancellationToken: token);
+
+        Destroy(this.gameObject);
     }
 }

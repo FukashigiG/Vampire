@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -97,6 +98,6 @@ public class PlayerController : SingletonMono<PlayerController>
     // ‚±‚ÌŠÖ”‚ÍPlayerInput‚É‚æ‚Á‚ÄŒÄ‚Î‚ê‚é
     public void OnAbility()
     {
-        _status.attack.ExecuteCharaAbility();
+        _status.attack.ExecuteCharaAbility().Forget();
     }
 }
