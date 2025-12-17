@@ -12,6 +12,7 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
     [SerializeField] Button button_Decide;
 
     [SerializeField] Text txt_StageName;
+    [SerializeField] Text txt_StageRank;
 
     List<StageData> stages = new List<StageData>();
 
@@ -26,6 +27,11 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
 
     public void ShowEvent()
     {
+        txt_StageName.text = "";
+        txt_StageRank.text = "";
+
+        button_Decide.interactable = false;
+
         body_Panel.SetActive(true);
 
         // ボタンの数だけ、ランダムなステージを取得
@@ -51,9 +57,12 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
 
     void ShowDiscription(StageData data)
     {
+        button_Decide.interactable = true;
+
         currentSelected = data ;
 
         txt_StageName.text = data.stageName;
+        txt_StageRank.text = $"危険度：{data.stageRank}";
     }
 
     void Decision()

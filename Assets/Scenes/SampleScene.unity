@@ -3673,19 +3673,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 451446829}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1239132881}
-        m_TargetAssemblyTypeName: PausePanelCtrler, Assembly-CSharp
-        m_MethodName: CloseThis
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &451446829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4931,7 +4919,7 @@ GameObject:
   - component: {fileID: 683342879}
   - component: {fileID: 683342878}
   m_Layer: 5
-  m_Name: Button_ (2)
+  m_Name: Button_ Retire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5000,19 +4988,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 683342879}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1239132881}
-        m_TargetAssemblyTypeName: PausePanelCtrler, Assembly-CSharp
-        m_MethodName: CloseThis
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &683342879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6859,7 +6835,7 @@ GameObject:
   - component: {fileID: 1013505811}
   - component: {fileID: 1013505810}
   m_Layer: 5
-  m_Name: Button_ (1)
+  m_Name: Button_Setting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6928,19 +6904,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1013505811}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1239132881}
-        m_TargetAssemblyTypeName: PausePanelCtrler, Assembly-CSharp
-        m_MethodName: CloseThis
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1013505811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8222,6 +8186,9 @@ MonoBehaviour:
   knifeArea: {fileID: 377655002}
   treasureArea: {fileID: 1767530143}
   prefab_ItemButton: {fileID: 8471414356007106878, guid: d96ce540410b8874d8238160c44f2da3, type: 3}
+  btn_ClosePanel: {fileID: 1569327340}
+  btn_Setting: {fileID: 1013505810}
+  btn_Retire: {fileID: 683342878}
 --- !u!1 &1271367294
 GameObject:
   m_ObjectHideFlags: 0
@@ -10998,6 +10965,7 @@ MonoBehaviour:
   - {fileID: 1620797106}
   button_Decide: {fileID: 676863075}
   txt_StageName: {fileID: 699754178}
+  txt_StageRank: {fileID: 1795395399}
 --- !u!222 &1777187169
 CanvasRenderer:
   m_ObjectHideFlags: 0

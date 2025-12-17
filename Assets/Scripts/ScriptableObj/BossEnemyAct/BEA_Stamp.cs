@@ -33,6 +33,8 @@ public class BEA_Stamp : Base_BossEnemyAct
 
             // 警告が終わったらジャンプアニメーション
 
+            ctrler._enemyStatus.count_PermissionHit += 1;
+
             float moveTime = 0.9f;
             float elapsed = 0f;
             float jumpHeight = 9f;
@@ -73,9 +75,10 @@ public class BEA_Stamp : Base_BossEnemyAct
             if (warning != null) Destroy(warning);
 
             // ボスの非表示とかを解除する
+            ctrler._enemyStatus.count_PermissionHit -= 1;
 
             throw; // キャンセル例外を上位に投げる
-        }
+        } 
 
         // 本命の攻撃判定オブジェクトを生成、初期化
         GameObject x = Instantiate(attackDetectObje, targetPosi, Quaternion.identity);
@@ -85,6 +88,7 @@ public class BEA_Stamp : Base_BossEnemyAct
         ctrler.transform.position = targetPosi;
 
         // ボスの非表示とかを解除する
+        ctrler._enemyStatus.count_PermissionHit -= 1;
 
         await UniTask.Delay(500, cancellationToken: token);
     }

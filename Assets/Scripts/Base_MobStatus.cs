@@ -295,8 +295,19 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         // 以上なら
         else
         {
+            value = maxHP - _hitPoint.Value;
+
             _hitPoint.Value = maxHP;
         }
+
+        if(value <= 0) return;
+
+        //ダメージテキストを出す処理
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, transform.position);
+
+        var x = Instantiate(damageTxt, screenPoint, Quaternion.identity, GameObject.Find("Parent_DamageTxt").transform);
+
+        x.GetComponent<DamageTxtCtrler>().Initialize(value, Color.green);
     }
 
     // ノックバック

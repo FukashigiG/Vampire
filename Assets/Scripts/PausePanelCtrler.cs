@@ -28,6 +28,10 @@ public class PausePanelCtrler : MonoBehaviour
     Dictionary<KnifeData_RunTime, GameObject> knifeImageDictionaty = new();
     Dictionary<TreasureData, GameObject> treasureImageDictionaty = new();
 
+    [SerializeField] Button btn_ClosePanel;
+    [SerializeField] Button btn_Setting;
+    [SerializeField] Button btn_Retire;
+
     private void Awake()
     {
 
@@ -65,6 +69,21 @@ public class PausePanelCtrler : MonoBehaviour
         // 最初に、既に登録されている物について、追加処理をする
         foreach (var knives in playerInventory.runtimeKnives) OnKnifeAdded(knives);
         foreach (var treasures in playerInventory.runtimeTreasure) OnTreasureAdded(treasures);
+
+        btn_ClosePanel.onClick.AddListener(() =>
+        {
+            body.SetActive(false);
+        });
+
+        btn_Retire.onClick.AddListener(() =>
+        {
+
+        });
+
+        btn_Setting.onClick.AddListener(() =>
+        {
+
+        });
     }
 
     // ナイフが追加された際
@@ -128,6 +147,8 @@ public class PausePanelCtrler : MonoBehaviour
     // パネル表示
     void TogglePanel(InputAction.CallbackContext context)
     {
+        if(body.activeSelf == true) return;
+
         body.SetActive(true);
 
         GameAdmin.Instance.PauseGame();
@@ -136,6 +157,8 @@ public class PausePanelCtrler : MonoBehaviour
     // パネル非表示
     public void CloseThis()
     {
+        if(body.activeSelf == false) return;
+
         body.SetActive(false);
 
         GameAdmin.Instance.ResumeGame();

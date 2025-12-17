@@ -137,8 +137,6 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
             return YYY.data.actionLogic;
         }
 
-        Debug.Log(actions.Count);
-
         // ƒvƒŒƒCƒ„[‚Æ‚Ì‹——£‚ğæ“¾
         float distance = (target.position - this.transform.position).magnitude;
 
