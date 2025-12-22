@@ -114,7 +114,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     }
 
     // 生成場所の抽選
-    Vector2 SpawnPointRottery()
+    public Vector2 SpawnPointRottery()
     {
         Vector2 randomPoint;
 
@@ -179,18 +179,23 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         }
     }
 
-    public GameObject SpawnBoss()
+    public async UniTask<EnemyStatus> SpawnBoss(Vector2 posi)
     {
-        Vector2 randomPoint = SpawnPointRottery();
+        GameObject x = Instantiate(bossEnemy, posi, Quaternion.identity, parent_Enemy);
 
-        GameObject x = Instantiate(bossEnemy, randomPoint, Quaternion.identity, parent_Enemy);
+        var status = x.GetComponent<EnemyStatus>();
+        var _animator = x.GetComponent<Animator>();
+
+        await UniTask.Yield();
+
+        await UniTask.WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
 
         // ウエーブ数の倍率ブーストを渡したうえでの初期化
-        x.GetComponent<EnemyStatus>().Initialize(bossData, 1 + GameAdmin.Instance.waveCount * GameAdmin.Instance.waveBoostMultiplier);
+        status.Initialize(bossData, 1 + GameAdmin.Instance.waveCount * GameAdmin.Instance.waveBoostMultiplier);
 
         UI_BossHPGauge.Instance.Initialize(x);
 
-        return x;
+        return status;
     }
 
     private void OnDestroy()

@@ -53,13 +53,13 @@ MonoBehaviour:
   enhancementRate_Defence: 0
   enhancementRate_Power: 0
   enhancementRate_MoveSpeed: 0
-  actable: 1
-  isArrowDamage: 1
-  isArrowHit: 1
-  damageOverTime: 0
-  onRegeneration: 0
-  applied_AllowKnickBack: 0
-  fx_Die: {fileID: 1429954232896169633, guid: be90e1b495922e24898d7585c8f53b72, type: 3}
+  count_Actable: 0
+  count_PermissionDamage: 0
+  count_PermissionHit: 0
+  count_PermissionDamageOverTime: 0
+  count_PermissionRegeneration: 0
+  count_PermissionKnickBack: 0
+  fx_Die: {fileID: 3599841958050145209, guid: 9db023ce3ab1c0448b9ec893b26aa216, type: 3}
 --- !u!212 &4159087966120797754
 SpriteRenderer:
   m_ObjectHideFlags: 0

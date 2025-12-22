@@ -50,24 +50,30 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
     // 行動回数：行動が何回目か
     int cullentActCount = 0;
 
+    CancellationTokenSource tokenSource = new CancellationTokenSource();
     CancellationToken token;
 
-    protected override void Awake()
+    public override void Initialize()
     {
-        base.Awake();
+        base.Initialize();
 
-        token = gameObject.GetCancellationTokenOnDestroy();
-    }
-
-    protected override void Start()
-    {
-        base.Start();
+        token = tokenSource.Token;
 
         // それぞれのactionの重みを初期化
         foreach (var actData in _enemyStatus._enemyData.bossActions)
         {
             actions.Add(new BossAction(actData));
         }
+
+        // 死亡通知を受け取ったら停止
+        EnemyStatus.onDie
+            .Where(x => x.status == _enemyStatus)
+            .Subscribe(x =>
+            {
+                tokenSource.Cancel();
+                tokenSource.Dispose();
+
+            }).AddTo(this);
 
         LifeCycle().Forget();
     }
@@ -202,5 +208,14 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
         }
 
         return selectedAction.data.actionLogic;
+    }
+
+    private void OnDestroy()
+    {
+        if(! tokenSource.IsCancellationRequested)
+        {
+            tokenSource.Cancel();
+            tokenSource.Dispose();
+        }
     }
 }

@@ -7,12 +7,12 @@ using UniRx;
 using UnityEngine.UI;
 
 
-public class EnemyDictionary_Director : MonoBehaviour
+public class EnemyDictionary_Director : SingletonMono<EnemyDictionary_Director>
 {
     [SerializeField] GameObject prefab_Btn;
 
     [SerializeField] GameObject bodyPanel;
-    [SerializeField] Button btn_Open;
+
     [SerializeField] Button btn_Close;
     [SerializeField] Transform btnArea;
     [SerializeField] Text txt_EnemyName;
@@ -23,7 +23,7 @@ public class EnemyDictionary_Director : MonoBehaviour
 
     List<EnemyData> enemies = new List<EnemyData>();
 
-    private void Awake()
+    public void Initialize(Button btn_Open)
     {
         // ‰æ–ÊŠJ•Â“o˜^
         btn_Open.onClick.AddListener(OpenPanel);

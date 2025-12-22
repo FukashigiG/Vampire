@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UniRx;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     [SerializeField] GameObject item_WarpStage;
 
+    [SerializeField] CinemachineCamera v_Camera_FocusOnBoss;
+
     CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _cancellationToken;
 
@@ -32,8 +35,12 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     bool arrow_AccessToSecretStage = false;
 
-     // １ウェーブあたりの敵の強化倍率
+    EnemyStatus cullentBoss = null;
+
+    // １ウェーブあたりの敵の強化倍率
     [field: SerializeField] public float waveBoostMultiplier {  get; private set; }
+
+    float cullentTimeScale;
 
     public enum WaveState
     {
@@ -95,19 +102,15 @@ public class GameAdmin : SingletonMono<GameAdmin>
         // 既存の敵を全除去
         EnemySpawner.Instance.Stop_SpawnTask();
 
-        // ボス生成
-        var x = EnemySpawner.Instance.SpawnBoss();
+        await BossAppear();
 
-        if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス出現";
+        // ボス討伐通知を受け取るまで待つ
+        await EnemyStatus.onDie
+            .Where(x => x.status == cullentBoss)
+            .First()
+            .ToUniTask(cancellationToken: _cancellationToken);
 
-        // ウェーブの状態変数の更新
-        _waveState = WaveState.boss;
-
-        // ボス討伐まで待つ
-        await UniTask.WaitUntil(() => x == null, PlayerLoopTiming.Update, _cancellationToken);
-        _cancellationToken.ThrowIfCancellationRequested();
-
-        if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス撃破";
+        await OnBossDefeated(cullentBoss.gameObject);
 
         // ウェーブ終了時の処理
         OnWaveFinish();
@@ -154,6 +157,60 @@ public class GameAdmin : SingletonMono<GameAdmin>
         }
     }
 
+    async UniTask BossAppear()
+    {
+        // テキストの更新
+        if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス出現";
+
+        // ウェーブの状態変数の更新
+        _waveState = WaveState.boss;
+
+        await UniTask.Delay(500, cancellationToken: _cancellationToken);
+
+        Vector3 spawnPos = EnemySpawner.Instance.SpawnPointRottery();
+
+        // ボス注目カメラを、ボス出現演出間はオンに
+        v_Camera_FocusOnBoss.transform.position = spawnPos + new Vector3(0, 0, -10);
+        v_Camera_FocusOnBoss.gameObject.SetActive(true);
+
+        // カメラ切り替わり完了まで待つ
+        float blendTime = Camera.main.GetComponent<CinemachineBrain>().DefaultBlend.BlendTime;
+        await UniTask.Delay((int)((blendTime + 0.5f) * 1000), cancellationToken: _cancellationToken);
+
+        // ボス生成
+        cullentBoss = await EnemySpawner.Instance.SpawnBoss(spawnPos);
+
+        v_Camera_FocusOnBoss.gameObject.SetActive(false);
+    }
+
+    // ボスが死んだとき
+    async UniTask OnBossDefeated(GameObject bossObj)
+    {
+        if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス撃破";
+
+        // ボス注目カメラを、ボス死亡演出間はオンに
+        v_Camera_FocusOnBoss.Target.TrackingTarget = bossObj.transform;
+        v_Camera_FocusOnBoss.gameObject.SetActive(true);
+
+        SetTimeScaleValue(0.5f);
+
+        try
+        {
+            await UniTask.WaitUntil(() => bossObj == null, cancellationToken: _cancellationToken);
+
+            var source = GetComponent<CinemachineImpulseSource>();
+            source.GenerateImpulse();
+
+            await UniTask.Delay((int)(1.5f * 1000 * Time.timeScale), cancellationToken: _cancellationToken);
+        }
+        finally
+        {
+            SetTimeScaleValue(1f);
+
+            v_Camera_FocusOnBoss.gameObject.SetActive(false);
+        }
+    }
+
     void OnWaveFinish()
     {
         switch (waveCount)
@@ -180,6 +237,14 @@ public class GameAdmin : SingletonMono<GameAdmin>
         }
 
         
+    }
+
+    void SetTimeScaleValue(float x)
+    {
+        if(x <= 0) return;
+
+        cullentTimeScale = x;
+        Time.timeScale = cullentTimeScale;
     }
 
     // 一時停止

@@ -11,14 +11,10 @@ public abstract class Base_EnemyCtrler : MonoBehaviour
 
     public EnemyStatus _enemyStatus { get; protected set; }
 
-    protected virtual void Awake()
+    public virtual void Initialize()
     {
         _enemyStatus = GetComponent<EnemyStatus>();
-    }
 
-    // Start is called before the first frame update
-    protected virtual void Start()
-    {
         target = PlayerController.Instance.transform;
     }
 

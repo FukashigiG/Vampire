@@ -18,9 +18,9 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
 
     CancellationToken token;
 
-    protected override void Awake()
+    public override void Initialize()
     {
-        base.Awake();
+        base.Initialize();
 
         token = gameObject.GetCancellationTokenOnDestroy();
     }

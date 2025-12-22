@@ -9,7 +9,7 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
     [SerializeField] GameObject prefab_Btn_CharaSelect;
 
     [SerializeField] GameObject bodyPanel;
-    [SerializeField] Button btn_Open;
+
     [SerializeField] Button btn_Close;
     [SerializeField] Button btn_GoButtle;
     [SerializeField] List<UI_PlayerItemButton> btns_Knife;
@@ -27,7 +27,7 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
 
     public PlayerCharaData cullentSelected { get; private set; } = null;
 
-    private void Awake()
+    public void Initialize(Button btn_Open)
     {
         btn_Open.onClick.AddListener(OpenPanel);
         btn_Close.onClick.AddListener(ClosePanel);

@@ -74,14 +74,14 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     // バグ防止のためにもフィルターは複数使えるべきではないのでは？
     public List<System.Func<int, int>> damageFilters {  get; private set; } = new();
 
-    SpriteRenderer _renderer;
+    //SpriteRenderer _renderer;
     Collider2D _collider;
 
     float timeCount = 0f;
 
     protected virtual void Awake()
     {
-        _renderer = GetComponent<SpriteRenderer>();
+        //_renderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
     }
 
@@ -277,11 +277,11 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     {
         var token = this.GetCancellationTokenOnDestroy();
 
-        _renderer.color = Color.red;
+        //_renderer.color = Color.red;
 
         await UniTask.Delay((int)(1000 * 0.1f), cancellationToken: token);
 
-        _renderer.color = Color.white;
+        //_renderer.color = Color.white;
     }
 
     // 回復
@@ -321,11 +321,13 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     }
 
     // 死亡処理
-    public virtual void Die()
+    public virtual UniTask Die()
     {
         subject_OnDie.OnNext((this, 1));
 
         Destroy(gameObject);
+
+        return UniTask.CompletedTask;
     }
 
     protected virtual void OnDestroy()

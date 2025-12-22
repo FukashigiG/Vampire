@@ -67,7 +67,7 @@ public class Eve_DriveKnife : Base_EventCtrler
         switch(x)
         {
             case 0:
-                EnemySpawner.Instance.SpawnBoss();
+                //EnemySpawner.Instance.SpawnBoss();
                 break;
         }
     }

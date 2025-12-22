@@ -10,9 +10,9 @@ public class EnemyCtrler_Fielder : Base_EnemyCtrler
 
     public EP_Field field { get; private set; }
 
-    protected override void Start()
+    public override void Initialize()
     {
-        base.Start();
+        base.Initialize();
 
         // フィールドオブジェクトを生成
         var obj = Instantiate(prefab_Field, this.transform);

@@ -208,11 +208,13 @@ public class PlayerStatus : Base_MobStatus
         }
     }
 
-    public override void Die()
+    public override UniTask Die()
     {
         subject_OnDie.OnNext((this, 1));
 
         this.gameObject.SetActive(false);
+
+        return UniTask.CompletedTask;
     }
 
     protected override void OnDestroy()

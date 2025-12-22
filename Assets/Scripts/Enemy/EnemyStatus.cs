@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using NaughtyAttributes;
 using System;
 using System.Collections;
@@ -77,10 +79,20 @@ public class EnemyStatus : Base_MobStatus
             // 起動
             ability.ApplyAbility(this, disposables);
         }
+
+        ctrler.Initialize();
     }
 
-    public override void Die()
+    public async override UniTask Die()
     {
+        count_PermissionDamage++;
+        count_PermissionHit++;
+        count_Actable++;
+
+        subject_OnDie.OnNext((this, 1));
+
+        if(_enemyData.actType == EnemyActType.BigBoss) await transform.DOShakePosition(2 * Time.timeScale, strength:1f, vibrato: 24).ToUniTask(TweenCancelBehaviour.KillAndCancelAwait, gameObject.GetCancellationTokenOnDestroy());
+
         // 各ドロップアイテム抽選
         if(_enemyData.dropItems.Length > 0)
         {
@@ -95,7 +107,7 @@ public class EnemyStatus : Base_MobStatus
         // 死亡エフェクト
         Instantiate(fx_Die, transform.position, Quaternion.identity);
 
-        base.Die();
+        Destroy(this.gameObject);
     }
 
     protected override void OnDestroy()
