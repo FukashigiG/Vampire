@@ -80,34 +80,18 @@ public class EnemyStatus : Base_MobStatus
             ability.ApplyAbility(this, disposables);
         }
 
+        GetComponent<Collider2D>().enabled = true;
+
         ctrler.Initialize();
     }
 
-    public async override UniTask Die()
+    public override void Die()
     {
         count_PermissionDamage++;
         count_PermissionHit++;
         count_Actable++;
 
-        subject_OnDie.OnNext((this, 1));
-
-        if(_enemyData.actType == EnemyActType.BigBoss) await transform.DOShakePosition(2 * Time.timeScale, strength:1f, vibrato: 24).ToUniTask(TweenCancelBehaviour.KillAndCancelAwait, gameObject.GetCancellationTokenOnDestroy());
-
-        // 各ドロップアイテム抽選
-        if(_enemyData.dropItems.Length > 0)
-        {
-            foreach(var item in _enemyData.dropItems)
-            {
-                int randomCount = Random.Range(1, 101);
-
-                if (randomCount < item.dropRate_Parcentage) Instantiate(item.prefab, transform.position, Quaternion.identity);
-            }
-        }
-
-        // 死亡エフェクト
-        Instantiate(fx_Die, transform.position, Quaternion.identity);
-
-        Destroy(this.gameObject);
+        base.Die();
     }
 
     protected override void OnDestroy()

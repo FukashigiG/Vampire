@@ -321,13 +321,9 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     }
 
     // €–Sˆ—
-    public virtual UniTask Die()
+    public virtual void Die()
     {
         subject_OnDie.OnNext((this, 1));
-
-        Destroy(gameObject);
-
-        return UniTask.CompletedTask;
     }
 
     protected virtual void OnDestroy()

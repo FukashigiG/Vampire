@@ -7,12 +7,15 @@ using UniRx;
 using UnityEngine;
 using System.Linq;
 using Unity.VisualScripting;
+using Unity.Cinemachine;
 
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] KnifeData defKnife;
 
     [SerializeField] LayerMask targetLayer;
+
+    [SerializeField] GameObject closerCam;
 
     PlayerStatus status;
 
@@ -305,8 +308,20 @@ public class PlayerAttack : MonoBehaviour
 
         var token = this.GetCancellationTokenOnDestroy();
 
+        GameAdmin.Instance.SetTimeScaleValue(0.5f);
+
+        closerCam.SetActive(true);
+
+        await UniTask.Delay((int)(1000 * Time.timeScale), cancellationToken: token);
+
+        GameAdmin.Instance.SetTimeScaleValue(1f);
+
+        closerCam.SetActive(false);
+
+
         try
         {
+
             // charaAbilityì‡ÇÃä÷êîÇé¿çs
             await charaAbility.ActivateAbility(token);
         }

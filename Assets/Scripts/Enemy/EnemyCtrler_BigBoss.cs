@@ -12,13 +12,13 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
 {
     class BossAction
     {
+        // 元の行動データ
         public EnemyData.BossActionData data {  get; private set; }
 
         // 内部計算用
         [HideInInspector] public int currentWeight { get; private set; }
 
-        public bool isExecuted { get; set; } = false;
-
+        // コンストラクタ
         public BossAction(EnemyData.BossActionData _data)
         {
             data = _data;
@@ -45,7 +45,7 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
     // ボスの行動
     List<BossAction> actions = new List<BossAction>();
 
-    bool attackable = true;
+    Animator _animator;
 
     // 行動回数：行動が何回目か
     int cullentActCount = 0;
@@ -57,6 +57,8 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
     {
         base.Initialize();
 
+        _animator = GetComponent<Animator>();
+
         token = tokenSource.Token;
 
         // それぞれのactionの重みを初期化
@@ -65,15 +67,6 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
             actions.Add(new BossAction(actData));
         }
 
-        // 死亡通知を受け取ったら停止
-        EnemyStatus.onDie
-            .Where(x => x.status == _enemyStatus)
-            .Subscribe(x =>
-            {
-                tokenSource.Cancel();
-                tokenSource.Dispose();
-
-            }).AddTo(this);
 
         LifeCycle().Forget();
     }
@@ -208,6 +201,29 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
         }
 
         return selectedAction.data.actionLogic;
+    }
+
+    protected override void OnDie()
+    {
+        tokenSource.Cancel();
+        tokenSource.Dispose();
+
+        AAA().Forget();
+    }
+
+    async UniTaskVoid AAA()
+    {
+        _animator.SetTrigger("Die");
+
+        var token = this.GetCancellationTokenOnDestroy();
+
+        // アニメーション偏移を待機するための処理
+        await UniTask.Yield(cancellationToken: token);
+
+        // 死亡モーション終了まで待つ
+        await UniTask.WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f, cancellationToken: token);
+
+        base.OnDie();
     }
 
     private void OnDestroy()

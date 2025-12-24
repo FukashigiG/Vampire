@@ -15,14 +15,14 @@ public class GameAdmin : SingletonMono<GameAdmin>
     [SerializeField] Text txt_WaveCount;
     [SerializeField] Text txt_TimeLimit_Wave;
 
+    [SerializeField] CinemachineCamera v_Camera_FocusOnBoss;
+
     [SerializeField] int num_Wave;
     [SerializeField] float minute_Wave;
 
     [SerializeField] StageData initialStage;
 
     [SerializeField] GameObject item_WarpStage;
-
-    [SerializeField] CinemachineCamera v_Camera_FocusOnBoss;
 
     CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _cancellationToken;
@@ -40,7 +40,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
     // １ウェーブあたりの敵の強化倍率
     [field: SerializeField] public float waveBoostMultiplier {  get; private set; }
 
-    float cullentTimeScale;
+    float cullentTimeScale = 1f;
 
     public enum WaveState
     {
@@ -165,22 +165,11 @@ public class GameAdmin : SingletonMono<GameAdmin>
         // ウェーブの状態変数の更新
         _waveState = WaveState.boss;
 
+        // 一瞬のディレイ
         await UniTask.Delay(500, cancellationToken: _cancellationToken);
 
-        Vector3 spawnPos = EnemySpawner.Instance.SpawnPointRottery();
-
-        // ボス注目カメラを、ボス出現演出間はオンに
-        v_Camera_FocusOnBoss.transform.position = spawnPos + new Vector3(0, 0, -10);
-        v_Camera_FocusOnBoss.gameObject.SetActive(true);
-
-        // カメラ切り替わり完了まで待つ
-        float blendTime = Camera.main.GetComponent<CinemachineBrain>().DefaultBlend.BlendTime;
-        await UniTask.Delay((int)((blendTime + 0.5f) * 1000), cancellationToken: _cancellationToken);
-
         // ボス生成
-        cullentBoss = await EnemySpawner.Instance.SpawnBoss(spawnPos);
-
-        v_Camera_FocusOnBoss.gameObject.SetActive(false);
+        cullentBoss = await EnemySpawner.Instance.SpawnBoss(v_Camera_FocusOnBoss.gameObject, _cancellationToken);
     }
 
     // ボスが死んだとき
@@ -239,7 +228,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
         
     }
 
-    void SetTimeScaleValue(float x)
+    public void SetTimeScaleValue(float x)
     {
         if(x <= 0) return;
 
@@ -262,7 +251,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
         if (pauseCount == 0)
         {
-            Time.timeScale = 1f;
+            Time.timeScale = cullentTimeScale;
         }
     }
 
