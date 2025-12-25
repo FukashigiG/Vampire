@@ -321,6 +321,8 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     }
 
     // 死亡処理
+    // 修正：ステータスでは死亡処理は通知だけ出すようにし、
+    // 死亡時の処理はCtrler側に任せることとする
     public virtual void Die()
     {
         subject_OnDie.OnNext((this, 1));

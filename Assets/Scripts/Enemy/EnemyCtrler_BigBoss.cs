@@ -67,8 +67,7 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
             actions.Add(new BossAction(actData));
         }
 
-
-        LifeCycle().Forget();
+        WaitAndStartRun().Forget();
     }
 
     protected override void FixedUpdate()
@@ -79,7 +78,18 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
     {
     }
 
-    async UniTask LifeCycle()
+    async UniTaskVoid WaitAndStartRun()
+    {
+        // アニメーション偏移を待機するための処理
+        await UniTask.Yield();
+
+        // 登場モーション終了まで待つ
+        await UniTask.WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
+
+        LifeCycle().Forget();
+    }
+
+    async UniTaskVoid LifeCycle()
     {
         try
         {

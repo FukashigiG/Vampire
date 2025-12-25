@@ -185,11 +185,14 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
         try
         {
+            // ボスのオブジェクトがなくなるまで待機
             await UniTask.WaitUntil(() => bossObj == null, cancellationToken: _cancellationToken);
 
+            // 画面を揺らす
             var source = GetComponent<CinemachineImpulseSource>();
             source.GenerateImpulse();
 
+            // 少し待つ
             await UniTask.Delay((int)(1.5f * 1000 * Time.timeScale), cancellationToken: _cancellationToken);
         }
         finally

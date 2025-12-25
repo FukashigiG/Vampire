@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class Base_EnemyCtrler : MonoBehaviour
 {
@@ -45,7 +46,23 @@ public abstract class Base_EnemyCtrler : MonoBehaviour
     {
         Instantiate(fx_Die, transform.position, Quaternion.identity);
 
+        DropItems();
+
         Destroy(this.gameObject);
     }
 
+    void DropItems()
+    {
+        int randomPoint = 0;
+
+        foreach(var item in _enemyStatus._enemyData.dropItems)
+        {
+            randomPoint = Random.Range(1, 101);
+
+            if(randomPoint < item.dropRate_Parcentage)
+            {
+                Instantiate(item.prefab, transform.position, Quaternion.identity);
+            }
+        }
+    }
 }

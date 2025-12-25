@@ -80,8 +80,6 @@ public class EnemyStatus : Base_MobStatus
             ability.ApplyAbility(this, disposables);
         }
 
-        GetComponent<Collider2D>().enabled = true;
-
         ctrler.Initialize();
     }
 

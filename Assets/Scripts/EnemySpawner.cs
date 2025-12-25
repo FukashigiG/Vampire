@@ -199,6 +199,9 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         var status = x.GetComponent<EnemyStatus>();
         var _animator = x.GetComponent<Animator>();
 
+        // ウエーブ数の倍率ブーストを渡したうえでの初期化
+        status.Initialize(bossData, 1 + GameAdmin.Instance.waveCount * GameAdmin.Instance.waveBoostMultiplier);
+
         // アニメーション偏移を待機するための処理
         await UniTask.Yield();
 
@@ -208,9 +211,6 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         // ボス注目カメラを切り、またその分待つ
         focusCamera.gameObject.SetActive(false);
         await UniTask.Delay((int)((blendTime + 0.5f) * 1000), cancellationToken: token);
-
-        // ウエーブ数の倍率ブーストを渡したうえでの初期化
-        status.Initialize(bossData, 1 + GameAdmin.Instance.waveCount * GameAdmin.Instance.waveBoostMultiplier);
 
         UI_BossHPGauge.Instance.Initialize(x);
 
