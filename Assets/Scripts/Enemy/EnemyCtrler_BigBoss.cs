@@ -80,11 +80,16 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
 
     async UniTaskVoid WaitAndStartRun()
     {
+        var token = this.GetCancellationTokenOnDestroy();
+
         // アニメーション偏移を待機するための処理
-        await UniTask.Yield();
+        await UniTask.Yield(cancellationToken: token);
 
         // 登場モーション終了まで待つ
-        await UniTask.WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
+        await UniTask.WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f, cancellationToken: token);
+
+        // 追加でもう少し待つ
+        await UniTask.Delay(500, cancellationToken: token);
 
         LifeCycle().Forget();
     }

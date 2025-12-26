@@ -21,4 +21,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b490c65ceb194ae4ea85515f0b095e68, type: 2}
   - {fileID: 11400000, guid: ce631daabe97cf8448311002ecd1d38e, type: 2}
   <eventList>k__BackingField: []
-  <bossEnemy>k__BackingField: {fileID: 11400000, guid: 9749bc6c5583d344abd7a2257791bbbf, type: 2}
+  <bossEnemy>k__BackingField: {fileID: 11400000, guid: ab0b234110889114c85ccbbc7b23679c, type: 2}

@@ -79,6 +79,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
         EnemySpawner.Instance.SetEnemies(stageData.enemyList, stageData.bossEnemy);
 
         GameEventDirector.Instance.SetEvents(stageData.eventList);
+
+        UI_ShowStageName.Instance.SetStageInfo(waveCount, stageData.stageName);
     }
 
     //全体的なゲームの進行を管理
@@ -157,6 +159,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
         }
     }
 
+    // ボス出現処理
     async UniTask BossAppear()
     {
         // テキストの更新
@@ -168,8 +171,33 @@ public class GameAdmin : SingletonMono<GameAdmin>
         // 一瞬のディレイ
         await UniTask.Delay(500, cancellationToken: _cancellationToken);
 
+
+        var spawnPos = EnemySpawner.Instance.SpawnPointRottery();
+
+        // ボス注目カメラを、ボス出現演出間はオンに
+        v_Camera_FocusOnBoss.transform.position = (Vector3)spawnPos + new Vector3(0, 0, -10);
+        v_Camera_FocusOnBoss.gameObject.SetActive(true);
+
+        // カメラ切り替わり完了まで待つ
+        float blendTime = Camera.main.GetComponent<CinemachineBrain>().DefaultBlend.BlendTime;
+        await UniTask.Delay((int)((blendTime + 0.5f) * 1000), cancellationToken: _cancellationToken);
+
+
         // ボス生成
-        cullentBoss = await EnemySpawner.Instance.SpawnBoss(v_Camera_FocusOnBoss.gameObject, _cancellationToken);
+        cullentBoss = EnemySpawner.Instance.SpawnBoss(spawnPos);
+
+        UI_BossHPGauge.Instance.Initialize(cullentBoss.gameObject);
+
+        var _animator = cullentBoss.GetComponent<Animator>();
+
+        // アニメーション偏移を待機するための処理
+        await UniTask.Yield();
+
+        // 登場モーション終了まで待つ
+        await UniTask.WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
+
+        // ボス注目カメラを切る
+        v_Camera_FocusOnBoss.gameObject.SetActive(false);
     }
 
     // ボスが死んだとき

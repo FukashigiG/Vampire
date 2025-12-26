@@ -39,6 +39,8 @@ public class UI_BossHPGauge : SingletonMono<UI_BossHPGauge>
 
     async UniTaskVoid OnAppearAnim()
     {
+        GetComponent<CanvasGroup>().alpha = 1f;
+
         body.SetActive(true);
 
         var rect = body.GetComponent<RectTransform>();

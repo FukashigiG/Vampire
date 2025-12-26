@@ -33,7 +33,7 @@ public class BEA_Stamp : Base_BossEnemyAct
 
             // 警告が終わったらジャンプアニメーション
 
-            ctrler._enemyStatus.count_PermissionHit += 1;
+            ctrler._enemyStatus.count_PermissionHit.Value++;
 
             float moveTime = 0.9f;
             float elapsed = 0f;
@@ -75,7 +75,7 @@ public class BEA_Stamp : Base_BossEnemyAct
             if (warning != null) Destroy(warning);
 
             // ボスの非表示とかを解除する
-            ctrler._enemyStatus.count_PermissionHit -= 1;
+            ctrler._enemyStatus.count_PermissionHit.Value--;
 
             throw; // キャンセル例外を上位に投げる
         } 
@@ -88,7 +88,7 @@ public class BEA_Stamp : Base_BossEnemyAct
         ctrler.transform.position = targetPosi;
 
         // ボスの非表示とかを解除する
-        ctrler._enemyStatus.count_PermissionHit -= 1;
+        ctrler._enemyStatus.count_PermissionHit.Value--;
 
         await UniTask.Delay(500, cancellationToken: token);
     }

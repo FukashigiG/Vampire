@@ -141,7 +141,7 @@ public class PlayerStatus : Base_MobStatus
     {
         bool x = base.GetAttack(damagePoint, elementPoint, damagedPosi, isCritical, isIgnoreDefence);
 
-        if(x == true) BeInvincible(1f).Forget();
+        if(x == true) BeInvincible(0.2f).Forget();
 
         return x;
     }
@@ -192,11 +192,10 @@ public class PlayerStatus : Base_MobStatus
     // éwíËïbêîä‘ÇﬁÇƒÇ´Ç…Ç»ÇÈ
     async UniTask BeInvincible(float sec)
     {
-        count_PermissionHit += 1;
-
+        count_PermissionDamage++;
         try
         {
-            await UniTask.Delay((int)(sec * 1000));
+            await UniTask.Delay((int)(sec * 1000f));
         }
         catch
         {
@@ -204,7 +203,7 @@ public class PlayerStatus : Base_MobStatus
         }
         finally
         {
-            count_PermissionHit -= 1;
+            count_PermissionDamage--;
         }
     }
 

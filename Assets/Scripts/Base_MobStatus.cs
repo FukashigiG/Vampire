@@ -39,8 +39,9 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     public bool permission_Damage => count_PermissionDamage <= 0;
     public int count_PermissionDamage = 0;
 
-    public bool permission_Hit => count_PermissionHit <= 0;
-    public int count_PermissionHit = 0;
+    public bool permission_Hit => count_PermissionHit.Value <= 0;
+    public ReactiveProperty<int> count_PermissionHit = new ReactiveProperty<int>(0);
+
 
     public bool onDamageOverTime => count_PermissionDamageOverTime > 0;
     public int count_PermissionDamageOverTime = 0;
@@ -83,6 +84,19 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     {
         //_renderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
+
+        count_PermissionHit.Subscribe(x =>
+        {
+            if(x > 0)
+            {
+                _collider.enabled = false;
+            }
+            else
+            {
+                _collider.enabled = true;
+            }
+
+        }).AddTo(this);
     }
 
     protected virtual void Start()
@@ -201,7 +215,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     public virtual bool GetAttack(int damagePoint, int elementPoint, Vector2 damagedPosi, bool isCritical = false, bool isIgnoreDefence = false)
     {
         //”íŒ‚‹–—eó‘Ô‚Å‚È‚¢‚È‚çAfalse‚ğ•Ô‚µ‚Äˆ—‚ğI—¹‚·‚é
-        if(! permission_Hit) return false;
+        if(! permission_Damage) return false;
 
         int K = 50;
 

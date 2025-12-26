@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45ecd707b9172364f98633c319348185, type: 3}
-  m_Name: Summon_
+  m_Name: Summon
   m_EditorClassIdentifier: 
-  <actionName>k__BackingField: "\u53EC\u559A"
+  <actionName>k__BackingField: "\u62DB\u96C6"
   <range_Min>k__BackingField: 0
   <range_Max>k__BackingField: 20
-  delayTime: 0
+  delayTime: 2
   <actType>k__BackingField: 1
+  warningPrefab: {fileID: 5595648858755892628, guid: 9c956cabe1981c34a96d85fa2c044000, type: 3}
   fx_Summon: {fileID: 4903989986093316332, guid: 01d71035c48de0a4593068434cd53906, type: 3}
   summonedEnemyData: {fileID: 11400000, guid: 3bf2d451fa1aca542bad37db9cd632f2, type: 2}
   num_summonEnemy: 5

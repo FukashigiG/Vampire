@@ -22,7 +22,7 @@ public class SED_Special : Base_StatusEffectData
                 break;
 
             case Type.arrowHit:
-                target.count_PermissionHit++;
+                target.count_PermissionHit.Value++;
                 break;
 
             case Type.blaze:
@@ -48,7 +48,7 @@ public class SED_Special : Base_StatusEffectData
                 break;
 
             case Type.arrowHit:
-                target.count_PermissionHit--;
+                target.count_PermissionHit.Value--;
                 break;
 
             case Type.blaze:

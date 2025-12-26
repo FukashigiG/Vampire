@@ -86,7 +86,7 @@ public class EnemyStatus : Base_MobStatus
     public override void Die()
     {
         count_PermissionDamage++;
-        count_PermissionHit++;
+        count_PermissionHit.Value++;
         count_Actable++;
 
         base.Die();

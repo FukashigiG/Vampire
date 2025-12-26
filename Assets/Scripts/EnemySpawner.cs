@@ -125,7 +125,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         // スポーン地点がプレイヤーと半径n以内にならないように
         do
         {
-            randomPoint = Random.insideUnitCircle * 15;
+            randomPoint = Random.insideUnitCircle * 17;
 
         } while (Vector2.Distance(randomPoint, player.position) < n);
 
@@ -179,40 +179,16 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         }
     }
 
-    public async UniTask<EnemyStatus> SpawnBoss(GameObject focusCamera, CancellationToken token)
+    public EnemyStatus SpawnBoss(Vector3 spawnPos)
     {
-        // 出現位置を取得
-        Vector3 spawnPos = SpawnPointRottery();
-
-        // ボス注目カメラを、ボス出現演出間はオンに
-        focusCamera.transform.position = spawnPos + new Vector3(0, 0, -10);
-        focusCamera.gameObject.SetActive(true);
-
-        // カメラ切り替わり完了まで待つ
-        float blendTime = Camera.main.GetComponent<CinemachineBrain>().DefaultBlend.BlendTime;
-        await UniTask.Delay((int)((blendTime + 0.5f) * 1000), cancellationToken: token);
-
         // 生成
         GameObject x = Instantiate(bossEnemy, spawnPos, Quaternion.identity, parent_Enemy);
         
         // コンポーネント取得
         var status = x.GetComponent<EnemyStatus>();
-        var _animator = x.GetComponent<Animator>();
 
         // ウエーブ数の倍率ブーストを渡したうえでの初期化
         status.Initialize(bossData, 1 + GameAdmin.Instance.waveCount * GameAdmin.Instance.waveBoostMultiplier);
-
-        // アニメーション偏移を待機するための処理
-        await UniTask.Yield();
-
-        // 登場モーション終了まで待つ
-        await UniTask.WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
-
-        // ボス注目カメラを切り、またその分待つ
-        focusCamera.gameObject.SetActive(false);
-        await UniTask.Delay((int)((blendTime + 0.5f) * 1000), cancellationToken: token);
-
-        UI_BossHPGauge.Instance.Initialize(x);
 
         return status;
     }

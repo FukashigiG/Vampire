@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
-  m_Name: B_MegaSuraimu
+  m_Name: B_Golem
   m_EditorClassIdentifier: 
   <sprite>k__BackingField: {fileID: 21300000, guid: f3a964194160e724db7a797dc01a7871, type: 3}
-  <_name>k__BackingField: "\u30E1\u30AC\u30B9\u30E9\u30A4\u30E0"
+  <_name>k__BackingField: "\u30B4\u30FC\u30EC\u30E0"
   <description>k__BackingField: 
   <rank>k__BackingField: 1
   <actType>k__BackingField: 3
-  <hp>k__BackingField: 2200
+  <hp>k__BackingField: 1800
   <power>k__BackingField: 50
-  <defense>k__BackingField: 8
-  <moveSpeed>k__BackingField: 18
+  <defense>k__BackingField: 20
+  <moveSpeed>k__BackingField: 22
   _shotType: 0
   _num_Bullet: 1
   _divergenceAngle: 0
@@ -36,27 +36,39 @@ MonoBehaviour:
   - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}
     dropRate_Parcentage: 100
   _bossActions:
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 204889b9a39c8f8458bde9a4804bf9a2, type: 2}
-    <triggerType>k__BackingField: 0
-    <targetActCount>k__BackingField: 0
-    <thresholdHpRate_Percent>k__BackingField: 0
-    <baseWeight>k__BackingField: 50
-    <decayRate>k__BackingField: 0.1
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 8c3ec9f61fe5d3147b34f4c5d1e1c297, type: 2}
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: f8488641c36323e468bf2f810c78116e, type: 2}
     <triggerType>k__BackingField: 0
     <targetActCount>k__BackingField: 0
     <thresholdHpRate_Percent>k__BackingField: 0
     <baseWeight>k__BackingField: 50
     <decayRate>k__BackingField: 0.5
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 729f8543485e323428916867ae54356b, type: 2}
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: f0649bdb780ed7c43bc45b84aed7b36b, type: 2}
     <triggerType>k__BackingField: 0
     <targetActCount>k__BackingField: 0
     <thresholdHpRate_Percent>k__BackingField: 0
     <baseWeight>k__BackingField: 50
     <decayRate>k__BackingField: 0.5
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: a31c41bcf7dec57428f5cbd0ed45fd02, type: 2}
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 79685903687807847ae82872d778b1d8, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 0
+    <decayRate>k__BackingField: 0
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 8892e9f1b6b214b429e7018d0863f4f8, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 25
+    <decayRate>k__BackingField: 0.3
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: c35e0702c4d8dc145aa3780647bacdd9, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.5
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 3ca390a37392c6b459f674ee5fdc7c77, type: 2}
     <triggerType>k__BackingField: 2
     <targetActCount>k__BackingField: 0
     <thresholdHpRate_Percent>k__BackingField: 50
     <baseWeight>k__BackingField: 0
-    <decayRate>k__BackingField: 0.1
+    <decayRate>k__BackingField: 0

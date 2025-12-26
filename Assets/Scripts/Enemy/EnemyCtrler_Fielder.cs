@@ -15,10 +15,10 @@ public class EnemyCtrler_Fielder : Base_EnemyCtrler
         base.Initialize();
 
         // フィールドオブジェクトを生成
-        var obj = Instantiate(prefab_Field, this.transform);
+        var fieldObj = Instantiate(prefab_Field, this.transform);
 
         // 変数に代入
-        field = obj.GetComponent<EP_Field>();
+        var field = fieldObj.GetComponent<EP_Field>();
 
         // 初期化
         field.Initialize_Field(_enemyStatus._enemyData.fieldLogic, _enemyStatus._enemyData.radius_FieldSize, 0, _enemyStatus.power);
@@ -32,7 +32,7 @@ public class EnemyCtrler_Fielder : Base_EnemyCtrler
 
         Vector2 dir = (target.position - this.transform.position).normalized;
 
-        transform.Translate(dir * _enemyStatus.moveSpeed / 10f * Time.fixedDeltaTime);
+        this.transform.Translate(dir * _enemyStatus.moveSpeed / 10f * Time.fixedDeltaTime);
     }
 
     // フィールダーはプレイヤーと触れてもダメージを与えない

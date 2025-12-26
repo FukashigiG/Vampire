@@ -1,16 +1,28 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UI_ShowStageName : MonoBehaviour
+public class UI_ShowStageName : SingletonMono<UI_ShowStageName>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] Text txt_Wave;
+    [SerializeField] Text txt_StageName;
+
+    [SerializeField] GameObject body;
+
+    Animator _animator;
+
+    private void Awake()
     {
-        
+        _animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetStageInfo(int waveCount, string stageName)
     {
-        
+        txt_Wave.text = "ウェーブ：" + waveCount;
+
+        txt_StageName.text = stageName;
+
+        body.SetActive(true);
+
+        _animator.SetTrigger("Show");
     }
 }

@@ -7,8 +7,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewBossEnemyAct", menuName = "Game Data/BossEnemyAct/Summon")]
 public class BEA_Summon : Base_BossEnemyAct
 {
+    [SerializeField] GameObject warningPrefab;
     [SerializeField] GameObject fx_Summon;
     [SerializeField] EnemyData summonedEnemyData;
+
     [SerializeField] int num_summonEnemy;
 
     float spawnRadius = 2.4f;
@@ -27,6 +29,17 @@ public class BEA_Summon : Base_BossEnemyAct
 
             spawnPosies[i] = center + new Vector2(Mathf.Cos(radian), Mathf.Sin(radian)) * spawnRadius;
         }
+
+        foreach (Vector2 spawnPos in spawnPosies)
+        {
+            // 警告オブジェクトを生成
+            GameObject warning = Instantiate(warningPrefab, spawnPos, Quaternion.identity);
+
+            // 初期化、これらは個別にまたない
+            warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, AttackRangeType.circle, 0, size_Range: 1.5f).Forget();
+        }
+
+        await UniTask.Delay((int)(delayTime * 1000), cancellationToken: token);
 
         foreach (var pos in spawnPosies)
         {

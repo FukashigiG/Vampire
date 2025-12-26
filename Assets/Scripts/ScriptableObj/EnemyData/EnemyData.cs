@@ -4,7 +4,7 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "NewEnemyData", menuName = "Game Data/Enemy Data")]
-public class EnemyData : ScriptableObject
+public abstract class EnemyData : ScriptableObject
 {
     [field: SerializeField] public Sprite sprite { get; private set; }
 
@@ -21,20 +21,16 @@ public class EnemyData : ScriptableObject
 
     [Header("基礎ステータス設定事項")]
 
-
     [field: SerializeField] public EnemyActType actType {  get; private set; }
 
     [field: SerializeField] public int hp {  get; private set; }
     [field: SerializeField] public int power {  get; private set; }
     [field: SerializeField] public int defense {  get; private set; }
-
     [field: SerializeField] public float moveSpeed {  get; private set; }
 
-    // もしシュータータイプなら、射程等の項目も表示する
-    // showIfを使ってると{get;set;}が使えないので、別途参照用のプロパティを用意
     public enum ShotType
     {
-       OneShot, RapidFire
+        OneShot, RapidFire
     }
 
     [Header("シューター設定事項")]
@@ -62,9 +58,6 @@ public class EnemyData : ScriptableObject
     [ShowIf("actType", EnemyActType.Shooter), SerializeField] GameObject _bulletPrefab;
     public GameObject bulletPrefab => _bulletPrefab;
 
-    [Header("フィールダー設定事項")]
-    // もしフィールダータイプなら、フィールドの半径なども表示
-
     // フィールド効果
     [ShowIf("actType", EnemyActType.Fielder), SerializeField] Base_FieldEffectLogic _fieldLogic;
     public Base_FieldEffectLogic fieldLogic => _fieldLogic;
@@ -73,7 +66,6 @@ public class EnemyData : ScriptableObject
     [ShowIf("actType", EnemyActType.Fielder), SerializeField] float _radius_FieldSize;
     public float radius_FieldSize => _radius_FieldSize;
 
-    [field: SerializeField] public float amount_EXP {  get; private set; }
 
     [Header("ステータスアビリティ設定")]
     [field: SerializeField] public List<Base_EnemyStatusAbilityData> statusAbilities {  get; private set; }
