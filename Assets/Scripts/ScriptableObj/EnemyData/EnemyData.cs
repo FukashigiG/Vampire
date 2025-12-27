@@ -4,7 +4,7 @@ using NaughtyAttributes;
 using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "NewEnemyData", menuName = "Game Data/Enemy Data")]
-public abstract class EnemyData : ScriptableObject
+public class EnemyData : ScriptableObject
 {
     [field: SerializeField] public Sprite sprite { get; private set; }
 
