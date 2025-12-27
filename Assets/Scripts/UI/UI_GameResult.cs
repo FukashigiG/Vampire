@@ -7,6 +7,8 @@ public class UI_GameResult : SingletonMono<UI_GameResult>
 
     [SerializeField] Text txt_Result;
 
+    [SerializeField] Animator _animator;
+
     public void OnGameSet(bool isPlayerWin)
     {
         switch(isPlayerWin)
@@ -20,6 +22,6 @@ public class UI_GameResult : SingletonMono<UI_GameResult>
                 break;
         }
 
-
+        //_animator.SetTrigger("");
     }
 }

@@ -36,6 +36,8 @@ public abstract class Base_EnemyCtrler : MonoBehaviour
         if (_enemyStatus.actable == false) return;
 
         if(target == null) return;
+
+        HandleAI();
     }
 
     protected abstract void HandleAI();

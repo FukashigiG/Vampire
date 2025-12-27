@@ -17,4 +17,4 @@ MonoBehaviour:
   <range_Max>k__BackingField: 999
   delayTime: 0
   <actType>k__BackingField: 0
-  radius_RandomPoint: 7
+  radius_RandomPoint: 5

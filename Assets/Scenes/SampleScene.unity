@@ -6042,7 +6042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &725958156
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11462,6 +11462,7 @@ GameObject:
   - component: {fileID: 1641712699}
   - component: {fileID: 1641712698}
   - component: {fileID: 1641712697}
+  - component: {fileID: 1641712700}
   m_Layer: 5
   m_Name: Panel_GameResult
   m_TagString: Untagged
@@ -11503,6 +11504,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UI_GameResult
   body: {fileID: 461428845}
   txt_Result: {fileID: 875983186}
+  _animator: {fileID: 1641712700}
 --- !u!114 &1641712698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11541,6 +11543,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641712695}
   m_CullTransparentMesh: 1
+--- !u!95 &1641712700
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641712695}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1660246989
 GameObject:
   m_ObjectHideFlags: 0
@@ -11591,7 +11615,7 @@ MonoBehaviour:
   txt_TimeLimit_Wave: {fileID: 1316949030}
   v_Camera_FocusOnBoss: {fileID: 1359795766}
   num_Wave: 4
-  minute_Wave: 0.1
+  minute_Wave: 1
   initialStage: {fileID: 11400000, guid: 45fe6a9709d151a468685435afa9aad2, type: 2}
   item_WarpStage: {fileID: 270761467918423833, guid: 19663bb03d8b1e54c972e4ceb543e222, type: 3}
   <waveBoostMultiplier>k__BackingField: 0
@@ -13603,7 +13627,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1993131175
 RectTransform:
   m_ObjectHideFlags: 0

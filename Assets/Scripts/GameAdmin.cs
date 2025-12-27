@@ -67,7 +67,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
             .Where(x => x.status == PlayerController.Instance._status)
             .Subscribe(x =>
             {
-                GameOver();
+                GameSet(false);
 
             }).AddTo(this);
     }
@@ -248,7 +248,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
                 }
                 else
                 {
-                    ClearGame();
+                    GameSet(true);
                 }
 
                 break;
@@ -291,18 +291,9 @@ public class GameAdmin : SingletonMono<GameAdmin>
         SceneLoader.Instance.Load("TitleScene");
     }
 
-    void ClearGame()
+    void GameSet(bool isPlayerWin)
     {
-        PauseGame();
-
-        UI_ClearGame.Instance.ShowPanel();
-    }
-
-    void GameOver()
-    {
-        PauseGame();
-
-        PlayerDiedPanelDirector.Instance.ShowPanel();
+        UI_GameResult.Instance.OnGameSet(isPlayerWin);
     }
 
     //GameAdminの消失時、つまりゲームシーン終了時の処理
