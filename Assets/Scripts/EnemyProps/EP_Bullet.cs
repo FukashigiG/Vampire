@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EP_Bullet : Base_EnemyProps
 {
-    [SerializeField] float speed = 6f;
-    [SerializeField] float lifeTime = 5f;
+    float speed = 8f;
+    float lifeTime = 5f;
 
     float timeCount = 0;
 

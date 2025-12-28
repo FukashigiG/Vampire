@@ -106,7 +106,6 @@ GameObject:
   - component: {fileID: 6570142216724946382}
   - component: {fileID: 394892897361781946}
   - component: {fileID: 4802796929602805163}
-  - component: {fileID: 2873339399321919879}
   - component: {fileID: 3627292412944030303}
   m_Layer: 6
   m_Name: Player
@@ -298,14 +297,13 @@ MonoBehaviour:
   enhancementRate_Defence: 0
   enhancementRate_Power: 0
   enhancementRate_MoveSpeed: 0
-  actable: 0
-  isArrowDamage: 0
-  isArrowHit: 0
-  damageOverTime: 0
-  onRegeneration: 0
-  applied_AllowKnickBack: 0
-  panel_Die: {fileID: 0}
-  <playerCharaData>k__BackingField: {fileID: 11400000, guid: a9eff1ab0a9deda47b80ddacb9142678, type: 2}
+  count_Actable: 0
+  count_PermissionDamage: 0
+  count_PermissionHit:
+    value: 0
+  count_PermissionDamageOverTime: 0
+  count_PermissionRegeneration: 0
+  count_PermissionKnickBack: 0
   <requiredEXP_LvUp>k__BackingField: 0
   enhancementRate_Luck: 0
   enhancementRate_EyeSight: 0
@@ -339,22 +337,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0865eb8f646ee8443a0601a2e2b4ab9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defKnife: {fileID: 11400000, guid: d6db2a9562206bc469b6ca4eb26d44fd, type: 2}
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &2873339399321919879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2956402617932827740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfdc4c8c984b95e4d9c7eef9be273cf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  closerCam: {fileID: 0}
 --- !u!114 &3627292412944030303
 MonoBehaviour:
   m_ObjectHideFlags: 0

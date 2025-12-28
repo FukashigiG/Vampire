@@ -8,8 +8,6 @@ using System.Linq;
 
 public class PlayerPresenter : MonoBehaviour
 {
-    PlayerStatus status;
-
     [SerializeField] UI_PlayerHPGauge playerHPGauge;
     [SerializeField] UI_PlayerAbilityCharge playerAbilityCharge;
     [SerializeField] ShowPlayerHandState showHandState;
@@ -24,11 +22,8 @@ public class PlayerPresenter : MonoBehaviour
     Dictionary<Base_StatusEffectData, GameObject> dictionaly_SED_Icon = new();
 
     // Start is called before the first frame update
-    void Start()
+    public void Initialize(PlayerStatus status)
     {
-        // プレイヤーのステータスを取得
-        status = GetComponent<PlayerStatus>();
-
         // HP変動を購読、ゲージ更新
         status.hitPoint.Subscribe(value =>
         {

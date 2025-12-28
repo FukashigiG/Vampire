@@ -81,7 +81,7 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
                     bullet = Instantiate(_enemyStatus.bullet_Prefab, this.transform.position, finalRotation);
 
                     // ’e‚ğ‰Šú‰»
-                    bullet.GetComponent<EP_Bullet>().Initialize(1, 0);
+                    bullet.GetComponent<EP_Bullet>().Initialize(_enemyStatus.power, 0);
                 }
 
                 break;

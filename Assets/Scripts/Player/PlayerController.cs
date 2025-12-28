@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UniRx;
 
 public class PlayerController : SingletonMono<PlayerController>
 {
@@ -20,18 +21,32 @@ public class PlayerController : SingletonMono<PlayerController>
 
     Vector2 inputValue;
 
-    bool standOfBoost = false;
+    bool isAlive = true;
 
-    void Awake()
+    //bool standOfBoost = false;
+
+    public void Initialize(PlayerStatus status)
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = GetComponent<PlayerInput>();
-        _status = GetComponent<PlayerStatus>();
+        _status = status;
+
+        _status.onDie.Subscribe(x =>
+        {
+            isAlive = false;
+
+            _status.count_Actable++;
+            _status.count_PermissionDamage++;
+            _status.count_PermissionHit.Value++;
+
+        }).AddTo(this);
     }
 
 
     void FixedUpdate()
     {
+        if(! isAlive) return;
+
         inputValue = _input.actions["Move"].ReadValue<Vector2>();
 
         CheckBoost(inputValue);
@@ -46,9 +61,6 @@ public class PlayerController : SingletonMono<PlayerController>
         {
             //inputQueue.Clear();
         }
-
-        
-        
 
         _rigidbody.AddForce(inputValue * _status.moveSpeed);
     }
@@ -98,6 +110,8 @@ public class PlayerController : SingletonMono<PlayerController>
     // Ç±ÇÃä÷êîÇÕPlayerInputÇ…ÇÊÇ¡ÇƒåƒÇŒÇÍÇÈ
     public void OnAbility()
     {
+        if (!isAlive) return;
+
         _status.attack.ExecuteCharaAbility().Forget();
     }
 }

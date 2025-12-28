@@ -8,13 +8,11 @@ using UnityEngine.UI;
 
 public class PlayerStatus : Base_MobStatus
 {
-    // 仮実装
-    [SerializeField] StageDataHolder holder;
-
-     public PlayerCharaData playerCharaData {  get; private set; }
+    public PlayerCharaData playerCharaData {  get; private set; }
 
     public PlayerInventory inventory { get; private set; }
     public PlayerAttack attack { get; private set; }
+    PlayerController ctrler;
 
     [field : SerializeField] public int requiredEXP_LvUp {  get; private set; }
 
@@ -65,14 +63,15 @@ public class PlayerStatus : Base_MobStatus
     // これ１つで沢山のDisposableなやつらに対応可能らしい
     private CompositeDisposable disposables = new CompositeDisposable();
 
-    protected override void Awake()
+    public void Initialize_OR(PlayerCharaData charaData)
     {
-        playerCharaData = holder.selectedChara;
+        base.Initialize();
 
-        base.Awake();
+        playerCharaData = charaData;
 
-        inventory = GetComponent<PlayerInventory>();
+        inventory = new PlayerInventory();
         attack = GetComponent<PlayerAttack>();
+        ctrler = GetComponent<PlayerController>();
 
         //各内部ステータスをPlayerCharaDataから代入
         maxHP = playerCharaData.hp;
@@ -91,11 +90,11 @@ public class PlayerStatus : Base_MobStatus
 
         // キャラアビリティを渡す
         attack.SetCharaAbility(playerCharaData.charaAbility);
-    }
 
-    protected override void Start()
-    {
-        base.Start();
+        inventory.Initialize(this);
+        attack.Initialize(this);
+        ctrler.Initialize(this);
+        GetComponent<PlayerPresenter>().Initialize(this);
 
         // インベントリに初期所持ナイフと秘宝を追加
         foreach (var x in playerCharaData.initialKnives)
@@ -107,8 +106,9 @@ public class PlayerStatus : Base_MobStatus
             inventory.AddTreasure(y);
         }
 
+
         //任意の敵が死んだらEXPゲット
-        EnemyStatus.onDie.Subscribe(x => GetEXP(x.value)).AddTo( disposables );
+        //EnemyStatus.onDie.Subscribe(x => GetEXP(x.value)).AddTo( disposables );
     }
 
     // exp獲得

@@ -25,7 +25,7 @@ public class EnemyStatus : Base_MobStatus
 
     public IObservable<(Vector2 position, int amount)> onDamaged => subject_OnDamaged;
     public static IObservable<(Base_MobStatus status, Base_StatusEffectData effect, float duration, int amount)> onGetStatusEffect => subject_OnGetStatusEffect;
-    public static IObservable<(Base_MobStatus status, int value)> onDie => subject_OnDie;
+    public IObservable<(Base_MobStatus status, int value)> onDie => subject_OnDie;
 
     // オブジェクトが破棄されたときに呼ばれる処理
     // 死亡処理とはまた違うので、MiniMapにてオブジェクトが死亡以外で消えても反応できるように
@@ -36,15 +36,12 @@ public class EnemyStatus : Base_MobStatus
     // 主にエネミーアビリティ用の
     CompositeDisposable disposables = new CompositeDisposable();
 
-    protected override void Awake()
+    public void Initialize_OR(EnemyData data, float multiplier)
     {
-        base.Awake();
+        base.Initialize();
 
         ctrler = GetComponent<Base_EnemyCtrler>();
-    }
 
-    public void Initialize(EnemyData data, float multiplier)
-    {
         // ステータスデータの取得
         _enemyData = data;
 

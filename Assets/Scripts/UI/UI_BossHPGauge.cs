@@ -24,9 +24,7 @@ public class UI_BossHPGauge : SingletonMono<UI_BossHPGauge>
 
         }).AddTo(bossObj);
 
-        EnemyStatus.onDie
-            .Where(x => x.status == status)
-            .Subscribe(x =>
+        status.onDie.Subscribe(x =>
         {
             OnDisappear().Forget();
 

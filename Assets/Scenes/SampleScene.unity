@@ -11615,9 +11615,10 @@ MonoBehaviour:
   txt_TimeLimit_Wave: {fileID: 1316949030}
   v_Camera_FocusOnBoss: {fileID: 1359795766}
   num_Wave: 4
-  minute_Wave: 1
+  minute_Wave: 0.1
   initialStage: {fileID: 11400000, guid: 45fe6a9709d151a468685435afa9aad2, type: 2}
   item_WarpStage: {fileID: 270761467918423833, guid: 19663bb03d8b1e54c972e4ceb543e222, type: 3}
+  dataHolder: {fileID: 11400000, guid: d91bf72238158cb45add6f1c0f6e33c0, type: 2}
   <waveBoostMultiplier>k__BackingField: 0
   _waveState: 0
 --- !u!114 &1660246992
@@ -15038,7 +15039,8 @@ PrefabInstance:
       propertyPath: <playerCharaData>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: c5837e0905e889a44890b52e8c1e5263, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2873339399321919879, guid: f12098574e22e1348b250adcf8c39505, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

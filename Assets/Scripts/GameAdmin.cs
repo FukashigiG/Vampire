@@ -24,6 +24,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     [SerializeField] GameObject item_WarpStage;
 
+    [SerializeField] StageDataHolder dataHolder;
+
     CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _cancellationToken;
 
@@ -59,17 +61,18 @@ public class GameAdmin : SingletonMono<GameAdmin>
         _cancellationToken = _cancellationTokenSource.Token;
 
         currentStage = initialStage;
-    }
 
-    private void Start()
-    {
-        PlayerController.Instance._status.onDie
-            .Where(x => x.status == PlayerController.Instance._status)
-            .Subscribe(x =>
-            {
-                GameSet(false);
+        var p_Status = PlayerController.Instance.GetComponent<PlayerStatus>();
 
-            }).AddTo(this);
+        var charaData = dataHolder.selectedChara;
+
+        p_Status.Initialize_OR(charaData);
+
+        p_Status.onDie.Subscribe(x =>
+        {
+            GameSet(false);
+
+        }).AddTo(this);
     }
 
     public void UpdateWave(StageData stageData)
@@ -107,8 +110,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
         await BossAppear();
 
         // ƒ{ƒX“¢”°’Ê’m‚ðŽó‚¯Žæ‚é‚Ü‚Å‘Ò‚Â
-        await EnemyStatus.onDie
-            .Where(x => x.status == cullentBoss)
+        await cullentBoss.onDie
             .First()
             .ToUniTask(cancellationToken: _cancellationToken);
 

@@ -84,7 +84,7 @@ public class BEA_Stamp : Base_BossEnemyAct
         GameObject x = Instantiate(attackDetectObje, targetPosi, Quaternion.identity);
         x.GetComponent<EP_Punch>().Initialie_OR((int)(ctrler._enemyStatus.power * damageMultiplier), 0, AttackRangeType.circle, 0, size_Radius:radius, isInstant:true);
 
-        // 目標の場所に移動
+        // 目標の場所に移動(念のため)
         ctrler.transform.position = targetPosi;
 
         // ボスの非表示とかを解除する

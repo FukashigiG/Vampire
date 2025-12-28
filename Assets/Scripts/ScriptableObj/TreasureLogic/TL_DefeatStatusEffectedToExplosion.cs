@@ -17,9 +17,10 @@ public class TL_DefeatStatusEffectedToExplosion : Base_TreasureLogic
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
-        bool isCooling = false;
+        //bool isCooling = false;
         var token = status.GetCancellationTokenOnDestroy();
 
+        /*
         EnemyStatus.onDie.Subscribe(async x =>
         {
             // クールタイム中か、敵が目的の状態異常でないなら無視
@@ -64,5 +65,6 @@ public class TL_DefeatStatusEffectedToExplosion : Base_TreasureLogic
             isCooling = false ;
 
         }).AddTo(disposables);
+        */
     }
 }

@@ -22,6 +22,6 @@ public class UI_GameResult : SingletonMono<UI_GameResult>
                 break;
         }
 
-        //_animator.SetTrigger("");
+        body.SetActive(true);
     }
 }

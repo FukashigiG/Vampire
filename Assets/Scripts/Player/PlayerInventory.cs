@@ -5,7 +5,7 @@ using UniRx;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerStatus))]
-public class PlayerInventory : MonoBehaviour
+public class PlayerInventory
 {
     public ReactiveCollection<KnifeData_RunTime> runtimeKnives { get; private set; } = new ReactiveCollection<KnifeData_RunTime>();
     public ReactiveCollection<TreasureData> runtimeTreasure { get; private set; } = new();
@@ -13,17 +13,11 @@ public class PlayerInventory : MonoBehaviour
     // アイテムとそのイベント購読を紐付けて管理する
     private readonly Dictionary<TreasureData, CompositeDisposable> _itemDisposables = new Dictionary<TreasureData, CompositeDisposable>();
 
-
     PlayerStatus status;
 
-    private void Awake()
+    public void Initialize(PlayerStatus _status)
     {
-        status = GetComponent<PlayerStatus>();
-    }
-
-    void Start()
-    {
-
+        status = _status;
     }
 
     // ナイフを入手する処理
@@ -67,7 +61,7 @@ public class PlayerInventory : MonoBehaviour
         //if (runtimeTreasure.Contains(x)) return; // 同じアイテムは追加しない
 
         // 渡されたデータのインスタンスを生成
-        var y = Instantiate(x);
+        var y = UnityEngine.Object.Instantiate(x);
 
         // リストに加える
         runtimeTreasure.Add(y);

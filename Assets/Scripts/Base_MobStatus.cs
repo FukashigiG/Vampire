@@ -60,7 +60,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
     protected Subject<(Vector2 position, int amount)> subject_OnDamaged = new Subject<(Vector2, int)>();
     protected Subject<Unit> subject_OnSecond = new Subject<Unit>();
     protected static Subject<(Base_MobStatus status, Base_StatusEffectData effect, float duration, int amount)> subject_OnGetStatusEffect = new();
-    protected static Subject<(Base_MobStatus status , int value)> subject_OnDie = new Subject<(Base_MobStatus, int)>();
+    protected Subject<(Base_MobStatus status , int value)> subject_OnDie = new Subject<(Base_MobStatus, int)>();
     /*static にすることで、どの Enemy インスタンスからでもこのSubjectにアクセスし、
      * イベントを発行できるようになる
      * また、プレイヤー側で単一のSubjectを購読するだけで、
@@ -80,14 +80,14 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
     float timeCount = 0f;
 
-    protected virtual void Awake()
+    protected virtual void Initialize()
     {
         //_renderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<Collider2D>();
 
         count_PermissionHit.Subscribe(x =>
         {
-            if(x > 0)
+            if (x > 0)
             {
                 _collider.enabled = false;
             }
@@ -97,11 +97,6 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
             }
 
         }).AddTo(this);
-    }
-
-    protected virtual void Start()
-    {
-        
     }
 
     void Update()

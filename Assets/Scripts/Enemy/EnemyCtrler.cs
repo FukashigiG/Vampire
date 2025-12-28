@@ -21,9 +21,7 @@ public abstract class Base_EnemyCtrler : MonoBehaviour
 
         target = PlayerController.Instance.transform;
 
-        EnemyStatus.onDie
-            .Where(x => x.status == _enemyStatus)
-            .Subscribe(x =>
+        _enemyStatus.onDie.Subscribe(x =>
             {
                 OnDie();
 

@@ -70,7 +70,7 @@ public class BEA_Shot : Base_BossEnemyAct
 
                     bullet = Instantiate(prefab_Bullet, ctrler.transform.position, targetRotation);
 
-                    bullet.GetComponent<EP_Bullet>().Initialize(1, 0);
+                    bullet.GetComponent<EP_Bullet>().Initialize(ctrler._enemyStatus.power, 0);
 
                     await UniTask.Delay((int)(75), cancellationToken: token);
                 }

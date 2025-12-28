@@ -19,7 +19,7 @@ public class DontAttack_BuffTreasure : Base_TreasureLogic
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
-        bool isCooling = false;
+        //bool isCooling = false;
         var token = status.GetCancellationTokenOnDestroy();
         //bool standBy = false;
 
@@ -39,7 +39,7 @@ public class DontAttack_BuffTreasure : Base_TreasureLogic
             }
 
         }).AddTo(disposables);
-
+        /*
         EnemyStatus.onDie.Subscribe(async x =>
         {
             // クールタイム中か、敵が目的の状態異常でないなら無視
@@ -80,5 +80,6 @@ public class DontAttack_BuffTreasure : Base_TreasureLogic
             isCooling = false ;
 
         }).AddTo(disposables);
+        */
     }
 }

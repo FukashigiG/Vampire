@@ -14,7 +14,7 @@ public abstract class SM_DontDestOnLand<T> : MonoBehaviour where T : MonoBehavio
         {
             if (instance_ == null)
             {
-                instance_ = FindObjectOfType<T>();
+                instance_ = FindFirstObjectByType<T>();
             }
 
             return instance_ ?? new GameObject(typeof(T).FullName).AddComponent<T>();

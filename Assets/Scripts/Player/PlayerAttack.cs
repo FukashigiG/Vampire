@@ -11,8 +11,6 @@ using Unity.Cinemachine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] KnifeData defKnife;
-
     [SerializeField] LayerMask targetLayer;
 
     [SerializeField] GameObject closerCam;
@@ -27,10 +25,8 @@ public class PlayerAttack : MonoBehaviour
 
     public Base_P_CharaAbility charaAbility {  get; private set; }
 
-
-
     // アビリティチャージ量
-    ReactiveProperty<int> charaAbilityChargeValue = new ReactiveProperty<int>();
+    ReactiveProperty<int> charaAbilityChargeValue = new ReactiveProperty<int>(0);
     // ↑の参照部分公開用
     public IReadOnlyReactiveProperty<int> abilityChargeValue => charaAbilityChargeValue;
 
@@ -45,15 +41,22 @@ public class PlayerAttack : MonoBehaviour
     // 攻撃サイクル用トークンソース
     CancellationTokenSource cancellationTokenSource;
 
-    private void Awake()
+    public void Initialize(PlayerStatus _status)
     {
-        status = GetComponent<PlayerStatus>();
+        status = _status;
 
-        charaAbilityChargeValue.Value = 0;
-    }
+        status.onDie.Subscribe(x =>
+        {
+            if(cancellationTokenSource != null)
+            {
+                cancellationTokenSource.Cancel();
+                cancellationTokenSource.Dispose();
 
-    void Start()
-    {
+                cancellationTokenSource = null;
+            }
+
+        }).AddTo(this);
+
         StartAttakLoop();
     }
 
@@ -273,8 +276,6 @@ public class PlayerAttack : MonoBehaviour
 
         // 初期化
         charaAbility.Initialize(status);
-
-
     }
 
     // アビリティチャージ

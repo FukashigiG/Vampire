@@ -27,7 +27,7 @@ public class BEA_Chase : Base_BossEnemyAct
 
             float distance = (target.position - ctrler.transform.position).magnitude;
 
-            if (distance < 2f) return;
+            if (distance < distance_WrapUpAction) return;
 
             await UniTask.Delay((int)(1000 * Time.deltaTime), cancellationToken: token);
 

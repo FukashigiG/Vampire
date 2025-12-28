@@ -24,7 +24,6 @@ public class ESA_Zombie : Base_EnemyStatusAbilityData
                 status.HealHP(status.maxHP);
             }
 
-
         }).AddTo(disposables);
     }
 }
