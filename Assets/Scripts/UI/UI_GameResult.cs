@@ -9,6 +9,8 @@ public class UI_GameResult : SingletonMono<UI_GameResult>
 
     [SerializeField] Animator _animator;
 
+    [SerializeField] Image[] _image;
+
     public void OnGameSet(bool isPlayerWin)
     {
         switch(isPlayerWin)
@@ -22,6 +24,20 @@ public class UI_GameResult : SingletonMono<UI_GameResult>
                 break;
         }
 
+        for(int i = 0; i < _image.Length; i++)
+        {
+            if (GameAdmin.Instance.stageHistory[i] != null)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
         body.SetActive(true);
+
+        _animator.SetTrigger("Trigger");
     }
 }

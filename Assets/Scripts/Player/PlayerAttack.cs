@@ -124,6 +124,8 @@ public class PlayerAttack : MonoBehaviour
         // まず手持ちを空にする
         hand.Clear();
 
+        await UniTask.Delay((int)(status.time_ReloadKnives * 1000 / 2), cancellationToken: token);
+
         List<KnifeData_RunTime> drawnKnives = status.inventory.runtimeKnives
                             .OrderBy(x => UnityEngine.Random.value)// 順番をシャッフルして参照（元のリストをいじるわけではない）
                             .Take(status.limit_DrawKnife)// 上から上限まで
@@ -136,7 +138,7 @@ public class PlayerAttack : MonoBehaviour
         // 購読先による検知、介入のための発行
         subject_OnReload.OnNext(hand);
 
-        await UniTask.Delay((int)(status.time_ReloadKnives * 1000), cancellationToken: token);
+        await UniTask.Delay((int)(status.time_ReloadKnives * 1000 / 2), cancellationToken: token);
     }
 
     async UniTask ThrowAllHands(CancellationToken token)

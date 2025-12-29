@@ -31,6 +31,9 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     public int waveCount { get; private set; } = 0;
 
+    List<StageData> _stageHistory = new List<StageData>();
+    public IReadOnlyList<StageData> stageHistory => _stageHistory;
+
     public StageData currentStage { get; private set; }
 
     int pauseCount = 0;
@@ -78,6 +81,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
     public void UpdateWave(StageData stageData)
     {
         WaveProgression().Forget(); // 先にこれを実行しておかないと、waveStateが更新されずスポナーが機能しない
+
+        _stageHistory.Add(stageData);
 
         EnemySpawner.Instance.SetEnemies(stageData.enemyList, stageData.bossEnemy);
 
@@ -296,6 +301,10 @@ public class GameAdmin : SingletonMono<GameAdmin>
     void GameSet(bool isPlayerWin)
     {
         UI_GameResult.Instance.OnGameSet(isPlayerWin);
+
+        _cancellationTokenSource?.Cancel();
+        _cancellationTokenSource?.Dispose();
+        _cancellationTokenSource = null;
     }
 
     //GameAdminの消失時、つまりゲームシーン終了時の処理
@@ -305,5 +314,6 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
         _cancellationTokenSource?.Cancel();
         _cancellationTokenSource?.Dispose();
+        _cancellationTokenSource = null;
     }
 }
