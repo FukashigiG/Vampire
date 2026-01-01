@@ -11,6 +11,10 @@ public class SED_Buff : Base_StatusEffectData
 
     public override void Apply(Base_MobStatus target, int amount)
     {
+        GameObject fx = StatusFxManager.Instance.fx_Buff;
+
+        Instantiate(fx, target.transform);
+
         switch (targetType)
         {
             case Type.atk:

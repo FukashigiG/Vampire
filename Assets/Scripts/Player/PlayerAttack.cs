@@ -15,6 +15,8 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] GameObject closerCam;
 
+    [SerializeField] GameObject fx_Throw;
+
     PlayerStatus status;
 
     public GameObject targetEnemy {  get; private set; }
@@ -167,6 +169,8 @@ public class PlayerAttack : MonoBehaviour
             Quaternion baseRotation = Quaternion.FromToRotation(Vector2.up, dir);
 
             ThrowKnife(knife, baseRotation);
+
+            Instantiate(fx_Throw, transform.position + (Vector3)dir, baseRotation);
 
             // ステータスの持つ数値の分だけ待機
             await UniTask.Delay((int)(status.coolTime_ThrowKnife * 1000), cancellationToken: token);

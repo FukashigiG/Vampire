@@ -21,13 +21,17 @@ MonoBehaviour:
   <power>k__BackingField: 90
   <defense>k__BackingField: 18
   <moveSpeed>k__BackingField: 11
+  _shotType: 0
+  _num_Bullet: 1
+  _divergenceAngle: 0
   _range_Shot: 0
   _friquentry_Shot: 0
   _bulletPrefab: {fileID: 0}
-  <amount_EXP>k__BackingField: 0
+  _fieldLogic: {fileID: 0}
+  _radius_FieldSize: 0
   <statusAbilities>k__BackingField:
   - {fileID: 11400000, guid: 6a9722d8d25f74c4c86416d92100bf0c, type: 2}
-  <prefab>k__BackingField: {fileID: 0}
   dropItems:
   - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}
     dropRate_Parcentage: 100
+  _bossActions: []

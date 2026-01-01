@@ -11,10 +11,13 @@ public class SED_Special : Base_StatusEffectData
 
     public override void Apply(Base_MobStatus target, int amount)
     {
+        GameObject fx= null;
+
         switch (targetType)
         {
             case Type.actable:
                 target.count_Actable++;
+                fx = StatusFxManager.Instance.fx_Frost;
                 break;
 
             case Type.arrowDamage:
@@ -27,12 +30,15 @@ public class SED_Special : Base_StatusEffectData
 
             case Type.blaze:
                 target.count_PermissionDamageOverTime++;
+                fx = StatusFxManager.Instance.fx_Blaze;
                 break;
 
             case Type.regene:
                 target.count_PermissionRegeneration++;
                 break;
         }
+
+        if(fx != null) Instantiate(fx, target.transform);
     }
 
     public override void Remove(Base_MobStatus target, int amount)
