@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: demoChara_R
   m_EditorClassIdentifier: 
   <sprite>k__BackingField: {fileID: 0}
-  <_name>k__BackingField: "\u8D64"
+  <_name>k__BackingField: "\u4EEE\u30AD\u30E3\u30E9_\u8D64"
   <hp>k__BackingField: 200
   <power>k__BackingField: 40
   <defense>k__BackingField: 40

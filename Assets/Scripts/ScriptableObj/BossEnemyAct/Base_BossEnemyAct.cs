@@ -18,7 +18,7 @@ public abstract class Base_BossEnemyAct : ScriptableObject
 
 
     // ‚±‚Ì“_‚Å‚Íasync‚Í‹Lq‚µ‚Ä‚È‚­‚Ä‚à‚¢‚¢‚ç‚µ‚¢
-    public virtual UniTask Action(Base_EnemyCtrler ctrler, CancellationToken token)
+    public virtual UniTask Action(EnemyCtrler_BigBoss ctrler, CancellationToken token)
     {
         return UniTask.CompletedTask;
     }

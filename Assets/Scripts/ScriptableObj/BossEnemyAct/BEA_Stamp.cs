@@ -13,10 +13,11 @@ public class BEA_Stamp : Base_BossEnemyAct
 
     [SerializeField] GameObject attackDetectObje;
     [SerializeField] GameObject warningPrefab;
+    [SerializeField] GameObject fx;
     [SerializeField] float damageMultiplier;
     [SerializeField] float radius;
 
-    public async override UniTask Action(Base_EnemyCtrler ctrler, CancellationToken token)
+    public async override UniTask Action(EnemyCtrler_BigBoss ctrler, CancellationToken token)
     {
         // プレイヤーの位置を取得
         Vector2 targetPosi = ctrler.target.position;
@@ -78,11 +79,16 @@ public class BEA_Stamp : Base_BossEnemyAct
             ctrler._enemyStatus.count_PermissionHit.Value--;
 
             throw; // キャンセル例外を上位に投げる
-        } 
+        }
+
+        ctrler._animator.SetTrigger("Attack");
 
         // 本命の攻撃判定オブジェクトを生成、初期化
         GameObject x = Instantiate(attackDetectObje, targetPosi, Quaternion.identity);
         x.GetComponent<EP_Punch>().Initialie_OR((int)(ctrler._enemyStatus.power * damageMultiplier), 0, AttackRangeType.circle, 0, size_Radius:radius, isInstant:true);
+
+        GameObject effect = Instantiate(fx, targetPosi, Quaternion.identity);
+        effect.transform.localScale = new Vector3(radius * 2, radius * 2, 1);
 
         // 目標の場所に移動(念のため)
         ctrler.transform.position = targetPosi;

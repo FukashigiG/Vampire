@@ -20,7 +20,7 @@ public class BEA_ContinuousPunches : Base_BossEnemyAct
 
     [SerializeField] float distance = 0f;
 
-    public async override UniTask Action(Base_EnemyCtrler ctrler, CancellationToken token)
+    public async override UniTask Action(EnemyCtrler_BigBoss ctrler, CancellationToken token)
     {
         // ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ğæ“¾
         Vector2 dir = (ctrler.target.position - ctrler.transform.position).normalized;
@@ -35,6 +35,8 @@ public class BEA_ContinuousPunches : Base_BossEnemyAct
 
             await UniTask.Delay(200, cancellationToken: token);
         }
+
+        ctrler._animator.SetTrigger("Attack");
 
         await UniTask.Delay((int)(1000 * delayTime), cancellationToken: token);
     }

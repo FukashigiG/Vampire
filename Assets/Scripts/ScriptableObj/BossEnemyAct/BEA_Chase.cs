@@ -13,7 +13,7 @@ public class BEA_Chase : Base_BossEnemyAct
     [Header("’ÇÕ‚ğ’†’f‚·‚é‹——£")]
     [SerializeField] float distance_WrapUpAction = 4f;
  
-    public async override UniTask Action(Base_EnemyCtrler ctrler, CancellationToken token)
+    public async override UniTask Action(EnemyCtrler_BigBoss ctrler, CancellationToken token)
     {
         float elapsedTime = 0f;
 

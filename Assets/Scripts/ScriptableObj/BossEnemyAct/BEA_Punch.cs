@@ -24,7 +24,7 @@ public class BEA_Punch : Base_BossEnemyAct
 
     [ShowIf("isCircle"), SerializeField] float size_Radius = 0;
 
-    public async override UniTask Action(Base_EnemyCtrler ctrler, CancellationToken token)
+    public async override UniTask Action(EnemyCtrler_BigBoss ctrler, CancellationToken token)
     {
         // プレイヤーの方向を取得
         Vector2 dir = (ctrler.target.position - ctrler.transform.position).normalized;
@@ -46,6 +46,8 @@ public class BEA_Punch : Base_BossEnemyAct
             if (warning != null) Destroy(warning);
             throw; // キャンセル例外を上位に投げる
         }
+
+        ctrler._animator.SetTrigger("Attack");
 
         // 本命の攻撃判定オブジェクトを生成、初期化
         GameObject x = Instantiate(attackDetectObje, ctrler.transform.position, Quaternion.FromToRotation(Vector2.up, dir));

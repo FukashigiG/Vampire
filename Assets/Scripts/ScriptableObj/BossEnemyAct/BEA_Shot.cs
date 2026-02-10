@@ -18,7 +18,7 @@ public class BEA_Shot : Base_BossEnemyAct
     [Serializable] enum ShotType { oneShot, rapidFire}
     [SerializeField] ShotType shotType;
 
-    public async override UniTask Action(Base_EnemyCtrler ctrler, CancellationToken token)
+    public async override UniTask Action(EnemyCtrler_BigBoss ctrler, CancellationToken token)
     {
         // ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ğæ“¾
         Vector2 dir = (ctrler.target.position - ctrler.transform.position).normalized;
@@ -26,6 +26,8 @@ public class BEA_Shot : Base_BossEnemyAct
         float angleOffset = 0;
         GameObject bullet = null;
         Quaternion baseRotation = Quaternion.FromToRotation(Vector2.up, dir);
+
+        ctrler._animator.SetTrigger("Spell");
 
         switch (shotType)
         {

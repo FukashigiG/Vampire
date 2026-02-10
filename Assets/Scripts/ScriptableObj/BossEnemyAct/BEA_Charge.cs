@@ -22,7 +22,7 @@ public class BEA_Charge : Base_BossEnemyAct
 
     Transform target;
 
-    public async override UniTask Action(Base_EnemyCtrler ctrler, CancellationToken token)
+    public async override UniTask Action(EnemyCtrler_BigBoss ctrler, CancellationToken token)
     {
         float elapsedTime = 0f;
 

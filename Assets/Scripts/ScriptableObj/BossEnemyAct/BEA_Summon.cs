@@ -15,7 +15,7 @@ public class BEA_Summon : Base_BossEnemyAct
 
     float spawnRadius = 2.4f;
 
-    public async override UniTask Action(Base_EnemyCtrler ctrler, CancellationToken token)
+    public async override UniTask Action(EnemyCtrler_BigBoss ctrler, CancellationToken token)
     {
         Vector2 center = ctrler.transform.position;
 
@@ -38,6 +38,8 @@ public class BEA_Summon : Base_BossEnemyAct
             // èâä˙âªÅAÇ±ÇÍÇÁÇÕå¬ï Ç…Ç‹ÇΩÇ»Ç¢
             warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, AttackRangeType.circle, 0, size_Range: 1.5f).Forget();
         }
+
+        ctrler._animator.SetTrigger("Spell");
 
         await UniTask.Delay((int)(delayTime * 1000), cancellationToken: token);
 

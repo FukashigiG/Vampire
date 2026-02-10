@@ -45,7 +45,7 @@ public class EnemyCtrler_BigBoss : Base_EnemyCtrler
     // ボスの行動
     List<BossAction> actions = new List<BossAction>();
 
-    Animator _animator;
+    public Animator _animator {  get; private set; }
 
     // 行動回数：行動が何回目か
     int cullentActCount = 0;

@@ -91,12 +91,12 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
                 break;
         }
 
-        txts_Status[0].text = "HP : " + data.hp;
-        txts_Status[1].text = "UŒ‚—Í : " + data.power;
-        txts_Status[2].text = "–hŒä—Í : " + data.defense;
-        txts_Status[3].text = "ˆÚ“®‘¬“x : " + data.moveSpeed;
+        txts_Status[0].text = data.hp.ToString();
+        txts_Status[1].text = data.power.ToString();
+        txts_Status[2].text = data.defense.ToString();
+        txts_Status[3].text = data.moveSpeed.ToString();
 
-        txt_ChataAbilityName.text = "•KE‹ZF" + data.charaAbility.abilityName;
+        txt_ChataAbilityName.text = data.charaAbility.abilityName;
         txt_ChataAbilityDiscription.text = data.charaAbility.explanation;
 
         for (int i = 0; i < data.initialKnives.Count(); i++)
