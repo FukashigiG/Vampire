@@ -26,3 +26,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ac194bcf2fb561d4180efa3587755a2f, type: 2}
   - {fileID: 11400000, guid: 0e493bc62265c5e41ab925cae955535e, type: 2}
   <bossEnemy>k__BackingField: {fileID: 11400000, guid: 148b96ab06e03514fbadcf994f41237a, type: 2}
+  <groungSprite>k__BackingField: {fileID: 21300000, guid: 1c034eaa206dc3a4aa9505193377c0c2, type: 3}

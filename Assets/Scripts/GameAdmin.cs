@@ -89,6 +89,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
         GameEventDirector.Instance.SetEvents(stageData.eventList);
 
         UI_ShowStageName.Instance.SetStageInfo(waveCount, stageData.stageName);
+
+        StageGroundCtrler.Instance.ChangeGroundImg(stageData.groungSprite);
     }
 
     //全体的なゲームの進行を管理
