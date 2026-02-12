@@ -23,9 +23,14 @@ public class EnemyStatus : Base_MobStatus
     public float friquentry_Shot { get; private set; } = 0f;
     public GameObject bullet_Prefab { get; private set; }
 
+    // ダメージを受けたとき、状態変化を受けたとき、死んだときに出す通知の購読部分
+    // 死亡通知はstaticなものとそうでないものの両方あると嬉しいので両方ある
     public IObservable<(Vector2 position, int amount)> onDamaged => subject_OnDamaged;
     public static IObservable<(Base_MobStatus status, Base_StatusEffectData effect, float duration, int amount)> onGetStatusEffect => subject_OnGetStatusEffect;
     public IObservable<(Base_MobStatus status, int value)> onDie => subject_OnDie;
+
+    public static Subject<EnemyStatus> subject_OnDie_Static = new Subject<EnemyStatus>();
+    public static IObservable<EnemyStatus> onDie_Static => subject_OnDie_Static;
 
     // オブジェクトが破棄されたときに呼ばれる処理
     // 死亡処理とはまた違うので、MiniMapにてオブジェクトが死亡以外で消えても反応できるように
@@ -85,6 +90,8 @@ public class EnemyStatus : Base_MobStatus
         count_PermissionDamage++;
         count_PermissionHit.Value++;
         count_Actable++;
+
+        subject_OnDie_Static.OnNext(this);
 
         base.Die();
     }

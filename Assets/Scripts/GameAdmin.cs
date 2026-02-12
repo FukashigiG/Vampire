@@ -245,8 +245,14 @@ public class GameAdmin : SingletonMono<GameAdmin>
         switch (waveCount)
         {
             case <= 5:
+
+                Vector2 P_pos = PlayerController.Instance.transform.position;
+
+                // ゲートの場所
+                // プレイヤーの現在地から原点方向に４先の位置
+                Vector2 posi = P_pos + (Vector2.zero - P_pos).normalized * 4;
                 // ワープゲート生成
-                Instantiate(item_WarpStage, Vector2.zero, Quaternion.identity);
+                Instantiate(item_WarpStage, posi, Quaternion.identity);
                 break;
 
             case 6:

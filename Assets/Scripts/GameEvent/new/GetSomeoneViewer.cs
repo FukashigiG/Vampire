@@ -11,6 +11,8 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 {
     // 武器・秘宝獲得発動時、その内容を表示するUI用スクリプト
 
+    Animator animator;
+
     [field: SerializeField] public GameObject body_Panel { get; private set; }
 
     [SerializeField] Button[] buttons_Option;
@@ -48,6 +50,8 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 
     private void Awake()
     {
+        animator = GetComponent<Animator>();
+
         button_Decide.onClick.AddListener(Decision);
         button_Skip.onClick.AddListener(ClosePanel);
 
@@ -122,6 +126,8 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
         txt_Rareity.text = "";
         txt_Element.text = "";
         txt_Type.text = "";
+
+        animator.SetTrigger("Anim");
     }
 
     void Decision()

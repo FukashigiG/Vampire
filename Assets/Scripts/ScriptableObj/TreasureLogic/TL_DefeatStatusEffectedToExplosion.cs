@@ -17,19 +17,19 @@ public class TL_DefeatStatusEffectedToExplosion : Base_TreasureLogic
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
-        //bool isCooling = false;
+        bool isCooling = false;
         var token = status.GetCancellationTokenOnDestroy();
 
-        /*
-        EnemyStatus.onDie.Subscribe(async x =>
+        
+        EnemyStatus.onDie_Static.Subscribe(async enemyStat =>
         {
             // クールタイム中か、敵が目的の状態異常でないなら無視
-            if (isCooling || !  x.status.IsStatusEffectTypeActive(statusEffect)) return;
+            if (isCooling || !  enemyStat.IsStatusEffectTypeActive(statusEffect)) return;
 
             isCooling = true;
 
             // 死んだ敵の位置を中心地とする
-            Vector2 center = x.status.transform.position;
+            Vector2 center = enemyStat.transform.position;
 
             // 周囲の敵を一括で取得
             Collider2D[] hits = Physics2D.OverlapCircleAll(center, radius, targetLayer);
@@ -41,7 +41,7 @@ public class TL_DefeatStatusEffectedToExplosion : Base_TreasureLogic
                 {
                     // 攻撃値、属性値それぞれ死んだ敵の最大HP÷4でダメージ
                     // 当たった本人には追加ダメージは発生しない
-                    if (ms != status) ms.GetAttack(x.status.maxHP / 4, x.status.maxHP / 4, center);
+                    if (ms != status) ms.GetAttack(enemyStat.maxHP / 4, enemyStat.maxHP / 4, center);
                 }
             }
 
@@ -65,6 +65,6 @@ public class TL_DefeatStatusEffectedToExplosion : Base_TreasureLogic
             isCooling = false ;
 
         }).AddTo(disposables);
-        */
+        
     }
 }

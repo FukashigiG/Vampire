@@ -23,8 +23,9 @@ MonoBehaviour:
   <limit_DrawKnives>k__BackingField: 4
   <initialKnives>k__BackingField:
   - {fileID: 11400000, guid: 28c195926bc5a5f4da94eff1ea7c5a16, type: 2}
-  - {fileID: 11400000, guid: bff7ee63a3be10a4fbefe86e378f1f49, type: 2}
-  <initialTreasures>k__BackingField: []
+  - {fileID: 11400000, guid: 4b1afb93ba662f04685823a2fad065e9, type: 2}
+  <initialTreasures>k__BackingField:
+  - {fileID: 11400000, guid: 2788affcafb2f6d4fabd3232907879c2, type: 2}
   <charaAbility>k__BackingField: {fileID: 11400000, guid: 1c70d173b21e34e42bcb894bc780e760, type: 2}
   <masteredElement>k__BackingField: 1
   <prefab>k__BackingField: {fileID: 0}

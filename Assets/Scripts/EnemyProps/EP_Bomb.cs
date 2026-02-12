@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class EP_Bomb : Base_EnemyProps
 {
+    [SerializeField] float radius = 1.5f;
+
     [SerializeField] GameObject damageDetect;
 
-    Vector2 targetPoint;
-    float radius;
+    float time_Impact;
 
-    public void Initialize_OR(Vector2 _targetPoint, float _radius, int damage)
+    Vector2 targetPoint;
+
+
+    public void Initialize_OR(Vector2 _targetPoint, float _time_Impact, int damage)
     {
         targetPoint = _targetPoint;
-        radius = _radius;
+
+        time_Impact = _time_Impact;
 
         base.Initialize(damage, 0);
 
@@ -23,24 +28,22 @@ public class EP_Bomb : Base_EnemyProps
     {
         try
         {
-            float moveTime = 0.9f;
             float elapsed = 0f;
             float jumpHeight = 9f;
 
             Vector2 dir = (targetPoint - startPosi);
 
-            while (elapsed < moveTime)
+            while (elapsed < time_Impact)
             {
                 elapsed += Time.deltaTime;
 
                 // 0.0(開始) ～ 1.0(終了) の進行度を計算
-                float t = Mathf.Clamp01(elapsed / moveTime);
+                float t = Mathf.Clamp01(elapsed / time_Impact);
 
-                // A: 水平方向の移動（始点から終点へ滑らかに移動）
+                // 水平方向の移動
                 Vector2 currentPos = Vector2.Lerp(startPosi, targetPoint, t);
 
-                // B: 垂直方向の計算（放物線）
-                // Mathf.Sin(t * Mathf.PI) は tが0で0、0.5で1、1で0になるカーブを描きます
+                // 垂直方向の計算（放物線）
                 float yOffset = Mathf.Sin(t * Mathf.PI) * jumpHeight;
 
                 // Y座標に高さを加算

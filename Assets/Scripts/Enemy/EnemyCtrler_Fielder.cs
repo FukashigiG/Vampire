@@ -18,7 +18,7 @@ public class EnemyCtrler_Fielder : Base_EnemyCtrler
         var fieldObj = Instantiate(prefab_Field, this.transform);
 
         // •Ï”‚É‘ã“ü
-        var field = fieldObj.GetComponent<EP_Field>();
+        field = fieldObj.GetComponent<EP_Field>();
 
         // ‰Šú‰»
         field.Initialize_Field(_enemyStatus._enemyData.fieldLogic, _enemyStatus._enemyData.radius_FieldSize, 0, _enemyStatus.power);

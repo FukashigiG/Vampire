@@ -14,6 +14,7 @@ public class BEA_Shot : Base_BossEnemyAct
     [SerializeField] GameObject prefab_Bullet;
     [SerializeField] int num_Bullet;
     [SerializeField] float divergenceAngle;
+    [SerializeField] float damageMultiple = 0.5f;
 
     [Serializable] enum ShotType { oneShot, rapidFire}
     [SerializeField] ShotType shotType;
@@ -53,7 +54,7 @@ public class BEA_Shot : Base_BossEnemyAct
                     bullet = Instantiate(prefab_Bullet, ctrler.transform.position, finalRotation);
 
                     // íeÇèâä˙âª
-                    bullet.GetComponent<EP_Bullet>().Initialize(1, 0);
+                    bullet.GetComponent<EP_Bullet>().Initialize((int)(ctrler._enemyStatus.power * damageMultiple), 0);
                 }
 
                 break;
@@ -72,7 +73,7 @@ public class BEA_Shot : Base_BossEnemyAct
 
                     bullet = Instantiate(prefab_Bullet, ctrler.transform.position, targetRotation);
 
-                    bullet.GetComponent<EP_Bullet>().Initialize(ctrler._enemyStatus.power, 0);
+                    bullet.GetComponent<EP_Bullet>().Initialize((int)(ctrler._enemyStatus.power * damageMultiple), 0);
 
                     await UniTask.Delay((int)(75), cancellationToken: token);
                 }
