@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Hakobore
   m_EditorClassIdentifier: Assembly-CSharp::TreasureData
   <_name>k__BackingField: "\u6BC0\u308C\u305F\u5203"
-  <flavortext>k__BackingField: "\u3042\u307E\u308A\u306B\u30DC\u30ED\u30DC\u30ED\u3067\u6B66\u5668\u3068\u3057\u3066\u306F\u5F79\u306B\u7ACB\u305F\u306A\u3044\u304C\u3001\u53EF\u80FD\u6027\u3092\u611F\u3058\u308B"
+  <flavortext>k__BackingField: "\u3042\u307E\u308A\u306B\u30DC\u30ED\u30DC\u30ED\u3067\u6B66\u5668\u3068\u3057\u3066\u306F\u5F79\u306B\u7ACB\u305F\u306A\u3044"
   <rank>k__BackingField: 2
-  <sprite>k__BackingField: {fileID: 0}
+  <sprite>k__BackingField: {fileID: 5626186628071289518, guid: b227b0739c0842d448d011bbd9367e53, type: 3}
   <element>k__BackingField: 1
   <description>k__BackingField: "\u30AF\u30EA\u30C6\u30A3\u30AB\u30EB\u653B\u6483\u3092\u53D7\u3051\u305F\u6575\u306B\u920D\u8DB3\u52B9\u679C\u3092\u4ED8\u4E0E"
   <logic>k__BackingField: {fileID: 11400000, guid: 1509487b9727295459544eb7a5cfe5f0, type: 2}

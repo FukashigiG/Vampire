@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
   m_Name: Daisannome
   m_EditorClassIdentifier: Assembly-CSharp::TreasureData
-  <_name>k__BackingField: "\u7B2C\u4E09\u306E\u76EE"
-  <flavortext>k__BackingField: "\u4FBF\u5229\u306A\u8131\u7740\u53EF\u80FD\u30BF\u30A4\u30D7"
+  <_name>k__BackingField: "\u30E1\u30AC\u30CD"
+  <flavortext>k__BackingField: "\u305D\u3053\u307E\u3067\u5EA6\u306F\u5F37\u304F\u306A\u3044"
   <rank>k__BackingField: 1
-  <sprite>k__BackingField: {fileID: 0}
+  <sprite>k__BackingField: {fileID: -825278261400980603, guid: 5e609489572ea6642a346b1a78c6fe77, type: 3}
   <element>k__BackingField: 1
   <description>k__BackingField: "\u91CD\u8907\u5EA63\u4EE5\u4E0A\u306E\u30CA\u30A4\u30D5\u306E\u653B\u6483\u529B\u3092\u4E0A\u3052\u308B"
   <logic>k__BackingField: {fileID: 11400000, guid: 2be94b3329ccd2947832b926a1fda762, type: 2}

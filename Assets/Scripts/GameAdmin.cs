@@ -307,7 +307,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
         }
     }
 
-    public void ReTry_Kari()
+    public void ReTry()
     {
         SceneLoader.Instance.Load("TitleScene");
     }

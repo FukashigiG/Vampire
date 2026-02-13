@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
   m_Name: Fukutoudon
   m_EditorClassIdentifier: Assembly-CSharp::TreasureData
-  <_name>k__BackingField: "\u888B\u3046\u3069\u3093"
-  <flavortext>k__BackingField: "\u4F11\u65E5\u306E\u663C\u98EF\u3068\u4E3B\u5A66\u306E\u5473\u65B9"
+  <_name>k__BackingField: "\u30DC\u30BF\u30F3"
+  <flavortext>k__BackingField: "\u8D8A\u3007\u88FD\u83D3\uFF01"
   <rank>k__BackingField: 3
-  <sprite>k__BackingField: {fileID: 0}
+  <sprite>k__BackingField: {fileID: 2530564911472380330, guid: 76e3c933b9535e041b3a553b993ac49e, type: 3}
   <element>k__BackingField: 1
   <description>k__BackingField: "\u706B\u708E\u72B6\u614B\u306E\u6575\u3092\u6483\u7834\u3059\u308B\u3068\u3001\u305D\u306E\u5468\u56F2\u306E\u6575\u306B\u3082\u30C0\u30E1\u30FC\u30B8"
   <logic>k__BackingField: {fileID: 11400000, guid: a4155516ea72ab643bb74a225c843cbc, type: 2}

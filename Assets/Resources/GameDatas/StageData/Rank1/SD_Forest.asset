@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01ee19ad823a3745b523ac3af8a8109, type: 3}
   m_Name: SD_Forest
   m_EditorClassIdentifier: Assembly-CSharp::StageData
-  <stageName>k__BackingField: "\u68EE\u6797"
+  <stageName>k__BackingField: "\u8349\u539F"
   <stageRank>k__BackingField: 1
   <enemyList>k__BackingField:
   - {fileID: 11400000, guid: 3bf2d451fa1aca542bad37db9cd632f2, type: 2}
@@ -24,4 +24,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ac194bcf2fb561d4180efa3587755a2f, type: 2}
   - {fileID: 11400000, guid: 0e493bc62265c5e41ab925cae955535e, type: 2}
   <bossEnemy>k__BackingField: {fileID: 11400000, guid: c84c67e3bb83cad499811093fb0fd23e, type: 2}
-  <groungSprite>k__BackingField: {fileID: 21300000, guid: 1c034eaa206dc3a4aa9505193377c0c2, type: 3}
+  <groungSprite>k__BackingField: {fileID: -6472738485348559089, guid: 877a6c3f222f82c42a988329f447f3d0, type: 3}

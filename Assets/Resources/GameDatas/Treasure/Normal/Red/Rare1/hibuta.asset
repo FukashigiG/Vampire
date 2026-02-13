@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
   m_Name: hibuta
   m_EditorClassIdentifier: Assembly-CSharp::TreasureData
-  <_name>k__BackingField: "\u706B\u84CB"
-  <flavortext>k__BackingField: "\u304B\u306A\u308A\u306E\u5E74\u5B63\u304C\u5165\u3063\u3066\u3044\u308B"
+  <_name>k__BackingField: "\u30C9\u30FC\u30CA\u30C4"
+  <flavortext>k__BackingField: "\u30A2\u30E1\u30EA\u30AB\u30F3\u306A\u5473\u4ED8\u3051"
   <rank>k__BackingField: 1
-  <sprite>k__BackingField: {fileID: 0}
+  <sprite>k__BackingField: {fileID: 1744780914244781717, guid: 5de6452ef2adbd44c92a9a2df179c4c1, type: 3}
   <element>k__BackingField: 1
   <description>k__BackingField: "\u30EA\u30ED\u30FC\u30C9\u6642\u3001\u5C11\u3057\u306E\u9593
     \u529B\u304C\u4E0A\u304C\u308B"

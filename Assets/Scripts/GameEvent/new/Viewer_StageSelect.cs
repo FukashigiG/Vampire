@@ -46,6 +46,8 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
 
             var _stage = selected[i];
 
+            buttons_Option[i].GetComponent<Image>().sprite = _stage.groungSprite;
+
             buttons_Option[i].onClick.AddListener(() =>
             {
                 ShowDiscription(_stage);

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
   m_Name: Takanome
   m_EditorClassIdentifier: Assembly-CSharp::TreasureData
-  <_name>k__BackingField: "\u9DF9\u306E\u76EE"
-  <flavortext>k__BackingField: "\u5B9F\u969B\u306B\u306F\u5225\u306E\u4F55\u304B\u306E\u76EE\u3067\u306F\u3068\u306E\u30A6\u30EF\u30B5\u3082"
+  <_name>k__BackingField: "\u5C0F\u5224"
+  <flavortext>k__BackingField: "\u30B6\u30FB\u7E01\u8D77\u7269"
   <rank>k__BackingField: 1
-  <sprite>k__BackingField: {fileID: 0}
+  <sprite>k__BackingField: {fileID: -7172922820565823352, guid: 93e334affe39185498b20cc3be689632, type: 3}
   <element>k__BackingField: 1
   <description>k__BackingField: "\u300C\u6025\u6240\u300D\u7CFB\u80FD\u529B\u306E\u767A\u751F\u78BA\u7387\u304C\u4E0A\u304C\u308B"
   <logic>k__BackingField: {fileID: 11400000, guid: 58637475d54af484b85a787eaa319ab4, type: 2}

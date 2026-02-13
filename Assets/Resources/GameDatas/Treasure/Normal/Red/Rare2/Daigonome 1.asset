@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
   m_Name: Daigonome 1
   m_EditorClassIdentifier: Assembly-CSharp::TreasureData
-  <_name>k__BackingField: "\u7B2C\u4E94\u306E\u76EE"
-  <flavortext>k__BackingField: "\u6D41\u77F3\u306B\u591A\u3059\u304E\u3067\u306F\uFF1F"
+  <_name>k__BackingField: "\u85C1\u4EBA\u5F62"
+  <flavortext>k__BackingField: "\u3054\u3063\u3059\u3093"
   <rank>k__BackingField: 2
-  <sprite>k__BackingField: {fileID: 0}
+  <sprite>k__BackingField: {fileID: 6768139323804525417, guid: 2e8d995a4fbe05742981688052237379, type: 3}
   <element>k__BackingField: 1
   <description>k__BackingField: "\u91CD\u8907\u5EA65\u4EE5\u4E0A\u306E\u30CA\u30A4\u30D5\u306E\u653B\u6483\u529B\u3092\u4E0A\u3052\u308B"
   <logic>k__BackingField: {fileID: 11400000, guid: db30f914d903c694bbe61fea6de2b609, type: 2}

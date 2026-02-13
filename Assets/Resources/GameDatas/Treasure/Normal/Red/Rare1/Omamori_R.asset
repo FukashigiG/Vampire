@@ -15,7 +15,7 @@ MonoBehaviour:
   <_name>k__BackingField: "\u8D64\u3044\u304A\u307E\u3082\u308A"
   <flavortext>k__BackingField: "\u307B\u3093\u306E\u308A\u3068\u611F\u3058\u308B\u6696\u304B\u3055\u304C\u52A0\u8B77\u3092\u3082\u305F\u3089\u3059"
   <rank>k__BackingField: 1
-  <sprite>k__BackingField: {fileID: 0}
+  <sprite>k__BackingField: {fileID: -1406610877178386685, guid: 048ae2eb6fcfc3046b737bdb69d6c65e, type: 3}
   <element>k__BackingField: 1
   <description>k__BackingField: "\u30DC\u30B9\u3068\u5BFE\u5CD9\u3057\u305F\u969B\u306B\u3001\u8D64\u306E\u30CA\u30A4\u30D5\u304C\u591A\u3044\u307B\u3069HP\u304C\u56DE\u5FA9"
   <logic>k__BackingField: {fileID: 11400000, guid: 7b01995f6c201164d93374c8995871a5, type: 2}

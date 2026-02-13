@@ -13,6 +13,8 @@ public class UI_GameResult : SingletonMono<UI_GameResult>
 
     [SerializeField] Sprite sprite_Icon_Null;
 
+    [SerializeField] Button button_GoBack;
+
     public void OnGameSet(bool isPlayerWin)
     {
         switch(isPlayerWin)
@@ -30,7 +32,7 @@ public class UI_GameResult : SingletonMono<UI_GameResult>
         {
             if (GameAdmin.Instance.stageHistory.Count >= i + 1)
             {
-
+                _image[i].sprite = GameAdmin.Instance.stageHistory[i].groungSprite;
             }
             else
             {
@@ -41,5 +43,11 @@ public class UI_GameResult : SingletonMono<UI_GameResult>
         body.SetActive(true);
 
         _animator.SetTrigger("Trigger");
+
+        button_GoBack.onClick.RemoveAllListeners();
+        button_GoBack.onClick.AddListener(() =>
+        {
+            GameAdmin.Instance.ReTry();
+        });
     }
 }
