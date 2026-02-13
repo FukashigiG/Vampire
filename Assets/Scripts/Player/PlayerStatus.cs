@@ -88,11 +88,8 @@ public class PlayerStatus : Base_MobStatus
 
         color_DamageTxt = Color.red;
 
-        // キャラアビリティを渡す
-        attack.SetCharaAbility(playerCharaData.charaAbility);
-
         inventory.Initialize(this);
-        attack.Initialize(this);
+        attack.Initialize(this, playerCharaData.charaAbility);
         ctrler.Initialize(this);
         GetComponent<PlayerPresenter>().Initialize(this);
 

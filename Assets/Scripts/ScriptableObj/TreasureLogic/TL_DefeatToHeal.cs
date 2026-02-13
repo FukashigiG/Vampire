@@ -15,10 +15,9 @@ public class TL_DefeatToHeal : Base_TreasureLogic
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
-        //int count = 0;
+        int count = 0;
 
-        /*
-        EnemyStatus.onDie.Subscribe(x =>
+        EnemyStatus.onDie_Static.Subscribe(x =>
         {
             count++;
 
@@ -32,6 +31,5 @@ public class TL_DefeatToHeal : Base_TreasureLogic
             }
 
         }).AddTo(disposables);
-        */
     }
 }

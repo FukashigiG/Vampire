@@ -29,7 +29,6 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 0}
   _fieldLogic: {fileID: 0}
   _radius_FieldSize: 0
-  <amount_EXP>k__BackingField: 0
   <statusAbilities>k__BackingField:
   - {fileID: 11400000, guid: 6a9722d8d25f74c4c86416d92100bf0c, type: 2}
   dropItems:
@@ -52,7 +51,7 @@ MonoBehaviour:
     <triggerType>k__BackingField: 0
     <targetActCount>k__BackingField: 0
     <thresholdHpRate_Percent>k__BackingField: 0
-    <baseWeight>k__BackingField: 0
+    <baseWeight>k__BackingField: 10
     <decayRate>k__BackingField: 0
   - <actionLogic>k__BackingField: {fileID: 11400000, guid: 8892e9f1b6b214b429e7018d0863f4f8, type: 2}
     <triggerType>k__BackingField: 0

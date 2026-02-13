@@ -16,7 +16,7 @@ MonoBehaviour:
   <_name>k__BackingField: "\u7D76\u71B1\u306E\u30E1\u30EB\u30C8\u30C0\u30A6\u30CA\u30FC"
   <description>k__BackingField: 
   <rank>k__BackingField: 2
-  <actType>k__BackingField: 2
+  <actType>k__BackingField: 3
   <hp>k__BackingField: 5000
   <power>k__BackingField: 90
   <defense>k__BackingField: 18
@@ -34,4 +34,34 @@ MonoBehaviour:
   dropItems:
   - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}
     dropRate_Parcentage: 100
-  _bossActions: []
+  _bossActions:
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 59b4c98f91de0f3478962e03aab63391, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.5
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: c7b578a24c978c54999422f5e89938f5, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 40
+    <decayRate>k__BackingField: 0.3
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 59b4c98f91de0f3478962e03aab63391, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.265
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 3e51e8582216be049a4d0b306b7e6a4b, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 7
+    <decayRate>k__BackingField: 0
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 0f2487dea55f51942a79210832ef9dd2, type: 2}
+    <triggerType>k__BackingField: 2
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 50
+    <baseWeight>k__BackingField: 0
+    <decayRate>k__BackingField: 0

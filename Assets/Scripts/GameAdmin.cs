@@ -51,8 +51,11 @@ public class GameAdmin : SingletonMono<GameAdmin>
     {
         zako, boss
     }
-
     public WaveState _waveState;
+
+    // ボス出現時の通知
+    Subject<Unit> subject_OnBossAppear = new Subject<Unit>();
+    public IObservable<Unit> onBossAppear => subject_OnBossAppear;
 
     // 購読のライフサイクルを管理するためのDisposable
     CompositeDisposable disposables = new CompositeDisposable();
@@ -207,6 +210,9 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
         // ボス注目カメラを切る
         v_Camera_FocusOnBoss.gameObject.SetActive(false);
+
+        // 通知を飛ばす
+        subject_OnBossAppear.OnNext(Unit.Default);
     }
 
     // ボスが死んだとき

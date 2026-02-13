@@ -43,7 +43,7 @@ public class PlayerAttack : MonoBehaviour
     // 攻撃サイクル用トークンソース
     CancellationTokenSource cancellationTokenSource;
 
-    public void Initialize(PlayerStatus _status)
+    public void Initialize(PlayerStatus _status, Base_P_CharaAbility ability)
     {
         status = _status;
 
@@ -58,6 +58,8 @@ public class PlayerAttack : MonoBehaviour
             }
 
         }).AddTo(this);
+
+        SetCharaAbility(ability);
 
         StartAttakLoop();
     }
@@ -271,7 +273,7 @@ public class PlayerAttack : MonoBehaviour
         return nearestObject;
     }
 
-    // 外部からキャラアビリティをセットするための関数
+    // キャラアビリティをセットするための関数
     public void SetCharaAbility(Base_P_CharaAbility ability)
     {
         // 既に割り当て済みならReturn
