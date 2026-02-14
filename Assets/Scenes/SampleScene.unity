@@ -8723,19 +8723,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1569327341}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1239132881}
-        m_TargetAssemblyTypeName: PausePanelCtrler, Assembly-CSharp
-        m_MethodName: CloseThis
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1569327341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12612,6 +12600,10 @@ PrefabInstance:
       propertyPath: playerAbilityCharge
       value: 
       objectReference: {fileID: 2035077568}
+    - target: {fileID: 4802796929602805163, guid: f12098574e22e1348b250adcf8c39505, type: 3}
+      propertyPath: CutInUI
+      value: 
+      objectReference: {fileID: 200719116859826769, guid: bdd7f01fda01d8e47b56d91adaf068a5, type: 3}
     - target: {fileID: 4802796929602805163, guid: f12098574e22e1348b250adcf8c39505, type: 3}
       propertyPath: fx_Throw
       value: 

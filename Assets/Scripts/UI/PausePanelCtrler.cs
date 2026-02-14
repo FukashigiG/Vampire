@@ -55,6 +55,7 @@ public class PausePanelCtrler : MonoBehaviour
             .Subscribe(e => OnKnifeRemoved(e.Value))
             .AddTo(_disposables);
 
+
         // --- ”é•ó‚Ìw“Çİ’è ---
         playerInventory.runtimeTreasure
             .ObserveAdd()

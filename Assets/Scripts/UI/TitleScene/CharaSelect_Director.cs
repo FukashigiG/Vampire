@@ -10,6 +10,8 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
 
     [SerializeField] GameObject bodyPanel;
 
+    [SerializeField] Image BG_Image;
+    [SerializeField] Image charaFullBodyArt;
     [SerializeField] Button btn_Close;
     [SerializeField] Button btn_GoButtle;
     [SerializeField] List<UI_PlayerItemButton> btns_Knife;
@@ -22,6 +24,11 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
     [SerializeField] Text txt_ChataAbilityName;
     [SerializeField] Text txt_ChataAbilityDiscription;
     [SerializeField] List<Text> txts_Status;
+
+    [Header("素材割り当て")]
+    [SerializeField] Sprite BG_Red;
+    [SerializeField] Sprite BG_Blue;
+    [SerializeField] Sprite BG_Yellow;
 
     List<PlayerCharaData> charas = new List<PlayerCharaData>();
 
@@ -72,18 +79,24 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
 
         txt_CharaName.text = data._name;
 
+        charaFullBodyArt.gameObject.SetActive(true);
+        charaFullBodyArt.sprite = data.image_FullBody;
+
         switch (data.masteredElement)
         {
             case Element.Red:
                 txt_Element.text = "赤";
+                BG_Image.sprite = BG_Red;
                 break;
 
             case Element.Blue:
                 txt_Element.text = "青";
+                BG_Image.sprite = BG_Blue;
                 break;
 
             case Element.Yellow:
                 txt_Element.text = "黄";
+                BG_Image.sprite = BG_Yellow;
                 break;
 
             case Element.White:
@@ -126,10 +139,33 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
                 UI_ShowPlayerItemInfo.Instance.ShowPanel(data.initialTreasures.ToList<Base_PlayerItem>(), index);
             });
         }
+
+        btn_GoButtle.interactable = true;
     }
 
+    // パネルを開く際の処理
     void OpenPanel()
     {
+        // 何も選択状態でなければ、立ち絵用objを隠し、各テキストを空欄にし、はじめるボタンを無効化
+        if(cullentSelected == null)
+        {
+            charaFullBodyArt.gameObject.SetActive(false);
+
+            txt_Element.text = "";
+
+            txts_Status[0].text = "";
+            txts_Status[1].text = "";
+            txts_Status[2].text = "";
+            txts_Status[3].text = "";
+
+            txt_CharaName.text = "";
+
+            txt_ChataAbilityName.text = "";
+            txt_ChataAbilityDiscription.text = "";
+
+            btn_GoButtle.interactable = false;
+        }
+
         bodyPanel.SetActive(true);
     }
 

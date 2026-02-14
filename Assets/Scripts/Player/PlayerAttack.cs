@@ -17,6 +17,8 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] GameObject fx_Throw;
 
+    [SerializeField] GameObject CutInUI;
+
     PlayerStatus status;
 
     public GameObject targetEnemy {  get; private set; }
@@ -316,6 +318,9 @@ public class PlayerAttack : MonoBehaviour
         status.count_PermissionKnickBack++;
 
         var token = this.GetCancellationTokenOnDestroy();
+
+        GameObject cutinUI = Instantiate(CutInUI, Vector2.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
+        cutinUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(266, 0);
 
         GameAdmin.Instance.SetTimeScaleValue(0.5f);
 

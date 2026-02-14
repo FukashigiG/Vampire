@@ -11,6 +11,7 @@ public class PlayerCharaData : ScriptableObject
 
     [field: SerializeField] public string _name { get; private set; }
 
+    [Header("戦闘ステータス設定")]
     [field: SerializeField] public int hp { get; private set; }
     [field: SerializeField] public int power { get; private set; }
     [field: SerializeField] public int defense { get; private set; }
@@ -29,4 +30,7 @@ public class PlayerCharaData : ScriptableObject
     [field: SerializeField] public Element masteredElement { get; private set; }
 
     [field: SerializeField] public GameObject prefab { get; private set; }
+
+    [Header("その他")]
+    [field: SerializeField] public Sprite image_FullBody { get; private set; }
 }

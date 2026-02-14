@@ -26,3 +26,4 @@ MonoBehaviour:
   <charaAbility>k__BackingField: {fileID: 11400000, guid: a8a0f14fed3e55e4791537cbfb83f6fa, type: 2}
   <masteredElement>k__BackingField: 3
   <prefab>k__BackingField: {fileID: 0}
+  <image_FullBody>k__BackingField: {fileID: -7773127267710545088, guid: 5af2d42ef00d6da4a82f784e6c45690e, type: 3}
