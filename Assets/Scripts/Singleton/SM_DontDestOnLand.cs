@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SM_DontDestOnLand<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class SM_DontDestOnLand<T> 
+                           : MonoBehaviour where T : MonoBehaviour
 {
     protected abstract bool dontDestroyOnLoad { get; }
 
@@ -17,7 +18,7 @@ public abstract class SM_DontDestOnLand<T> : MonoBehaviour where T : MonoBehavio
                 instance_ = FindFirstObjectByType<T>();
             }
 
-            return instance_ ?? new GameObject(typeof(T).FullName).AddComponent<T>();
+            return instance_;// ?? new GameObject(typeof(T).FullName).AddComponent<T>();
         }
     }
 
@@ -25,7 +26,7 @@ public abstract class SM_DontDestOnLand<T> : MonoBehaviour where T : MonoBehavio
     {
         if (this != Instance)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
             return;
         }
 

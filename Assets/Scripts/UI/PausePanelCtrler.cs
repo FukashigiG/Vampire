@@ -73,7 +73,7 @@ public class PausePanelCtrler : MonoBehaviour
 
         btn_ClosePanel.onClick.AddListener(() =>
         {
-            body.SetActive(false);
+            CloseThis();
         });
 
         btn_Retire.onClick.AddListener(() =>
@@ -161,6 +161,8 @@ public class PausePanelCtrler : MonoBehaviour
         if(body.activeSelf == false) return;
 
         body.SetActive(false);
+
+
 
         GameAdmin.Instance.ResumeGame();
     }

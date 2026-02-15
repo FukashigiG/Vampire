@@ -24,5 +24,7 @@ public class SceneLoader : SM_DontDestOnLand<SceneLoader>
         await SceneManager.LoadSceneAsync(Scene);
 
         await y.FadeIn();
+
+        Destroy(x);
     }
 }

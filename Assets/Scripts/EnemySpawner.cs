@@ -20,7 +20,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     
     [SerializeField] float interval_Spawn;
 
-    CancellationTokenSource tokenSource = new CancellationTokenSource();
+    CancellationTokenSource tokenSource;
     CancellationToken token;
 
     // 購読のライフサイクルを管理するためのDisposable
@@ -32,6 +32,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
     void Awake()
     {
+        tokenSource = new CancellationTokenSource();
         token = tokenSource.Token;
     }
 
@@ -168,6 +169,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     {
         tokenSource.Cancel();
         tokenSource.Dispose();
+
         tokenSource = new CancellationTokenSource();
         token = tokenSource.Token;
 
@@ -193,8 +195,12 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         return status;
     }
 
+    // オブジェクト破棄時、disposablesとtokenSourceの処理
     private void OnDestroy()
     {
         disposables.Dispose();
+
+        tokenSource.Cancel();
+        tokenSource.Dispose();
     }
 }

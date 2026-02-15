@@ -22,7 +22,5 @@ public class UI_FadeAnimator : MonoBehaviour
         _canvasGroup.alpha = 1;
 
         await _canvasGroup.DOFade(0, 1.5f).ToUniTask(TweenCancelBehaviour.KillAndCancelAwait, this.GetCancellationTokenOnDestroy());
-
-        body.SetActive(false);
     }
 }

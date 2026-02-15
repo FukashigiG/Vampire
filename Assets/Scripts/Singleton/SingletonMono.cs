@@ -13,10 +13,14 @@ public class SingletonMono<T> : MonoBehaviour where T : MonoBehaviour
             if (instance_ == null)
             {
                 instance_ = FindFirstObjectByType<T>();
+
+                if (instance_ == null) Debug.LogError("インスタンスが存在しません");
             }
 
-            return instance_ ?? new GameObject(typeof(T).FullName).AddComponent<T>();
+            return instance_;// ?? new GameObject(typeof(T).FullName).AddComponent<T>();
         }
     }
+
+
 }
 
