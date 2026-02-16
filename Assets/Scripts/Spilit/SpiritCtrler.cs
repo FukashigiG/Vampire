@@ -1,62 +1,100 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Linq;
 using System.Threading;
+using UniRx;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpiritCtrler : MonoBehaviour
 {
+    // 発射する弾のプレハブ
     [SerializeField] GameObject prefab_Bullet;
 
-    float interval_Shot_Sec = 1;
+    // 弾の発射間隔（秒）
+    [SerializeField]　float interval_Shot_Sec = 1;
 
-    float LifeTime = 15;
+    // 寿命（秒）
+    [SerializeField] float LifeTime = 10;
 
+    // 周回半径
+    [SerializeField] float radius = 1.2f;
+
+    // 精霊自体の属性
+    // 現時点では青固定とする
+    Element element = Element.Blue;
+
+    // 攻撃力
+    public int power {  get; private set; }
+
+    // 経過時間記録用変数
     float elapsedTime = 0;
 
-    float initialAngle;
+    // 精霊が生まれた際に出す通知とその購読部分
+    static Subject<SpiritCtrler> subject_onAwake = new Subject<SpiritCtrler>();
+    public static IObservable<SpiritCtrler> onAwake => subject_onAwake;
 
-    float radius = 1.2f;
+    // 精霊が消える際に出す通知とその購読部分
+    static Subject<SpiritCtrler> subject_onDestroy = new Subject<SpiritCtrler>();
+    public static IObservable<SpiritCtrler> onDestroy => subject_onDestroy;
+
+    float initialAngle;
 
     Transform player;
 
     CancellationToken token;
 
-    Element element = Element.Blue;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
+        // プレイヤーオブジェクトを取得、記憶
         player = PlayerController.Instance.transform;
 
+        // 自分の属性と被ってるプレイヤーのナイフの本数を取得
+        power = PlayerController.Instance._status.inventory.runtimeKnives
+            .Where(x => x.element == this.element)
+            .Count();
+
+        // 周回時の初期角度を決定
         initialAngle = Random.Range(0, 359);
 
+        // トークン取得
         token = this.GetCancellationTokenOnDestroy();
+
+        // 通知の発行
+        subject_onAwake.OnNext(this);
 
         ShotTask().Forget();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        // 経過時間を加算
         elapsedTime += Time.deltaTime;
 
+        // 寿命が来ていたら自身を破壊
         if(elapsedTime >= LifeTime)
         {
+            subject_onDestroy.OnNext(this);
+
             Destroy(gameObject);
         }
 
+        // 周回角度の算出
         float radian = (elapsedTime * 90f + initialAngle) * Mathf.Deg2Rad;
 
+        // 移動するべき場所の取得
         Vector2 targetPosi = (Vector2)player.position + new Vector2(Mathf.Cos(radian), Mathf.Sin(radian)) * radius;
 
+        // 目標の場所と自分の座標の距離が長いほど移動速度を高くする
         float distance = (targetPosi - (Vector2)this.transform.position).magnitude;
-
-        Vector2 dir = (targetPosi - (Vector2)this.transform.position).normalized;
-
         float moveSpeed = 3 * distance;
-
+        // 速度の上限、下限
         moveSpeed = Mathf.Clamp(moveSpeed, 0.1f, 20);
 
+        // 目的の方向
+        Vector2 dir = (targetPosi - (Vector2)this.transform.position).normalized;
+
+        // 移動命令
         transform.Translate(dir * moveSpeed * Time.deltaTime);
     }
 
@@ -90,13 +128,8 @@ public class SpiritCtrler : MonoBehaviour
                 // 対象に向けて弾を生成
                 GameObject bullet = Instantiate(prefab_Bullet, this.transform.position, rotation);
 
-                // 自分の属性と被ってるプレイヤーのナイフの本数を取得
-                int x = PlayerController.Instance._status.inventory.runtimeKnives
-                    .Where(x => x.element == this.element)
-                    .Count();
-
-                // その数字を弾に渡す
-                bullet.GetComponent<Bullet_SpilitCtrler>().Initialize(x);
+                // 攻撃力を弾に渡し、初期化処理
+                bullet.GetComponent<Bullet_SpilitCtrler>().Initialize(power);
             }
         }
         catch

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
+  m_Name: MajyonoBoushi
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureData
+  <_name>k__BackingField: "\u9B54\u5973\u306E\u5E3D\u5B50"
+  <flavortext>k__BackingField: "\u30C8\u30EA\u30C3\u30AF\u30AA\u30A2\u30C8\u30EA\u30FC\u30C8\uFF01"
+  <rank>k__BackingField: 2
+  <sprite>k__BackingField: {fileID: 3267007140831743742, guid: ab1727744c6d0c749b4a763b84e356c9, type: 3}
+  <element>k__BackingField: 2
+  <description>k__BackingField: "\u7CBE\u970A\u306E\u6D88\u6EC5\u6642\u3001\u5468\u56F2\u306E\u6575\u306B\u30C0\u30E1\u30FC\u30B8"
+  <logic>k__BackingField: {fileID: 11400000, guid: 90cba7a6955f5bc48a801083f8e5bf56, type: 2}

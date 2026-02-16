@@ -104,3 +104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpiritCtrler
   prefab_Bullet: {fileID: 2023543075554908296, guid: e1ffeae31b948b143904d1e96aebfd8b, type: 3}
+  interval_Shot_Sec: 1
+  LifeTime: 5
+  radius: 1.2
