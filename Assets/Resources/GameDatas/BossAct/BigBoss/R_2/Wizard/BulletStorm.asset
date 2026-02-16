@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5dad7832be21b41abb5e4ade199e22, type: 3}
+  m_Name: BulletStorm
+  m_EditorClassIdentifier: Assembly-CSharp::BEA_BulletStorm
+  <actionName>k__BackingField: "\u30DB\u30EF\u30A4\u30C8\u30FB\u30A2\u30A6\u30C8"
+  <range_Min>k__BackingField: 6
+  <range_Max>k__BackingField: 999
+  delayTime: 0
+  <actType>k__BackingField: 0
+  prefab_Bullet: {fileID: 6002114493564059005, guid: 0a6c8aadb52c5fe4da7944597213d7a1, type: 3}
+  num_Bullet: 30
+  damageMultiple: 0.5
+  range_X: 14
+  range_Y: 9

@@ -10,14 +10,11 @@ public class GameEventDirector : SingletonMono<GameEventDirector>
 
     List<GameEventData> events = new List<GameEventData>();
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _token = this.GetCancellationTokenOnDestroy();
-    }
-
-    private void Start()
-    {
-
     }
 
     public void SetEvents(List<GameEventData> _events)

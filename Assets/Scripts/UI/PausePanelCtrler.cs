@@ -83,7 +83,7 @@ public class PausePanelCtrler : MonoBehaviour
 
         btn_Setting.onClick.AddListener(() =>
         {
-
+            UI_Setting.Instance.OpenPanel();
         });
     }
 
@@ -126,7 +126,7 @@ public class PausePanelCtrler : MonoBehaviour
 
         treasureImageDictionaty[treasureData] = itemBtn.gameObject;
 
-        itemBtn.GetComponent<Button>().onClick.AddListener(() =>
+        itemBtn.onClicked.AddListener((x) =>
         {
             // ヒエラルキー参照でボタンが何番目か取得する
             int index = itemBtn.transform.GetSiblingIndex();

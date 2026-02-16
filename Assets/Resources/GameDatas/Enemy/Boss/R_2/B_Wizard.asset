@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
-  m_Name: B_Lizard
+  m_Name: B_Wizard
   m_EditorClassIdentifier: 
   <sprite>k__BackingField: {fileID: 21300000, guid: f3a964194160e724db7a797dc01a7871, type: 3}
-  <_name>k__BackingField: "\u30EA\u30B6\u30FC\u30C9"
-  <description>k__BackingField: "\u4E3B\u98DF\u306F\u679C\u5B9F"
-  <rank>k__BackingField: 1
+  <_name>k__BackingField: "\u8F1D\u9280\u306E\u30A6\u30A3\u30B6\u30FC\u30C9"
+  <description>k__BackingField: "\u8AB0\u306B\u3082\u6253\u3061\u660E\u3051\u305A\u60A9\u3080\u306E\u3082\u3001\u3082\u3046\u3084\u3081\u305F"
+  <rank>k__BackingField: 2
   <actType>k__BackingField: 3
-  <hp>k__BackingField: 2000
-  <power>k__BackingField: 40
-  <defense>k__BackingField: 12
-  <moveSpeed>k__BackingField: 38
+  <hp>k__BackingField: 5000
+  <power>k__BackingField: 83
+  <defense>k__BackingField: 24
+  <moveSpeed>k__BackingField: 34
   _shotType: 0
   _num_Bullet: 1
   _divergenceAngle: 0
@@ -35,39 +35,33 @@ MonoBehaviour:
   - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}
     dropRate_Parcentage: 100
   _bossActions:
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: be27275d33e6af24cb31ff2519ff6be8, type: 2}
-    <triggerType>k__BackingField: 0
-    <targetActCount>k__BackingField: 0
-    <thresholdHpRate_Percent>k__BackingField: 0
-    <baseWeight>k__BackingField: 50
-    <decayRate>k__BackingField: 0.5
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: b1c93b3b44adaa742b9909ee8957b13f, type: 2}
-    <triggerType>k__BackingField: 0
-    <targetActCount>k__BackingField: 0
-    <thresholdHpRate_Percent>k__BackingField: 0
-    <baseWeight>k__BackingField: 60
-    <decayRate>k__BackingField: 0.35
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 68d07afdda9e3064ebb21252c055a095, type: 2}
-    <triggerType>k__BackingField: 0
-    <targetActCount>k__BackingField: 0
-    <thresholdHpRate_Percent>k__BackingField: 0
-    <baseWeight>k__BackingField: 50
-    <decayRate>k__BackingField: 0.5
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 8feb19f7288450443b89d8c612ca8efd, type: 2}
-    <triggerType>k__BackingField: 0
-    <targetActCount>k__BackingField: 0
-    <thresholdHpRate_Percent>k__BackingField: 0
-    <baseWeight>k__BackingField: 50
-    <decayRate>k__BackingField: 0.3
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: a01a0cd59db549e4abb1f95159ec670b, type: 2}
-    <triggerType>k__BackingField: 0
-    <targetActCount>k__BackingField: 0
-    <thresholdHpRate_Percent>k__BackingField: 0
-    <baseWeight>k__BackingField: 50
-    <decayRate>k__BackingField: 0.5
-  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 35afd6301723b584287f8a5bf60cb1d4, type: 2}
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: c69b9bfde93f7984d98ddc101c0e5ff7, type: 2}
     <triggerType>k__BackingField: 2
     <targetActCount>k__BackingField: 0
     <thresholdHpRate_Percent>k__BackingField: 50
     <baseWeight>k__BackingField: 0
     <decayRate>k__BackingField: 0
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: ab187898b5d51da478c7328d76806c4c, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.1
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: f58ad6e28909fd24bb6efcac84f70f13, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 20
+    <decayRate>k__BackingField: 0.1
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 743befa33cbf7324e8e2d4bf24ab926b, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.1
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: f8ecfb1bac997544b963ef47e573d9af, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.1

@@ -9,19 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c12632baf0538e7488e272126945eb41, type: 3}
-  m_Name: Punch 1
-  m_EditorClassIdentifier: 
-  <actionName>k__BackingField: "\u878D\u89E3\u30D1\u30F3\u30C1"
+  m_Script: {fileID: 11500000, guid: 86a5c30511229ae4eb33a0e274dcf3b1, type: 3}
+  m_Name: PunchWarp
+  m_EditorClassIdentifier: Assembly-CSharp::BEA_PunchAndWarp
+  <actionName>k__BackingField: "\u7834\u7344\u4E00\u9583"
   <range_Min>k__BackingField: 0
-  <range_Max>k__BackingField: 5
-  delayTime: 0.8
+  <range_Max>k__BackingField: 10
+  delayTime: 0.999
   <actType>k__BackingField: 1
   attackDetectObje: {fileID: 8782759202650464566, guid: 54a4b7bca65b56b469a622eba113bab9, type: 3}
   warningPrefab: {fileID: 5595648858755892628, guid: 9c956cabe1981c34a96d85fa2c044000, type: 3}
-  damageMultiplier: 1
-  forwardDistance: 2
-  rangeType: 0
-  size_Width: 3.4
-  size_Vertical: 5
-  size_Radius: 0
+  damageMultiplier: 1.2
+  forwardDistance: 5
+  size_Width: 2
+  size_Vertical: 10

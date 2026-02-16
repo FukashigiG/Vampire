@@ -60,8 +60,10 @@ public class GameAdmin : SingletonMono<GameAdmin>
     // 購読のライフサイクルを管理するためのDisposable
     CompositeDisposable disposables = new CompositeDisposable();
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         Time.timeScale = 1.0f;
 
         _cancellationToken = _cancellationTokenSource.Token;

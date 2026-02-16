@@ -48,8 +48,10 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 
     List<Base_PlayerItem> lotteriedItems = new List<Base_PlayerItem>();
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         animator = GetComponent<Animator>();
 
         button_Decide.onClick.AddListener(Decision);

@@ -9,19 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c12632baf0538e7488e272126945eb41, type: 3}
-  m_Name: Punch 1
-  m_EditorClassIdentifier: 
-  <actionName>k__BackingField: "\u878D\u89E3\u30D1\u30F3\u30C1"
-  <range_Min>k__BackingField: 0
-  <range_Max>k__BackingField: 5
-  delayTime: 0.8
+  m_Script: {fileID: 11500000, guid: bcaf8100f2024aa4ea8ced14acaaa9dc, type: 3}
+  m_Name: Stamp 1
+  m_EditorClassIdentifier: Assembly-CSharp::BEA_Stamp
+  <actionName>k__BackingField: "\u7A7A\u8972\u708E\u5929"
+  <range_Min>k__BackingField: 3
+  <range_Max>k__BackingField: 999
+  delayTime: 2
   <actType>k__BackingField: 1
   attackDetectObje: {fileID: 8782759202650464566, guid: 54a4b7bca65b56b469a622eba113bab9, type: 3}
   warningPrefab: {fileID: 5595648858755892628, guid: 9c956cabe1981c34a96d85fa2c044000, type: 3}
+  fx: {fileID: 3432958286849152088, guid: ce0f0e47d85140b4391e1ee7b71374cc, type: 3}
   damageMultiplier: 1
-  forwardDistance: 2
-  rangeType: 0
-  size_Width: 3.4
-  size_Vertical: 5
-  size_Radius: 0
+  radius: 4

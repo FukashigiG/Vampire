@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <sprite>k__BackingField: {fileID: 21300000, guid: f3a964194160e724db7a797dc01a7871, type: 3}
   <_name>k__BackingField: "\u7D76\u71B1\u306E\u30E1\u30EB\u30C8\u30C0\u30A6\u30CA\u30FC"
-  <description>k__BackingField: 
+  <description>k__BackingField: "\u706B\u5C71\u306E\u7CBE\u304C\u5F62\u3092\u6210\u3057\u305F\u59FF\n\u672C\u4EBA\u306F\u610F\u5916\u3068\u51B7\u9759\u306A\u6027\u683C"
   <rank>k__BackingField: 2
   <actType>k__BackingField: 3
-  <hp>k__BackingField: 5000
-  <power>k__BackingField: 90
-  <defense>k__BackingField: 18
-  <moveSpeed>k__BackingField: 11
+  <hp>k__BackingField: 5200
+  <power>k__BackingField: 100
+  <defense>k__BackingField: 12
+  <moveSpeed>k__BackingField: 26
   _shotType: 0
   _num_Bullet: 1
   _divergenceAngle: 0

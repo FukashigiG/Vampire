@@ -30,8 +30,10 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     List<EnemyData> normalEnemyList = new List<EnemyData>();
     EnemyData bossData;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         tokenSource = new CancellationTokenSource();
         token = tokenSource.Token;
     }
@@ -63,7 +65,12 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
                 //MiniMapController.Instance.NewEnemyInstance(enemy);
                 // 仕様変更：ステータス自身にやらせる
 
-                float interval = 0.4f + (4 - GameAdmin.Instance.currentStage.stageRank) * 0.3f;
+                // 生成間隔の決定
+                // ステージランクが高いほど短くなる
+                // ウェーブが後半になるにつれても短くなる
+                float interval = 0.1f
+                    + (4 - GameAdmin.Instance.currentStage.stageRank) * 0.3f
+                    + (7 - GameAdmin.Instance.waveCount) * 0.05f;
 
                 // 待つ
                 await UniTask.Delay((int)(interval * 1000), cancellationToken: token);

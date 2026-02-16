@@ -35,8 +35,11 @@ public class UI_ShowPlayerItemInfo : SingletonMono<UI_ShowPlayerItemInfo>
 
     int cullentIndex;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
+
         button_ShowNext.onClick.RemoveAllListeners();
         button_ShowNext.onClick.AddListener(GoNext);
 

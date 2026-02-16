@@ -18,8 +18,10 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
 
     StageData currentSelected = null;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         stages = Resources.LoadAll<StageData>("GameDatas/StageData").ToList();
 
         button_Decide.onClick.AddListener(Decision);

@@ -319,8 +319,8 @@ public class PlayerAttack : MonoBehaviour
 
         var token = this.GetCancellationTokenOnDestroy();
 
-        GameObject cutinUI = Instantiate(CutInUI, Vector2.zero, Quaternion.identity, GameObject.Find("Canvas").transform);
-        cutinUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(266, 0);
+        // カットイン演出の再生
+        CutInUI.GetComponent<Animator>().SetTrigger("Anim");
 
         GameAdmin.Instance.SetTimeScaleValue(0.5f);
 
@@ -335,7 +335,6 @@ public class PlayerAttack : MonoBehaviour
 
         try
         {
-
             // charaAbility内の関数を実行
             await charaAbility.ActivateAbility(token);
         }

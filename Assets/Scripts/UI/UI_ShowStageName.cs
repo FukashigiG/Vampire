@@ -10,8 +10,10 @@ public class UI_ShowStageName : SingletonMono<UI_ShowStageName>
 
     Animator _animator;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _animator = GetComponent<Animator>();
     }
 
