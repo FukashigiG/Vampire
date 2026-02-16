@@ -28,6 +28,7 @@ public class UI_ShowPlayerItemInfo : SingletonMono<UI_ShowPlayerItemInfo>
 
     [SerializeField] GameObject descriptionArea_Treasure;
     [SerializeField] Text description_Treasure;
+    [SerializeField] Text flavorTxt_Treasure;
 
     enum ItemType { knife, treasure }
 
@@ -115,7 +116,7 @@ public class UI_ShowPlayerItemInfo : SingletonMono<UI_ShowPlayerItemInfo>
                 break;
         }
 
-        txt_Rareity.text = item.rank.ToString();
+        txt_Rareity.text = "ÉâÉìÉNÅF" + item.rank.ToString();
 
         if (item is KnifeData knife)
         {
@@ -154,6 +155,7 @@ public class UI_ShowPlayerItemInfo : SingletonMono<UI_ShowPlayerItemInfo>
             descriptionArea_Treasure.SetActive(true);
 
             description_Treasure.text = treasure.description;
+            flavorTxt_Treasure.text = treasure.flavortext;
         }
 
 

@@ -1380,7 +1380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3060661279384938976, guid: d96ce540410b8874d8238160c44f2da3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 312
+      value: 424
       objectReference: {fileID: 0}
     - target: {fileID: 3060661279384938976, guid: d96ce540410b8874d8238160c44f2da3, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3690,7 +3690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3060661279384938976, guid: d96ce540410b8874d8238160c44f2da3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 536
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3060661279384938976, guid: d96ce540410b8874d8238160c44f2da3, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4035,7 +4035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3060661279384938976, guid: d96ce540410b8874d8238160c44f2da3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 200
+      value: 536
       objectReference: {fileID: 0}
     - target: {fileID: 3060661279384938976, guid: d96ce540410b8874d8238160c44f2da3, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4934,7 +4934,7 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 0
-  m_ReverseArrangement: 1
+  m_ReverseArrangement: 0
 --- !u!114 &1272127903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6950,7 +6950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3060661279384938976, guid: d96ce540410b8874d8238160c44f2da3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 424
+      value: 312
       objectReference: {fileID: 0}
     - target: {fileID: 3060661279384938976, guid: d96ce540410b8874d8238160c44f2da3, type: 3}
       propertyPath: m_AnchoredPosition.y
