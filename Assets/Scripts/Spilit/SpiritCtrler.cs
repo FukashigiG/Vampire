@@ -12,10 +12,13 @@ public class SpiritCtrler : MonoBehaviour
     [SerializeField] GameObject prefab_Bullet;
 
     // 弾の発射間隔（秒）
-    [SerializeField]　float interval_Shot_Sec = 1;
+    public float interval_Shot_Sec = 1;
+
+    // 攻撃力
+    public int power = 4;
 
     // 寿命（秒）
-    [SerializeField] float LifeTime = 10;
+    public float LifeTime = 10;
 
     // 周回半径
     [SerializeField] float radius = 1.2f;
@@ -23,9 +26,6 @@ public class SpiritCtrler : MonoBehaviour
     // 精霊自体の属性
     // 現時点では青固定とする
     Element element = Element.Blue;
-
-    // 攻撃力
-    public int power {  get; private set; }
 
     // 経過時間記録用変数
     float elapsedTime = 0;
@@ -49,10 +49,12 @@ public class SpiritCtrler : MonoBehaviour
         // プレイヤーオブジェクトを取得、記憶
         player = PlayerController.Instance.transform;
 
+        // 仕様変更:powerの値は固定
+
         // 自分の属性と被ってるプレイヤーのナイフの本数を取得
-        power = PlayerController.Instance._status.inventory.runtimeKnives
+        /*power = PlayerController.Instance._status.inventory.runtimeKnives
             .Where(x => x.element == this.element)
-            .Count();
+            .Count();*/
 
         // 周回時の初期角度を決定
         initialAngle = Random.Range(0, 359);

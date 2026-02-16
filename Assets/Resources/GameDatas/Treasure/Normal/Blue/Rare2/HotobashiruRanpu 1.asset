@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
+  m_Name: HotobashiruRanpu 1
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureData
+  <_name>k__BackingField: "\u307B\u3068\u3070\u3057\u308B\u30E9\u30F3\u30D7"
+  <flavortext>k__BackingField: "\u5E38\u306B\u3061\u3087\u3063\u3068\u9707\u3048\u3066\u3044\u308B\u6C17\u304C\u3059\u308B\uFF1F"
+  <rank>k__BackingField: 2
+  <sprite>k__BackingField: {fileID: 3796976612086651862, guid: c16a66e798a52a349949bb1d4fa57cd2, type: 3}
+  <element>k__BackingField: 2
+  <description>k__BackingField: "\u30DC\u30B9\u51FA\u73FE\u6642\u3001\u7CBE\u970A\u3092\u8907\u6570\u4F53\u53EC\u559A"
+  <logic>k__BackingField: {fileID: 11400000, guid: 93740664f0dfc5c4eae1a1afa794d426, type: 2}

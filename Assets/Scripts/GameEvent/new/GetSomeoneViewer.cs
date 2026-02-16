@@ -60,7 +60,7 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
         LoadGameData();
 
         itemTypeWeight.Add(ItemType.knife, 70);
-        itemTypeWeight.Add(ItemType.treasure, 30);
+        itemTypeWeight.Add(ItemType.treasure, 50);
         foreach (var index in itemTypeWeight)
         {
             sum_TypeWeight += index.Value;
@@ -71,9 +71,9 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
         elementsWeight.Add(Element.Yellow, 10);
         elementsWeight.Add(Element.White, 10);
 
-        rankWeight.Add(1, 40);
+        rankWeight.Add(1, 35);
         rankWeight.Add(2, 25);
-        rankWeight.Add(3, 8);
+        rankWeight.Add(3, 15);
         foreach (var index in rankWeight)
         {
             sum_rankWeight += index.Value;

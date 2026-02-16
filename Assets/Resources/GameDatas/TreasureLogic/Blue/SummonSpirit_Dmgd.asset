@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c991ffce14f234b928eff534889868, type: 3}
+  m_Name: SummonSpirit_Dmgd
+  m_EditorClassIdentifier: Assembly-CSharp::TL_SummonObj_Damage
+  summonObject: {fileID: 8711062980360074248, guid: 91a8778364c9e4d489b08d91a44b94f3, type: 3}
+  activationProbability_Percent: 65
