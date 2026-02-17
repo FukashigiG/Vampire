@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1064919628000095593}
   - component: {fileID: 1064919628000095572}
   m_Layer: 0
-  m_Name: CFXR2 Power Aura (Loop)
+  m_Name: Fx_CA_BigMagic_Charge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14685,7 +14685,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.54227465, g: 0.7951187, b: 1, a: 1}
+  m_Color: {r: 0.54023767, g: 0.79379153, b: 1, a: 1}
   m_Intensity: 1.7722925
   m_Range: 10
   m_SpotAngle: 30

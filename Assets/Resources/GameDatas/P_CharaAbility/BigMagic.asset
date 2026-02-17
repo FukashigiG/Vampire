@@ -13,7 +13,17 @@ MonoBehaviour:
   m_Name: BigMagic
   m_EditorClassIdentifier: Assembly-CSharp::PCA_BigMagic
   <abilityName>k__BackingField: "\u5927\u9B54\u6CD5\uFF1A\u30A2\u30B9\u30C8\u30E9\u30D5\u30EA\u30FC\u30BA"
-  <explanation>k__BackingField: "\u7CBE\u970A\u3092\u8907\u6570\u4F53\u53EC\u559A\u3059\u308B\u3002\n"
+  <explanation>k__BackingField: "\u7CBE\u970A\u3092\u8907\u6570\u4F53\u53EC\u559A\u3001\u305D\u306E\u5F8C\u5468\u56F2\u306E\u6575\u5168\u54E1\u306B\u30C0\u30E1\u30FC\u30B8\u3068\u51CD\u7D50\u52B9\u679C\u3092\u4E0E\u3048\u308B\n\u52B9\u679C\u7BC4\u56F2\u3068\u6642\u9593\u306F\u7CBE\u970A\u306E\u6570\u306B\u6BD4\u4F8B\u3059\u308B"
   <requireChargeValue>k__BackingField: 25
   num_SummonSpilit: 4
+  damagePoint: 20
   spirit_Prefab: {fileID: 8711062980360074248, guid: 91a8778364c9e4d489b08d91a44b94f3, type: 3}
+  statusEffect: {fileID: 11400000, guid: c5e621a7aaad6d040b55e8f7d994b305, type: 2}
+  spiritLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  fx_Charge: {fileID: 1064919628000095592, guid: 30f71a256e3896147b133bbdcb8da527, type: 3}
+  fx_Impact: {fileID: 5112403345868107898, guid: 20d373fa71dd028478fb671b54789c68, type: 3}
