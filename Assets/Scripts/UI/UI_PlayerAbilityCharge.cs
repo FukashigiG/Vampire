@@ -12,7 +12,15 @@ public class UI_PlayerAbilityCharge : MonoBehaviour
 
     [SerializeField] Image gauge;
 
+    Animator animator;
+
     CancellationTokenSource tokenSource;
+
+    // ŠO•”‚©‚çInitialize‚³‚¹‚é•û‚ª—Ç‚¢
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public void SetGauge(float value)
     {
@@ -22,9 +30,12 @@ public class UI_PlayerAbilityCharge : MonoBehaviour
             tokenSource.Dispose();
         }
 
-        tokenSource = new CancellationTokenSource();
+        if (value >= 1f)
+        {
+            animator.SetTrigger("Anim");
+        }
 
-        //Debug.Log(value);
+        tokenSource = new CancellationTokenSource();
 
         AnimGauge(value, tokenSource.Token).Forget();
     }

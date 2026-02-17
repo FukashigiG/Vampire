@@ -294,7 +294,20 @@ public class PlayerAttack : MonoBehaviour
         // アビリティが無いならリターン
         if (charaAbility == null) return;
 
-        charaAbilityChargeValue.Value += value;
+        // チャージ量が既に必要量に達していたらリターン
+        if(charaAbilityChargeValue.Value >= charaAbility.requireChargeValue) return;
+
+        // 必要量を越えないように加算
+        if(charaAbilityChargeValue.Value +  value < charaAbility.requireChargeValue)
+        {
+            charaAbilityChargeValue.Value += value;
+        }
+        else
+        {
+            charaAbilityChargeValue.Value = charaAbility.requireChargeValue;
+        }
+
+
     }
 
     // アビリティの実行
