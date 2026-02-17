@@ -73,12 +73,10 @@ public class SpiritCtrler : MonoBehaviour
         // Œo‰ßŠÔ‚ğ‰ÁZ
         elapsedTime += Time.deltaTime;
 
-        // õ–½‚ª—ˆ‚Ä‚¢‚½‚ç©g‚ğ”j‰ó
+        // õ–½‚ª—ˆ‚Ä‚¢‚½‚çÁ‚¦‚é
         if(elapsedTime >= LifeTime)
         {
-            subject_onDestroy.OnNext(this);
-
-            Destroy(gameObject);
+            Die();
         }
 
         // ü‰ñŠp“x‚ÌZo
@@ -138,5 +136,13 @@ public class SpiritCtrler : MonoBehaviour
         {
 
         }
+    }
+
+    // Á–Åˆ—
+    void Die()
+    {
+        subject_onDestroy.OnNext(this);
+
+        Destroy(gameObject);
     }
 }

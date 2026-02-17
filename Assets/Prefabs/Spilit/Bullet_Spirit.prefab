@@ -150,4 +150,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7f6ce385908f449bff582a6889cd68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet_SpilitCtrler
-  speed: 5
+  speed: 10
