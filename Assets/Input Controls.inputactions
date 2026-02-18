@@ -1,5 +1,6 @@
 {
-    "name": "New Controls",
+    "version": 1,
+    "name": "Input Controls",
     "maps": [
         {
             "name": "Player",
@@ -18,7 +19,7 @@
                     "name": "Ability",
                     "type": "Button",
                     "id": "240c52fa-cd65-4081-9191-8574cecaf26f",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -83,7 +84,7 @@
                 {
                     "name": "",
                     "id": "151da62b-cc0d-4d25-bd50-c9b2d6f2eb40",
-                    "path": "<Keyboard>/i",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -101,7 +102,7 @@
                     "name": "TogglePanel",
                     "type": "Button",
                     "id": "2f9745be-694d-46cc-9a49-51e2fbdc2a44",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -111,7 +112,7 @@
                 {
                     "name": "",
                     "id": "2a799e20-e11f-4ec9-aab9-15cf279fe87a",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 
 public abstract class Base_EnemyCtrler : MonoBehaviour
 {
+    [SerializeField] SpriteRenderer bodyRenderer;
+
     [SerializeField] LayerMask targetLayer;
 
     [SerializeField] GameObject fx_Die;
@@ -15,11 +17,12 @@ public abstract class Base_EnemyCtrler : MonoBehaviour
 
     public EnemyStatus _enemyStatus { get; protected set; }
 
+    // 初期化処理
     public virtual void Initialize()
     {
         _enemyStatus = GetComponent<EnemyStatus>();
 
-        transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = _enemyStatus._enemyData.sprite;
+        bodyRenderer.sprite = _enemyStatus._enemyData.sprite;
 
         target = PlayerController.Instance.transform;
 
@@ -30,7 +33,7 @@ public abstract class Base_EnemyCtrler : MonoBehaviour
             }).AddTo(this);
     }
 
-    // Update is called once per frame
+    // fixedUpdateのタイミングでHandleAIを実行する
      protected virtual void FixedUpdate()
     {
         if (_enemyStatus.actable == false) return;
@@ -40,6 +43,7 @@ public abstract class Base_EnemyCtrler : MonoBehaviour
         HandleAI();
     }
 
+    // 毎フレームごとの処理は継承先が実装する
     protected abstract void HandleAI();
 
     protected virtual void OnDie()

@@ -258,6 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b0d842c3a69174ab17229364f2e653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyCtrler_Infight
+  bodyRenderer: {fileID: 5712073074656768816}
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
