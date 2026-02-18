@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
   m_Name: E_R2Metal
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: 3aa51288fb99e3a4ca2d8d3336f40d3a, type: 3}
-  <_name>k__BackingField: "R2\u30E1\u30BF\u30EB\u30A4\u30F3\u30D5\u30A1\u30A4\u30BF\u30FC"
+  <sprite>k__BackingField: {fileID: 2441016503757463086, guid: dcfe71faa9c347d428aab1004313fa6b, type: 3}
+  <_name>k__BackingField: "\u30A2\u30F3\u30D3\u30E5\u30E9\u30F3\u30B9"
   <description>k__BackingField: "\u30E1\u30BF\u30EB\u52B9\u679C\u3092\u6301\u3064R2\u306E\u30A4\u30F3\u30D5\u30A1\u30A4\u30BF\u30FC\u30A8\u30CD\u30DF\u30FC"
   <rank>k__BackingField: 2
   <actType>k__BackingField: 0
@@ -29,7 +29,6 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 6002114493564059005, guid: 0a6c8aadb52c5fe4da7944597213d7a1, type: 3}
   _fieldLogic: {fileID: 0}
   _radius_FieldSize: 0
-  <amount_EXP>k__BackingField: 1
   <statusAbilities>k__BackingField:
   - {fileID: 11400000, guid: 3b1ec897ad181b74ea0d3e5a454ad54e, type: 2}
   dropItems:

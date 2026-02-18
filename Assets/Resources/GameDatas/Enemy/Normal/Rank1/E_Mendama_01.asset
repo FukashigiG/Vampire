@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
   m_Name: E_Mendama_01
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: 3aa51288fb99e3a4ca2d8d3336f40d3a, type: 3}
+  <sprite>k__BackingField: {fileID: -8077013260883503160, guid: 743c75e294cacf144a62cb05173f13bf, type: 3}
   <_name>k__BackingField: "\u30E1\u30F3\u30C0\u30DE"
   <description>k__BackingField: "R1\u306E\u57FA\u672C\u7684\u306A\u30A4\u30F3\u30D5\u30A1\u30A4\u30BF\u30FC\u30A8\u30CD\u30DF\u30FC"
   <rank>k__BackingField: 1
@@ -27,7 +27,8 @@ MonoBehaviour:
   _range_Shot: 0
   _friquentry_Shot: 0
   _bulletPrefab: {fileID: 0}
-  <amount_EXP>k__BackingField: 1
+  _fieldLogic: {fileID: 0}
+  _radius_FieldSize: 0
   <statusAbilities>k__BackingField: []
   dropItems:
   - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}

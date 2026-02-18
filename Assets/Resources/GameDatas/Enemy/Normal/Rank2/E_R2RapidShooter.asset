@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
   m_Name: E_R2RapidShooter
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: 3aa51288fb99e3a4ca2d8d3336f40d3a, type: 3}
-  <_name>k__BackingField: "R2\u62E1\u6563\u30B7\u30E5\u30FC\u30BF\u30FC"
+  <sprite>k__BackingField: {fileID: 1169031118771667779, guid: 42a9d2ade4ead6f40bfb3350fd9dfc63, type: 3}
+  <_name>k__BackingField: "\u30D8\u30C3\u30B8\u30DB\u30C3\u30B0"
   <description>k__BackingField: "R2\u306E\u30B7\u30E5\u30FC\u30BF\u30FC\u30FC\u30A8\u30CD\u30DF\u30FC\n\u5927\u91CF\u306E\u5F3E\u3092\u9023\u7D9A\u3067\u767A\u5C04\u3059\u308B"
   <rank>k__BackingField: 2
   <actType>k__BackingField: 1
@@ -29,7 +29,6 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 6002114493564059005, guid: 0a6c8aadb52c5fe4da7944597213d7a1, type: 3}
   _fieldLogic: {fileID: 0}
   _radius_FieldSize: 0
-  <amount_EXP>k__BackingField: 1
   <statusAbilities>k__BackingField: []
   dropItems:
   - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}

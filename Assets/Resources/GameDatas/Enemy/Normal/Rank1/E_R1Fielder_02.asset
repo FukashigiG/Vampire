@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
   m_Name: E_R1Fielder_02
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: 3aa51288fb99e3a4ca2d8d3336f40d3a, type: 3}
-  <_name>k__BackingField: "R1\u30D5\u30A3\u30FC\u30EB\u30C0\u30FC02"
+  <sprite>k__BackingField: {fileID: -2851591464282624318, guid: 7839d7110fc376641845d5a6850af50e, type: 3}
+  <_name>k__BackingField: "\u30CA\u30BE\u30CA\u30BE\u4E9C\u7A2E"
   <description>k__BackingField: "\u57FA\u790E\u7684\u306A\u30E9\u30F3\u30AF\uFF11\u306E\u30D5\u30A3\u30FC\u30EB\u30C0\u30FC\u30A8\u30CD\u30DF\u30FC\u306E\u6BCE\u30C1\u30A7\u30F3\n\u30D7\u30EC\u30A4\u30E4\u30FC\u306B\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u30D5\u30A3\u30FC\u30EB\u30C9\u3092\u5C55\u958B\n\u7D20\u65E9\u3055\u304C\u9AD8\u304F\u653B\u6483\u4F4E\u3044"
   <rank>k__BackingField: 1
   <actType>k__BackingField: 2
@@ -29,7 +29,6 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 6002114493564059005, guid: 0a6c8aadb52c5fe4da7944597213d7a1, type: 3}
   _fieldLogic: {fileID: 11400000, guid: 2d98e82ba6090a949b098d4ea1d276bf, type: 2}
   _radius_FieldSize: 2.6
-  <amount_EXP>k__BackingField: 1
   <statusAbilities>k__BackingField: []
   dropItems:
   - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}

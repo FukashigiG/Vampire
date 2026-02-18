@@ -19,6 +19,8 @@ public abstract class Base_EnemyCtrler : MonoBehaviour
     {
         _enemyStatus = GetComponent<EnemyStatus>();
 
+        transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().sprite = _enemyStatus._enemyData.sprite;
+
         target = PlayerController.Instance.transform;
 
         _enemyStatus.onDie.Subscribe(x =>
