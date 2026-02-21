@@ -1,11 +1,12 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI_GameResult : SingletonMono<UI_GameResult>
 {
     [SerializeField] GameObject body;
 
-    [SerializeField] Text txt_Result;
+    [SerializeField] TextMeshProUGUI txt_Result;
 
     [SerializeField] Animator _animator;
 
@@ -20,11 +21,11 @@ public class UI_GameResult : SingletonMono<UI_GameResult>
         switch(isPlayerWin)
         {
             case true:
-                txt_Result.text = "Ÿ—˜";
+                txt_Result.text = "å‹åˆ©";
                 break;
 
             case false:
-                txt_Result.text = "”s–k...";
+                txt_Result.text = "æ•—åŒ—...";
                 break;
         }
 

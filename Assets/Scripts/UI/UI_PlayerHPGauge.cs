@@ -1,16 +1,18 @@
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
+
 
 public class UI_PlayerHPGauge : MonoBehaviour
 {
     [SerializeField] Image gauge_PlayerHP;
     [SerializeField] Image hotzone_PlayerHP;
-    [SerializeField] Text txt_PlayerHP;
+    [SerializeField] TextMeshProUGUI txt_PlayerHP;
 
     CancellationTokenSource tokenSource;
 

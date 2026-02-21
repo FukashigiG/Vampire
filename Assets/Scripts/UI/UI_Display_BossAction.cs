@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UniRx;
@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UI_Display_BossAction : MonoBehaviour
 {
-    [SerializeField] Text txt;
+    [SerializeField] TextMeshProUGUI txt;
 
     Animator _animator;
 

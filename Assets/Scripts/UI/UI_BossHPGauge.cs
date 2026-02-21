@@ -1,14 +1,15 @@
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using DG.Tweening;
+using TMPro;
 
 public class UI_BossHPGauge : SingletonMono<UI_BossHPGauge>
 {
     [SerializeField] GameObject body;
 
-    [SerializeField] Text txt_BossName;
+    [SerializeField] TextMeshProUGUI txt_BossName;
 
     [SerializeField] Image gauge;
 

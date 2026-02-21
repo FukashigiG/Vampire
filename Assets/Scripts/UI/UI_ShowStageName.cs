@@ -1,10 +1,11 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI_ShowStageName : SingletonMono<UI_ShowStageName>
 {
-    [SerializeField] Text txt_Wave;
-    [SerializeField] Text txt_StageName;
+    [SerializeField] TextMeshProUGUI txt_Wave;
+    [SerializeField] TextMeshProUGUI txt_StageName;
 
     [SerializeField] GameObject body;
 
@@ -19,7 +20,7 @@ public class UI_ShowStageName : SingletonMono<UI_ShowStageName>
 
     public void SetStageInfo(int waveCount, string stageName)
     {
-        txt_Wave.text = "ÉEÉFÅ[ÉuÅF" + waveCount;
+        txt_Wave.text = "„Ç¶„Çß„Éº„ÉñÔºö" + waveCount;
 
         txt_StageName.text = stageName;
 

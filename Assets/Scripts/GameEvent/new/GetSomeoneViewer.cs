@@ -1,15 +1,15 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using Random = UnityEngine.Random;
-using Unity.VisualScripting;
+using TMPro;
 
 
 public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 {
-    // •ŠíE”é•óŠl“¾”­“®A‚»‚Ì“à—e‚ğ•\¦‚·‚éUI—pƒXƒNƒŠƒvƒg
+    // æ­¦å™¨ãƒ»ç§˜å®ç²å¾—ç™ºå‹•æ™‚ã€ãã®å†…å®¹ã‚’è¡¨ç¤ºã™ã‚‹UIç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 
     Animator animator;
 
@@ -19,19 +19,19 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
     [SerializeField] Button button_Decide;
     [SerializeField] Button button_Skip;
 
-    [SerializeField] Text txt_Type;
-    [SerializeField] Text txt_ItemName;
-    [SerializeField] Text txt_Rareity;
-    [SerializeField] Text txt_Element;
+    [SerializeField] TextMeshProUGUI txt_Type;
+    [SerializeField] TextMeshProUGUI txt_ItemName;
+    [SerializeField] TextMeshProUGUI txt_Rareity;
+    [SerializeField] TextMeshProUGUI txt_Element;
 
     [SerializeField] GameObject descriptionArea_Knife;
-    [SerializeField] Text txt_BaseATK_Knife;
-    [SerializeField] Text txt_ElementATK_Knife;
-    [SerializeField] Text txt_multipleCount;
+    [SerializeField] TextMeshProUGUI txt_BaseATK_Knife;
+    [SerializeField] TextMeshProUGUI txt_ElementATK_Knife;
+    [SerializeField] TextMeshProUGUI txt_multipleCount;
     [SerializeField] Icon_KnifeAbility[] KA_Icons;
 
     [SerializeField] GameObject descriptionArea_Treasure;
-    [SerializeField] Text description_Treasure;
+    [SerializeField] TextMeshProUGUI description_Treasure;
 
     enum ItemType { knife, treasure}
 
@@ -82,7 +82,7 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 
     void LoadGameData()
     {
-        // ResourcesƒtƒHƒ‹ƒ_“à‚Ìƒf[ƒ^‚ğæ“¾
+        // Resourcesãƒ•ã‚©ãƒ«ãƒ€å†…ã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
         _cachedKnives = Resources.LoadAll<KnifeData>("GameDatas/Knife").ToList();
         _cachedTreasures = Resources.LoadAll<TreasureData>("GameDatas/Treasure").ToList();
     }
@@ -104,7 +104,7 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 
             if (_item == null)
             {
-                // ƒAƒCƒeƒ€‚ªæ“¾‚Å‚«‚È‚©‚Á‚½ê‡,ƒ{ƒ^ƒ“‚ğ‰B‚·
+                // ã‚¢ã‚¤ãƒ†ãƒ ãŒå–å¾—ã§ããªã‹ã£ãŸå ´åˆ,ãƒœã‚¿ãƒ³ã‚’éš ã™
                 button.gameObject.SetActive(false); 
                 continue;
             }
@@ -162,19 +162,19 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
         switch (item.element)
         {
             case Element.White:
-                txt_Element.text = "”’";
+                txt_Element.text = "ç™½";
                 break;
 
             case Element.Red:
-                txt_Element.text = "Ô";
+                txt_Element.text = "èµ¤";
                 break;
 
             case Element.Blue:
-                txt_Element.text = "Â";
+                txt_Element.text = "é’";
                 break;
 
             case Element.Yellow:
-                txt_Element.text = "‰©";
+                txt_Element.text = "é»„";
                 break;
         }
 
@@ -182,12 +182,12 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 
         if (item is KnifeData knife)
         {
-            txt_Type.text = "ƒiƒCƒt";
+            txt_Type.text = "ãƒŠã‚¤ãƒ•";
 
             descriptionArea_Knife.SetActive(true);
 
-            txt_BaseATK_Knife.text = $"Šî‘bUŒ‚—ÍF{knife.power}";
-            txt_ElementATK_Knife.text = $"‘®«UŒ‚—ÍF{knife.elementPower}";
+            txt_BaseATK_Knife.text = $"åŸºç¤æ”»æ’ƒåŠ›ï¼š{knife.power}";
+            txt_ElementATK_Knife.text = $"å±æ€§æ”»æ’ƒåŠ›ï¼š{knife.elementPower}";
 
             for (int i = 0; i < knife.abilities.Count; i++)
             {
@@ -202,12 +202,12 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
             }
             else
             {
-                txt_multipleCount.text = $"d•¡“xF{isKnown.count_Multiple} ¨ {isKnown.count_Multiple + 1}";
+                txt_multipleCount.text = $"é‡è¤‡åº¦ï¼š{isKnown.count_Multiple} â†’ {isKnown.count_Multiple + 1}";
             }
         }
         else if (item is TreasureData treasure)
         {
-            txt_Type.text = "”é•ó";
+            txt_Type.text = "ç§˜å®";
 
             descriptionArea_Treasure.SetActive(true);
 
@@ -235,7 +235,7 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 
                 HashSet<string> excludedIDs = new HashSet<string>(PlayerController.Instance._status.inventory.runtimeTreasure.Select(x => x._name));
 
-                // Player‚Ì‚Á‚Ä‚È‚¢”é•ó‚ÌƒŠƒXƒg‚ğì¬
+                // Playerã®æŒã£ã¦ãªã„ç§˜å®ã®ãƒªã‚¹ãƒˆã‚’ä½œæˆ
                 List<TreasureData> availableTreasures = _cachedTreasures
                     .Where(treasureAsset => !excludedIDs.Contains(treasureAsset._name))
                     .ToList();
@@ -274,11 +274,11 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
         Dictionary<Element, int> newElementsWeight = new Dictionary<Element, int>(elementsWeight);
         int sum_ElementWeight = 0;
 
-        // ƒL[‚Ì‚İ‚ğæ‚èo‚µ‚½ƒŠƒXƒg‚ğì¬
+        // ã‚­ãƒ¼ã®ã¿ã‚’å–ã‚Šå‡ºã—ãŸãƒªã‚¹ãƒˆã‚’ä½œæˆ
         List<Element> keys = newElementsWeight.Keys.ToList();
 
-        // ƒvƒŒƒCƒ„[‚Ì“¾ˆÓ‘®«‚È‚ç”äd‚ğ‰ÁZ‚µA‚»‚Ì‡Œv‚ğæ“¾
-        // Dictionary‚ğ‘ÎÛ‚Éforeachƒ‹[ƒv‚³‚¹‚é‚ÆAƒRƒŒƒNƒVƒ‡ƒ“‚Ì’†g‚ğ•Ï‚¦‚ç‚ê‚È‚¢d—l‚È‚Ì‚ÅList‚ğ‚©‚Ü‚¹‚é
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å¾—æ„å±æ€§ãªã‚‰æ¯”é‡ã‚’åŠ ç®—ã—ã€ãã®åˆè¨ˆã‚’å–å¾—
+        // Dictionaryã‚’å¯¾è±¡ã«foreachãƒ«ãƒ¼ãƒ—ã•ã›ã‚‹ã¨ã€ã‚³ãƒ¬ã‚¯ã‚·ãƒ§ãƒ³ã®ä¸­èº«ã‚’å¤‰ãˆã‚‰ã‚Œãªã„ä»•æ§˜ãªã®ã§Listã‚’ã‹ã¾ã›ã‚‹
         foreach (var key in keys)
         {
             if (PlayerController.Instance._status.masteredElements.Contains(key)) newElementsWeight[key] += 50;

@@ -1,12 +1,13 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Icon_KnifeAbility : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] Text txt_Name;
+    [SerializeField] TextMeshProUGUI txt_Name;
 
     KnifeAbility knifeAbility;
 
@@ -27,14 +28,14 @@ public class Icon_KnifeAbility : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     public void OnPointerEnter(PointerEventData data)
     {
-        // Ú×ƒEƒCƒ“ƒhƒE‚Ì•\¦
+        // è©³ç´°ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤º
 
         UI_ShowAbilityDetail.Instance.Show(knifeAbility);
 
         //detailWindow.SetActive(true);
     }
 
-    // ƒJ[ƒ\ƒ‹‚ªŠO‚ê‚½‚Æ‚«
+    // ã‚«ãƒ¼ã‚½ãƒ«ãŒå¤–ã‚ŒãŸã¨ã
     public void OnPointerExit(PointerEventData data)
     {
         UI_ShowAbilityDetail.Instance.Hide();

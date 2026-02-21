@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,13 +7,14 @@ using UniRx;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameAdmin : SingletonMono<GameAdmin>
 {
     [SerializeField] GameObject panel_LvUp;
 
-    [SerializeField] Text txt_WaveCount;
-    [SerializeField] Text txt_TimeLimit_Wave;
+    [SerializeField] TextMeshProUGUI txt_WaveCount;
+    [SerializeField] TextMeshProUGUI txt_TimeLimit_Wave;
 
     [SerializeField] CinemachineCamera v_Camera_FocusOnBoss;
 
@@ -42,7 +43,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     EnemyStatus cullentBoss = null;
 
-    // ‚PƒEƒF[ƒu‚ ‚½‚è‚Ì“G‚Ì‹­‰»”{—¦
+    // ï¼‘ã‚¦ã‚§ãƒ¼ãƒ–ã‚ãŸã‚Šã®æ•µã®å¼·åŒ–å€ç‡
     [field: SerializeField] public float waveBoostMultiplier {  get; private set; }
 
     float cullentTimeScale = 1f;
@@ -53,11 +54,11 @@ public class GameAdmin : SingletonMono<GameAdmin>
     }
     public WaveState _waveState;
 
-    // ƒ{ƒXoŒ»‚Ì’Ê’m
+    // ãƒœã‚¹å‡ºç¾æ™‚ã®é€šçŸ¥
     Subject<Unit> subject_OnBossAppear = new Subject<Unit>();
     public IObservable<Unit> onBossAppear => subject_OnBossAppear;
 
-    // w“Ç‚Ìƒ‰ƒCƒtƒTƒCƒNƒ‹‚ğŠÇ—‚·‚é‚½‚ß‚ÌDisposable
+    // è³¼èª­ã®ãƒ©ã‚¤ãƒ•ã‚µã‚¤ã‚¯ãƒ«ã‚’ç®¡ç†ã™ã‚‹ãŸã‚ã®Disposable
     CompositeDisposable disposables = new CompositeDisposable();
 
     protected override void Awake()
@@ -85,7 +86,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     public void UpdateWave(StageData stageData)
     {
-        WaveProgression().Forget(); // æ‚É‚±‚ê‚ğÀs‚µ‚Ä‚¨‚©‚È‚¢‚ÆAwaveState‚ªXV‚³‚ê‚¸ƒXƒ|ƒi[‚ª‹@”\‚µ‚È‚¢
+        WaveProgression().Forget(); // å…ˆã«ã“ã‚Œã‚’å®Ÿè¡Œã—ã¦ãŠã‹ãªã„ã¨ã€waveStateãŒæ›´æ–°ã•ã‚Œãšã‚¹ãƒãƒŠãƒ¼ãŒæ©Ÿèƒ½ã—ãªã„
 
         _stageHistory.Add(stageData);
 
@@ -98,37 +99,37 @@ public class GameAdmin : SingletonMono<GameAdmin>
         StageGroundCtrler.Instance.ChangeGroundImg(stageData.groungSprite);
     }
 
-    //‘S‘Ì“I‚ÈƒQ[ƒ€‚Ìis‚ğŠÇ—
+    //å…¨ä½“çš„ãªã‚²ãƒ¼ãƒ ã®é€²è¡Œã‚’ç®¡ç†
     async UniTask WaveProgression()
     {
         waveCount++;
 
         txt_WaveCount.text = "Wave : " + waveCount;
 
-        // ƒEƒF[ƒu‚Ìó‘Ô•Ï”‚ÌXV
+        // ã‚¦ã‚§ãƒ¼ãƒ–ã®çŠ¶æ…‹å¤‰æ•°ã®æ›´æ–°
         _waveState = WaveState.zako;
 
-        //ƒEƒF[ƒu‚ÌŠÔ‘Ò‚Â
+        //ã‚¦ã‚§ãƒ¼ãƒ–ã®æ™‚é–“å¾…ã¤
         await WaitWithWave(minute_Wave, _cancellationToken);
-        // ƒLƒƒƒ“ƒZƒ‹Ï‚İ‚©ƒ`ƒFƒbƒN
+        // ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ¸ˆã¿ã‹ãƒã‚§ãƒƒã‚¯
         _cancellationToken.ThrowIfCancellationRequested();
 
-        // UIXV‚ğ³‚µ‚­s‚¤‚½‚ß‚Ì1ƒtƒŒ‘Ò‚¿
+        // UIæ›´æ–°ã‚’æ­£ã—ãè¡Œã†ãŸã‚ã®1ãƒ•ãƒ¬å¾…ã¡
         await UniTask.Yield(PlayerLoopTiming.Update);
 
-        // Šù‘¶‚Ì“G‚ğ‘Sœ‹
+        // æ—¢å­˜ã®æ•µã‚’å…¨é™¤å»
         EnemySpawner.Instance.Stop_SpawnTask();
 
         await BossAppear();
 
-        // ƒ{ƒX“¢”°’Ê’m‚ğó‚¯æ‚é‚Ü‚Å‘Ò‚Â
+        // ãƒœã‚¹è¨ä¼é€šçŸ¥ã‚’å—ã‘å–ã‚‹ã¾ã§å¾…ã¤
         await cullentBoss.onDie
             .First()
             .ToUniTask(cancellationToken: _cancellationToken);
 
         await OnBossDefeated(cullentBoss.gameObject);
 
-        // ƒEƒF[ƒuI—¹‚Ìˆ—
+        // ã‚¦ã‚§ãƒ¼ãƒ–çµ‚äº†æ™‚ã®å‡¦ç†
         OnWaveFinish();
     }
 
@@ -137,7 +138,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
         float sec = min * 60;
         float remainingTime = sec;
 
-        // UI‚ÌText‚ğ’¼ÚXV‚·‚é“½–¼ŠÖ”
+        // UIã®Textã‚’ç›´æ¥æ›´æ–°ã™ã‚‹åŒ¿åé–¢æ•°
         IProgress<float> progress = new Progress<float>(value =>
         {
             //if (txt_TimeLimit_Wave == null) return;
@@ -150,79 +151,78 @@ public class GameAdmin : SingletonMono<GameAdmin>
         {
             while(remainingTime > 0)
             {
-                // 1ƒtƒŒ‘Ò‚Â
-                // "PlayerLoopTiming.Update"‚ğ‚Â‚¯‚é‚ÆuXVƒ^ƒCƒ~ƒ“ƒO‚ğUnity‚ÌUpDateŠÖ”‚É‡‚í‚¹‚év
-                //iˆ—‚ÍUpdate‘O‚Éˆ—‚³‚ê‚éj
+                // 1ãƒ•ãƒ¬å¾…ã¤
+                // "PlayerLoopTiming.Update"ã‚’ã¤ã‘ã‚‹ã¨ã€Œæ›´æ–°ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã‚’Unityã®UpDateé–¢æ•°ã«åˆã‚ã›ã‚‹ã€
+                //ï¼ˆå‡¦ç†ã¯Updateå‰ã«å‡¦ç†ã•ã‚Œã‚‹ï¼‰
                 await UniTask.Yield(PlayerLoopTiming.Update, token);
                 token.ThrowIfCancellationRequested();
 
-                // c‚èŠÔ‚ÌXV
+                // æ®‹ã‚Šæ™‚é–“ã®æ›´æ–°
                 remainingTime -= Time.deltaTime;
 
-                // isó‹µ‚ğ•ñ
+                // é€²è¡ŒçŠ¶æ³ã‚’å ±å‘Š
                 progress.Report(remainingTime);
             }
         }
         catch(OperationCanceledException)
         {
-            // —áŠOˆ—
+            // ä¾‹å¤–å‡¦ç†
         }
         finally
         {
-            // ÅŒã‚É
+            // æœ€å¾Œã«
         }
     }
 
-    // ƒ{ƒXoŒ»ˆ—
+    // ãƒœã‚¹å‡ºç¾å‡¦ç†
     async UniTask BossAppear()
     {
-        // ƒeƒLƒXƒg‚ÌXV
-        if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ƒ{ƒXoŒ»";
+        // é€šçŸ¥ã‚’é£›ã°ã™
+        subject_OnBossAppear.OnNext(Unit.Default);
 
-        // ƒEƒF[ƒu‚Ìó‘Ô•Ï”‚ÌXV
+        // ãƒ†ã‚­ã‚¹ãƒˆã®æ›´æ–°
+        if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ãƒœã‚¹å‡ºç¾ï¼";
+
+        // ã‚¦ã‚§ãƒ¼ãƒ–ã®çŠ¶æ…‹å¤‰æ•°ã®æ›´æ–°
         _waveState = WaveState.boss;
 
-        // ˆêu‚ÌƒfƒBƒŒƒC
+        // ä¸€ç¬ã®ãƒ‡ã‚£ãƒ¬ã‚¤
         await UniTask.Delay(500, cancellationToken: _cancellationToken);
-
 
         var spawnPos = EnemySpawner.Instance.SpawnPointRottery();
 
-        // ƒ{ƒX’–ÚƒJƒƒ‰‚ğAƒ{ƒXoŒ»‰‰oŠÔ‚ÍƒIƒ“‚É
+        // ãƒœã‚¹æ³¨ç›®ã‚«ãƒ¡ãƒ©ã‚’ã€ãƒœã‚¹å‡ºç¾æ¼”å‡ºé–“ã¯ã‚ªãƒ³ã«
         v_Camera_FocusOnBoss.transform.position = (Vector3)spawnPos + new Vector3(0, 0, -10);
         v_Camera_FocusOnBoss.gameObject.SetActive(true);
 
-        // ƒJƒƒ‰Ø‚è‘Ö‚í‚èŠ®—¹‚Ü‚Å‘Ò‚Â
+        // ã‚«ãƒ¡ãƒ©åˆ‡ã‚Šæ›¿ã‚ã‚Šå®Œäº†ã¾ã§å¾…ã¤
         float blendTime = Camera.main.GetComponent<CinemachineBrain>().DefaultBlend.BlendTime;
         await UniTask.Delay((int)((blendTime + 0.5f) * 1000), cancellationToken: _cancellationToken);
 
 
-        // ƒ{ƒX¶¬
+        // ãƒœã‚¹ç”Ÿæˆ
         cullentBoss = EnemySpawner.Instance.SpawnBoss(spawnPos);
 
         UI_BossHPGauge.Instance.Initialize(cullentBoss.gameObject);
 
         var _animator = cullentBoss.GetComponent<Animator>();
 
-        // ƒAƒjƒ[ƒVƒ‡ƒ“•ÎˆÚ‚ğ‘Ò‹@‚·‚é‚½‚ß‚Ìˆ—
+        // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³åç§»ã‚’å¾…æ©Ÿã™ã‚‹ãŸã‚ã®å‡¦ç†
         await UniTask.Yield();
 
-        // “oêƒ‚[ƒVƒ‡ƒ“I—¹‚Ü‚Å‘Ò‚Â
+        // ç™»å ´ãƒ¢ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ã¾ã§å¾…ã¤
         await UniTask.WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
 
-        // ƒ{ƒX’–ÚƒJƒƒ‰‚ğØ‚é
+        // ãƒœã‚¹æ³¨ç›®ã‚«ãƒ¡ãƒ©ã‚’åˆ‡ã‚‹
         v_Camera_FocusOnBoss.gameObject.SetActive(false);
-
-        // ’Ê’m‚ğ”ò‚Î‚·
-        subject_OnBossAppear.OnNext(Unit.Default);
     }
 
-    // ƒ{ƒX‚ª€‚ñ‚¾‚Æ‚«
+    // ãƒœã‚¹ãŒæ­»ã‚“ã ã¨ã
     async UniTask OnBossDefeated(GameObject bossObj)
     {
-        if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ƒ{ƒXŒ‚”j";
+        if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ãƒœã‚¹æ’ƒç ´";
 
-        // ƒ{ƒX’–ÚƒJƒƒ‰‚ğAƒ{ƒX€–S‰‰oŠÔ‚ÍƒIƒ“‚É
+        // ãƒœã‚¹æ³¨ç›®ã‚«ãƒ¡ãƒ©ã‚’ã€ãƒœã‚¹æ­»äº¡æ¼”å‡ºé–“ã¯ã‚ªãƒ³ã«
         v_Camera_FocusOnBoss.Target.TrackingTarget = bossObj.transform;
         v_Camera_FocusOnBoss.gameObject.SetActive(true);
 
@@ -230,14 +230,14 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
         try
         {
-            // ƒ{ƒX‚ÌƒIƒuƒWƒFƒNƒg‚ª‚È‚­‚È‚é‚Ü‚Å‘Ò‹@
+            // ãƒœã‚¹ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒãªããªã‚‹ã¾ã§å¾…æ©Ÿ
             await UniTask.WaitUntil(() => bossObj == null, cancellationToken: _cancellationToken);
 
-            // ‰æ–Ê‚ğ—h‚ç‚·
+            // ç”»é¢ã‚’æºã‚‰ã™
             var source = GetComponent<CinemachineImpulseSource>();
             source.GenerateImpulse();
 
-            // ­‚µ‘Ò‚Â
+            // å°‘ã—å¾…ã¤
             await UniTask.Delay((int)(1.5f * 1000 * Time.timeScale), cancellationToken: _cancellationToken);
         }
         finally
@@ -256,10 +256,10 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
                 Vector2 P_pos = PlayerController.Instance.transform.position;
 
-                // ƒQ[ƒg‚ÌêŠ
-                // ƒvƒŒƒCƒ„[‚ÌŒ»İ’n‚©‚çŒ´“_•ûŒü‚É‚Sæ‚ÌˆÊ’u
+                // ã‚²ãƒ¼ãƒˆã®å ´æ‰€
+                // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¾åœ¨åœ°ã‹ã‚‰åŸç‚¹æ–¹å‘ã«ï¼”å…ˆã®ä½ç½®
                 Vector2 posi = P_pos + (Vector2.zero - P_pos).normalized * 4;
-                // ƒ[ƒvƒQ[ƒg¶¬
+                // ãƒ¯ãƒ¼ãƒ—ã‚²ãƒ¼ãƒˆç”Ÿæˆ
                 Instantiate(item_WarpStage, posi, Quaternion.identity);
                 break;
 
@@ -290,7 +290,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
         Time.timeScale = cullentTimeScale;
     }
 
-    // ˆê’â~
+    // ä¸€æ™‚åœæ­¢
     public void PauseGame()
     {
         pauseCount++;
@@ -298,7 +298,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
         Time.timeScale = 0f;
     }
 
-    // ÄŠJ
+    // å†é–‹
     public void ResumeGame()
     {
         pauseCount--;
@@ -323,7 +323,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
         _cancellationTokenSource = null;
     }
 
-    //GameAdmin‚ÌÁ¸A‚Â‚Ü‚èƒQ[ƒ€ƒV[ƒ“I—¹‚Ìˆ—
+    //GameAdminã®æ¶ˆå¤±æ™‚ã€ã¤ã¾ã‚Šã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³çµ‚äº†æ™‚ã®å‡¦ç†
     private void OnDestroy()
     {
         disposables.Dispose();

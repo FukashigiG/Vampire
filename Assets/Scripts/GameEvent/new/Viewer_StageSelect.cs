@@ -1,8 +1,9 @@
-using NUnit.Framework;
+ï»¿using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 
 public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
 {
@@ -11,8 +12,8 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
     [SerializeField] Button[] buttons_Option;
     [SerializeField] Button button_Decide;
 
-    [SerializeField] Text txt_StageName;
-    [SerializeField] Text txt_StageRank;
+    [SerializeField] TextMeshProUGUI txt_StageName;
+    [SerializeField] TextMeshProUGUI txt_StageRank;
 
     List<StageData> stages = new List<StageData>();
 
@@ -36,10 +37,10 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
 
         body_Panel.SetActive(true);
 
-        // ƒ{ƒ^ƒ“‚Ì”‚¾‚¯Aƒ‰ƒ“ƒ_ƒ€‚ÈƒXƒe[ƒW‚ğæ“¾
+        // ãƒœã‚¿ãƒ³ã®æ•°ã ã‘ã€ãƒ©ãƒ³ãƒ€ãƒ ãªã‚¹ãƒ†ãƒ¼ã‚¸ã‚’å–å¾—
         List<StageData> selected = Lottery_Stage(buttons_Option.Count());
 
-        // ‚»‚ê‚¼‚ê‚Ìƒ{ƒ^ƒ“‚É‘Î‚µ‚Ä
+        // ãã‚Œãã‚Œã®ãƒœã‚¿ãƒ³ã«å¯¾ã—ã¦
         for (int i = 0; i < buttons_Option.Count(); i++)
         {
             buttons_Option[i].gameObject.SetActive(true);
@@ -66,7 +67,7 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
         currentSelected = data ;
 
         txt_StageName.text = data.stageName;
-        txt_StageRank.text = $"ŠëŒ¯“xF{data.stageRank}";
+        txt_StageRank.text = $"å±é™ºåº¦ï¼š{data.stageRank}";
     }
 
     void Decision()
@@ -85,37 +86,37 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
 
     List<StageData> Lottery_Stage(int count)
     {
-        // ‘SƒXƒe[ƒW‚ÌƒŠƒXƒg‚ÌƒRƒs[‚ğæ“¾
+        // å…¨ã‚¹ãƒ†ãƒ¼ã‚¸ã®ãƒªã‚¹ãƒˆã®ã‚³ãƒ”ãƒ¼ã‚’å–å¾—
         List<StageData> candiData = new List<StageData>(stages);
-        // Œ‹‰Ê‚ğ•Ô‚·” ‚à—pˆÓ‚µ‚Ä‚¨‚­
+        // çµæœã‚’è¿”ã™ç®±ã‚‚ç”¨æ„ã—ã¦ãŠã
         List<StageData> result = new List<StageData>();
 
-        // Œ»İ‚ÌƒXƒe[ƒW‚Í’Š‘I‘ÎÛ‚©‚çŠO‚·
+        // ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ã‚¸ã¯æŠ½é¸å¯¾è±¡ã‹ã‚‰å¤–ã™
         if(candiData.Contains(GameAdmin.Instance.currentStage)) candiData.Remove(GameAdmin.Instance.currentStage);
  
         for(int i = 0; i < count; i++)
         {
-            int targetRank = Lottery_StageRank(); // 1~3‚Ìƒ‰ƒ“ƒ_ƒ€‚Èƒ‰ƒ“ƒN‚ğæ“¾
+            int targetRank = Lottery_StageRank(); // 1~3ã®ãƒ©ãƒ³ãƒ€ãƒ ãªãƒ©ãƒ³ã‚¯ã‚’å–å¾—
 
             List<StageData> xxx = candiData
-                .Where(x => x.stageRank == targetRank)// ’Š‘I‚³‚ê‚½ƒ‰ƒ“ƒN‚Ì‚â‚Â‚ğæ“¾
-                .OrderBy(x => UnityEngine.Random.value)// ‡˜ƒVƒƒƒbƒtƒ‹
+                .Where(x => x.stageRank == targetRank)// æŠ½é¸ã•ã‚ŒãŸãƒ©ãƒ³ã‚¯ã®ã‚„ã¤ã‚’å–å¾—
+                .OrderBy(x => UnityEngine.Random.value)// é †åºã‚·ãƒ£ãƒƒãƒ•ãƒ«
                 .ToList();
 
-            // ƒVƒƒƒbƒtƒ‹‚³‚ê‚½ƒŠƒXƒg‚Ìæ“ª‚ğæ“¾
+            // ã‚·ãƒ£ãƒƒãƒ•ãƒ«ã•ã‚ŒãŸãƒªã‚¹ãƒˆã®å…ˆé ­ã‚’å–å¾—
             var add = xxx[0];
 
-            // ‚»‚ê‚ğƒŠƒUƒ‹ƒg‚É’Ç‰Á
+            // ãã‚Œã‚’ãƒªã‚¶ãƒ«ãƒˆã«è¿½åŠ 
             result.Add(add);
 
-            // ’Š‘I‚Ì‘å–{‚Ì” ‚©‚çíœ
+            // æŠ½é¸ã®å¤§æœ¬ã®ç®±ã‹ã‚‰å‰Šé™¤
             candiData.Remove(add);
         }
 
         return result;
     }
 
-    // ƒXƒe[ƒW‚Ìƒ‰ƒ“ƒN‚ğ’Š‘I
+    // ã‚¹ãƒ†ãƒ¼ã‚¸ã®ãƒ©ãƒ³ã‚¯ã‚’æŠ½é¸
     int Lottery_StageRank()
     {
         int[] rankWeights = { GetWeight(1) , GetWeight(2) , GetWeight(3) };
@@ -141,14 +142,14 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
             }
         }
 
-        // —áŠO
+        // ä¾‹å¤–
         return 0;
     }
 
-    // ƒ‰ƒ“ƒN’Š‘I‚Ìd‚³‚ğæ“¾
+    // ãƒ©ãƒ³ã‚¯æŠ½é¸æ™‚ã®é‡ã•ã‚’å–å¾—
     int GetWeight(int stageRank)
     {
-        // Šî–{“I‚É’áƒ‰ƒ“ƒN‚Ù‚Ç’Š‘I‚³‚ê‚â‚·‚­‚È‚é‚ªAƒEƒF[ƒuƒJƒEƒ“ƒg‚ªi‚Ş‚Ù‚ÇA‚ƒ‰ƒ“ƒN‚ào‚â‚·‚­‚È‚é
+        // åŸºæœ¬çš„ã«ä½ãƒ©ãƒ³ã‚¯ã»ã©æŠ½é¸ã•ã‚Œã‚„ã™ããªã‚‹ãŒã€ã‚¦ã‚§ãƒ¼ãƒ–ã‚«ã‚¦ãƒ³ãƒˆãŒé€²ã‚€ã»ã©ã€é«˜ãƒ©ãƒ³ã‚¯ã‚‚å‡ºã‚„ã™ããªã‚‹
 
         int result =  (int)Mathf.Pow((4 - stageRank), 2) + GameAdmin.Instance.waveCount;
 
