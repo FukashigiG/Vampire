@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -7,10 +7,10 @@ using UniRx;
 
 public class EnemyCtrler_Shooter : Base_EnemyCtrler
 {
-    // ‰“‹——£ËŒ‚Œ^
+    // é è·é›¢å°„æ’ƒå‹
 
-    // Update‚É‚Äg—p‚³‚ê‚é•Ï”@‚»‚êˆÈŠO‚Ì‚Æ‚±‚Å‚ÍQÆ‚Ì‚İ‚É‚µ‚Ä‚Ë
-    // ˆ—•‰‰×ŒyŒ¸‚Ì‚½‚ßŠO‚Éo‚µ‚Ä‚é‚æ
+    // Updateã«ã¦ä½¿ç”¨ã•ã‚Œã‚‹å¤‰æ•°ã€€ãã‚Œä»¥å¤–ã®ã¨ã“ã§ã¯å‚ç…§ã®ã¿ã«ã—ã¦ã­
+    // å‡¦ç†è² è·è»½æ¸›ã®ãŸã‚å¤–ã«å‡ºã—ã¦ã‚‹ã‚ˆ
     float distance;
     Vector2 dir;
 
@@ -27,19 +27,19 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
 
     protected override void HandleAI()
     {
-        // Ë’ö“à‚Å‚È‚¯‚ê‚ÎÚ‹ß‚µAË’ö“à‚È‚çUŒ‚
+        // å°„ç¨‹å†…ã§ãªã‘ã‚Œã°æ¥è¿‘ã—ã€å°„ç¨‹å†…ãªã‚‰æ”»æ’ƒ
 
-        // –Ú“I‚Ì‹——£‚Æ•ûŒü‚ğæ“¾
+        // ç›®çš„ã®è·é›¢ã¨æ–¹å‘ã‚’å–å¾—
         distance = (target.position - this.transform.position).magnitude;
         dir = (target.position - this.transform.position).normalized;
 
-        // UŒ‚‘ÎÛ‚ªË’ö“à‚È‚ç”­ËA‚»‚¤‚Å‚È‚¢‚È‚çˆÚ“®
+        // æ”»æ’ƒå¯¾è±¡ãŒå°„ç¨‹å†…ãªã‚‰ç™ºå°„ã€ãã†ã§ãªã„ãªã‚‰ç§»å‹•
         if(distance <= _enemyStatus.range_Shot)
         {
-            // UŒ‚‰Â”\ó‘Ô‚Å‚È‚¯‚ê‚Î‘Ò‹@
+            // æ”»æ’ƒå¯èƒ½çŠ¶æ…‹ã§ãªã‘ã‚Œã°å¾…æ©Ÿ
             if (! attackable) return;
 
-            // Šp“x‚ğ‹‚ß‚é
+            // è§’åº¦ã‚’æ±‚ã‚ã‚‹
             Quaternion baseRotation = Quaternion.FromToRotation(Vector2.up, dir);
 
             attackable = false;
@@ -59,39 +59,39 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
 
         switch (_enemyStatus.shotType)
         {
-            // ’PËƒ^ƒCƒv‚Ì‹““®
+            // å˜å°„ã‚¿ã‚¤ãƒ—ã®æŒ™å‹•
             case EnemyData.ShotType.OneShot:
 
                 for (int i = 0; i < _enemyStatus.num_Bullet; i++)
                 {
-                    // ’e‚Ì”‚ª‚QˆÈã‚È‚çˆÈ‰º‚ÌŒvZ‚ğÀs
+                    // å¼¾ã®æ•°ãŒï¼’ä»¥ä¸Šãªã‚‰ä»¥ä¸‹ã®è¨ˆç®—ã‚’å®Ÿè¡Œ
                     if (_enemyStatus.num_Bullet > 1)
                     {
-                        // ¡“Š‚°‚éŠp“x‚ğ‹‚ß‚é
+                        // ä»ŠæŠ•ã’ã‚‹è§’åº¦ã‚’æ±‚ã‚ã‚‹
                         angleOffset = Mathf.Lerp(_enemyStatus.divergenceAngle * -1 / 2, _enemyStatus.divergenceAngle / 2, (float)i / (_enemyStatus.num_Bullet - 1));
                     }
 
-                    // Quaternion‚É•ÏŠ·
+                    // Quaternionã«å¤‰æ›
                     Quaternion rotationOffset = Quaternion.Euler(0, 0, angleOffset);
 
-                    // ƒx[ƒX‚Ì•ûŒü‚Æ‡¬
+                    // ãƒ™ãƒ¼ã‚¹ã®æ–¹å‘ã¨åˆæˆ
                     Quaternion finalRotation = baseRotation * rotationOffset;
 
-                    // ’e‚ğ¶¬
+                    // å¼¾ã‚’ç”Ÿæˆ
                     bullet = Instantiate(_enemyStatus.bullet_Prefab, this.transform.position, finalRotation);
 
-                    // ’e‚ğ‰Šú‰»
-                    bullet.GetComponent<EP_Bullet>().Initialize(_enemyStatus.power, 0);
+                    // å¼¾ã‚’åˆæœŸåŒ–
+                    bullet.GetComponent<EP_Bullet>().Initialize(_enemyStatus.power / _enemyStatus.num_Bullet, 0);
                 }
 
                 break;
 
-            // ˜AËƒ^ƒCƒv‚Ì‹““®
+            // é€£å°„ã‚¿ã‚¤ãƒ—ã®æŒ™å‹•
             case EnemyData.ShotType.RapidFire:
 
                 Quaternion targetRotation;
 
-                // ’†SŠp“x‚©‚çƒ‰ƒ“ƒ_ƒ€‚É‚¸‚ç‚µ‚Ä’e‚ğ‚Î‚ç‚Ü‚­
+                // ä¸­å¿ƒè§’åº¦ã‹ã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã«ãšã‚‰ã—ã¦å¼¾ã‚’ã°ã‚‰ã¾ã
                 for(int i = 0; i < _enemyStatus.num_Bullet; i++)
                 {
                     angleOffset = Random.Range(_enemyStatus.divergenceAngle * -1 / 2, _enemyStatus.divergenceAngle / 2);
@@ -100,7 +100,7 @@ public class EnemyCtrler_Shooter : Base_EnemyCtrler
 
                     bullet = Instantiate(_enemyStatus.bullet_Prefab, transform.position, targetRotation);
 
-                    bullet.GetComponent<EP_Bullet>().Initialize(1, 0);
+                    bullet.GetComponent<EP_Bullet>().Initialize(_enemyStatus.power / _enemyStatus.num_Bullet, 0);
 
                     await UniTask.Delay((int)(75), cancellationToken: token);
                 }

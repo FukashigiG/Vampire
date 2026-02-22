@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
@@ -6,6 +6,8 @@ using Cysharp.Threading.Tasks;
 
 public class Base_KnifeCtrler : MonoBehaviour
 {
+    [SerializeField] TrailRenderer _trailRenderer;
+
     KnifeData_RunTime knifeData;
 
     protected float speed;
@@ -13,7 +15,7 @@ public class Base_KnifeCtrler : MonoBehaviour
     protected int power;
     protected int elementPower;
 
-    // ƒiƒCƒt‚ª‹­‰»ó‘Ô‚©‚ğ¦‚·
+    // ãƒŠã‚¤ãƒ•ãŒå¼·åŒ–çŠ¶æ…‹ã‹ã‚’ç¤ºã™
     bool isBoosted = false;
 
     bool isActive = true;
@@ -23,7 +25,7 @@ public class Base_KnifeCtrler : MonoBehaviour
 
     }
 
-    //‰Šú‰»—pƒƒ]ƒbƒg
+    //åˆæœŸåŒ–ç”¨ãƒ¡ã‚¾ãƒƒãƒˆ
     public void Initialize(float s, KnifeData_RunTime _knifeData, PlayerStatus status, bool boost = false)
     {
         knifeData = _knifeData;
@@ -42,21 +44,21 @@ public class Base_KnifeCtrler : MonoBehaviour
 
         isBoosted = boost;
 
-        // ƒu[ƒXƒgó‘Ô‚Å‚È‚¢‚È‚çA‘®«’l‚ª”¼Œ¸
+        // ãƒ–ãƒ¼ã‚¹ãƒˆçŠ¶æ…‹ã§ãªã„ãªã‚‰ã€å±æ€§å€¤ãŒåŠæ¸›
         if(!isBoosted) elementPower /= 2;
 
-        //Debug.Log($"{_knifeData.abilities.Count}ŒÂ‚ÌƒAƒrƒŠƒeƒB");
+        //Debug.Log($"{_knifeData.abilities.Count}å€‹ã®ã‚¢ãƒ“ãƒªãƒ†ã‚£");
 
-        // ƒiƒCƒt‚É“Áê”\—Í‚ªİ’è‚³‚ê‚Ä‚¢‚½ê‡‚Ìˆ—
+        // ãƒŠã‚¤ãƒ•ã«ç‰¹æ®Šèƒ½åŠ›ãŒè¨­å®šã•ã‚Œã¦ã„ãŸå ´åˆã®å‡¦ç†
         foreach (var ability in knifeData.abilities)
         {
             if (ability != null)
             {
-                // ƒu[ƒXƒgó‘Ô‚Å‚È‚¢‚È‚çA”­“®—¦”¼Œ¸
+                // ãƒ–ãƒ¼ã‚¹ãƒˆçŠ¶æ…‹ã§ãªã„ãªã‚‰ã€ç™ºå‹•ç‡åŠæ¸›
                 if (!isBoosted) ability.abilityLogic.probability_Percent /= 2;
 
-                // ƒqƒbƒg‚Ì“Áêˆ—‚ğÀs
-                // ‘Šè‚ÌƒXƒe[ƒ^ƒXA©•ª‚Ìƒ|ƒWƒVƒ‡ƒ“‚ÆƒiƒCƒtƒf[ƒ^‚ğ“n‚·
+                // ãƒ’ãƒƒãƒˆæ™‚ã®ç‰¹æ®Šå‡¦ç†ã‚’å®Ÿè¡Œ
+                // ç›¸æ‰‹ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã€è‡ªåˆ†ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã¨ãƒŠã‚¤ãƒ•ãƒ‡ãƒ¼ã‚¿ã‚’æ¸¡ã™
                 ability.OnThrown(status, this.gameObject, knifeData);
 
             }
@@ -65,13 +67,13 @@ public class Base_KnifeCtrler : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        // i‚Ş
+        // é€²ã‚€
         transform.Translate(Vector2.up * (speed * 0.2f) * Time.fixedDeltaTime);
 
-        // Šù‚ÉƒAƒNƒeƒBƒuó‘Ô‚Å‚È‚¢‚È‚çReturn
+        // æ—¢ã«ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹ã§ãªã„ãªã‚‰Return
         if (!isActive) return;
 
-        // õ–½
+        // å¯¿å‘½
         lifeTime -= Time.fixedDeltaTime;
         if(lifeTime <= 0 ) DisappearAndDestroy(false).Forget();
     }
@@ -80,7 +82,7 @@ public class Base_KnifeCtrler : MonoBehaviour
     {
         if(! isActive) return;
 
-        // ‚à‚µ“–‚½‚Á‚½‚à‚Ì‚ªƒ_ƒ[ƒW‚ğó‚¯‚é‚à‚Ì‚¾‚Á‚½‚çƒ_ƒ[ƒW‚ğ—^‚¦‚é
+        // ã‚‚ã—å½“ãŸã£ãŸã‚‚ã®ãŒãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ã‚‹ã‚‚ã®ã ã£ãŸã‚‰ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’ä¸ãˆã‚‹
         if(collision.TryGetComponent(out EnemyStatus ms))
         {
             bool shouldDestroyThis = true;
@@ -89,23 +91,23 @@ public class Base_KnifeCtrler : MonoBehaviour
 
             
 
-            // ƒiƒCƒt‚É“Áê”\—Í‚ªİ’è‚³‚ê‚Ä‚¢‚½ê‡‚Ìˆ—
+            // ãƒŠã‚¤ãƒ•ã«ç‰¹æ®Šèƒ½åŠ›ãŒè¨­å®šã•ã‚Œã¦ã„ãŸå ´åˆã®å‡¦ç†
             foreach (var ability in knifeData.abilities)
             {
                 if (ability != null)
                 {
-                    // ƒu[ƒXƒgó‘Ô‚Å‚È‚¢‚È‚çA”­“®—¦”¼Œ¸
+                    // ãƒ–ãƒ¼ã‚¹ãƒˆçŠ¶æ…‹ã§ãªã„ãªã‚‰ã€ç™ºå‹•ç‡åŠæ¸›
                     if (!isBoosted) ability.abilityLogic.probability_Percent /= 2;
 
-                    // ƒqƒbƒg‚Ì“Áêˆ—‚ğÀs
-                    // ‘Šè‚ÌƒXƒe[ƒ^ƒXA©•ª‚Ìƒ|ƒWƒVƒ‡ƒ“‚ÆƒiƒCƒtƒf[ƒ^‚ğ“n‚·
+                    // ãƒ’ãƒƒãƒˆæ™‚ã®ç‰¹æ®Šå‡¦ç†ã‚’å®Ÿè¡Œ
+                    // ç›¸æ‰‹ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã€è‡ªåˆ†ã®ãƒã‚¸ã‚·ãƒ§ãƒ³ã¨ãƒŠã‚¤ãƒ•ãƒ‡ãƒ¼ã‚¿ã‚’æ¸¡ã™
                     ability.OnHit(ms, this.gameObject, knifeData);
 
-                    // ŠÑ’Ê‚ª‹–‰Â‚³‚ê‚Ä‚¢‚é‚È‚ç
+                    // è²«é€šãŒè¨±å¯ã•ã‚Œã¦ã„ã‚‹ãªã‚‰
                     if (ability.abilityLogic.dontDestroyBullet == true) shouldDestroyThis = false;
-                    // ƒNƒŠƒeƒBƒJƒ‹‚ª‹–‰Â‚³‚ê‚Ä‚¢‚é‚È‚ç
+                    // ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ãŒè¨±å¯ã•ã‚Œã¦ã„ã‚‹ãªã‚‰
                     if (ability.abilityLogic.critical == true) is_critical = true;
-                    // –hŒä–³‹‚ª‹–‰Â‚³‚ê‚Ä‚¢‚é‚È‚ç
+                    // é˜²å¾¡ç„¡è¦–ãŒè¨±å¯ã•ã‚Œã¦ã„ã‚‹ãªã‚‰
                     if (ability.abilityLogic.ignoreDefence == true) is_ignoreDefence = true;
 
                 }
@@ -131,6 +133,8 @@ public class Base_KnifeCtrler : MonoBehaviour
         if(isHit) speed = 0;
 
         isActive = false;
+
+        _trailRenderer.emitting = false;
 
         GetComponent<Collider2D>().enabled = false;
 

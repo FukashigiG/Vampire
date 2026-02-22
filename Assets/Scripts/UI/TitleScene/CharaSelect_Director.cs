@@ -1,8 +1,9 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using TMPro;
 
 public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
 {
@@ -19,13 +20,13 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
     [SerializeField] Transform btnArea;
     [SerializeField] Transform KnifeArea;
     [SerializeField] Transform TreasureArea;
-    [SerializeField] Text txt_CharaName;
-    [SerializeField] Text txt_Element;
-    [SerializeField] Text txt_ChataAbilityName;
-    [SerializeField] Text txt_ChataAbilityDiscription;
-    [SerializeField] List<Text> txts_Status;
+    [SerializeField] TextMeshProUGUI txt_CharaName;
+    [SerializeField] TextMeshProUGUI txt_Element;
+    [SerializeField] TextMeshProUGUI txt_ChataAbilityName;
+    [SerializeField] TextMeshProUGUI txt_ChataAbilityDiscription;
+    [SerializeField] List<TextMeshProUGUI> txts_Status;
 
-    [Header("‘fŞŠ„‚è“–‚Ä")]
+    [Header("ç´ æå‰²ã‚Šå½“ã¦")]
     [SerializeField] Sprite BG_Red;
     [SerializeField] Sprite BG_Blue;
     [SerializeField] Sprite BG_Yellow;
@@ -85,22 +86,22 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
         switch (data.masteredElement)
         {
             case Element.Red:
-                txt_Element.text = "Ô";
+                txt_Element.text = "èµ¤";
                 BG_Image.sprite = BG_Red;
                 break;
 
             case Element.Blue:
-                txt_Element.text = "Â";
+                txt_Element.text = "é’";
                 BG_Image.sprite = BG_Blue;
                 break;
 
             case Element.Yellow:
-                txt_Element.text = "‰©";
+                txt_Element.text = "é»„";
                 BG_Image.sprite = BG_Yellow;
                 break;
 
             case Element.White:
-                txt_Element.text = "”’";
+                txt_Element.text = "ç™½";
                 break;
         }
 
@@ -143,10 +144,10 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
         btn_GoButtle.interactable = true;
     }
 
-    // ƒpƒlƒ‹‚ğŠJ‚­Û‚Ìˆ—
+    // ãƒ‘ãƒãƒ«ã‚’é–‹ãéš›ã®å‡¦ç†
     void OpenPanel()
     {
-        // ‰½‚à‘I‘ğó‘Ô‚Å‚È‚¯‚ê‚ÎA—§‚¿ŠG—pobj‚ğ‰B‚µAŠeƒeƒLƒXƒg‚ğ‹ó—“‚É‚µA‚Í‚¶‚ß‚éƒ{ƒ^ƒ“‚ğ–³Œø‰»
+        // ä½•ã‚‚é¸æŠçŠ¶æ…‹ã§ãªã‘ã‚Œã°ã€ç«‹ã¡çµµç”¨objã‚’éš ã—ã€å„ãƒ†ã‚­ã‚¹ãƒˆã‚’ç©ºæ¬„ã«ã—ã€ã¯ã˜ã‚ã‚‹ãƒœã‚¿ãƒ³ã‚’ç„¡åŠ¹åŒ–
         if(cullentSelected == null)
         {
             charaFullBodyArt.gameObject.SetActive(false);

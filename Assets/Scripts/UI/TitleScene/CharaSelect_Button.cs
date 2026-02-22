@@ -1,12 +1,13 @@
-using System;
+Ôªøusing System;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CharaSelect_Button : MonoBehaviour
 {
-    [SerializeField] Text txt_CharaName;
-    [SerializeField] Text txt_Element;
+    [SerializeField] TextMeshProUGUI txt_CharaName;
+    [SerializeField] TextMeshProUGUI txt_Element;
 
     Subject<PlayerCharaData> subject_OnClicked = new Subject<PlayerCharaData>();
     public IObservable<PlayerCharaData> _onClicked => subject_OnClicked;
@@ -18,23 +19,28 @@ public class CharaSelect_Button : MonoBehaviour
         switch (chara.masteredElement)
         {
             case Element.White:
-                txt_Element.text = "îí";
+                txt_Element.text = "ÁôΩ";
+                txt_Element.color = Color.white;
                 break;
 
             case Element.Blue:
-                txt_Element.text = "ê¬";
+                txt_Element.text = "Èùí";
+                txt_Element.color = Color.blue;
                 break;
 
             case Element.Red:
-                txt_Element.text = "ê‘";
+                txt_Element.text = "Ëµ§";
+                txt_Element.color = Color.red;
                 break;
 
             case Element.Yellow:
-                txt_Element.text = "â©";
+                txt_Element.text = "ÈªÑ";
+                txt_Element.color = Color.yellow;
                 break;
 
             default:
-                txt_Element.text = "îí";
+                txt_Element.text = "ÁôΩ";
+                txt_Element.color = Color.white;
                 break;
         }
 

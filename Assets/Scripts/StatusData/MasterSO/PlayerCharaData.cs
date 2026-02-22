@@ -1,17 +1,17 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewPlayerCharaData", menuName = "Game Data/Player Chara Data")]
 public class PlayerCharaData : ScriptableObject
 {
-    // ƒvƒŒƒCƒ„[ƒLƒƒƒ‰ƒNƒ^[‚ÌŠeƒXƒe[ƒ^ƒX‚ğ‚Ü‚Æ‚ß‚½‚à‚Ì
-    // ‚±‚ÌƒXƒNƒŠƒvƒg‚ÍUnityƒGƒfƒBƒ^ã‚É“o˜^‚·‚é‚½‚ß‚Ì‚à‚Ì‚Å‚ ‚èAƒQ[ƒ€’†‚Å‚Í_RunTime‚ª‚Â‚¢‚Ä‚é‚à‚Ì‚ğˆµ‚¤
-    // ‚±‚ê‚ç‚Ì•Ï”‚ÍŠO•”‚©‚ç‚ÌQÆ‚ÆAƒCƒ“ƒXƒyƒNƒ^[ã‚Å‚Ì‘‚«Š·‚¦‚ªo—ˆ‚é
+    // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®å„ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã¾ã¨ã‚ãŸã‚‚ã®
+    // ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¯Unityã‚¨ãƒ‡ã‚£ã‚¿ä¸Šã«ç™»éŒ²ã™ã‚‹ãŸã‚ã®ã‚‚ã®ã§ã‚ã‚Šã€ã‚²ãƒ¼ãƒ ä¸­ã§ã¯_RunTimeãŒã¤ã„ã¦ã‚‹ã‚‚ã®ã‚’æ‰±ã†
+    // ã“ã‚Œã‚‰ã®å¤‰æ•°ã¯å¤–éƒ¨ã‹ã‚‰ã®å‚ç…§ã¨ã€ã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ãƒ¼ä¸Šã§ã®æ›¸ãæ›ãˆãŒå‡ºæ¥ã‚‹
 
     [field: SerializeField] public Sprite sprite { get; private set; }
 
     [field: SerializeField] public string _name { get; private set; }
 
-    [Header("í“¬ƒXƒe[ƒ^ƒXİ’è")]
+    [Header("æˆ¦é—˜ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è¨­å®š")]
     [field: SerializeField] public int hp { get; private set; }
     [field: SerializeField] public int power { get; private set; }
     [field: SerializeField] public int defense { get; private set; }
@@ -20,17 +20,18 @@ public class PlayerCharaData : ScriptableObject
     [field: SerializeField] public int eyeSight { get; private set; }
     [field: SerializeField] public int limit_DrawKnives { get; private set; }
 
-    // ‰ŠúŠƒiƒCƒt
+    // åˆæœŸæ‰€æŒãƒŠã‚¤ãƒ•
     [field: SerializeField] public KnifeData[] initialKnives { get; private set; }
-    // ‰ŠúŠ”é•ó
+    // åˆæœŸæ‰€æŒç§˜å®
     [field: SerializeField] public TreasureData[] initialTreasures { get; private set; }
-    // ƒLƒƒƒ‰ƒNƒ^[ƒAƒrƒŠƒeƒB
+    // ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¢ãƒ“ãƒªãƒ†ã‚£
     [field: SerializeField] public Base_P_CharaAbility charaAbility { get; private set; }
-    // “¾ˆÓ‘®«
+    // å¾—æ„å±æ€§
     [field: SerializeField] public Element masteredElement { get; private set; }
 
     [field: SerializeField] public GameObject prefab { get; private set; }
 
-    [Header("‚»‚Ì‘¼")]
+    [Header("ãã®ä»–")]
     [field: SerializeField] public Sprite image_FullBody { get; private set; }
+    [field: SerializeField] public Sprite image_CutInArt { get; private set; }
 }

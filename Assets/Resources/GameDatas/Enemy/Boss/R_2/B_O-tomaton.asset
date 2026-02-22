@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
   m_Name: B_O-tomaton
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: f3a964194160e724db7a797dc01a7871, type: 3}
+  <sprite>k__BackingField: {fileID: 4061457711541116613, guid: 420f08d19443b524f884d4d043023e73, type: 3}
   <_name>k__BackingField: "\u8D8A\u4EBA\u77E5\u306E\u30AA\u30FC\u30C8\u30DE\u30BF"
-  <description>k__BackingField: 
+  <description>k__BackingField: "\u30A2\u30EA\u30AC\u30C8\u30A6,,,\u30BD\u30B7\u30C6,,,\u30B5\u30E8\u30CA\u30E9"
   <rank>k__BackingField: 2
   <actType>k__BackingField: 3
   <hp>k__BackingField: 5000

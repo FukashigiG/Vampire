@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
   m_Name: B_SandWorm
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: f3a964194160e724db7a797dc01a7871, type: 3}
-  <_name>k__BackingField: "\u30B5\u30F3\u30C9\u30EF\u30FC\u30E0"
-  <description>k__BackingField: 
+  <sprite>k__BackingField: {fileID: -8807061766895651062, guid: ca35cc90f84062d45958c06500f00144, type: 3}
+  <_name>k__BackingField: "\u30DE\u30DF\u30FC"
+  <description>k__BackingField: "\u5F31\u70B9\u306F\u6E7F\u6C17\u3068\u6025\u306A\u51FA\u8CBB"
   <rank>k__BackingField: 1
   <actType>k__BackingField: 3
   <hp>k__BackingField: 2000
@@ -29,7 +29,6 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 0}
   _fieldLogic: {fileID: 0}
   _radius_FieldSize: 0
-  <amount_EXP>k__BackingField: 0
   <statusAbilities>k__BackingField:
   - {fileID: 11400000, guid: 6a9722d8d25f74c4c86416d92100bf0c, type: 2}
   dropItems:

@@ -15,6 +15,8 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
     [SerializeField] TextMeshProUGUI txt_StageName;
     [SerializeField] TextMeshProUGUI txt_StageRank;
 
+    [SerializeField] Animator _animator;
+
     List<StageData> stages = new List<StageData>();
 
     StageData currentSelected = null;
@@ -58,6 +60,8 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
         }
 
         currentSelected = null ;
+
+        _animator.SetTrigger("Anim");
     }
 
     void ShowDiscription(StageData data)

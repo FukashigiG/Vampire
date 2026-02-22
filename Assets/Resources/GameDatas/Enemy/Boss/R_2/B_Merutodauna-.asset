@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
   m_Name: B_Merutodauna-
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: f3a964194160e724db7a797dc01a7871, type: 3}
+  <sprite>k__BackingField: {fileID: -6228486163732137341, guid: 52e3ddc912e41b6449c20254cbbea129, type: 3}
   <_name>k__BackingField: "\u7D76\u71B1\u306E\u30E1\u30EB\u30C8\u30C0\u30A6\u30CA\u30FC"
   <description>k__BackingField: "\u706B\u5C71\u306E\u7CBE\u304C\u5F62\u3092\u6210\u3057\u305F\u59FF\n\u672C\u4EBA\u306F\u610F\u5916\u3068\u51B7\u9759\u306A\u6027\u683C"
   <rank>k__BackingField: 2

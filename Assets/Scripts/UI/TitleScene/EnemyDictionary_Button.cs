@@ -1,11 +1,12 @@
-using System;
+﻿using System;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EnemyDictionary_Button : MonoBehaviour
 {
-    [SerializeField] Text txt_Btn;
+    [SerializeField] TextMeshProUGUI txt_Btn;
 
     EnemyData enemyData;
 

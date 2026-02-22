@@ -1,11 +1,12 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI_ShowPlayerItemInfo : SingletonMono<UI_ShowPlayerItemInfo>
 {
-    // •ŠíE”é•óŠl“¾”­“®A‚»‚Ì“à—e‚ğ•\¦‚·‚éUI—pƒXƒNƒŠƒvƒg
+    // æ­¦å™¨ãƒ»ç§˜å®ç²å¾—ç™ºå‹•æ™‚ã€ãã®å†…å®¹ã‚’è¡¨ç¤ºã™ã‚‹UIç”¨ã‚¹ã‚¯ãƒªãƒ—ãƒˆ
 
     [field: SerializeField] public GameObject body_Panel { get; private set; }
 
@@ -15,19 +16,19 @@ public class UI_ShowPlayerItemInfo : SingletonMono<UI_ShowPlayerItemInfo>
 
     [SerializeField] Image icon;
 
-    [SerializeField] Text txt_Type;
-    [SerializeField] Text txt_ItemName;
-    [SerializeField] Text txt_Rareity;
-    [SerializeField] Text txt_Element;
+    [SerializeField] TextMeshProUGUI txt_Type;
+    [SerializeField] TextMeshProUGUI txt_ItemName;
+    [SerializeField] TextMeshProUGUI txt_Rareity;
+    [SerializeField] TextMeshProUGUI txt_Element;
 
     [SerializeField] GameObject descriptionArea_Knife;
-    [SerializeField] Text txt_BaseATK_Knife;
-    [SerializeField] Text txt_ElementATK_Knife;
-    [SerializeField] Text txt_Multiple_Knife;
+    [SerializeField] TextMeshProUGUI txt_BaseATK_Knife;
+    [SerializeField] TextMeshProUGUI txt_ElementATK_Knife;
+    [SerializeField] TextMeshProUGUI txt_Multiple_Knife;
     [SerializeField] Icon_KnifeAbility[] KA_Icons;
 
     [SerializeField] GameObject descriptionArea_Treasure;
-    [SerializeField] Text description_Treasure;
+    [SerializeField] TextMeshProUGUI description_Treasure;
     [SerializeField] Text flavorTxt_Treasure;
 
     enum ItemType { knife, treasure }
@@ -100,32 +101,32 @@ public class UI_ShowPlayerItemInfo : SingletonMono<UI_ShowPlayerItemInfo>
         switch (item.element)
         {
             case Element.White:
-                txt_Element.text = "”’";
+                txt_Element.text = "ç™½";
                 break;
 
             case Element.Red:
-                txt_Element.text = "Ô";
+                txt_Element.text = "èµ¤";
                 break;
 
             case Element.Blue:
-                txt_Element.text = "Â";
+                txt_Element.text = "é’";
                 break;
 
             case Element.Yellow:
-                txt_Element.text = "‰©";
+                txt_Element.text = "é»„";
                 break;
         }
 
-        txt_Rareity.text = "ƒ‰ƒ“ƒNF" + item.rank.ToString();
+        txt_Rareity.text = "ãƒ©ãƒ³ã‚¯ï¼š" + item.rank.ToString();
 
         if (item is KnifeData knife)
         {
-            txt_Type.text = "ƒiƒCƒt";
+            txt_Type.text = "ãƒŠã‚¤ãƒ•";
 
             descriptionArea_Knife.SetActive(true);
 
-            txt_BaseATK_Knife.text = $"Šî‘bUŒ‚—ÍF{knife.power}";
-            txt_ElementATK_Knife.text = $"‘®«UŒ‚—ÍF{knife.elementPower}";
+            txt_BaseATK_Knife.text = $"åŸºç¤æ”»æ’ƒåŠ›ï¼š{knife.power}";
+            txt_ElementATK_Knife.text = $"å±æ€§æ”»æ’ƒåŠ›ï¼š{knife.elementPower}";
             txt_Multiple_Knife.text = "";
 
             for (int i = 0; i < knife.abilities.Count; i++)
@@ -135,13 +136,13 @@ public class UI_ShowPlayerItemInfo : SingletonMono<UI_ShowPlayerItemInfo>
         } 
         else if (item is KnifeData_RunTime runtimeData)
         {
-            txt_Type.text = "ƒiƒCƒt";
+            txt_Type.text = "ãƒŠã‚¤ãƒ•";
 
             descriptionArea_Knife.SetActive(true);
 
-            txt_BaseATK_Knife.text = $"Šî‘bUŒ‚—ÍF{runtimeData.power}";
-            txt_ElementATK_Knife.text = $"‘®«UŒ‚—ÍF{runtimeData.elementPower}";
-            txt_Multiple_Knife.text = $"d•¡“xF{runtimeData.count_Multiple}";
+            txt_BaseATK_Knife.text = $"åŸºç¤æ”»æ’ƒåŠ›ï¼š{runtimeData.power}";
+            txt_ElementATK_Knife.text = $"å±æ€§æ”»æ’ƒåŠ›ï¼š{runtimeData.elementPower}";
+            txt_Multiple_Knife.text = $"é‡è¤‡åº¦ï¼š{runtimeData.count_Multiple}";
 
             for (int i = 0; i < runtimeData.abilities.Count; i++)
             {
@@ -150,7 +151,7 @@ public class UI_ShowPlayerItemInfo : SingletonMono<UI_ShowPlayerItemInfo>
         }
         else if (item is TreasureData treasure)
         {
-            txt_Type.text = "”é•ó";
+            txt_Type.text = "ç§˜å®";
 
             descriptionArea_Treasure.SetActive(true);
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7342868173473937965}
   - component: {fileID: 676036855053768660}
   - component: {fileID: 5002071975468161383}
+  - component: {fileID: 1773017631355667467}
   m_Layer: 5
   m_Name: CharaAbility_CutIn
   m_TagString: Untagged
@@ -113,6 +114,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1773017631355667467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200719116859826769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2d96f59a24d1c469f67a2340c00b8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharaAbilityCutIn
+  _animator: {fileID: 5002071975468161383}
+  charaIllust: {fileID: 2850018761821438068}
 --- !u!1 &2399978806720835592
 GameObject:
   m_ObjectHideFlags: 0

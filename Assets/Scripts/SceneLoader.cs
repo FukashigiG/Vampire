@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,8 +14,8 @@ public class SceneLoader : SM_DontDestOnLand<SceneLoader>
     {
         Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, Vector2.zero);
 
-        // ƒtƒF[ƒ_[‚ğ”ñ”j‰óƒLƒƒƒ“ƒoƒX‚É¶¬
-        GameObject x = Instantiate(fader_Prefab, screenPoint, Quaternion.identity, DontDestroiedCanvas.Instance.transform);
+        // ãƒ•ã‚§ãƒ¼ãƒ€ãƒ¼ã‚’éç ´å£Šã‚­ãƒ£ãƒ³ãƒã‚¹ã«ç”Ÿæˆ
+        GameObject x = Instantiate(fader_Prefab, DontDestroiedCanvas.Instance.transform);
 
         var y = x.GetComponent<UI_FadeAnimator>();
 

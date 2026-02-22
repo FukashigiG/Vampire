@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
   m_Name: B_Wizard
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: f3a964194160e724db7a797dc01a7871, type: 3}
+  <sprite>k__BackingField: {fileID: -6607007561429109247, guid: 9d606bb5e45609b48bb64032d22a4d6f, type: 3}
   <_name>k__BackingField: "\u8F1D\u9280\u306E\u30A6\u30A3\u30B6\u30FC\u30C9"
   <description>k__BackingField: "\u8AB0\u306B\u3082\u6253\u3061\u660E\u3051\u305A\u60A9\u3080\u306E\u3082\u3001\u3082\u3046\u3084\u3081\u305F"
   <rank>k__BackingField: 2

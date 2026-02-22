@@ -1,10 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 using Random = UnityEngine.Random;
+using Cysharp.Threading.Tasks;
 
 public class DamageTxtCtrler : MonoBehaviour
 {
@@ -19,15 +20,21 @@ public class DamageTxtCtrler : MonoBehaviour
         txt.color = color;
         txt.text = dmg.ToString();
 
-        transform.localScale = new Vector3(2.4f, 2.4f, 1f);
-
-        transform.DOScale(Vector3.one, 0.4f);
+        AnimationTask().Forget();
     }
 
-    private void Update()
+    async UniTask AnimationTask()
     {
-        life -= Time.deltaTime;
+        var token = this.GetCancellationTokenOnDestroy();
 
-        if (life < 0) Destroy(gameObject);
+        transform.localScale = new Vector3(2.4f, 2.4f, 1f);
+
+        await transform.DOScale(Vector3.one, 0.4f).ToUniTask(TweenCancelBehaviour.KillAndCancelAwait, token);
+
+        await UniTask.Delay((int)((life - 0.4f) * 1000), cancellationToken: token);
+
+        await txt.DOFade(0, 0.25f).ToUniTask(TweenCancelBehaviour.KillAndCancelAwait, token);
+
+        Destroy(this.gameObject);
     }
 }

@@ -420,7 +420,7 @@ MonoBehaviour:
   m_text: "\u30DC\u30B9\u306E\u540D\u524D\u3042\u3042\u3042\u3042\u3042\u3042\u3042"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 11cd852e70dd3e94898df2f31f70a83a, type: 2}
-  m_sharedMaterial: {fileID: -1968266941133766045, guid: 11cd852e70dd3e94898df2f31f70a83a, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 3677dd58223edc344a14980206e809e6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

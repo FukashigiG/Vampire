@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: demoChara_R
   m_EditorClassIdentifier: 
   <sprite>k__BackingField: {fileID: 0}
-  <_name>k__BackingField: "\u4EEE\u30AD\u30E3\u30E9_\u8D64"
-  <hp>k__BackingField: 200
-  <power>k__BackingField: 40
+  <_name>k__BackingField: "\u30D2\u30C3\u30C8\u30DE\u30F3\u7AF9\u7530"
+  <hp>k__BackingField: 212
+  <power>k__BackingField: 47
   <defense>k__BackingField: 40
   <moveSpeed>k__BackingField: 8
   <luck>k__BackingField: 0
@@ -29,4 +29,5 @@ MonoBehaviour:
   <charaAbility>k__BackingField: {fileID: 11400000, guid: 1c70d173b21e34e42bcb894bc780e760, type: 2}
   <masteredElement>k__BackingField: 1
   <prefab>k__BackingField: {fileID: 0}
-  <image_FullBody>k__BackingField: {fileID: -7773127267710545088, guid: 5af2d42ef00d6da4a82f784e6c45690e, type: 3}
+  <image_FullBody>k__BackingField: {fileID: 4109174229421017452, guid: f3c02031a8f1f0245b32ed48596c9259, type: 3}
+  <image_CutInArt>k__BackingField: {fileID: -553732659439998098, guid: 13ad19d43062a974890d35aea174d055, type: 3}

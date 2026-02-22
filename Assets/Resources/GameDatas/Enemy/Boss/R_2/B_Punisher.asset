@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
   m_Name: B_Punisher
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: 21300000, guid: f3a964194160e724db7a797dc01a7871, type: 3}
+  <sprite>k__BackingField: {fileID: -622816754384773952, guid: 156cb0d6ae92b4a47a660b7dd29ace82, type: 3}
   <_name>k__BackingField: "\u523A\u6148\u7344\u306E\u30D1\u30CB\u30C3\u30B7\u30E3\u30FC"
   <description>k__BackingField: "\u4ED5\u4E8B\u306B\u3084\u308A\u304C\u3044\u3092\u6C42\u3081\u308B\u30BF\u30A4\u30D7"
   <rank>k__BackingField: 2

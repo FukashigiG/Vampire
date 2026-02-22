@@ -1,10 +1,11 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using System.Collections.Generic;
 using System;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using UniRx;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class EnemyDictionary_Director : SingletonMono<EnemyDictionary_Director>
@@ -15,24 +16,25 @@ public class EnemyDictionary_Director : SingletonMono<EnemyDictionary_Director>
 
     [SerializeField] Button btn_Close;
     [SerializeField] Transform btnArea;
-    [SerializeField] Text txt_EnemyName;
-    [SerializeField] Text txt_EnemyType;
-    [SerializeField] Text txt_EnemyDiscription;
-    [SerializeField] List<Text> txts_Status;
+    [SerializeField] TextMeshProUGUI txt_EnemyName;
+    [SerializeField] TextMeshProUGUI txt_EnemyType;
+    [SerializeField] TextMeshProUGUI txt_EnemyDiscription;
+    [SerializeField] Image image_Enemy;
+    [SerializeField] List<TextMeshProUGUI> txts_Status;
     [SerializeField] List<Icon_ESA> icons_ESA;
 
     List<EnemyData> enemies = new List<EnemyData>();
 
     public void Initialize(Button btn_Open)
     {
-        // ‰æ–ÊŠJ•Â“o˜^
+        // ç”»é¢é–‹é–‰ç™»éŒ²
         btn_Open.onClick.AddListener(OpenPanel);
         btn_Close.onClick.AddListener(ClosePanel);
 
-        // ‘Sƒf[ƒ^æ“¾
+        // å…¨ãƒ‡ãƒ¼ã‚¿å–å¾—
         enemies = Resources.LoadAll<EnemyData>("GameDatas/Enemy").ToList();
 
-        // ‚»‚ê‚¼‚ê‚Ìƒf[ƒ^‚Ì•ª‚¾‚¯ƒ{ƒ^ƒ“‚ğ—pˆÓA‰Šú‰»
+        // ãã‚Œãã‚Œã®ãƒ‡ãƒ¼ã‚¿ã®åˆ†ã ã‘ãƒœã‚¿ãƒ³ã‚’ç”¨æ„ã€åˆæœŸåŒ–
         foreach (EnemyData enemy in enemies)
         {
             var obj =  Instantiate(prefab_Btn, btnArea);
@@ -50,7 +52,7 @@ public class EnemyDictionary_Director : SingletonMono<EnemyDictionary_Director>
 
     }
 
-    // “n‚³‚ê‚½“G‚Ìî•ñ‚ğ•\¦
+    // æ¸¡ã•ã‚ŒãŸæ•µã®æƒ…å ±ã‚’è¡¨ç¤º
     void SetInfo(EnemyData data)
     {
         foreach (var icon in icons_ESA)
@@ -63,34 +65,48 @@ public class EnemyDictionary_Director : SingletonMono<EnemyDictionary_Director>
         switch (data.actType)
         {
             case EnemyData.EnemyActType.Infight:
-                txt_EnemyType.text = "ƒCƒ“ƒtƒ@ƒCƒ^[";
+                txt_EnemyType.text = "ã‚¤ãƒ³ãƒ•ã‚¡ã‚¤ã‚¿ãƒ¼";
                 break;
 
             case EnemyData.EnemyActType.Shooter:
-                txt_EnemyType.text = "ƒVƒ…[ƒ^[";
+                txt_EnemyType.text = "ã‚·ãƒ¥ãƒ¼ã‚¿ãƒ¼";
                 break;
 
             case EnemyData.EnemyActType.BigBoss:
-                txt_EnemyType.text = "ƒrƒbƒOƒ{ƒX";
+                txt_EnemyType.text = "ãƒ“ãƒƒã‚°ãƒœã‚¹";
                 break;
         }
 
         txt_EnemyDiscription.text = data.description;
 
         txts_Status[0].text = "HP : " + data.hp;
-        txts_Status[1].text = "UŒ‚—Í : " + data.power;
-        txts_Status[2].text = "–hŒä—Í : " + data.defense;
-        txts_Status[3].text = "ˆÚ“®‘¬“x : " + data.moveSpeed;
+        txts_Status[1].text = "æ”»æ’ƒåŠ› : " + data.power;
+        txts_Status[2].text = "é˜²å¾¡åŠ› : " + data.defense;
+        txts_Status[3].text = "ç§»å‹•é€Ÿåº¦ : " + data.moveSpeed;
 
         for (int i = 0; i < data.statusAbilities.Count; i++)
         {
             icons_ESA[i].Initialize(data.statusAbilities[i]);
         }
+
+        image_Enemy.gameObject.SetActive(true);
+
+        image_Enemy.sprite = data.sprite;
     }
 
     void OpenPanel()
     {
         bodyPanel.SetActive(true);
+
+        txt_EnemyName.text = "";
+        txt_EnemyType.text = "";
+        txt_EnemyDiscription.text = "";
+        txts_Status[0].text = "HP : ";
+        txts_Status[1].text = "æ”»æ’ƒåŠ› : ";
+        txts_Status[2].text = "é˜²å¾¡åŠ› : ";
+        txts_Status[3].text = "ç§»å‹•é€Ÿåº¦ : ";
+
+        image_Enemy.gameObject.SetActive(false);
     }
 
     void ClosePanel()

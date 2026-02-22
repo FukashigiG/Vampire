@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,32 +17,30 @@ public class PlayerAttack : MonoBehaviour
 
     [SerializeField] GameObject fx_Throw;
 
-    [SerializeField] GameObject CutInUI;
-
     PlayerStatus status;
 
     public GameObject targetEnemy {  get; private set; }
 
-    // ‚¢‚í‚ä‚éèD
+    // ã„ã‚ã‚†ã‚‹æ‰‹æœ­
     ReactiveCollection<KnifeData_RunTime> hand = new ReactiveCollection<KnifeData_RunTime>();
     public IReadOnlyReactiveCollection<KnifeData_RunTime> hand_RC => hand;
 
     public Base_P_CharaAbility charaAbility {  get; private set; }
 
-    // ƒAƒrƒŠƒeƒBƒ`ƒƒ[ƒW—Ê
+    // ã‚¢ãƒ“ãƒªãƒ†ã‚£ãƒãƒ£ãƒ¼ã‚¸é‡
     ReactiveProperty<int> charaAbilityChargeValue = new ReactiveProperty<int>(0);
-    // ª‚ÌQÆ•”•ªŒöŠJ—p
+    // â†‘ã®å‚ç…§éƒ¨åˆ†å…¬é–‹ç”¨
     public IReadOnlyReactiveProperty<int> abilityChargeValue => charaAbilityChargeValue;
 
-    // ƒiƒCƒt‰Šú‰»’¼‘O‚É”­sA”é•óŒø‰Ê‚Å•ÒW‚Å‚«‚é‚æ‚¤‚É
+    // ãƒŠã‚¤ãƒ•åˆæœŸåŒ–ç›´å‰ã«ç™ºè¡Œã€ç§˜å®åŠ¹æœã§ç·¨é›†ã§ãã‚‹ã‚ˆã†ã«
     Subject<KnifeData_RunTime> subject_OnThrowKnife = new Subject<KnifeData_RunTime>();
     public IObservable<KnifeData_RunTime> onThrowKnife => subject_OnThrowKnife;
 
-    // ƒŠƒ[ƒh‚É”­sA
+    // ãƒªãƒ­ãƒ¼ãƒ‰æ™‚ã«ç™ºè¡Œã€
     Subject<ReactiveCollection<KnifeData_RunTime>> subject_OnReload = new();
     public IObservable<ReactiveCollection<KnifeData_RunTime>> onReload => subject_OnReload;
 
-    // UŒ‚ƒTƒCƒNƒ‹—pƒg[ƒNƒ“ƒ\[ƒX
+    // æ”»æ’ƒã‚µã‚¤ã‚¯ãƒ«ç”¨ãƒˆãƒ¼ã‚¯ãƒ³ã‚½ãƒ¼ã‚¹
     CancellationTokenSource cancellationTokenSource;
 
     public void Initialize(PlayerStatus _status, Base_P_CharaAbility ability)
@@ -71,7 +69,7 @@ public class PlayerAttack : MonoBehaviour
         targetEnemy = FindEnemy();
     }
 
-    // UŒ‚ƒTƒCƒNƒ‹‚ğŠJnA’â~andÄŠJ
+    // æ”»æ’ƒã‚µã‚¤ã‚¯ãƒ«ã‚’é–‹å§‹ã€åœæ­¢andå†é–‹
     public void StartAttakLoop()
     {
         if(cancellationTokenSource != null)
@@ -82,7 +80,7 @@ public class PlayerAttack : MonoBehaviour
 
         cancellationTokenSource = new CancellationTokenSource();
 
-        // OnDestroyƒg[ƒNƒ“‚ÆŒ³X‚ ‚éƒ\[ƒX‚Ìƒg[ƒNƒ“‚Ì‡¬H
+        // OnDestroyãƒˆãƒ¼ã‚¯ãƒ³ã¨å…ƒã€…ã‚ã‚‹ã‚½ãƒ¼ã‚¹ã®ãƒˆãƒ¼ã‚¯ãƒ³ã®åˆæˆï¼Ÿ
         var linkedToken = CancellationTokenSource.CreateLinkedTokenSource(
             cancellationTokenSource.Token,
             this.GetCancellationTokenOnDestroy()
@@ -98,7 +96,7 @@ public class PlayerAttack : MonoBehaviour
         {
             while (true)
             {
-                // ƒŠƒ[ƒhAUŒ‚‚Ì‡ŠÔ‚ÉƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ä‚È‚¢‚©Šm”F
+                // ãƒªãƒ­ãƒ¼ãƒ‰ã€æ”»æ’ƒã®åˆé–“ã«ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¦ãªã„ã‹ç¢ºèª
 
                 token.ThrowIfCancellationRequested();
 
@@ -111,37 +109,37 @@ public class PlayerAttack : MonoBehaviour
         }
         catch (OperationCanceledException)
         {
-            // ƒLƒƒƒ“ƒZƒ‹‚Í³íI—¹‚È‚Ì‚Å‰½‚à‚µ‚È‚¢
+            // ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ™‚ã¯æ­£å¸¸çµ‚äº†ãªã®ã§ä½•ã‚‚ã—ãªã„
         }
         catch (System.Exception e)
         {
-            // yd—vzƒGƒ‰[Œ´ˆö‚ğ“Á’è‚·‚é‚½‚ß‚ÉƒƒO‚ğo‚·
+            // ã€é‡è¦ã€‘ã‚¨ãƒ©ãƒ¼åŸå› ã‚’ç‰¹å®šã™ã‚‹ãŸã‚ã«ãƒ­ã‚°ã‚’å‡ºã™
             Debug.LogException(e);
 
-            // ƒGƒ‰[‚Åƒ‹[ƒv‚ª~‚Ü‚é‚Æ¢‚éê‡‚ÍA‚±‚±‚ÅÄ‹AŒÄ‚Ño‚µ‚â•œ‹Aˆ—‚ª•K—v‚Å‚·‚ªA
-            // ‚Ü‚¸‚ÍƒƒO‚ğo‚µ‚ÄŒ´ˆö‚ğ“Ë‚«~‚ß‚é‚Ì‚ªæŒˆ‚Å‚·B
+            // ã‚¨ãƒ©ãƒ¼ã§ãƒ«ãƒ¼ãƒ—ãŒæ­¢ã¾ã‚‹ã¨å›°ã‚‹å ´åˆã¯ã€ã“ã“ã§å†å¸°å‘¼ã³å‡ºã—ã‚„å¾©å¸°å‡¦ç†ãŒå¿…è¦ã§ã™ãŒã€
+            // ã¾ãšã¯ãƒ­ã‚°ã‚’å‡ºã—ã¦åŸå› ã‚’çªãæ­¢ã‚ã‚‹ã®ãŒå…ˆæ±ºã§ã™ã€‚
         }
     }
 
     async UniTask Reload(CancellationToken token)
     {
-        // ŠO•”‚Éawait‚Å—˜—p‚³‚ê‚Ä‚¢‚é‚±‚ÌŠÖ”‚Å‚ÍAtry{}catch{}‚ğg‚Á‚Ä‚Í‚È‚ç‚È‚¢iƒLƒƒƒ“ƒZƒ‹‚ªŠO•”‚É“`‚í‚ç‚È‚­‚È‚Á‚Ä‚µ‚Ü‚¤‚½‚ßj
+        // å¤–éƒ¨ã«awaitã§åˆ©ç”¨ã•ã‚Œã¦ã„ã‚‹ã“ã®é–¢æ•°ã§ã¯ã€try{}catch{}ã‚’ä½¿ã£ã¦ã¯ãªã‚‰ãªã„ï¼ˆã‚­ãƒ£ãƒ³ã‚»ãƒ«ãŒå¤–éƒ¨ã«ä¼ã‚ã‚‰ãªããªã£ã¦ã—ã¾ã†ãŸã‚ï¼‰
 
-        // ‚Ü‚¸è‚¿‚ğ‹ó‚É‚·‚é
+        // ã¾ãšæ‰‹æŒã¡ã‚’ç©ºã«ã™ã‚‹
         hand.Clear();
 
         await UniTask.Delay((int)(status.time_ReloadKnives * 1000 / 2), cancellationToken: token);
 
         List<KnifeData_RunTime> drawnKnives = status.inventory.runtimeKnives
-                            .OrderBy(x => UnityEngine.Random.value)// ‡”Ô‚ğƒVƒƒƒbƒtƒ‹‚µ‚ÄQÆiŒ³‚ÌƒŠƒXƒg‚ğ‚¢‚¶‚é‚í‚¯‚Å‚Í‚È‚¢j
-                            .Take(status.limit_DrawKnife)// ã‚©‚çãŒÀ‚Ü‚Å
+                            .OrderBy(x => UnityEngine.Random.value)// é †ç•ªã‚’ã‚·ãƒ£ãƒƒãƒ•ãƒ«ã—ã¦å‚ç…§ï¼ˆå…ƒã®ãƒªã‚¹ãƒˆã‚’ã„ã˜ã‚‹ã‚ã‘ã§ã¯ãªã„ï¼‰
+                            .Take(status.limit_DrawKnife)// ä¸Šã‹ã‚‰ä¸Šé™ã¾ã§
                             .ToList();
 
         SetHand(drawnKnives);
 
-        //Debug.Log($"ƒiƒCƒt‚Í{hand.Count}–{");
+        //Debug.Log($"ãƒŠã‚¤ãƒ•ã¯{hand.Count}æœ¬");
 
-        // w“Çæ‚É‚æ‚éŒŸ’mA‰î“ü‚Ì‚½‚ß‚Ì”­s
+        // è³¼èª­å…ˆã«ã‚ˆã‚‹æ¤œçŸ¥ã€ä»‹å…¥ã®ãŸã‚ã®ç™ºè¡Œ
         subject_OnReload.OnNext(hand);
 
         await UniTask.Delay((int)(status.time_ReloadKnives * 1000 / 2), cancellationToken: token);
@@ -151,85 +149,85 @@ public class PlayerAttack : MonoBehaviour
     {
         while(hand.Count > 0)
         {
-            // UŒ‚”ÍˆÍ“à‚É“G‚ªŒ»‚ê‚é,‚©‚Âs“®‰Â”\‚É‚È‚é‚Ü‚Å‘Ò‚Â
+            // æ”»æ’ƒç¯„å›²å†…ã«æ•µãŒç¾ã‚Œã‚‹,ã‹ã¤è¡Œå‹•å¯èƒ½ã«ãªã‚‹ã¾ã§å¾…ã¤
             await UniTask.WaitUntil(() => targetEnemy != null && status.actable, cancellationToken: token);
 
-            // ‰½‚©‚µ‚ç‚Ì——R‚ÅèD‚ª–³‚©‚Á‚½‚çƒ‹[ƒv‚ğ”²‚¯‚ÄƒŠƒ[ƒh‚Ö
+            // ä½•ã‹ã—ã‚‰ã®ç†ç”±ã§æ‰‹æœ­ãŒç„¡ã‹ã£ãŸã‚‰ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã¦ãƒªãƒ­ãƒ¼ãƒ‰ã¸
             if (hand.Count == 0)
             {
                 break; 
             }
 
-            // hand‚Ìæ“ª‚ğæ“¾
+            // handã®å…ˆé ­ã‚’å–å¾—
             var knife = hand[0];
 
-            // hand‚Ìæ“ª‚ğíœ ‘‚ß‚ÉÏ‚Ü‚¹‚Ä‚¨‚­
+            // handã®å…ˆé ­ã‚’å‰Šé™¤ æ—©ã‚ã«æ¸ˆã¾ã›ã¦ãŠã
             hand.RemoveAt(0);
 
-            // UŒ‚‘ÎÛ‚Ì•ûŒü‚ğVec2Œ^‚Åæ“¾
+            // æ”»æ’ƒå¯¾è±¡ã®æ–¹å‘ã‚’Vec2å‹ã§å–å¾—
             Vector2 dir = (targetEnemy.transform.position - this.transform.position).normalized;
 
-            // ‚»‚ê‚ğQuaternion‚É•ÏŠ·
+            // ãã‚Œã‚’Quaternionã«å¤‰æ›
             Quaternion baseRotation = Quaternion.FromToRotation(Vector2.up, dir);
 
             ThrowKnife(knife, baseRotation);
 
             Instantiate(fx_Throw, transform.position + (Vector3)dir, baseRotation);
 
-            // ƒXƒe[ƒ^ƒX‚Ì‚Â”’l‚Ì•ª‚¾‚¯‘Ò‹@
+            // ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã®æŒã¤æ•°å€¤ã®åˆ†ã ã‘å¾…æ©Ÿ
             await UniTask.Delay((int)(status.coolTime_ThrowKnife * 1000), cancellationToken: token);
         }
     }
 
     public void ThrowKnife(KnifeData_RunTime knife, Quaternion baseRotation)
     {
-        // w“Çæ‚É‚æ‚é‰î“ü‚Ì‚½‚ß‚Ì”­s
+        // è³¼èª­å…ˆã«ã‚ˆã‚‹ä»‹å…¥ã®ãŸã‚ã®ç™ºè¡Œ
         subject_OnThrowKnife.OnNext(knife);
 
         int count_multiKnife = knife.count_Multiple;
 
-        // ƒiƒCƒtd•¡“x‚¾‚¯ƒIƒuƒWƒFƒNƒg‚ğ¶¬
+        // ãƒŠã‚¤ãƒ•é‡è¤‡åº¦ã ã‘ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
         for (int i = 0; i < count_multiKnife; i++)
         {
             float angleOffset = 0;
 
-            // d•¡ƒJƒEƒ“ƒg‚ª‚QˆÈã‚È‚çˆÈ‰º‚ÌŒvZ‚ğÀs
+            // é‡è¤‡ã‚«ã‚¦ãƒ³ãƒˆãŒï¼’ä»¥ä¸Šãªã‚‰ä»¥ä¸‹ã®è¨ˆç®—ã‚’å®Ÿè¡Œ
             if (count_multiKnife > 1)
             {
-                // ¡“Š‚°‚éŠp“x‚ğ‹‚ß‚é
+                // ä»ŠæŠ•ã’ã‚‹è§’åº¦ã‚’æ±‚ã‚ã‚‹
                 angleOffset = Mathf.Lerp(-10 / 2f, 10 / 2f, (float)i / (count_multiKnife - 1));
             }
 
-            // Quaternion‚É•ÏŠ·
+            // Quaternionã«å¤‰æ›
             Quaternion rotationOffset = Quaternion.Euler(0, 0, angleOffset);
 
-            // ƒx[ƒX‚Ì•ûŒü‚Æ‡¬
+            // ãƒ™ãƒ¼ã‚¹ã®æ–¹å‘ã¨åˆæˆ
             Quaternion finalRotation = baseRotation * rotationOffset;
 
-            // ƒiƒCƒt‚ğ¶¬A‚»‚ê‚ğx‚Æ’u‚­
-            // •ÒW‚³‚ê‚½‰Â”\«‚Ì‚ ‚éKnifeData‚Åˆ—‚ğ‘±s
+            // ãƒŠã‚¤ãƒ•ã‚’ç”Ÿæˆã€ãã‚Œã‚’xã¨ç½®ã
+            // ç·¨é›†ã•ã‚ŒãŸå¯èƒ½æ€§ã®ã‚ã‚‹KnifeDataã§å‡¦ç†ã‚’ç¶šè¡Œ
             var x = Instantiate(knife.prefab, this.transform.position, finalRotation);
 
-            // ƒiƒCƒt‚Ì‘®«‚ªƒvƒŒƒCƒ„[‚Ì“¾ˆÓ‘®«‚©”Û‚©
+            // ãƒŠã‚¤ãƒ•ã®å±æ€§ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å¾—æ„å±æ€§ã‹å¦ã‹
             bool isElementMatched = status.masteredElements.Contains(knife.element);
 
-            // x‚ğ‰Šú‰»
-            // ‚±‚Ì•¶ˆÈ~‚Å‚±‚Ìx‚ğQÆ‚µ‚Ä‚Í‚È‚ç‚È‚¢iInitializej
+            // xã‚’åˆæœŸåŒ–
+            // ã“ã®æ–‡ä»¥é™ã§ã“ã®xã‚’å‚ç…§ã—ã¦ã¯ãªã‚‰ãªã„ï¼ˆInitializeï¼‰
             x.GetComponent<Base_KnifeCtrler>().Initialize(status.power, knife, status, isElementMatched);
         }
 
-        // ƒiƒCƒt‚ğ1‰ñ“Š‚°‚é‚²‚Æ‚ÉƒAƒrƒŠƒeƒBƒ`ƒƒ[ƒW
+        // ãƒŠã‚¤ãƒ•ã‚’1å›æŠ•ã’ã‚‹ã”ã¨ã«ã‚¢ãƒ“ãƒªãƒ†ã‚£ãƒãƒ£ãƒ¼ã‚¸
         AbilityCharge();
     }
 
-    // ƒŠƒXƒg‚Ü‚½‚Í’P‘Ì‚ÌƒiƒCƒt‚ğè‚¿‚É‰Á‚¦‚é
+    // ãƒªã‚¹ãƒˆã¾ãŸã¯å˜ä½“ã®ãƒŠã‚¤ãƒ•ã‚’æ‰‹æŒã¡ã«åŠ ãˆã‚‹
     public void SetHand(List<KnifeData_RunTime> list = null, KnifeData_RunTime knife = null)
     {
         if (list != null)
         {
-            // Select‚ÅƒIƒŠƒWƒiƒ‹‚ğŒ³‚É‚µ‚½V‚µ‚¢ƒCƒ“ƒXƒ^ƒ“ƒX‚ğ
-            // inventry“à‚ÌƒIƒŠƒWƒiƒ‹ƒf[ƒ^‚ğ“n‚³‚ê‚é‚±‚Æ‚ğ‘z’è‚µ‚Ä‚¢‚é
-            // AddRange‚ğ—p‚¢‚é‚±‚Æ‚Å‚»‚ê‚çˆê‚Âˆê‚Â‚ª’Ê’m‚³‚ê‚é
+            // Selectã§ã‚ªãƒªã‚¸ãƒŠãƒ«ã‚’å…ƒã«ã—ãŸæ–°ã—ã„ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’
+            // inventryå†…ã®ã‚ªãƒªã‚¸ãƒŠãƒ«ãƒ‡ãƒ¼ã‚¿ã‚’æ¸¡ã•ã‚Œã‚‹ã“ã¨ã‚’æƒ³å®šã—ã¦ã„ã‚‹
+            // AddRangeã‚’ç”¨ã„ã‚‹ã“ã¨ã§ãã‚Œã‚‰ä¸€ã¤ä¸€ã¤ãŒé€šçŸ¥ã•ã‚Œã‚‹
             hand.AddRange(list.Select(originalData => new KnifeData_RunTime(originalData)));
         }
 
@@ -239,7 +237,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    // N”Ô–Ú‚ÌƒiƒCƒt‚ğè‚¿‚©‚çÌ‚Ä‚é
+    // Nç•ªç›®ã®ãƒŠã‚¤ãƒ•ã‚’æ‰‹æŒã¡ã‹ã‚‰æ¨ã¦ã‚‹
     public void TrashKnife(int index)
     {
         hand.RemoveAt(index);
@@ -250,17 +248,17 @@ public class PlayerAttack : MonoBehaviour
         return hand.Count;
     }
 
-    // UŒ‚‘ÎÛ‚Ì’Tõ
+    // æ”»æ’ƒå¯¾è±¡ã®æ¢ç´¢
     GameObject FindEnemy()
     {
 
-        //ˆê’è”ÍˆÍ“à‚Ì“G‚ğ”z—ñ‚ÉŠi”[
+        //ä¸€å®šç¯„å›²å†…ã®æ•µã‚’é…åˆ—ã«æ ¼ç´
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, status.eyeSight, targetLayer);
 
         GameObject nearestObject = null;
-        float shortestDistance = Mathf.Infinity; // –³ŒÀ‘å‚Å‰Šú‰»
+        float shortestDistance = Mathf.Infinity; // ç„¡é™å¤§ã§åˆæœŸåŒ–
 
-        // ˆê”Ô‹ß‚¢“G‚ğ’Tõ
+        // ä¸€ç•ªè¿‘ã„æ•µã‚’æ¢ç´¢
         foreach (Collider2D hit in hits)
         {
             float Distance = Vector2.Distance(transform.position, hit.transform.position);
@@ -275,29 +273,29 @@ public class PlayerAttack : MonoBehaviour
         return nearestObject;
     }
 
-    // ƒLƒƒƒ‰ƒAƒrƒŠƒeƒB‚ğƒZƒbƒg‚·‚é‚½‚ß‚ÌŠÖ”
+    // ã‚­ãƒ£ãƒ©ã‚¢ãƒ“ãƒªãƒ†ã‚£ã‚’ã‚»ãƒƒãƒˆã™ã‚‹ãŸã‚ã®é–¢æ•°
     public void SetCharaAbility(Base_P_CharaAbility ability)
     {
-        // Šù‚ÉŠ„‚è“–‚ÄÏ‚İ‚È‚çReturn
+        // æ—¢ã«å‰²ã‚Šå½“ã¦æ¸ˆã¿ãªã‚‰Return
         if(charaAbility != null) return;
 
-        // “n‚³‚ê‚½‚à‚Ì‚ÌV‹KƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬A‚»‚ê‚ğ‘ã“ü
+        // æ¸¡ã•ã‚ŒãŸã‚‚ã®ã®æ–°è¦ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆã€ãã‚Œã‚’ä»£å…¥
         charaAbility = UnityEngine.Object.Instantiate(ability);
 
-        // ‰Šú‰»
+        // åˆæœŸåŒ–
         charaAbility.Initialize(status);
     }
 
-    // ƒAƒrƒŠƒeƒBƒ`ƒƒ[ƒW
+    // ã‚¢ãƒ“ãƒªãƒ†ã‚£ãƒãƒ£ãƒ¼ã‚¸
     public void AbilityCharge(int value = 1)
     {
-        // ƒAƒrƒŠƒeƒB‚ª–³‚¢‚È‚çƒŠƒ^[ƒ“
+        // ã‚¢ãƒ“ãƒªãƒ†ã‚£ãŒç„¡ã„ãªã‚‰ãƒªã‚¿ãƒ¼ãƒ³
         if (charaAbility == null) return;
 
-        // ƒ`ƒƒ[ƒW—Ê‚ªŠù‚É•K—v—Ê‚É’B‚µ‚Ä‚¢‚½‚çƒŠƒ^[ƒ“
+        // ãƒãƒ£ãƒ¼ã‚¸é‡ãŒæ—¢ã«å¿…è¦é‡ã«é”ã—ã¦ã„ãŸã‚‰ãƒªã‚¿ãƒ¼ãƒ³
         if(charaAbilityChargeValue.Value >= charaAbility.requireChargeValue) return;
 
-        // •K—v—Ê‚ğ‰z‚¦‚È‚¢‚æ‚¤‚É‰ÁZ
+        // å¿…è¦é‡ã‚’è¶Šãˆãªã„ã‚ˆã†ã«åŠ ç®—
         if(charaAbilityChargeValue.Value +  value < charaAbility.requireChargeValue)
         {
             charaAbilityChargeValue.Value += value;
@@ -310,30 +308,30 @@ public class PlayerAttack : MonoBehaviour
 
     }
 
-    // ƒAƒrƒŠƒeƒB‚ÌÀs
+    // ã‚¢ãƒ“ãƒªãƒ†ã‚£ã®å®Ÿè¡Œ
     public async UniTask ExecuteCharaAbility()
     {
-        // ƒAƒrƒŠƒeƒB‚ª‚È‚¢‚È‚çƒŠƒ^[ƒ“
+        // ã‚¢ãƒ“ãƒªãƒ†ã‚£ãŒãªã„ãªã‚‰ãƒªã‚¿ãƒ¼ãƒ³
         if (charaAbility == null) return;
 
-        // •K—v‚Èƒ`ƒƒ[ƒW—Ê‚É“Í‚¢‚Ä‚È‚¯‚ê‚ÎƒŠƒ^[ƒ“
+        // å¿…è¦ãªãƒãƒ£ãƒ¼ã‚¸é‡ã«å±Šã„ã¦ãªã‘ã‚Œã°ãƒªã‚¿ãƒ¼ãƒ³
         if (charaAbilityChargeValue.Value < charaAbility.requireChargeValue) return;
 
-        // s“®‰Â”\ó‘Ô‚Å‚È‚¢‚È‚çƒŠƒ^[ƒ“
+        // è¡Œå‹•å¯èƒ½çŠ¶æ…‹ã§ãªã„ãªã‚‰ãƒªã‚¿ãƒ¼ãƒ³
         if(! status.actable) return;
 
-        // ƒAƒrƒŠƒeƒBƒ`ƒƒ[ƒW—Ê‚ğƒŠƒZƒbƒg
+        // ã‚¢ãƒ“ãƒªãƒ†ã‚£ãƒãƒ£ãƒ¼ã‚¸é‡ã‚’ãƒªã‚»ãƒƒãƒˆ
         charaAbilityChargeValue.Value = 0;
 
-        // ƒAƒrƒŠƒeƒB’†‚Íƒ_ƒ[ƒW‚ğó‚¯‚¸AƒmƒbƒNƒoƒbƒN‚¹‚¸A‘¼‚Ìs“®‚ğ‹–‰Â‚µ‚È‚¢
+        // ã‚¢ãƒ“ãƒªãƒ†ã‚£ä¸­ã¯ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãšã€ãƒãƒƒã‚¯ãƒãƒƒã‚¯ã›ãšã€ä»–ã®è¡Œå‹•ã‚’è¨±å¯ã—ãªã„
         status.count_Actable++;
         status.count_PermissionDamage++;
         status.count_PermissionKnickBack++;
 
         var token = this.GetCancellationTokenOnDestroy();
 
-        // ƒJƒbƒgƒCƒ“‰‰o‚ÌÄ¶
-        CutInUI.GetComponent<Animator>().SetTrigger("Anim");
+        // ã‚«ãƒƒãƒˆã‚¤ãƒ³æ¼”å‡ºã®å†ç”Ÿ
+        CharaAbilityCutIn.Instance.CutInAnimation(status.playerCharaData.image_CutInArt);
 
         GameAdmin.Instance.SetTimeScaleValue(0.5f);
 
@@ -348,7 +346,7 @@ public class PlayerAttack : MonoBehaviour
 
         try
         {
-            // charaAbility“à‚ÌŠÖ”‚ğÀs
+            // charaAbilityå†…ã®é–¢æ•°ã‚’å®Ÿè¡Œ
             await charaAbility.ActivateAbility(token);
         }
         finally
