@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DefBuffReload
   m_EditorClassIdentifier: 
   statusEffect: {fileID: 11400000, guid: 8424f9f5fc7684440a4042d65733ec2a, type: 2}
-  duration: 1
+  duration: 1.5
   amount_percent: 60
   effectID: jydtrht66

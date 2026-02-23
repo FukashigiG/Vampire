@@ -25,7 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b817972df9d229347a78e4b7b87393f1, type: 2}
   - {fileID: 11400000, guid: 2b7c8e004b5336c4198ed247cc6dae95, type: 2}
   <initialTreasures>k__BackingField:
-  - {fileID: 11400000, guid: e7f6a34edd57da04fbd0293a305d5e92, type: 2}
+  - {fileID: 11400000, guid: 7cf8f08f7d9f4844eb02c672bb9cac07, type: 2}
   <charaAbility>k__BackingField: {fileID: 11400000, guid: 37b230ba20b842f4692168ea92eec29d, type: 2}
   <masteredElement>k__BackingField: 2
   <prefab>k__BackingField: {fileID: 0}

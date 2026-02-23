@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
+  m_Name: Omamori_B
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureData
+  <_name>k__BackingField: "\u9752\u3044\u304A\u307E\u3082\u308A"
+  <flavortext>k__BackingField: "\u3072\u3093\u3084\u308A\u3068\u3057\u305F\u6C17\u914D\u304C\u52A0\u8B77\u3092\u3082\u305F\u3089\u3059"
+  <rank>k__BackingField: 1
+  <sprite>k__BackingField: {fileID: 400467601650896683, guid: a344f2cfdc3f894428d8cfd94e3178ef, type: 3}
+  <element>k__BackingField: 2
+  <description>k__BackingField: "\u30DC\u30B9\u3068\u5BFE\u5CD9\u3057\u305F\u969B\u306B\u3001\u9752\u306E\u30CA\u30A4\u30D5\u304C\u591A\u3044\u307B\u3069HP\u304C\u56DE\u5FA9"
+  <logic>k__BackingField: {fileID: 11400000, guid: e6871078624cbd74fa98d9167ee0e2f1, type: 2}
