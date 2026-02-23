@@ -123,7 +123,7 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
     // ステージのランクを抽選
     int Lottery_StageRank()
     {
-        int[] rankWeights = { GetWeight(1) , GetWeight(2) , GetWeight(3) };
+        int[] rankWeights = { GetWeight(1) , GetWeight(2) };　// , GetWeight(3) 
 
         int sum = 0;
 

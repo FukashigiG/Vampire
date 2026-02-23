@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
+  m_Name: Toutekikyouhon_Electric
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureData
+  <_name>k__BackingField: "\u6295\u64F2\u6559\u672C\u30FB\u96FB\u6483"
+  <flavortext>k__BackingField: "\u4F55\u56DE\u3082\u5897\u7248\u3055\u308C\u3066\u304A\u308A\u3001\u3053\u308C\u306F\u7B2C31\u7248"
+  <rank>k__BackingField: 3
+  <sprite>k__BackingField: {fileID: -8857946688505897167, guid: fa492155e957df94a8b632990afe4bf8, type: 3}
+  <element>k__BackingField: 3
+  <description>k__BackingField: "\u5404\u4E00\u7D71\u76EE\u306E\u30CA\u30A4\u30D5\u306B\u300C\u96FB\u6483\u300D\u3092\u8FFD\u52A0"
+  <logic>k__BackingField: {fileID: 11400000, guid: ee57104554cfa794db55f12e025ae9bb, type: 2}

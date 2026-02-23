@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -8,8 +8,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewBossEnemyAct", menuName = "Game Data/BossEnemyAct/Basic/Charge")]
 public class BEA_Charge : Base_BossEnemyAct
 {
-    // “Ëi
-    // ’ÇÕ‚Æˆá‚¢A“r’†‚Å•ûŒü“]Š·‚Æ’†’f‚ğ‚µ‚È‚¢
+    // çªé€²
+    // è¿½è·¡ã¨é•ã„ã€é€”ä¸­ã§æ–¹å‘è»¢æ›ã¨ä¸­æ–­ã‚’ã—ãªã„
 
     [SerializeField] GameObject attackDetectObje;
 
@@ -30,13 +30,21 @@ public class BEA_Charge : Base_BossEnemyAct
 
         Vector2 dir = (target.position - ctrler.transform.position).normalized;
 
-        // ŒxƒIƒuƒWƒFƒNƒg‚ğ¶¬
+        // è­¦å‘Šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
         GameObject warning = Instantiate(yokoku, ctrler.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
 
-        // ƒAƒjƒ[ƒVƒ‡ƒ“‘Ò‹@
-        await warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, AttackRangeType.box, moveAmount/2, 3f, moveAmount);
+        try
+        {
+            // ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³å¾…æ©Ÿ
+            await warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, AttackRangeType.box, moveAmount / 2, 3f, moveAmount);
+        }
+        catch
+        {
+            if (warning != null) Destroy(warning);
 
-        // ƒ_ƒ[ƒW”»’è‚ğqƒIƒuƒWƒFƒNƒg‚Æ‚µ‚Ä¶¬A‰Šú‰»
+            throw;
+        }
+        // ãƒ€ãƒ¡ãƒ¼ã‚¸åˆ¤å®šã‚’å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨ã—ã¦ç”Ÿæˆã€åˆæœŸåŒ–
         GameObject damageDetect = Instantiate(attackDetectObje, ctrler.gameObject.transform);
         damageDetect.GetComponent<EP_Punch>().Initialie_OR((int)(ctrler._enemyStatus.power * damageMultiplier), 0, AttackRangeType.box, 0, 1.1f, 1.1f, isInstant: false);
 

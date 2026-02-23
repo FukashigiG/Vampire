@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ace199512d0e743aea4f3206528378, type: 3}
   m_Name: SummonSpirit_Tick
   m_EditorClassIdentifier: Assembly-CSharp::TL_SummonObj_Tick
-  summonObject: {fileID: 0}
+  summonObject: {fileID: 8711062980360074248, guid: 91a8778364c9e4d489b08d91a44b94f3, type: 3}
   interval_Sec: 4

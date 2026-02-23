@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcaf8100f2024aa4ea8ced14acaaa9dc, type: 3}
   m_Name: Stamp
   m_EditorClassIdentifier: Assembly-CSharp::BEA_Stamp
-  <actionName>k__BackingField: 
+  <actionName>k__BackingField: "\u3075\u307F\u3064\u3051\u308B"
   <range_Min>k__BackingField: 3
   <range_Max>k__BackingField: 999
   delayTime: 2

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45ecd707b9172364f98633c319348185, type: 3}
-  m_Name: Summon_
-  m_EditorClassIdentifier: Assembly-CSharp::BEA_Summon
+  m_Name: Summon 1
+  m_EditorClassIdentifier: 
   <actionName>k__BackingField: "\u30B5\u30E2\u30F3\u30FB\u30AC\u30FC\u30C9"
   <range_Min>k__BackingField: 0
-  <range_Max>k__BackingField: 5
-  delayTime: 1
-  <actType>k__BackingField: 0
-  warningPrefab: {fileID: 0}
-  fx_Summon: {fileID: 0}
-  summonedEnemyData: {fileID: 0}
-  num_summonEnemy: 0
+  <range_Max>k__BackingField: 20
+  delayTime: 2
+  <actType>k__BackingField: 1
+  warningPrefab: {fileID: 5595648858755892628, guid: 9c956cabe1981c34a96d85fa2c044000, type: 3}
+  fx_Summon: {fileID: 4903989986093316332, guid: 01d71035c48de0a4593068434cd53906, type: 3}
+  summonedEnemyData: {fileID: 11400000, guid: ae9a1d366508c8644a02183a699f8d9d, type: 2}
+  num_summonEnemy: 5

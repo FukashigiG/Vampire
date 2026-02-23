@@ -1,7 +1,9 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Bullet_SpilitCtrler : MonoBehaviour
 {
+    [SerializeField] ParticleSystem fx_Trail;
+
     [SerializeField] float speed = 5f;
 
     float lifeTime = 4f;
@@ -27,8 +29,11 @@ public class Bullet_SpilitCtrler : MonoBehaviour
     {
         if(collision.TryGetComponent(out EnemyStatus ms))
         {
-            // ‘®«ƒ_ƒ[ƒW
+            // å±æ€§ãƒ€ãƒ¡ãƒ¼ã‚¸
             ms.GetAttack(0, damagePoint, transform.position);
+
+            fx_Trail.transform.parent = null;
+            fx_Trail.Stop();
 
             Destroy(this.gameObject);
         }

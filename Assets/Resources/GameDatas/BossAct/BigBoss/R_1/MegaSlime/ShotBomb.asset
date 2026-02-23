@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e94c860e73d7749a4adca6bb25966b, type: 3}
   m_Name: ShotBomb
   m_EditorClassIdentifier: Assembly-CSharp::BEA_Shot_Bomb
-  <actionName>k__BackingField: "\u7C98\u6DB2\u6295\u64F2"
+  <actionName>k__BackingField: "\u307E\u304D\u3061\u3089\u3059"
   <range_Min>k__BackingField: 5
   <range_Max>k__BackingField: 20
   delayTime: 0.2

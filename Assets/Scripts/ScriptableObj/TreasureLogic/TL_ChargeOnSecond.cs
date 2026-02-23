@@ -1,10 +1,10 @@
-using UniRx;
+ï»¿using UniRx;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/TreasureLogic/ChargeOnSecond")]
 public class TL_ChargeOnSecond : Base_TreasureLogic
 {
-    // HP‚ªNŠ„ˆÈã‚È‚çA–ˆ•b•KŽE‹ZƒQ[ƒW‚ðNƒ`ƒƒ[ƒW‚·‚é
+    // HPãŒNå‰²ä»¥ä¸Šãªã‚‰ã€æ¯Žç§’å¿…æ®ºæŠ€ã‚²ãƒ¼ã‚¸ã‚’Nãƒãƒ£ãƒ¼ã‚¸ã™ã‚‹
 
     [SerializeField] int chargeAmount;
     [SerializeField] int border_HP_Percent;
@@ -13,11 +13,11 @@ public class TL_ChargeOnSecond : Base_TreasureLogic
     {
         status.onSecond.Subscribe(x =>
         {
-            float ratio_HP = status.hitPoint.Value / status.maxHP * 100f;
+            float ratio_HP = (float)status.hitPoint.Value / (float)status.maxHP * 100f;
 
-            if(ratio_HP < border_HP_Percent) return;
+            if (ratio_HP < border_HP_Percent) return;
 
-            status.attack.AbilityCharge(chargeAmount);
+            status.attack.AbilityCharge(chargeAmount); 
 
         }).AddTo(disposables);
     }

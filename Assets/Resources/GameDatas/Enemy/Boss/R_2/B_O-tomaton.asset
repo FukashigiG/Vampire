@@ -20,7 +20,7 @@ MonoBehaviour:
   <hp>k__BackingField: 5000
   <power>k__BackingField: 90
   <defense>k__BackingField: 18
-  <moveSpeed>k__BackingField: 11
+  <moveSpeed>k__BackingField: 32
   _shotType: 0
   _num_Bullet: 1
   _divergenceAngle: 0
@@ -34,4 +34,40 @@ MonoBehaviour:
   dropItems:
   - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}
     dropRate_Parcentage: 100
-  _bossActions: []
+  _bossActions:
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 29def78776b3aa54b9ed03ea7b07f3e0, type: 2}
+    <triggerType>k__BackingField: 1
+    <targetActCount>k__BackingField: 14
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 0
+    <decayRate>k__BackingField: 0
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 77ed76612a8f93249a697b2a45f70cdb, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.1
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 30944bc40904b084fa3f741f2b168b86, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.5
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: d0a416635acb7a84dbfbccf412caad5d, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.26
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 95b98e64f4a740a46bf3063d9845569c, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.3
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: b715d0c4660fb8243ab398cca97753ab, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.1

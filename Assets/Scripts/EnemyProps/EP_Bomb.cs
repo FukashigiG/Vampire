@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System.Threading;
 using UnityEngine;
 
@@ -7,6 +7,8 @@ public class EP_Bomb : Base_EnemyProps
     [SerializeField] float radius = 1.5f;
 
     [SerializeField] GameObject damageDetect;
+    [SerializeField] GameObject fx_Hit;
+    [SerializeField] ParticleSystem fx_Trail;
 
     float time_Impact;
 
@@ -37,19 +39,19 @@ public class EP_Bomb : Base_EnemyProps
             {
                 elapsed += Time.deltaTime;
 
-                // 0.0(ŠJn) ` 1.0(I—¹) ‚Ìis“x‚ğŒvZ
+                // 0.0(é–‹å§‹) ï½ 1.0(çµ‚äº†) ã®é€²è¡Œåº¦ã‚’è¨ˆç®—
                 float t = Mathf.Clamp01(elapsed / time_Impact);
 
-                // …•½•ûŒü‚ÌˆÚ“®
+                // æ°´å¹³æ–¹å‘ã®ç§»å‹•
                 Vector2 currentPos = Vector2.Lerp(startPosi, targetPoint, t);
 
-                // ‚’¼•ûŒü‚ÌŒvZi•ú•¨üj
+                // å‚ç›´æ–¹å‘ã®è¨ˆç®—ï¼ˆæ”¾ç‰©ç·šï¼‰
                 float yOffset = Mathf.Sin(t * Mathf.PI) * jumpHeight;
 
-                // YÀ•W‚É‚‚³‚ğ‰ÁZ
+                // Yåº§æ¨™ã«é«˜ã•ã‚’åŠ ç®—
                 currentPos.y += yOffset;
 
-                // À•W‚ğXV
+                // åº§æ¨™ã‚’æ›´æ–°
                 transform.position = currentPos;
 
                 await UniTask.Yield(cancellationToken: token);
@@ -57,6 +59,11 @@ public class EP_Bomb : Base_EnemyProps
 
             GameObject x = Instantiate(damageDetect, targetPoint, Quaternion.identity);
             x.GetComponent<EP_Punch>().Initialie_OR(damage, elementDamage, AttackRangeType.circle, 0, size_Radius: radius);
+
+            Instantiate(fx_Hit, targetPoint, Quaternion.identity);
+
+            fx_Trail.transform.parent = null;
+            fx_Trail.Stop();
 
             Destroy(this.gameObject);
 

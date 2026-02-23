@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c12632baf0538e7488e272126945eb41, type: 3}
+  m_Name: Punch
+  m_EditorClassIdentifier: 
+  <actionName>k__BackingField: "code\uFF1A\u683C\u95D8\u6280\u5DE7"
+  <range_Min>k__BackingField: 0
+  <range_Max>k__BackingField: 5
+  delayTime: 1.4
+  <actType>k__BackingField: 1
+  attackDetectObje: {fileID: 8782759202650464566, guid: 54a4b7bca65b56b469a622eba113bab9, type: 3}
+  warningPrefab: {fileID: 5595648858755892628, guid: 9c956cabe1981c34a96d85fa2c044000, type: 3}
+  damageMultiplier: 1.65
+  forwardDistance: 2
+  rangeType: 0
+  size_Width: 6
+  size_Vertical: 6
+  size_Radius: 0

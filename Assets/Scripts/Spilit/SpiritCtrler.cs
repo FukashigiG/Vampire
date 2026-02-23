@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System;
 using System.Linq;
 using System.Threading;
@@ -8,33 +8,35 @@ using Random = UnityEngine.Random;
 
 public class SpiritCtrler : MonoBehaviour
 {
-    // ”­Ë‚·‚é’e‚ÌƒvƒŒƒnƒu
+    [SerializeField] ParticleSystem fx;
+
+    // ç™ºå°„ã™ã‚‹å¼¾ã®ãƒ—ãƒ¬ãƒãƒ–
     [SerializeField] GameObject prefab_Bullet;
 
-    // ’e‚Ì”­ËŠÔŠui•bj
+    // å¼¾ã®ç™ºå°„é–“éš”ï¼ˆç§’ï¼‰
     public float interval_Shot_Sec = 1;
 
-    // UŒ‚—Í
+    // æ”»æ’ƒåŠ›
     public int power = 4;
 
-    // õ–½i•bj
+    // å¯¿å‘½ï¼ˆç§’ï¼‰
     public float LifeTime = 10;
 
-    // ü‰ñ”¼Œa
+    // å‘¨å›åŠå¾„
     [SerializeField] float radius = 1.2f;
 
-    // ¸—ì©‘Ì‚Ì‘®«
-    // Œ»“_‚Å‚ÍÂŒÅ’è‚Æ‚·‚é
+    // ç²¾éœŠè‡ªä½“ã®å±æ€§
+    // ç¾æ™‚ç‚¹ã§ã¯é’å›ºå®šã¨ã™ã‚‹
     Element element = Element.Blue;
 
-    // Œo‰ßŠÔ‹L˜^—p•Ï”
+    // çµŒéæ™‚é–“è¨˜éŒ²ç”¨å¤‰æ•°
     float elapsedTime = 0;
 
-    // ¸—ì‚ª¶‚Ü‚ê‚½Û‚Éo‚·’Ê’m‚Æ‚»‚Ìw“Ç•”•ª
+    // ç²¾éœŠãŒç”Ÿã¾ã‚ŒãŸéš›ã«å‡ºã™é€šçŸ¥ã¨ãã®è³¼èª­éƒ¨åˆ†
     static Subject<SpiritCtrler> subject_onAwake = new Subject<SpiritCtrler>();
     public static IObservable<SpiritCtrler> onAwake => subject_onAwake;
 
-    // ¸—ì‚ªÁ‚¦‚éÛ‚Éo‚·’Ê’m‚Æ‚»‚Ìw“Ç•”•ª
+    // ç²¾éœŠãŒæ¶ˆãˆã‚‹éš›ã«å‡ºã™é€šçŸ¥ã¨ãã®è³¼èª­éƒ¨åˆ†
     static Subject<SpiritCtrler> subject_onDestroy = new Subject<SpiritCtrler>();
     public static IObservable<SpiritCtrler> onDestroy => subject_onDestroy;
 
@@ -46,23 +48,23 @@ public class SpiritCtrler : MonoBehaviour
 
     void Awake()
     {
-        // ƒvƒŒƒCƒ„[ƒIƒuƒWƒFƒNƒg‚ğæ“¾A‹L‰¯
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—ã€è¨˜æ†¶
         player = PlayerController.Instance.transform;
 
-        // d—l•ÏX:power‚Ì’l‚ÍŒÅ’è
+        // ä»•æ§˜å¤‰æ›´:powerã®å€¤ã¯å›ºå®š
 
-        // ©•ª‚Ì‘®«‚Æ”í‚Á‚Ä‚éƒvƒŒƒCƒ„[‚ÌƒiƒCƒt‚Ì–{”‚ğæ“¾
+        // è‡ªåˆ†ã®å±æ€§ã¨è¢«ã£ã¦ã‚‹ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒŠã‚¤ãƒ•ã®æœ¬æ•°ã‚’å–å¾—
         /*power = PlayerController.Instance._status.inventory.runtimeKnives
             .Where(x => x.element == this.element)
             .Count();*/
 
-        // ü‰ñ‚Ì‰ŠúŠp“x‚ğŒˆ’è
+        // å‘¨å›æ™‚ã®åˆæœŸè§’åº¦ã‚’æ±ºå®š
         initialAngle = Random.Range(0, 359);
 
-        // ƒg[ƒNƒ“æ“¾
+        // ãƒˆãƒ¼ã‚¯ãƒ³å–å¾—
         token = this.GetCancellationTokenOnDestroy();
 
-        // ’Ê’m‚Ì”­s
+        // é€šçŸ¥ã®ç™ºè¡Œ
         subject_onAwake.OnNext(this);
 
         ShotTask().Forget();
@@ -70,31 +72,31 @@ public class SpiritCtrler : MonoBehaviour
 
     void Update()
     {
-        // Œo‰ßŠÔ‚ğ‰ÁZ
+        // çµŒéæ™‚é–“ã‚’åŠ ç®—
         elapsedTime += Time.deltaTime;
 
-        // õ–½‚ª—ˆ‚Ä‚¢‚½‚çÁ‚¦‚é
+        // å¯¿å‘½ãŒæ¥ã¦ã„ãŸã‚‰æ¶ˆãˆã‚‹
         if(elapsedTime >= LifeTime)
         {
             Die();
         }
 
-        // ü‰ñŠp“x‚ÌZo
+        // å‘¨å›è§’åº¦ã®ç®—å‡º
         float radian = (elapsedTime * 90f + initialAngle) * Mathf.Deg2Rad;
 
-        // ˆÚ“®‚·‚é‚×‚«êŠ‚Ìæ“¾
+        // ç§»å‹•ã™ã‚‹ã¹ãå ´æ‰€ã®å–å¾—
         Vector2 targetPosi = (Vector2)player.position + new Vector2(Mathf.Cos(radian), Mathf.Sin(radian)) * radius;
 
-        // –Ú•W‚ÌêŠ‚Æ©•ª‚ÌÀ•W‚Ì‹——£‚ª’·‚¢‚Ù‚ÇˆÚ“®‘¬“x‚ğ‚‚­‚·‚é
+        // ç›®æ¨™ã®å ´æ‰€ã¨è‡ªåˆ†ã®åº§æ¨™ã®è·é›¢ãŒé•·ã„ã»ã©ç§»å‹•é€Ÿåº¦ã‚’é«˜ãã™ã‚‹
         float distance = (targetPosi - (Vector2)this.transform.position).magnitude;
         float moveSpeed = 3 * distance;
-        // ‘¬“x‚ÌãŒÀA‰ºŒÀ
+        // é€Ÿåº¦ã®ä¸Šé™ã€ä¸‹é™
         moveSpeed = Mathf.Clamp(moveSpeed, 0.1f, 20);
 
-        // –Ú“I‚Ì•ûŒü
+        // ç›®çš„ã®æ–¹å‘
         Vector2 dir = (targetPosi - (Vector2)this.transform.position).normalized;
 
-        // ˆÚ“®–½—ß
+        // ç§»å‹•å‘½ä»¤
         transform.Translate(dir * moveSpeed * Time.deltaTime);
     }
 
@@ -104,31 +106,31 @@ public class SpiritCtrler : MonoBehaviour
         {
             while (true)
             {
-                // ƒN[ƒ‹ƒ^ƒCƒ€
+                // ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ 
                 await UniTask.Delay((int)(interval_Shot_Sec * 1000), cancellationToken: token);
 
-                // UŒ‚‘ÎÛ‚ªoŒ»‚·‚é‚Ü‚Å‘Ò‚Â
+                // æ”»æ’ƒå¯¾è±¡ãŒå‡ºç¾ã™ã‚‹ã¾ã§å¾…ã¤
                 await UniTask.WaitUntil(() => PlayerController.Instance._status.attack.targetEnemy != null, cancellationToken: token);
 
-                // ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ä‚½‚ç‚±‚Ì‰º‚Ís‚í‚È‚¢
+                // ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¦ãŸã‚‰ã“ã®ä¸‹ã¯è¡Œã‚ãªã„
                 token.ThrowIfCancellationRequested();
 
-                // ‘ÎÛ‚Ìæ“¾
+                // å¯¾è±¡ã®å–å¾—
                 var target = PlayerController.Instance._status.attack.targetEnemy;
 
-                // ‰½‚©‚µ‚ç‚Ìƒ~ƒX‚Å‚¢‚È‚©‚Á‚½‚çƒRƒ“ƒe
+                // ä½•ã‹ã—ã‚‰ã®ãƒŸã‚¹ã§ã„ãªã‹ã£ãŸã‚‰ã‚³ãƒ³ãƒ†
                 if (target == null) continue;
 
-                // UŒ‚‘ÎÛ‚Ì•ûŒü‚ğVec2Œ^‚Åæ“¾
+                // æ”»æ’ƒå¯¾è±¡ã®æ–¹å‘ã‚’Vec2å‹ã§å–å¾—
                 Vector2 dir = (target.transform.position - this.transform.position).normalized;
 
-                // ‚»‚ê‚ğQuaternion‚É•ÏŠ·
+                // ãã‚Œã‚’Quaternionã«å¤‰æ›
                 Quaternion rotation = Quaternion.FromToRotation(Vector2.up, dir);
 
-                // ‘ÎÛ‚ÉŒü‚¯‚Ä’e‚ğ¶¬
+                // å¯¾è±¡ã«å‘ã‘ã¦å¼¾ã‚’ç”Ÿæˆ
                 GameObject bullet = Instantiate(prefab_Bullet, this.transform.position, rotation);
 
-                // UŒ‚—Í‚ğ’e‚É“n‚µA‰Šú‰»ˆ—
+                // æ”»æ’ƒåŠ›ã‚’å¼¾ã«æ¸¡ã—ã€åˆæœŸåŒ–å‡¦ç†
                 bullet.GetComponent<Bullet_SpilitCtrler>().Initialize(power);
             }
         }
@@ -138,9 +140,12 @@ public class SpiritCtrler : MonoBehaviour
         }
     }
 
-    // Á–Åˆ—
+    // æ¶ˆæ»…å‡¦ç†
     void Die()
     {
+        fx.transform.parent = null;
+        fx.Stop();
+
         subject_onDestroy.OnNext(this);
 
         Destroy(gameObject);

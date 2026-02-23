@@ -20,7 +20,7 @@ MonoBehaviour:
   <hp>k__BackingField: 50
   <power>k__BackingField: 9
   <defense>k__BackingField: 20
-  <moveSpeed>k__BackingField: 12
+  <moveSpeed>k__BackingField: 18
   _shotType: 0
   _num_Bullet: 1
   _divergenceAngle: 0
