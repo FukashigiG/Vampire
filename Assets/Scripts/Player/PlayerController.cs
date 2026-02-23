@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +7,7 @@ using UniRx;
 
 public class PlayerController : SingletonMono<PlayerController>
 {
-    //‚±‚ÌƒXƒNƒŠƒvƒg‚Å‚ÍAƒvƒŒƒCƒ„[‚Ì‘€ì‚ÉŠÖ‚·‚éˆ—‚ğ‹Lq‚µ‚Ä‚¢‚é
+    //ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§ã¯ã€ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ“ä½œã«é–¢ã™ã‚‹å‡¦ç†ã‚’è¨˜è¿°ã—ã¦ã„ã‚‹
 
     [Header("Turn Settings")]
     [SerializeField, Range(1, 30)]
@@ -67,19 +67,19 @@ public class PlayerController : SingletonMono<PlayerController>
 
     void CheckBoost(Vector2 currentInputDirection)
     {
-        // Œ»İ‚Ì“ü—Í‚ğ’Ç‰Á
+        // ç¾åœ¨ã®å…¥åŠ›ã‚’è¿½åŠ 
         inputQueue.Enqueue(currentInputDirection);
 
-        // ŠeƒLƒ…[‚Æ“ü—Í‚ğ”äŠr
+        // å„ã‚­ãƒ¥ãƒ¼ã¨å…¥åŠ›ã‚’æ¯”è¼ƒ
         foreach(var queue in inputQueue)
         {
-            // ƒLƒ…[‚ªƒ[ƒ“ü—Í‚È‚çA‚»‚ÌƒLƒ…[‚Í–³‹
+            // ã‚­ãƒ¥ãƒ¼ãŒã‚¼ãƒ­å…¥åŠ›ãªã‚‰ã€ãã®ã‚­ãƒ¥ãƒ¼ã¯ç„¡è¦–
             if (queue.sqrMagnitude < 0.01) continue;
 
             float dotProduct = Vector2.Dot(queue, inputValue.normalized);
 
-            // ŠeƒLƒ…[‚Æ”äŠr‚µ‚ÄANƒtƒŒ[ƒ€‘O‚Ì“ü—Í‚ÆŒ»İ‚Ì“ü—ÍƒxƒNƒgƒ‹‚Ì“àÏ‚ğŒvZ (³‹K‰»‚µ‚Ä•ûŒü‚Ì‚İ‚ğ”äŠr)
-            // Dot < 0 ‚È‚ç‚ÎAŠp“x‚Í90“x‚æ‚è‘å‚«‚¢
+            // å„ã‚­ãƒ¥ãƒ¼ã¨æ¯”è¼ƒã—ã¦ã€Nãƒ•ãƒ¬ãƒ¼ãƒ å‰ã®å…¥åŠ›ã¨ç¾åœ¨ã®å…¥åŠ›ãƒ™ã‚¯ãƒˆãƒ«ã®å†…ç©ã‚’è¨ˆç®— (æ­£è¦åŒ–ã—ã¦æ–¹å‘ã®ã¿ã‚’æ¯”è¼ƒ)
+            // Dot < 0 ãªã‚‰ã°ã€è§’åº¦ã¯90åº¦ã‚ˆã‚Šå¤§ãã„
             if (dotProduct <= 0f)
             {
                 _rigidbody.linearVelocity = inputValue.normalized;
@@ -88,7 +88,7 @@ public class PlayerController : SingletonMono<PlayerController>
 
                 
 
-                // ˆê“xŒŸ’m‚µ‚½‚ç—š—ğ‚ğˆê’UƒNƒŠƒA‚·‚é
+                // ä¸€åº¦æ¤œçŸ¥ã—ãŸã‚‰å±¥æ­´ã‚’ä¸€æ—¦ã‚¯ãƒªã‚¢ã™ã‚‹
                 //inputQueue.Clear();
 
                 break;
@@ -100,17 +100,19 @@ public class PlayerController : SingletonMono<PlayerController>
 
         
 
-        // ƒLƒ…[‚ª•K—v”ˆÈãˆì‚ê‚È‚¢‚æ‚¤‚ÉAŒÃ‚¢‚à‚Ì‚ğÁ‚·
+        // ã‚­ãƒ¥ãƒ¼ãŒå¿…è¦æ•°ä»¥ä¸Šæº¢ã‚Œãªã„ã‚ˆã†ã«ã€å¤ã„ã‚‚ã®ã‚’æ¶ˆã™
         while (inputQueue.Count > framesToCompare)
         {
             inputQueue.Dequeue();
         }
     }
 
-    // ‚±‚ÌŠÖ”‚ÍPlayerInput‚É‚æ‚Á‚ÄŒÄ‚Î‚ê‚é
+    // ã“ã®é–¢æ•°ã¯PlayerInputã«ã‚ˆã£ã¦å‘¼ã°ã‚Œã‚‹
     public void OnAbility()
     {
         if (!isAlive) return;
+
+        if(GameAdmin.Instance.isPausing) return;
 
         _status.attack.ExecuteCharaAbility().Forget();
     }

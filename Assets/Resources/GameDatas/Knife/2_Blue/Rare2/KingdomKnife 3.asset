@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
   m_Name: KingdomKnife 3
   m_EditorClassIdentifier: 
-  <_name>k__BackingField: "\u30C7\u30E2\u30FB\u9752R2\u30FBNo2"
+  <_name>k__BackingField: "\u30F4\u30A1\u30A4\u30AD\u30F3\u30B0\u30CA\u30A4\u30D5"
   <flavortext>k__BackingField: 
   <rank>k__BackingField: 2
   <sprite>k__BackingField: {fileID: 21300000, guid: 0b584fad21745fd47ac0dbf5bddebb31, type: 3}

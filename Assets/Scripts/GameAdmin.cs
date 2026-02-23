@@ -39,6 +39,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     int pauseCount = 0;
 
+    public bool isPausing => pauseCount > 0;
+
     bool arrow_AccessToSecretStage = false;
 
     EnemyStatus cullentBoss = null;

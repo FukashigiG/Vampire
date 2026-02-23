@@ -203,7 +203,7 @@ TrailRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Time: 0.2
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -214,7 +214,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.7663938
+        value: 0.85369694
         inSlope: -0.072316654
         outSlope: -0.072316654
         tangentMode: 0
