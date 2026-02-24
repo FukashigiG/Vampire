@@ -113,7 +113,16 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
  
         for(int i = 0; i < count; i++)
         {
-            int targetRank = Lottery_StageRank(); // 1~3のランダムなランクを取得
+            int targetRank = 1;
+
+            if (GameAdmin.Instance.waveCount >= 4)
+            {
+                targetRank = 2;
+            }
+            else
+            {
+                targetRank = Lottery_StageRank(); // 1~2のランダムなランクを取得
+            }
 
             List<StageData> xxx = candiData
                 .Where(x => x.stageRank == targetRank)// 抽選されたランクのやつを取得

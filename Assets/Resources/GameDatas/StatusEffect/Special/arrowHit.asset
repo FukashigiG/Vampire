@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: arrowHit
   m_EditorClassIdentifier: 
   <effectName>k__BackingField: 
+  <icon>k__BackingField: {fileID: -781672473073315959, guid: a6bdf83b365ef704b83da35a58e42020, type: 3}
   targetType: 2
