@@ -316,7 +316,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
         SceneLoader.Instance.Load("TitleScene");
     }
 
-    void GameSet(bool isPlayerWin)
+    public void GameSet(bool isPlayerWin)
     {
         UI_GameResult.Instance.OnGameSet(isPlayerWin);
 

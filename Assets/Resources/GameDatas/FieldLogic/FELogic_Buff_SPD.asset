@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: FELogic_Buff_SPD
   m_EditorClassIdentifier: Assembly-CSharp::FEL_Buff
   <effectTarget>k__BackingField: 1
-  effectType: 1
+  effectType: 2

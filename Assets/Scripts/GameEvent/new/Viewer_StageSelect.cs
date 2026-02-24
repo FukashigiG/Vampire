@@ -17,6 +17,8 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
 
     [SerializeField] Animator _animator;
 
+    [SerializeField] Image[] icons_Enemy;
+
     List<StageData> stages = new List<StageData>();
 
     StageData currentSelected = null;
@@ -34,6 +36,10 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
     {
         txt_StageName.text = "";
         txt_StageRank.text = "";
+        foreach(var icon in icons_Enemy)
+        {
+            icon.enabled = false;
+        }
 
         button_Decide.interactable = false;
 
@@ -72,6 +78,13 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
 
         txt_StageName.text = data.stageName;
         txt_StageRank.text = $"危険度：{data.stageRank}";
+
+        for (int i = 0;i < data.enemyList.Count; i++)
+        {
+            icons_Enemy[i].enabled = true;
+
+            icons_Enemy[i].sprite = data.enemyList[i].sprite;
+        }
     }
 
     void Decision()

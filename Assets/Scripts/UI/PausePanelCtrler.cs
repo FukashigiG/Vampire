@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,20 +11,20 @@ public class PausePanelCtrler : MonoBehaviour
 {
     [SerializeField] GameObject body;
 
-    // ˆê——‚Æ‚È‚éƒIƒuƒWƒFƒNƒg‚ÌTransform
-    // Instantiate‚Ée‚Ìˆø”‚Æ‚µ‚Ä“n‚·
+    // ä¸€è¦§ã¨ãªã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®Transform
+    // Instantiateæ™‚ã«è¦ªã®å¼•æ•°ã¨ã—ã¦æ¸¡ã™
     [SerializeField] Transform knifeArea;
     [SerializeField] Transform treasureArea;
 
-    // ¶¬‚³‚ê‚é‚à‚Ì
+    // ç”Ÿæˆã•ã‚Œã‚‹ã‚‚ã®
     [SerializeField] GameObject prefab_ItemButton;
 
     PlayerInventory playerInventory;
 
-    // ƒCƒxƒ“ƒgw“Ç‚ğ‚Ü‚Æ‚ß‚ÄŠÇ—‚·‚é‚½‚ß‚ÌDisposable
+    // ã‚¤ãƒ™ãƒ³ãƒˆè³¼èª­ã‚’ã¾ã¨ã‚ã¦ç®¡ç†ã™ã‚‹ãŸã‚ã®Disposable
     private CompositeDisposable _disposables = new CompositeDisposable();
 
-    // ŠƒiƒCƒt/”é•ó—“‚É¶¬‚³‚ê‚½ƒIƒuƒWƒFƒNƒg‚ğŠÇ—‚·‚é‚½‚ß‚Ì‚à‚Ì
+    // æ‰€æŒãƒŠã‚¤ãƒ•/ç§˜å®æ¬„ã«ç”Ÿæˆã•ã‚ŒãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç®¡ç†ã™ã‚‹ãŸã‚ã®ã‚‚ã®
     Dictionary<KnifeData_RunTime, GameObject> knifeImageDictionaty = new();
     Dictionary<TreasureData, GameObject> treasureImageDictionaty = new();
 
@@ -37,14 +37,14 @@ public class PausePanelCtrler : MonoBehaviour
 
     }
 
-    // ‰Šú‰»
+    // åˆæœŸåŒ–
     public void Initialize(InputAction action)
     {
-        action.performed += TogglePanel; // ˆø”‚Å“n‚³‚ê‚½ƒAƒNƒVƒ‡ƒ“‚ªÀs‚³‚ê‚½‚çTogglePanel‚ğŒÄ‚Ô
+        action.performed += TogglePanel; // å¼•æ•°ã§æ¸¡ã•ã‚ŒãŸã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãŒå®Ÿè¡Œã•ã‚ŒãŸã‚‰TogglePanelã‚’å‘¼ã¶
 
-        playerInventory = PlayerController.Instance._status.inventory; // PlayerInventory‚ğƒvƒŒƒCƒ„[‚©‚çæ“¾
+        playerInventory = PlayerController.Instance._status.inventory; // PlayerInventoryã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‹ã‚‰å–å¾—
 
-        // --- ƒiƒCƒt‚Ìw“Çİ’è ---
+        // --- ãƒŠã‚¤ãƒ•ã®è³¼èª­è¨­å®š ---
         playerInventory.runtimeKnives
             .ObserveAdd()
             .Subscribe(e => OnKnifeAdded(e.Value))
@@ -56,7 +56,7 @@ public class PausePanelCtrler : MonoBehaviour
             .AddTo(_disposables);
 
 
-        // --- ”é•ó‚Ìw“Çİ’è ---
+        // --- ç§˜å®ã®è³¼èª­è¨­å®š ---
         playerInventory.runtimeTreasure
             .ObserveAdd()
             .Subscribe(e => OnTreasureAdded(e.Value))
@@ -67,7 +67,7 @@ public class PausePanelCtrler : MonoBehaviour
             .Subscribe(e => OnTreasureRemoved(e.Value))
             .AddTo(_disposables);
 
-        // Å‰‚ÉAŠù‚É“o˜^‚³‚ê‚Ä‚¢‚é•¨‚É‚Â‚¢‚ÄA’Ç‰Áˆ—‚ğ‚·‚é
+        // æœ€åˆã«ã€æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ç‰©ã«ã¤ã„ã¦ã€è¿½åŠ å‡¦ç†ã‚’ã™ã‚‹
         foreach (var knives in playerInventory.runtimeKnives) OnKnifeAdded(knives);
         foreach (var treasures in playerInventory.runtimeTreasure) OnTreasureAdded(treasures);
 
@@ -78,7 +78,9 @@ public class PausePanelCtrler : MonoBehaviour
 
         btn_Retire.onClick.AddListener(() =>
         {
+            CloseThis();
 
+            GameAdmin.Instance.GameSet(false);
         });
 
         btn_Setting.onClick.AddListener(() =>
@@ -87,38 +89,38 @@ public class PausePanelCtrler : MonoBehaviour
         });
     }
 
-    // ƒiƒCƒt‚ª’Ç‰Á‚³‚ê‚½Û
+    // ãƒŠã‚¤ãƒ•ãŒè¿½åŠ ã•ã‚ŒãŸéš›
     void OnKnifeAdded(KnifeData_RunTime knifeData)
     {
-        // ƒiƒCƒtˆê——‚ÉV‚½‚É¶¬
+        // ãƒŠã‚¤ãƒ•ä¸€è¦§ã«æ–°ãŸã«ç”Ÿæˆ
         var itemButton = Instantiate(prefab_ItemButton, knifeArea).GetComponent<UI_PlayerItemButton>();
         itemButton.SetData(knifeData);
 
-        // «‘‚É“o˜^
+        // è¾æ›¸ã«ç™»éŒ²
         knifeImageDictionaty[knifeData] = itemButton.gameObject;
 
         itemButton.onClicked.AddListener((x) =>
         {
-            // ƒqƒGƒ‰ƒ‹ƒL[QÆ‚Åƒ{ƒ^ƒ“‚ª‰½”Ô–Ú‚©æ“¾‚·‚é
+            // ãƒ’ã‚¨ãƒ©ãƒ«ã‚­ãƒ¼å‚ç…§ã§ãƒœã‚¿ãƒ³ãŒä½•ç•ªç›®ã‹å–å¾—ã™ã‚‹
             int index = itemButton.transform.GetSiblingIndex();
 
             UI_ShowPlayerItemInfo.Instance.ShowPanel(knifeImageDictionaty.Keys.ToList<Base_PlayerItem>(), index);
         });
     }
 
-    // ƒiƒCƒt‚ªíœ‚³‚ê‚½Û
+    // ãƒŠã‚¤ãƒ•ãŒå‰Šé™¤ã•ã‚ŒãŸéš›
     void OnKnifeRemoved(KnifeData_RunTime knifeData)
     {
-        // «‘‚É“o˜^‚³‚ê‚Ä‚¢‚é‚à‚Ì‚Å‚ ‚ê‚Î
+        // è¾æ›¸ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã§ã‚ã‚Œã°
         if (knifeImageDictionaty.TryGetValue(knifeData, out var obj))
         {
-            // —v‘f‚ğíœ
+            // è¦ç´ ã‚’å‰Šé™¤
             Destroy(obj);
             knifeImageDictionaty.Remove(knifeData);
         }
     }
 
-    // ”é•ó‚ª’Ç‰Á‚³‚ê‚½Û
+    // ç§˜å®ãŒè¿½åŠ ã•ã‚ŒãŸéš›
     void OnTreasureAdded(TreasureData treasureData)
     {
         var itemBtn = Instantiate(prefab_ItemButton, treasureArea).GetComponent<UI_PlayerItemButton>();
@@ -128,14 +130,14 @@ public class PausePanelCtrler : MonoBehaviour
 
         itemBtn.onClicked.AddListener((x) =>
         {
-            // ƒqƒGƒ‰ƒ‹ƒL[QÆ‚Åƒ{ƒ^ƒ“‚ª‰½”Ô–Ú‚©æ“¾‚·‚é
+            // ãƒ’ã‚¨ãƒ©ãƒ«ã‚­ãƒ¼å‚ç…§ã§ãƒœã‚¿ãƒ³ãŒä½•ç•ªç›®ã‹å–å¾—ã™ã‚‹
             int index = itemBtn.transform.GetSiblingIndex();
 
             UI_ShowPlayerItemInfo.Instance.ShowPanel(treasureImageDictionaty.Keys.ToList<Base_PlayerItem>(), index);
         });
     }
 
-    // ”é•ó‚ªíœ‚³‚ê‚½Û
+    // ç§˜å®ãŒå‰Šé™¤ã•ã‚ŒãŸéš›
     void OnTreasureRemoved(TreasureData treasureData)
     {
         if (treasureImageDictionaty.TryGetValue(treasureData, out var obj))
@@ -145,17 +147,19 @@ public class PausePanelCtrler : MonoBehaviour
         }
     }
 
-    // ƒpƒlƒ‹•\¦
+    // ãƒ‘ãƒãƒ«è¡¨ç¤º
     void TogglePanel(InputAction.CallbackContext context)
     {
         if(body.activeSelf == true) return;
+
+        if(GameAdmin.Instance.isPausing) return;
 
         body.SetActive(true);
 
         GameAdmin.Instance.PauseGame();
     }
 
-    // ƒpƒlƒ‹”ñ•\¦
+    // ãƒ‘ãƒãƒ«éè¡¨ç¤º
     public void CloseThis()
     {
         if(body.activeSelf == false) return;
@@ -167,13 +171,13 @@ public class PausePanelCtrler : MonoBehaviour
         GameAdmin.Instance.ResumeGame();
     }
 
-    // ‚±‚ÌƒIƒuƒWƒFƒNƒg‚ª”jŠü‚³‚ê‚é‚Æ‚«‚ÉAw“Ç‚ğ‚·‚×‚Ä‰ğœ
+    // ã“ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç ´æ£„ã•ã‚Œã‚‹ã¨ãã«ã€è³¼èª­ã‚’ã™ã¹ã¦è§£é™¤
     private void OnDestroy()
     {
         _disposables.Dispose();
     }
 
-    // ”ñ•\¦‚É‚È‚Á‚½‚Æ‚«
+    // éè¡¨ç¤ºã«ãªã£ãŸã¨ã
     private void OnDisable()
     {
         

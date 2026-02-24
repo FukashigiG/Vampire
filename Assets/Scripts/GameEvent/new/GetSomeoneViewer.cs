@@ -163,18 +163,22 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
         {
             case Element.White:
                 txt_Element.text = "白";
+                txt_Element.color = Color.black;
                 break;
 
             case Element.Red:
                 txt_Element.text = "赤";
+                txt_Element.color = Color.red;
                 break;
 
             case Element.Blue:
                 txt_Element.text = "青";
+                txt_Element.color = Color.blue;
                 break;
 
             case Element.Yellow:
                 txt_Element.text = "黄";
+                txt_Element.color = Color.yellow;
                 break;
         }
 

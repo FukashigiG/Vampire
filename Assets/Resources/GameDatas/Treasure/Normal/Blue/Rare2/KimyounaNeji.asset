@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TreasureData
   <_name>k__BackingField: "\u5947\u5999\u306A\u30CD\u30B8"
   <flavortext>k__BackingField: "\u6050\u3089\u304F\u306F\u6642\u8A08\u306E\u90E8\u54C1\u306E\u4E00\u90E8"
-  <rank>k__BackingField: 2
+  <rank>k__BackingField: 3
   <sprite>k__BackingField: {fileID: 7397738121473790602, guid: eb4dc588ef8c564469777ad1c53dec42, type: 3}
   <element>k__BackingField: 2
   <description>k__BackingField: "HP\u304C\u534A\u5206\u4EE5\u4E0A\u306A\u3089\u3001\u6BCE\u79D2\u30A2\u30D3\u30EA\u30C6\u30A3\u30B2\u30FC\u30B8\u304C\u305D\u3053\u305D\u3053\u306B\u30C1\u30E3\u30FC\u30B8\u3055\u308C\u308B"
