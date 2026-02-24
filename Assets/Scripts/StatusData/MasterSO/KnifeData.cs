@@ -1,12 +1,12 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName ="NewWeaponData", menuName = "Game Data/Weapon Data")]
 public class KnifeData : Base_PlayerItem
 {
-    // ƒiƒCƒt‚ÌŠeƒXƒe[ƒ^ƒX‚ğ‚Ü‚Æ‚ß‚½‚à‚Ì
-    // ‚±‚ÌƒXƒNƒŠƒvƒg‚ÍUnityƒGƒfƒBƒ^ã‚É“o˜^‚·‚é‚½‚ß‚Ì‚à‚Ì‚Å‚ ‚èAƒQ[ƒ€’†‚Å‚Í_RunTime‚ª‚Â‚¢‚Ä‚é‚à‚Ì‚ğˆµ‚¤
-    // ‚±‚ê‚ç‚Ì•Ï”‚ÍŠO•”‚©‚ç‚ÌQÆ‚ÆAƒCƒ“ƒXƒyƒNƒ^[ã‚Å‚Ì‘‚«Š·‚¦‚ªo—ˆ‚é
+    // ãƒŠã‚¤ãƒ•ã®å„ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ã‚’ã¾ã¨ã‚ãŸã‚‚ã®
+    // ã“ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¯Unityã‚¨ãƒ‡ã‚£ã‚¿ä¸Šã«ç™»éŒ²ã™ã‚‹ãŸã‚ã®ã‚‚ã®ã§ã‚ã‚Šã€ã‚²ãƒ¼ãƒ ä¸­ã§ã¯_RunTimeãŒã¤ã„ã¦ã‚‹ã‚‚ã®ã‚’æ‰±ã†
+    // ã“ã‚Œã‚‰ã®å¤‰æ•°ã¯å¤–éƒ¨ã‹ã‚‰ã®å‚ç…§ã¨ã€ã‚¤ãƒ³ã‚¹ãƒšã‚¯ã‚¿ãƒ¼ä¸Šã§ã®æ›¸ãæ›ãˆãŒå‡ºæ¥ã‚‹
 
     [field: SerializeField] public int power { get; private set; }
     [field: SerializeField] public int elementPower { get; private set; }
@@ -15,71 +15,71 @@ public class KnifeData : Base_PlayerItem
 
     [field: SerializeField] public GameObject hitEffect { get; private set; }
 
-    // “ÁêŒø‰Ê
+    // ç‰¹æ®ŠåŠ¹æœ
     [field: SerializeField] public List<KnifeAbility> abilities { get; private set; }
 
-    // ˆÈ‰ºƒL[ƒ[ƒh”\—Í
+    // ä»¥ä¸‹ã‚­ãƒ¼ãƒ¯ãƒ¼ãƒ‰èƒ½åŠ›
     /*
-    public bool penetration; //ŠÑ’Ê
-    public bool defenceIgnore; // –hŒä–³‹
-    public bool heavyBlow; // dŒ‚
-    public bool thighSplitting; // ‘ÚÓ‚«
-    public bool collapse; // •ö‰ó
-    public bool blaze; // ‰Î‰‹
-    public bool freeze; // •XŒ‹
+    public bool penetration; //è²«é€š
+    public bool defenceIgnore; // é˜²å¾¡ç„¡è¦–
+    public bool heavyBlow; // é‡æ’ƒ
+    public bool thighSplitting; // è…¿ç •ã
+    public bool collapse; // å´©å£Š
+    public bool blaze; // ç«ç„”
+    public bool freeze; // æ°·çµ
     */
 }
 
 [System.Serializable]
 public class KnifeAbility : IDiscribing
 {
-    // ‚â‚Á‚Ï”­“®—¦‚Æ”’l‚ÍƒAƒrƒŠƒeƒB‚²‚Æ‚ÌŒÅ—L’l‚É‚µ‚½‚¢‚í
+    // ã‚„ã£ã±ç™ºå‹•ç‡ã¨æ•°å€¤ã¯ã‚¢ãƒ“ãƒªãƒ†ã‚£ã”ã¨ã®å›ºæœ‰å€¤ã«ã—ãŸã„ã‚
 
-    // ”­“®‚·‚é”\—Í
+    // ç™ºå‹•ã™ã‚‹èƒ½åŠ›
     [SerializeField] public Base_KnifeAbilityLogic abilityLogic;
-    // ”­“®—¦
-    //[SerializeField] public int probability_Percent = 100; // ƒfƒtƒHƒ‹ƒg’l
-    // Œø‰Ê”{—¦
-    //[SerializeField] public float modifire = 1.0f; // ƒfƒtƒHƒ‹ƒg’l
-    // Œø‰ÊID ó‘Ô•Ï‰»ŒnŒø‰Ê‚ÌÛ“™‚Åg—p‚³‚ê‚é
+    // ç™ºå‹•ç‡
+    //[SerializeField] public int probability_Percent = 100; // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤
+    // åŠ¹æœå€ç‡
+    //[SerializeField] public float modifire = 1.0f; // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤
+    // åŠ¹æœID çŠ¶æ…‹å¤‰åŒ–ç³»åŠ¹æœã®éš›ç­‰ã§ä½¿ç”¨ã•ã‚Œã‚‹
     [SerializeField] public string effectID;
 
-    public string _name => abilityLogic.name;
+    public string _name => abilityLogic.effectName;
     public string description => abilityLogic.description;
 
-    // ƒiƒCƒt‚ª“Š‚°‚ç‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚é
+    // ãƒŠã‚¤ãƒ•ãŒæŠ•ã’ã‚‰ã‚ŒãŸã¨ãã«å‘¼ã°ã‚Œã‚‹
     public virtual void OnThrown(PlayerStatus status, GameObject knifeObj, KnifeData_RunTime knifeData)
     {
-        // •Ï”‚ªfalse‚È‚ç–³‹
+        // å¤‰æ•°ãŒfalseãªã‚‰ç„¡è¦–
         if (! abilityLogic.effectOnThrown) return;
 
-        // 1`100‚Ì—”‚ª”­“®Šm—¦ˆÈ“à‚È‚çA“ÁêŒø‰Ê‚ğ”­“®
+        // 1ï½100ã®ä¹±æ•°ãŒç™ºå‹•ç¢ºç‡ä»¥å†…ãªã‚‰ã€ç‰¹æ®ŠåŠ¹æœã‚’ç™ºå‹•
         int randomNum = Random.Range(1, 101);
 
         if (randomNum <= abilityLogic.probability_Percent)
         {
-            // Œø‰Êˆ—
+            // åŠ¹æœå‡¦ç†
             abilityLogic.ActivateAbility(status, knifeObj, knifeData, effectID);
         }
     }
 
-    // ƒiƒCƒt‚ªƒqƒbƒg‚µ‚½‚ÉŒÄ‚Î‚ê‚é
+    // ãƒŠã‚¤ãƒ•ãŒãƒ’ãƒƒãƒˆã—ãŸæ™‚ã«å‘¼ã°ã‚Œã‚‹
     public virtual void OnHit(EnemyStatus status, GameObject knifeObj, KnifeData_RunTime knifeData)
     {
-        // •Ï”‚ªfalse‚È‚ç–³‹
+        // å¤‰æ•°ãŒfalseãªã‚‰ç„¡è¦–
         if (! abilityLogic.effectOnHit) return;
 
-        // 1`100‚Ì—”‚ª”­“®Šm—¦ˆÈ“à‚È‚çA“ÁêŒø‰Ê‚ğ”­“®
+        // 1ï½100ã®ä¹±æ•°ãŒç™ºå‹•ç¢ºç‡ä»¥å†…ãªã‚‰ã€ç‰¹æ®ŠåŠ¹æœã‚’ç™ºå‹•
         int randomNum = Random.Range(1, 101);
 
         if (randomNum <= abilityLogic.probability_Percent)
         {
-            // Œø‰Êˆ—
+            // åŠ¹æœå‡¦ç†
             abilityLogic.ActivateAbility(status, knifeObj, knifeData, effectID);
         }
     }
 
-    // ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+    // ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     public KnifeAbility(Base_KnifeAbilityLogic abilityLogic, string effectID)
     {
         this.abilityLogic = abilityLogic;

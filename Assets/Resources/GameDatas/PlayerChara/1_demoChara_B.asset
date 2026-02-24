@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf4a92988800192408927d5db7966ed4, type: 3}
-  m_Name: demoChara_B
+  m_Name: 1_demoChara_B
   m_EditorClassIdentifier: 
   <sprite>k__BackingField: {fileID: 0}
   <_name>k__BackingField: "\u30DE\u30B8\u30B7\u30E3\u30F3\u96E8\u5BAE"
@@ -31,3 +31,4 @@ MonoBehaviour:
   <prefab>k__BackingField: {fileID: 0}
   <image_FullBody>k__BackingField: {fileID: -4733188138729544484, guid: 4df40497f077ec145b2a1c2bd8e71242, type: 3}
   <image_CutInArt>k__BackingField: {fileID: 1274593346181265392, guid: c484291fa8724cb4fb68a29388376c0c, type: 3}
+  <image_icon>k__BackingField: {fileID: 823710933033197091, guid: 0fef46184d0b04c45b2e6347102acf94, type: 3}

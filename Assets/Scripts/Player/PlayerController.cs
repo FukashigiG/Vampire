@@ -9,6 +9,8 @@ public class PlayerController : SingletonMono<PlayerController>
 {
     //このスクリプトでは、プレイヤーの操作に関する処理を記述している
 
+    [SerializeField] SpriteRenderer _remderer;
+
     [Header("Turn Settings")]
     [SerializeField, Range(1, 30)]
     private int framesToCompare = 5;
@@ -30,6 +32,8 @@ public class PlayerController : SingletonMono<PlayerController>
         _rigidbody = GetComponent<Rigidbody2D>();
         _input = GetComponent<PlayerInput>();
         _status = status;
+
+        _remderer.sprite = _status.playerCharaData.image_icon;
 
         _status.onDie.Subscribe(x =>
         {

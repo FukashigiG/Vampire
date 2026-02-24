@@ -1,12 +1,13 @@
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
 
 public class UI_ShowAbilityDetail : SingletonMono<UI_ShowAbilityDetail>
 {
-    [SerializeField] Text txt_Name;
-    [SerializeField] Text txt_Description;
+    [SerializeField] TextMeshProUGUI txt_Name;
+    [SerializeField] TextMeshProUGUI txt_Description;
 
     [SerializeField] GameObject body;
 

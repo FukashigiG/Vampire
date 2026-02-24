@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Shot 1
   m_EditorClassIdentifier: Assembly-CSharp::BEA_Shot
   <actionName>k__BackingField: "\u71C3\u3048\u308B\u30A6\u30ED\u30B3"
-  <range_Min>k__BackingField: 3
+  <range_Min>k__BackingField: 7
   <range_Max>k__BackingField: 999
   delayTime: 0.5
   <actType>k__BackingField: 1
   prefab_Bullet: {fileID: 6002114493564059005, guid: 0a6c8aadb52c5fe4da7944597213d7a1, type: 3}
   num_Bullet: 16
   divergenceAngle: 60
+  damageMultiple: 0.5
   shotType: 1

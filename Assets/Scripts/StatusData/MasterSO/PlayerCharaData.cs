@@ -34,4 +34,5 @@ public class PlayerCharaData : ScriptableObject
     [Header("その他")]
     [field: SerializeField] public Sprite image_FullBody { get; private set; }
     [field: SerializeField] public Sprite image_CutInArt { get; private set; }
+    [field: SerializeField] public Sprite image_icon { get; private set; }
 }

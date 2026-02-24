@@ -7,7 +7,7 @@ public class EP_Bullet : Base_EnemyProps
     [SerializeField] GameObject fx_OnHit;
     [SerializeField] ParticleSystem fx_Trail;
 
-    float speed = 8f;
+    float speed = 5f;
     float lifeTime = 5f;
 
     float timeCount = 0;
@@ -30,14 +30,17 @@ public class EP_Bullet : Base_EnemyProps
         {
             ms.GetAttack(damage, elementDamage, transform.position);
 
-            // トレイル部分の親子関係の解除
-            // 自然に消える演出のための処理
-            fx_Trail.transform.parent = null;
-            fx_Trail.Stop();
-
             Instantiate(fx_OnHit, transform.position, Quaternion.identity);
 
             Destroy(this.gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        // トレイル部分の親子関係の解除
+        // 自然に消える演出のための処理
+        fx_Trail.transform.parent = null;
+        fx_Trail.Stop();
     }
 }

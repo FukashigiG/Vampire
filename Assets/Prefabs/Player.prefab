@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd9f72aaaccd8945831c7f59632ba12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _remderer: {fileID: 7707143650388278910}
   framesToCompare: 8
 --- !u!114 &4802796929602805163
 MonoBehaviour:
@@ -341,6 +342,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   closerCam: {fileID: 0}
+  fx_Throw: {fileID: 4189201975472490593, guid: 2eb740ac118cdcb4ca90a6bffa2f6ea6, type: 3}
 --- !u!114 &3627292412944030303
 MonoBehaviour:
   m_ObjectHideFlags: 0

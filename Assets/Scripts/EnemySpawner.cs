@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,8 +23,8 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
     CancellationTokenSource tokenSource;
     CancellationToken token;
 
-    // w“Ç‚Ìƒ‰ƒCƒtƒTƒCƒNƒ‹‚ğŠÇ—‚·‚é‚½‚ß‚ÌDisposable
-    // ‚±‚ê‚P‚Â‚Å‘òR‚ÌDisposable‚È‚â‚Â‚ç‚É‘Î‰‰Â”\‚ç‚µ‚¢
+    // è³¼èª­ã®ãƒ©ã‚¤ãƒ•ã‚µã‚¤ã‚¯ãƒ«ã‚’ç®¡ç†ã™ã‚‹ãŸã‚ã®Disposable
+    // ã“ã‚Œï¼‘ã¤ã§æ²¢å±±ã®Disposableãªã‚„ã¤ã‚‰ã«å¯¾å¿œå¯èƒ½ã‚‰ã—ã„
     private CompositeDisposable disposables = new CompositeDisposable();
 
     List<EnemyData> normalEnemyList = new List<EnemyData>();
@@ -55,34 +55,34 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         {
             while (GameAdmin.Instance._waveState == GameAdmin.WaveState.zako)
             {
-                Vector2 randomPoint = SpawnPointRottery(); // “G‚Ì¶¬êŠ‚ğæ“¾
+                Vector2 randomPoint = SpawnPointRottery(); // æ•µã®ç”Ÿæˆå ´æ‰€ã‚’å–å¾—
 
-                var data = EnemyLottery(); // “G‚Ìƒf[ƒ^‚ğæ“¾
+                var data = EnemyLottery(); // æ•µã®ãƒ‡ãƒ¼ã‚¿ã‚’å–å¾—
 
-                SpawnEnemy(data, randomPoint); // ¶¬
+                SpawnEnemy(data, randomPoint); // ç”Ÿæˆ
 
-                // ƒ~ƒjƒ}ƒbƒvŠÇ—l‚ÉAV‚µ‚­¶‚Ü‚ê‚½‚±‚Æ‚ğ’m‚ç‚¹‚é
+                // ãƒŸãƒ‹ãƒãƒƒãƒ—ç®¡ç†äººã«ã€æ–°ã—ãç”Ÿã¾ã‚ŒãŸã“ã¨ã‚’çŸ¥ã‚‰ã›ã‚‹
                 //MiniMapController.Instance.NewEnemyInstance(enemy);
-                // d—l•ÏXFƒXƒe[ƒ^ƒX©g‚É‚â‚ç‚¹‚é
+                // ä»•æ§˜å¤‰æ›´ï¼šã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹è‡ªèº«ã«ã‚„ã‚‰ã›ã‚‹
 
-                // ¶¬ŠÔŠu‚ÌŒˆ’è
-                // ƒXƒe[ƒWƒ‰ƒ“ƒN‚ª‚‚¢‚Ù‚Ç’Z‚­‚È‚é
-                // ƒEƒF[ƒu‚ªŒã”¼‚É‚È‚é‚É‚Â‚ê‚Ä‚à’Z‚­‚È‚é
+                // ç”Ÿæˆé–“éš”ã®æ±ºå®š
+                // ã‚¹ãƒ†ãƒ¼ã‚¸ãƒ©ãƒ³ã‚¯ãŒé«˜ã„ã»ã©çŸ­ããªã‚‹
+                // ã‚¦ã‚§ãƒ¼ãƒ–ãŒå¾ŒåŠã«ãªã‚‹ã«ã¤ã‚Œã¦ã‚‚çŸ­ããªã‚‹
                 float interval = 0.1f
                     + (4 - GameAdmin.Instance.currentStage.stageRank) * 0.3f
                     + (7 - GameAdmin.Instance.waveCount) * 0.05f;
 
-                // ‘Ò‚Â
+                // å¾…ã¤
                 await UniTask.Delay((int)(interval * 1000), cancellationToken: token);
             }
         }
         catch (System.OperationCanceledException)
         {
-            // ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½‚Ì‚Åƒ‹[ƒv‚ğ”²‚¯‚éiƒƒO‚Ío‚³‚È‚¢j
+            // ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸã®ã§ãƒ«ãƒ¼ãƒ—ã‚’æŠœã‘ã‚‹ï¼ˆãƒ­ã‚°ã¯å‡ºã•ãªã„ï¼‰
         }
         catch (System.Exception e)
         {
-            Debug.LogException(e); // ƒGƒ‰[“à—e‚ğƒƒO‚Éo‚·
+            Debug.LogException(e); // ã‚¨ãƒ©ãƒ¼å†…å®¹ã‚’ãƒ­ã‚°ã«å‡ºã™
         }
         finally
         {
@@ -90,14 +90,14 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         }
     }
 
-    // —^‚¦‚ç‚ê‚½ƒf[ƒ^‚ÆÀ•W‚ğŒ³‚É“GƒIƒuƒWƒFƒNƒg‚ğ¶¬A‰Šú‰»
-    // ŠO•”‚ªV‚½‚É“G‚ğo‚µ‚½‚¢ê‡‚É‚à‚±‚ê‚ğ—˜—p‚³‚¹‚é
+    // ä¸ãˆã‚‰ã‚ŒãŸãƒ‡ãƒ¼ã‚¿ã¨åº§æ¨™ã‚’å…ƒã«æ•µã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã€åˆæœŸåŒ–
+    // å¤–éƒ¨ãŒæ–°ãŸã«æ•µã‚’å‡ºã—ãŸã„å ´åˆã«ã‚‚ã“ã‚Œã‚’åˆ©ç”¨ã•ã›ã‚‹
     public void SpawnEnemy(EnemyData data, Vector2 spawnPoint)
     {
         GameObject targetPrefab = null;
 
-        // “G‚Ìƒ^ƒCƒv‚É‚ ‚í‚¹‚½ƒvƒŒƒnƒu‚ğæ“¾
-        // ‚»‚ê‚¼‚ê‚±‚Æ‚È‚éƒ^ƒCƒv‚ÌƒGƒlƒ~[ƒRƒ“ƒgƒ[ƒ‰‚ªƒAƒ^ƒbƒ`‚³‚ê‚Ä‚é
+        // æ•µã®ã‚¿ã‚¤ãƒ—ã«ã‚ã‚ã›ãŸãƒ—ãƒ¬ãƒãƒ–ã‚’å–å¾—
+        // ãã‚Œãã‚Œã“ã¨ãªã‚‹ã‚¿ã‚¤ãƒ—ã®ã‚¨ãƒãƒŸãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãŒã‚¢ã‚¿ãƒƒãƒã•ã‚Œã¦ã‚‹
         switch (data.actType)
         {
             case EnemyData.EnemyActType.Infight:
@@ -113,15 +113,15 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
                 break;
         }
 
-        // ¶¬
+        // ç”Ÿæˆ
         var x = Instantiate(targetPrefab, spawnPoint, Quaternion.identity, parent_Enemy);
 
-        // ƒf[ƒ^‚ÆƒEƒG[ƒu”‚Ì”{—¦ƒu[ƒXƒg‚ğ“n‚µ‚½‚¤‚¦‚Å‰Šú‰»‚³‚¹‚é
+        // ãƒ‡ãƒ¼ã‚¿ã¨ã‚¦ã‚¨ãƒ¼ãƒ–æ•°ã®å€ç‡ãƒ–ãƒ¼ã‚¹ãƒˆã‚’æ¸¡ã—ãŸã†ãˆã§åˆæœŸåŒ–ã•ã›ã‚‹
         x.GetComponent<EnemyStatus>()
         .Initialize_OR(data, 1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
     }
 
-    // ¶¬êŠ‚Ì’Š‘I
+    // ç”Ÿæˆå ´æ‰€ã®æŠ½é¸
     public Vector2 SpawnPointRottery()
     {
         Vector2 randomPoint;
@@ -130,17 +130,17 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
         float n = 10;
 
-        // ƒXƒ|[ƒ“’n“_‚ªƒvƒŒƒCƒ„[‚Æ”¼ŒanˆÈ“à‚É‚È‚ç‚È‚¢‚æ‚¤‚É
+        // ã‚¹ãƒãƒ¼ãƒ³åœ°ç‚¹ãŒãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨åŠå¾„nä»¥å†…ã«ãªã‚‰ãªã„ã‚ˆã†ã«
         do
         {
-            randomPoint = Random.insideUnitCircle * 17;
+            randomPoint = Random.insideUnitCircle * 30;
 
         } while (Vector2.Distance(randomPoint, player.position) < n);
 
         return randomPoint;
     }
 
-    // oŒ»‚³‚¹‚é“G‚Ìƒf[ƒ^‚ğ’Š‘I
+    // å‡ºç¾ã•ã›ã‚‹æ•µã®ãƒ‡ãƒ¼ã‚¿ã‚’æŠ½é¸
     EnemyData EnemyLottery()
     {
         int[] weight_Rank = { 9, 7, 4 };
@@ -190,19 +190,19 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
     public EnemyStatus SpawnBoss(Vector3 spawnPos)
     {
-        // ¶¬
+        // ç”Ÿæˆ
         GameObject x = Instantiate(bossEnemy, spawnPos, Quaternion.identity, parent_Enemy);
         
-        // ƒRƒ“ƒ|[ƒlƒ“ƒgæ“¾
+        // ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆå–å¾—
         var status = x.GetComponent<EnemyStatus>();
 
-        // ƒEƒG[ƒu”‚Ì”{—¦ƒu[ƒXƒg‚ğ“n‚µ‚½‚¤‚¦‚Å‚Ì‰Šú‰»
+        // ã‚¦ã‚¨ãƒ¼ãƒ–æ•°ã®å€ç‡ãƒ–ãƒ¼ã‚¹ãƒˆã‚’æ¸¡ã—ãŸã†ãˆã§ã®åˆæœŸåŒ–
         status.Initialize_OR(bossData, 1 + GameAdmin.Instance.waveCount * GameAdmin.Instance.waveBoostMultiplier);
 
         return status;
     }
 
-    // ƒIƒuƒWƒFƒNƒg”jŠüAdisposables‚ÆtokenSource‚Ìˆ—
+    // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç ´æ£„æ™‚ã€disposablesã¨tokenSourceã®å‡¦ç†
     private void OnDestroy()
     {
         disposables.Dispose();

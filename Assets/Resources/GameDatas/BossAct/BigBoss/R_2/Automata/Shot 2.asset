@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shot 2
   m_EditorClassIdentifier: Assembly-CSharp::BEA_Shot
   <actionName>k__BackingField: "code\uFF1A\u7BC4\u56F2\u5236\u5727"
-  <range_Min>k__BackingField: 3
+  <range_Min>k__BackingField: 8
   <range_Max>k__BackingField: 999
   delayTime: 0.5
   <actType>k__BackingField: 1
