@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: E_R3Infighter
   m_EditorClassIdentifier: 
   <sprite>k__BackingField: {fileID: 8143951636752000675, guid: 0928bc7488509d14fa7278aadebfd67f, type: 3}
-  <_name>k__BackingField: "R2\u30A4\u30F3\u30D5\u30A1\u30A4\u30BF\u30FC"
+  <_name>k__BackingField: "\u30D5\u30A3\u30C3\u30B7\u30E5\u4E9C\u7A2E"
   <description>k__BackingField: "R2\u306E\u30A4\u30F3\u30D5\u30A1\u30A4\u30BF\u30FC\u30A8\u30CD\u30DF\u30FC\n\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u305F\u3073\u9632\u5FA1\u304C\u4E0B\u304C\u308B\u304C\u7D20\u65E9\u3055\u304C\u4E0A\u304C\u308B"
   <rank>k__BackingField: 3
   <actType>k__BackingField: 0

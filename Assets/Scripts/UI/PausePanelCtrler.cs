@@ -32,6 +32,8 @@ public class PausePanelCtrler : MonoBehaviour
     [SerializeField] Button btn_Setting;
     [SerializeField] Button btn_Retire;
 
+    InputAction _inputaction;
+
     private void Awake()
     {
 
@@ -40,7 +42,9 @@ public class PausePanelCtrler : MonoBehaviour
     // 初期化
     public void Initialize(InputAction action)
     {
-        action.performed += TogglePanel; // 引数で渡されたアクションが実行されたらTogglePanelを呼ぶ
+        _inputaction = action;
+
+        _inputaction.performed += TogglePanel; // 引数で渡されたアクションが実行されたらTogglePanelを呼ぶ
 
         playerInventory = PlayerController.Instance._status.inventory; // PlayerInventoryをプレイヤーから取得
 
@@ -175,6 +179,8 @@ public class PausePanelCtrler : MonoBehaviour
     private void OnDestroy()
     {
         _disposables.Dispose();
+
+        _inputaction.performed -= TogglePanel;
     }
 
     // 非表示になったとき

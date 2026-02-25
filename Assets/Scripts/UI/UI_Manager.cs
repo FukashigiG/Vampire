@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,18 +20,22 @@ public class UI_Manager : SingletonMono<UI_Manager>
         }
         else
         {
-            Debug.Log("ActionMap‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
+            Debug.Log("ActionMapãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
         }
 
         if(togglePanelAction != null)
         {
-            togglePanelAction.Enable(); // ‚±‚Ìˆê•¶‚ª‚ ‚Á‚Ä‰‚ß‚ÄAƒAƒNƒVƒ‡ƒ“‚ªŒÄ‚Î‚ê‚é‚æ‚¤‚É‚È‚é
+            // ã™ã§ã«æœ‰åŠ¹åŒ–ã•ã‚Œã¦ã„ãªã„ã‹ãƒã‚§ãƒƒã‚¯
+            if (!togglePanelAction.enabled)
+            {
+                togglePanelAction.Enable(); // ã“ã®ä¸€æ–‡ãŒã‚ã£ã¦åˆã‚ã¦ã€ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãŒå‘¼ã°ã‚Œã‚‹ã‚ˆã†ã«ãªã‚‹
+            }
 
             _pausePanelCtrler.Initialize(togglePanelAction);
         }
         else
         {
-            Debug.Log("Action‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ");
+            Debug.Log("ActionãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“");
         }
         
     }

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f5d633c4fb0e9468cf0ca98107ca9e, type: 3}
   m_Name: ESA_DamageToBuff_Spd
   m_EditorClassIdentifier: Assembly-CSharp::ESA_DamageToBuff
-  <_name>k__BackingField: 
-  <description>k__BackingField: 
+  <_name>k__BackingField: "\u7D76\u53EB"
+  <description>k__BackingField: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u305F\u3073\u7D20\u65E9\u3055\u304C\u3042\u304C\u308B"
   <icon>k__BackingField: {fileID: 0}
   effectType: 2
   eachBonusAmount: 20

@@ -43,8 +43,6 @@ public class UI_FadeAnimator : MonoBehaviour
         // アニメーション偏移
         await UniTask.Yield(PlayerLoopTiming.Update, token);
 
-        Debug.Log(_animator.GetCurrentAnimatorStateInfo(0).IsName("FadeIn"));
-
         // アニメーションが終わるまで待機
         await UniTask.WaitUntil(() => _animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f);
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Defence_Buff_M
   m_EditorClassIdentifier: 
   <effectName>k__BackingField: "\u5CA9\u786C\u5316"
-  probability_Percent: 40
+  probability_Percent: 70
   <description>k__BackingField: "\u4E00\u5B9A\u6642\u9593\u3001\u9632\u5FA1\u304C\u305D\u3053\u305D\u3053\u4E0A\u304C\u308B"
   <effectOnThrown>k__BackingField: 1
   <effectOnHit>k__BackingField: 0

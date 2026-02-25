@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f5d633c4fb0e9468cf0ca98107ca9e, type: 3}
   m_Name: ESA_DamageToDebuff_Def
   m_EditorClassIdentifier: Assembly-CSharp::ESA_DamageToBuff
-  <_name>k__BackingField: 
+  <_name>k__BackingField: "\u5D29\u58CA"
   <description>k__BackingField: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u305F\u3073\u9632\u5FA1\u304C\u4E0B\u304C\u308B"
   <icon>k__BackingField: {fileID: 0}
   effectType: 1
