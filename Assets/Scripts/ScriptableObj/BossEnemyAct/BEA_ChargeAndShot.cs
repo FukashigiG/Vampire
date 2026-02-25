@@ -53,7 +53,7 @@ public class BEA_ChargeAndShot : Base_BossEnemyAct
 
         // ダメージ判定を子オブジェクトとして生成、初期化
         GameObject damageDetect = Instantiate(attackDetectObje, ctrler.gameObject.transform);
-        damageDetect.GetComponent<EP_Punch>().Initialie_OR((int)(ctrler._enemyStatus.power * damageMultiplier), 0, AttackRangeType.box, 0, 1.1f, 1.1f, isInstant: false);
+        damageDetect.GetComponent<EP_Punch>().Initialie_OR((int)(ctrler._enemyStatus.power * damageMultiplier), 0, AttackRangeType.box, 0, 2.1f, 2.1f, isInstant: false);
 
         GameObject bullet = null;
         float bulletTimer = 0f;
