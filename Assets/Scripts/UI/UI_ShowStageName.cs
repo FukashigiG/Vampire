@@ -34,7 +34,7 @@ public class UI_ShowStageName : SingletonMono<UI_ShowStageName>
             img.color = color_Def;
         }
 
-        icons_StageProgress[waveCount - 1].color = color_HighLight;
+        if(! GameAdmin.Instance.isEndLess) icons_StageProgress[waveCount - 1].color = color_HighLight;
 
         body.SetActive(true);
 

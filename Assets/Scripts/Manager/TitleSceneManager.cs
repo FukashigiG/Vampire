@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,7 +27,7 @@ public class TitleSceneManager : SingletonMono<TitleSceneManager>
 
     public void GoButtle()
     {
-        dataHolder.SetData(CharaSelect_Director.Instance.cullentSelected);
+        dataHolder.SetData(CharaSelect_Director.Instance.cullentSelected, CharaSelect_Director.Instance.endLessMode);
 
         SceneLoader.Instance.Load("SampleScene");
     }

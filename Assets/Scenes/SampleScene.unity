@@ -6983,7 +6983,7 @@ MonoBehaviour:
   initialStage: {fileID: 11400000, guid: 45fe6a9709d151a468685435afa9aad2, type: 2}
   item_WarpStage: {fileID: 270761467918423833, guid: 19663bb03d8b1e54c972e4ceb543e222, type: 3}
   dataHolder: {fileID: 11400000, guid: d91bf72238158cb45add6f1c0f6e33c0, type: 2}
-  <waveBoostMultiplier>k__BackingField: 0
+  <waveBoostMultiplier>k__BackingField: 0.07
   _waveState: 0
 --- !u!114 &1660246992
 MonoBehaviour:

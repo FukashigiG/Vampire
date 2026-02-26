@@ -14,6 +14,7 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
     [SerializeField] Image BG_Image;
     [SerializeField] Image charaFullBodyArt;
     [SerializeField] Button btn_Close;
+    [SerializeField] Toggle btn_EndLessMode;
     [SerializeField] Button btn_GoButtle;
     [SerializeField] List<UI_PlayerItemButton> btns_Knife;
     [SerializeField] List<UI_PlayerItemButton> btns_Treasure;
@@ -35,11 +36,18 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
 
     public PlayerCharaData cullentSelected { get; private set; } = null;
 
+    public bool endLessMode {  get; private set; } = false;
+
     public void Initialize(Button btn_Open)
     {
         btn_Open.onClick.AddListener(OpenPanel);
         btn_Close.onClick.AddListener(ClosePanel);
         btn_GoButtle.onClick.AddListener(GoButtle);
+
+        btn_EndLessMode.onValueChanged.AddListener((value) =>
+        {
+            endLessMode = value;
+        });
 
         charas = Resources.LoadAll<PlayerCharaData>("GameDatas/PlayerChara").ToList();
 

@@ -7,6 +7,7 @@ public class UI_GameResult : SingletonMono<UI_GameResult>
     [SerializeField] GameObject body;
 
     [SerializeField] TextMeshProUGUI txt_Result;
+    [SerializeField] TextMeshProUGUI txt_WaveCount;
 
     [SerializeField] Animator _animator;
 
@@ -28,6 +29,8 @@ public class UI_GameResult : SingletonMono<UI_GameResult>
                 txt_Result.text = "敗北...";
                 break;
         }
+
+        txt_WaveCount.text = "進んだウェーブ数：" + GameAdmin.Instance.waveCount;
 
         for(int i = 0; i < _image.Length; i++)
         {

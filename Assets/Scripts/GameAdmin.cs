@@ -41,8 +41,6 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     public bool isPausing => pauseCount > 0;
 
-    bool arrow_AccessToSecretStage = false;
-
     EnemyStatus cullentBoss = null;
 
     // １ウェーブあたりの敵の強化倍率
@@ -55,6 +53,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
         zako, boss
     }
     public WaveState _waveState;
+
+    public bool isEndLess {  get; private set; } = false;
 
     // ボス出現時の通知
     Subject<Unit> subject_OnBossAppear = new Subject<Unit>();
@@ -76,6 +76,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
         var p_Status = PlayerController.Instance.GetComponent<PlayerStatus>();
 
         var charaData = dataHolder.selectedChara;
+
+        isEndLess = dataHolder.isEndless;
 
         p_Status.Initialize_OR(charaData);
 
@@ -252,36 +254,20 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     void OnWaveFinish()
     {
-        switch (waveCount)
+        if(! isEndLess && waveCount >= 6)
         {
-            case <= 5:
+            GameSet(true);
 
-                Vector2 P_pos = PlayerController.Instance.transform.position;
-
-                // ゲートの場所
-                // プレイヤーの現在地から原点方向に４先の位置
-                Vector2 posi = P_pos + (Vector2.zero - P_pos).normalized * 4;
-                // ワープゲート生成
-                Instantiate(item_WarpStage, posi, Quaternion.identity);
-                break;
-
-            case 6:
-
-                if (arrow_AccessToSecretStage)
-                {
-
-                }
-                else
-                {
-                    GameSet(true);
-                }
-
-                break;
-            default:
-                break;
+            return;
         }
 
-        
+        Vector2 P_pos = PlayerController.Instance.transform.position;
+
+        // ゲートの場所
+        // プレイヤーの現在地から原点方向に４先の位置
+        Vector2 posi = P_pos + (Vector2.zero - P_pos).normalized * 4;
+        // ワープゲート生成
+        Instantiate(item_WarpStage, posi, Quaternion.identity);
     }
 
     public void SetTimeScaleValue(float x)

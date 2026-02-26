@@ -1,18 +1,22 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StageDataHolder", menuName = "Game Data/StageDataHolder")]
 public class StageDataHolder : ScriptableObject
 {
-    [Header("‚±‚ÌSO‚Íƒ^ƒCƒgƒ‹ - í“¬ƒV[ƒ“ŠÔ‚Åî•ñ‚ğ‹¤—L‚·‚é‚½‚ß‚Ì‚à‚Ì‚Å‚·")]
+    [Header("ã“ã®SOã¯ã‚¿ã‚¤ãƒˆãƒ« - æˆ¦é—˜ã‚·ãƒ¼ãƒ³é–“ã§æƒ…å ±ã‚’å…±æœ‰ã™ã‚‹ãŸã‚ã®ã‚‚ã®ã§ã™")]
 
     [SerializeField] bool updatable;
     [field: SerializeField] public PlayerCharaData selectedChara {  get; private set; }
 
-    public void SetData(PlayerCharaData charaData)
+    [field: SerializeField] public bool isEndless {  get; private set; }
+
+    public void SetData(PlayerCharaData charaData, bool _isEndless)
     {
         if(! updatable) return;
 
         selectedChara = charaData;
+
+        isEndless = _isEndless;
     }
 }

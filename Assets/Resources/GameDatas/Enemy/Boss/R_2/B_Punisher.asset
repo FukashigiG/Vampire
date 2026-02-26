@@ -17,9 +17,9 @@ MonoBehaviour:
   <description>k__BackingField: "\u4ED5\u4E8B\u306B\u3084\u308A\u304C\u3044\u3092\u6C42\u3081\u308B\u30BF\u30A4\u30D7"
   <rank>k__BackingField: 2
   <actType>k__BackingField: 3
-  <hp>k__BackingField: 4700
-  <power>k__BackingField: 90
-  <defense>k__BackingField: 24
+  <hp>k__BackingField: 4420
+  <power>k__BackingField: 78
+  <defense>k__BackingField: 22
   <moveSpeed>k__BackingField: 49
   _shotType: 0
   _num_Bullet: 1

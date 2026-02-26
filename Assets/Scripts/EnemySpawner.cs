@@ -72,6 +72,9 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
                     + (4 - GameAdmin.Instance.currentStage.stageRank) * 0.3f
                     + (7 - GameAdmin.Instance.waveCount) * 0.05f;
 
+                // 生成間隔の下限上限設定
+                interval = Mathf.Clamp(interval, 0.1f, 1.5f);
+
                 // 待つ
                 await UniTask.Delay((int)(interval * 1000), cancellationToken: token);
             }
@@ -197,7 +200,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         var status = x.GetComponent<EnemyStatus>();
 
         // ウエーブ数の倍率ブーストを渡したうえでの初期化
-        status.Initialize_OR(bossData, 1 + GameAdmin.Instance.waveCount * GameAdmin.Instance.waveBoostMultiplier);
+        status.Initialize_OR(bossData, 1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
 
         return status;
     }
