@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
   m_Name: E_R1Tank_02
   m_EditorClassIdentifier: 
-  <sprite>k__BackingField: {fileID: -8977685293378443036, guid: 9fb4024f123299f448da08e06974146a, type: 3}
+  <sprite>k__BackingField: {fileID: 538079202415156762, guid: e0ecb2d4a2f8c8542b78a57eaa94aa28, type: 3}
   <_name>k__BackingField: "\u30B9\u30E9\u30A4\u30E0\u4E9C\u7A2E"
   <description>k__BackingField: "R1\u306E\u57FA\u672C\u7684\u306A\u30BF\u30F3\u30AF\u30FB\u30A4\u30F3\u30D5\u30A1\u30A4\u30BF\u30FC\u30A8\u30CD\u30DF\u30FC\u306E\u6BCE\u30C1\u30A7\u30F3\n\u4F53\u529B\u304C\u3055\u3089\u306B\u4F4E\u3044\u4EE3\u308F\u308A\u306B\u7D20\u65E9\u3055\u304C\u9AD8\u3044"
   <rank>k__BackingField: 1

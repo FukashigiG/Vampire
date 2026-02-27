@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <_name>k__BackingField: "\u30EF\u30FC\u30D7"
   <description>k__BackingField: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u3068\u5F8C\u65B9\u306B\u30EF\u30FC\u30D7\u3059\u308B"
-  <icon>k__BackingField: {fileID: 0}
+  <icon>k__BackingField: {fileID: -4201572532105182974, guid: 93988b6bd499d6d43ab4bb5a070f0a78, type: 3}
+  warpForBack: 1
   distance: 3
   fx_Warp: {fileID: 2708598583397607911, guid: 84e02b21d2249604083feccea206d958, type: 3}

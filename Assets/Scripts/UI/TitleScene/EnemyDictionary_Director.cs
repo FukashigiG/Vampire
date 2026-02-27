@@ -72,6 +72,10 @@ public class EnemyDictionary_Director : SingletonMono<EnemyDictionary_Director>
                 txt_EnemyType.text = "シューター";
                 break;
 
+            case EnemyData.EnemyActType.Fielder:
+                txt_EnemyType.text = "フィールダー";
+                break;
+
             case EnemyData.EnemyActType.BigBoss:
                 txt_EnemyType.text = "ビッグボス";
                 break;
