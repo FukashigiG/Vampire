@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using System.Linq;
 using UniRx;
 using System.Collections.Specialized;
+using TMPro;
 
 public class PausePanelCtrler : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public class PausePanelCtrler : MonoBehaviour
     Dictionary<KnifeData_RunTime, GameObject> knifeImageDictionaty = new();
     Dictionary<TreasureData, GameObject> treasureImageDictionaty = new();
 
+    [SerializeField] Image img_Chara_Fullbody;
+    [SerializeField] TextMeshProUGUI txt_CA_Title;
+    [SerializeField] TextMeshProUGUI txt_CA_Discription;
+
     [SerializeField] Button btn_ClosePanel;
     [SerializeField] Button btn_Setting;
     [SerializeField] Button btn_Retire;
@@ -40,13 +45,17 @@ public class PausePanelCtrler : MonoBehaviour
     }
 
     // 初期化
-    public void Initialize(InputAction action)
+    public void Initialize(InputAction action, PlayerStatus playerStatus)
     {
         _inputaction = action;
 
         _inputaction.performed += TogglePanel; // 引数で渡されたアクションが実行されたらTogglePanelを呼ぶ
 
-        playerInventory = PlayerController.Instance._status.inventory; // PlayerInventoryをプレイヤーから取得
+        img_Chara_Fullbody.sprite = playerStatus.playerCharaData.image_FullBody;
+        txt_CA_Title.text = playerStatus.playerCharaData.charaAbility.abilityName;
+        txt_CA_Discription.text = playerStatus.playerCharaData.charaAbility.explanation;
+
+        playerInventory = playerStatus.inventory; // PlayerInventoryをプレイヤーから取得
 
         // --- ナイフの購読設定 ---
         playerInventory.runtimeKnives

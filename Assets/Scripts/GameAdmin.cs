@@ -86,6 +86,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
             GameSet(false);
 
         }).AddTo(this);
+
+        UI_Manager.Instance.Initialize();
     }
 
     public void UpdateWave(StageData stageData)

@@ -18,7 +18,7 @@ MonoBehaviour:
   <rank>k__BackingField: 2
   <actType>k__BackingField: 3
   <hp>k__BackingField: 4500
-  <power>k__BackingField: 76
+  <power>k__BackingField: 52
   <defense>k__BackingField: 18
   <moveSpeed>k__BackingField: 32
   _shotType: 0

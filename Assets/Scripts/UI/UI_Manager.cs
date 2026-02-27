@@ -9,7 +9,7 @@ public class UI_Manager : SingletonMono<UI_Manager>
 
     [SerializeField] PausePanelCtrler _pausePanelCtrler;
 
-    private void Start()
+    public void Initialize()
     {
         InputActionMap uiMap = inputActions.FindActionMap("UICtrl");
         InputAction togglePanelAction = null;
@@ -31,7 +31,7 @@ public class UI_Manager : SingletonMono<UI_Manager>
                 togglePanelAction.Enable(); // この一文があって初めて、アクションが呼ばれるようになる
             }
 
-            _pausePanelCtrler.Initialize(togglePanelAction);
+            _pausePanelCtrler.Initialize(togglePanelAction, PlayerController.Instance._status);
         }
         else
         {
