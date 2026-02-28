@@ -19,7 +19,16 @@ public class EP_Bullet : Base_EnemyProps
 
         // 寿命計算
         timeCount += Time.deltaTime;
-        if (timeCount >= lifeTime ) Destroy(this.gameObject);
+        if (timeCount >= lifeTime)
+        {
+            // トレイル部分の親子関係の解除
+            // 自然に消える演出のための処理
+            // OnDestroyないでやろうとするとなんかうまくいかない
+            fx_Trail.transform.parent = null;
+            fx_Trail.Stop();
+
+            Destroy(this.gameObject);
+        }
     }
 
     // ヒット時の処理
@@ -32,15 +41,18 @@ public class EP_Bullet : Base_EnemyProps
 
             Instantiate(fx_OnHit, transform.position, Quaternion.identity);
 
+            // トレイル部分の親子関係の解除
+            // 自然に消える演出のための処理
+            // OnDestroyないでやろうとするとなんかうまくいかない
+            fx_Trail.transform.parent = null;
+            fx_Trail.Stop();
+
             Destroy(this.gameObject);
         }
     }
 
     private void OnDestroy()
     {
-        // トレイル部分の親子関係の解除
-        // 自然に消える演出のための処理
-        fx_Trail.transform.parent = null;
-        fx_Trail.Stop();
+        
     }
 }

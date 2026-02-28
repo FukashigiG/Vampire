@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fx_OnHit: {fileID: 4473110034534548137, guid: a2dfef2bafc566d489cb5d31ebddd201, type: 3}
-  fx_Trail: {fileID: 3115839155096344769}
+  fx_Trail: {fileID: 2386347933725962021}
 --- !u!61 &1829984014173496497
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -391,6 +391,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8086034454790436223, guid: 49af4c74f451e0143b8698843d47cfb5, type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086034454790436223, guid: 49af4c74f451e0143b8698843d47cfb5, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -416,7 +420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8796920438323544731, guid: 49af4c74f451e0143b8698843d47cfb5, type: 3}
       propertyPath: stopAction
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8796920438323544731, guid: 49af4c74f451e0143b8698843d47cfb5, type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -704,8 +708,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8086034454790436222, guid: 49af4c74f451e0143b8698843d47cfb5, type: 3}
   m_PrefabInstance: {fileID: 5848310817067588186}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &3115839155096344769 stripped
+--- !u!198 &2386347933725962021 stripped
 ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8796920438323544731, guid: 49af4c74f451e0143b8698843d47cfb5, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8086034454790436223, guid: 49af4c74f451e0143b8698843d47cfb5, type: 3}
   m_PrefabInstance: {fileID: 5848310817067588186}
   m_PrefabAsset: {fileID: 0}

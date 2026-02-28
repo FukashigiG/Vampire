@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -30,18 +30,31 @@ public class BEA_Summon : Base_BossEnemyAct
             spawnPosies[i] = center + new Vector2(Mathf.Cos(radian), Mathf.Sin(radian)) * spawnRadius;
         }
 
+        List<GameObject> warningObj = new List<GameObject>();
+
         foreach (Vector2 spawnPos in spawnPosies)
         {
-            // ŒxƒIƒuƒWƒFƒNƒg‚ğ¶¬
+            // è­¦å‘Šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
             GameObject warning = Instantiate(warningPrefab, spawnPos, Quaternion.identity);
 
-            // ‰Šú‰»A‚±‚ê‚ç‚ÍŒÂ•Ê‚É‚Ü‚½‚È‚¢
+            warningObj.Add(warning);
+
+            // åˆæœŸåŒ–ã€ã“ã‚Œã‚‰ã¯å€‹åˆ¥ã«ã¾ãŸãªã„
             warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, AttackRangeType.circle, 0, size_Range: 1.5f).Forget();
         }
 
         ctrler._animator.SetTrigger("Spell");
 
-        await UniTask.Delay((int)(delayTime * 1000), cancellationToken: token);
+        try
+        {
+            await UniTask.Delay((int)(delayTime * 1000), cancellationToken: token);
+        }
+        catch
+        {
+            foreach(var warning in warningObj) Destroy(warning);
+
+            throw;
+        }
 
         foreach (var pos in spawnPosies)
         {

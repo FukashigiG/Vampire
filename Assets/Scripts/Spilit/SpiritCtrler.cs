@@ -143,11 +143,17 @@ public class SpiritCtrler : MonoBehaviour
     // 消滅処理
     void Die()
     {
+        // 下２行の処理について、OnDestroyないでやろうとするとなんかうまくいかない
         fx.transform.parent = null;
         fx.Stop();
 
         subject_onDestroy.OnNext(this);
 
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 }

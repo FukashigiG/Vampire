@@ -15,4 +15,4 @@ MonoBehaviour:
   <_name>k__BackingField: "\u62E1\u5927"
   <description>k__BackingField: "\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u5EA6\u3001\u30D5\u30A3\u30FC\u30EB\u30C9\u304C\u5927\u304D\u304F\u306A\u308B"
   <icon>k__BackingField: {fileID: 0}
-  sizeChangeAmount: 0.75
+  sizeChangeAmount: 0.5
