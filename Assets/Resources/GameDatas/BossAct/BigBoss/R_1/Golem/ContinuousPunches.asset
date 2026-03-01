@@ -19,6 +19,7 @@ MonoBehaviour:
   <actType>k__BackingField: 1
   attackDetectObje: {fileID: 8782759202650464566, guid: 54a4b7bca65b56b469a622eba113bab9, type: 3}
   warningPrefab: {fileID: 5595648858755892628, guid: 9c956cabe1981c34a96d85fa2c044000, type: 3}
+  fx: {fileID: 8163684771574148739, guid: 0a2ab54d548a81a41ba81212f61b1722, type: 3}
   damageMultiplier: 1
   size_Radius: 1.5
   num_Attacks: 6

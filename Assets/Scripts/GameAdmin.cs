@@ -8,6 +8,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using unityroom.Api;
 
 public class GameAdmin : SingletonMono<GameAdmin>
 {
@@ -307,6 +308,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
     public void GameSet(bool isPlayerWin)
     {
         UI_GameResult.Instance.OnGameSet(isPlayerWin);
+
+        UnityroomApiClient.Instance.SendScore(1, waveCount, ScoreboardWriteMode.HighScoreDesc);
 
         _cancellationTokenSource?.Cancel();
         _cancellationTokenSource?.Dispose();

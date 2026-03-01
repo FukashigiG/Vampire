@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using NaughtyAttributes;
 using System.Threading;
 using System;
@@ -10,6 +10,7 @@ public class BEA_ContinuousPunches : Base_BossEnemyAct
 {
     [SerializeField] GameObject attackDetectObje;
     [SerializeField] GameObject warningPrefab;
+    [SerializeField] GameObject fx;
     [SerializeField] float damageMultiplier;
 
     [SerializeField] float size_Radius = 0;
@@ -22,7 +23,7 @@ public class BEA_ContinuousPunches : Base_BossEnemyAct
 
     public async override UniTask Action(EnemyCtrler_BigBoss ctrler, CancellationToken token)
     {
-        // ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ğæ“¾
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ–¹å‘ã‚’å–å¾—
         Vector2 dir = (ctrler.target.position - ctrler.transform.position).normalized;
 
         for (int i = 0; i < num_Attacks; i++)
@@ -43,27 +44,29 @@ public class BEA_ContinuousPunches : Base_BossEnemyAct
 
     async UniTaskVoid Attack(Base_EnemyCtrler ctrler, Vector2 pos, float radius, CancellationToken token)
     {
-        // ŒxƒIƒuƒWƒFƒNƒg‚ğ¶¬
+        // è­¦å‘Šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆ
         GameObject warning = Instantiate(warningPrefab, pos, Quaternion.identity);
 
         try
         {
-            // ‰Šú‰»AƒAƒjƒ[ƒVƒ‡ƒ“I—¹‚Ü‚Å‘Ò‚Â
+            // åˆæœŸåŒ–ã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†ã¾ã§å¾…ã¤
             await warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, AttackRangeType.circle, 0, size_Range: radius);
 
-            // ‚±‚¢‚Â‚ÍƒLƒƒƒ“ƒZƒ‹‚Í‚¿‚á‚ñ‚ÆŒÄ‚Î‚ê‚È‚¢‚Á‚Û‚¢
+            // ã“ã„ã¤ã¯ã‚­ãƒ£ãƒ³ã‚»ãƒ«æ™‚ã¯ã¡ã‚ƒã‚“ã¨å‘¼ã°ã‚Œãªã„ã£ã½ã„
             //Debug.Log("afterAnim");
         }
         catch (OperationCanceledException)
         {
-            // ƒLƒƒƒ“ƒZƒ‹‚³‚ê‚½‚çAŒx‚ğÁ‚µ‚ÄI—¹
+            // ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸã‚‰ã€è­¦å‘Šã‚’æ¶ˆã—ã¦çµ‚äº†
             if (warning != null) Destroy(warning);
-            throw; // ƒLƒƒƒ“ƒZƒ‹—áŠO‚ğãˆÊ‚É“Š‚°‚é
+            throw; // ã‚­ãƒ£ãƒ³ã‚»ãƒ«ä¾‹å¤–ã‚’ä¸Šä½ã«æŠ•ã’ã‚‹
         }
 
-        // –{–½‚ÌUŒ‚”»’èƒIƒuƒWƒFƒNƒg‚ğ¶¬A‰Šú‰»
+        // æœ¬å‘½ã®æ”»æ’ƒåˆ¤å®šã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã€åˆæœŸåŒ–
         GameObject x = Instantiate(attackDetectObje, pos, Quaternion.identity);
         x.GetComponent<EP_Punch>().Initialie_OR((int)(ctrler._enemyStatus.power * damageMultiplier), 0, AttackRangeType.circle, 0, size_Radius: radius);
 
+        GameObject y = Instantiate(fx, pos,Quaternion.identity);
+        y.transform.localScale = new Vector3(radius * 2, radius * 2, 1f);
     }
 }
