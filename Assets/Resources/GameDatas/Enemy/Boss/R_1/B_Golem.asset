@@ -34,6 +34,8 @@ MonoBehaviour:
   dropItems:
   - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}
     dropRate_Parcentage: 100
+  - prefab: {fileID: 270761467918423833, guid: 63f1b1a5d2bf379408e23318d9c36fa4, type: 3}
+    dropRate_Parcentage: 100
   _bossActions:
   - <actionLogic>k__BackingField: {fileID: 11400000, guid: f8488641c36323e468bf2f810c78116e, type: 2}
     <triggerType>k__BackingField: 0

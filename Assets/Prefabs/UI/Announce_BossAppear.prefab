@@ -68,7 +68,7 @@ MonoBehaviour:
   m_text: "\u30DC\u30B9\u51FA\u73FE\uFF01\uFF01"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 11cd852e70dd3e94898df2f31f70a83a, type: 2}
-  m_sharedMaterial: {fileID: -1968266941133766045, guid: 11cd852e70dd3e94898df2f31f70a83a, type: 2}
+  m_sharedMaterial: {fileID: 780255858199613535, guid: 11cd852e70dd3e94898df2f31f70a83a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -299,3 +299,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc3a48540721034e98efd0ac8feb0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossAppearAnnounce
+  txt: {fileID: 7985415243528684077}

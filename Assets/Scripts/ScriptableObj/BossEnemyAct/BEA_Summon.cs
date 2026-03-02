@@ -13,7 +13,7 @@ public class BEA_Summon : Base_BossEnemyAct
 
     [SerializeField] int num_summonEnemy;
 
-    float spawnRadius = 2.4f;
+    [SerializeField] float spawnRadius = 2.4f;
 
     public async override UniTask Action(EnemyCtrler_BigBoss ctrler, CancellationToken token)
     {

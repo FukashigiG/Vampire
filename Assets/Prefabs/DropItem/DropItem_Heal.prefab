@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DI_Heal
   lifeSpan: 100
-  healAmount: 20
+  healAmount: 30
 --- !u!1 &7884122115758829977
 GameObject:
   m_ObjectHideFlags: 0

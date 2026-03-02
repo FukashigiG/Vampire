@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using unityroom.Api;
+using Random = UnityEngine.Random;
 
 public class GameAdmin : SingletonMono<GameAdmin>
 {
@@ -58,8 +59,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
     public bool isEndLess {  get; private set; } = false;
 
     // ボス出現時の通知
-    Subject<Unit> subject_OnBossAppear = new Subject<Unit>();
-    public IObservable<Unit> onBossAppear => subject_OnBossAppear;
+    Subject<bool> subject_OnBossAppear = new Subject<bool>();
+    public IObservable<bool> onBossAppear => subject_OnBossAppear;
 
     // 購読のライフサイクルを管理するためのDisposable
     CompositeDisposable disposables = new CompositeDisposable();
@@ -184,8 +185,13 @@ public class GameAdmin : SingletonMono<GameAdmin>
     // ボス出現処理
     async UniTask BossAppear()
     {
+        EnemyData EX_Boss = BossDetermination();
+
+        // 乱入モードか否か
+        bool EX_BossInversion = (EX_Boss != null);
+
         // 通知を飛ばす
-        subject_OnBossAppear.OnNext(Unit.Default);
+        subject_OnBossAppear.OnNext(EX_BossInversion);
 
         // テキストの更新
         if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス出現！";
@@ -206,9 +212,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
         float blendTime = Camera.main.GetComponent<CinemachineBrain>().DefaultBlend.BlendTime;
         await UniTask.Delay((int)((blendTime + 0.5f) * 1000), cancellationToken: _cancellationToken);
 
-
         // ボス生成
-        cullentBoss = EnemySpawner.Instance.SpawnBoss(spawnPos);
+        cullentBoss = EnemySpawner.Instance.SpawnBoss(EX_Boss, spawnPos);
 
         UI_BossHPGauge.Instance.Initialize(cullentBoss.gameObject);
 
@@ -224,10 +229,31 @@ public class GameAdmin : SingletonMono<GameAdmin>
         v_Camera_FocusOnBoss.gameObject.SetActive(false);
     }
 
+    EnemyData BossDetermination()
+    {
+        int baseWeight = 40;
+
+        int point = Random.Range(1, baseWeight + waveCount + 1);
+
+        if(point <= waveCount && isEndLess)
+        {
+            return Resources.LoadAll<EnemyData>("GameDatas/Enemy/Boss/R_3")[0];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     // ボスが死んだとき
     async UniTask OnBossDefeated(GameObject bossObj)
     {
         if (txt_TimeLimit_Wave != null) txt_TimeLimit_Wave.text = "ボス撃破";
+
+        foreach (Transform t in bossObj.transform.parent)
+        {
+            if(t.gameObject != bossObj) Destroy(t.gameObject);
+        }
 
         // ボス注目カメラを、ボス死亡演出間はオンに
         v_Camera_FocusOnBoss.Target.TrackingTarget = bossObj.transform;

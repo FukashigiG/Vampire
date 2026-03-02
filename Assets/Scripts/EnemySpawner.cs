@@ -191,8 +191,10 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         }
     }
 
-    public EnemyStatus SpawnBoss(Vector3 spawnPos)
+    public EnemyStatus SpawnBoss(EnemyData boss, Vector3 spawnPos)
     {
+        if(boss == null) boss = bossData;
+
         // 生成
         GameObject x = Instantiate(bossEnemy, spawnPos, Quaternion.identity, parent_Enemy);
         
@@ -200,7 +202,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         var status = x.GetComponent<EnemyStatus>();
 
         // ウエーブ数の倍率ブーストを渡したうえでの初期化
-        status.Initialize_OR(bossData, 1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
+        status.Initialize_OR(boss, 1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
 
         return status;
     }
