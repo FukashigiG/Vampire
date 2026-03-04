@@ -89,7 +89,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
         }).AddTo(this);
 
-        UI_Manager.Instance.Initialize();
+        UI_Manager.Instance.Initialize(dataHolder.isPlayOnPC);
     }
 
     public void UpdateWave(StageData stageData)
@@ -231,7 +231,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     EnemyData BossDetermination()
     {
-        int baseWeight = 40;
+        int baseWeight = 45;
 
         int point = Random.Range(1, baseWeight + waveCount + 1);
 

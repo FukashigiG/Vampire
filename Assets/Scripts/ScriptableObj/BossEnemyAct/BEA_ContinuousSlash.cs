@@ -46,7 +46,7 @@ public class BEA_ContinuousSlash : Base_BossEnemyAct
         try
         {
             // 初期化、アニメーション終了まで待つ
-            await warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, AttackRangeType.box, 0, size_X:size_Length, size_Y:size_Width);
+            await warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, AttackRangeType.box, 0, size_X:size_Width, size_Y:size_Length);
         }
         catch (OperationCanceledException)
         {
@@ -57,7 +57,7 @@ public class BEA_ContinuousSlash : Base_BossEnemyAct
 
         // 本命の攻撃判定オブジェクトを生成、初期化
         GameObject x = Instantiate(attackDetectObje, pos, angle);
-        x.GetComponent<EP_Punch>().Initialie_OR((int)(ctrler._enemyStatus.power * damageMultiplier), 0, AttackRangeType.box, 0, size_X: size_Length, size_Y: size_Width);
+        x.GetComponent<EP_Punch>().Initialie_OR((int)(ctrler._enemyStatus.power * damageMultiplier), 0, AttackRangeType.box, 0, size_X: size_Width, size_Y: size_Length);
 
         GameObject y = Instantiate(fx, pos, angle);
     }

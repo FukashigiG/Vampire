@@ -10,6 +10,14 @@ public class TitleSceneManager : SingletonMono<TitleSceneManager>
     [SerializeField] Button btn_Setting;
     [SerializeField] Button btn_SelectChara;
     [SerializeField] Button btn_Dictionary;
+    [SerializeField] Button btn_Tips;
+
+    [SerializeField] Toggle toggle_EndLessMode;
+    [SerializeField] Toggle toggle_PlayForSmaho;
+
+
+    bool endLessMode = false;
+    bool isPlayForSmaho = false;
 
     protected override void Awake()
     {
@@ -20,14 +28,32 @@ public class TitleSceneManager : SingletonMono<TitleSceneManager>
         UI_Setting.Instance.Initialize();
         CharaSelect_Director.Instance.Initialize(btn_SelectChara);
         EnemyDictionary_Director.Instance.Initialize(btn_Dictionary);
+        TipsDictionary.Instance.Initialize(btn_Tips);
 
         btn_Setting.onClick.RemoveAllListeners();
         btn_Setting.onClick.AddListener(() => UI_Setting.Instance.OpenPanel());
+
+        toggle_EndLessMode.onValueChanged.RemoveAllListeners();
+        toggle_EndLessMode.onValueChanged.AddListener((value) =>
+        {
+            endLessMode = value;
+        });
+
+        toggle_PlayForSmaho.onValueChanged.RemoveAllListeners();
+        toggle_PlayForSmaho.onValueChanged.AddListener((value) =>
+        {
+            isPlayForSmaho = value;
+
+            Screen.fullScreen = ! Screen.fullScreen;
+        });
+
+        toggle_EndLessMode.isOn = dataHolder.isEndless;
+        toggle_PlayForSmaho.isOn = !dataHolder.isPlayOnPC;
     }
 
     public void GoButtle()
     {
-        dataHolder.SetData(CharaSelect_Director.Instance.cullentSelected, CharaSelect_Director.Instance.endLessMode);
+        dataHolder.SetData(CharaSelect_Director.Instance.cullentSelected, endLessMode, _isPlayOnPC: !isPlayForSmaho);
 
         SceneLoader.Instance.Load("SampleScene");
     }

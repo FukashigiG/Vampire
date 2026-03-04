@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 672f9acffaada2e48a465d1db60888b6, type: 3}
+  m_Name: NewTips 7
+  m_EditorClassIdentifier: Assembly-CSharp::Tips
+  <Title>k__BackingField: "\u51CD\u7D50\u72B6\u614B"
+  <txt>k__BackingField: "\u51CD\u7D50\u72B6\u614B\u306B\u306A\u308B\u3068\u3001\u79FB\u52D5\u304C\u4E0D\u53EF\u80FD\u3068\u306A\u308A\u307E\u3059\u3002\n\u305F\u3060\u3057\u3001\u30DC\u30B9\u306B\u306F\u57FA\u672C\u7684\u306B\u7121\u52B9\u3067\u3059\u3002"
