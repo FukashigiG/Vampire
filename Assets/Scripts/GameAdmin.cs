@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using TMPro;
 using unityroom.Api;
 using Random = UnityEngine.Random;
+using System.Linq;
 
 public class GameAdmin : SingletonMono<GameAdmin>
 {
@@ -20,14 +21,16 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     [SerializeField] CinemachineCamera v_Camera_FocusOnBoss;
 
-    [SerializeField] int num_Wave;
     [SerializeField] float minute_Wave;
+    [SerializeField] int baseWeight_EXBoss;
 
     [SerializeField] StageData initialStage;
 
     [SerializeField] GameObject item_WarpStage;
 
     [SerializeField] StageDataHolder dataHolder;
+
+    [field:SerializeField] public float size_PlayArea {  get; private set; }
 
     CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _cancellationToken;
@@ -231,13 +234,15 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     EnemyData BossDetermination()
     {
-        int baseWeight = 45;
+        int baseWeight = baseWeight_EXBoss;
 
         int point = Random.Range(1, baseWeight + waveCount + 1);
 
         if(point <= waveCount && isEndLess)
         {
-            return Resources.LoadAll<EnemyData>("GameDatas/Enemy/Boss/R_3")[0];
+            var list = Resources.LoadAll<EnemyData>("GameDatas/Enemy/Boss/R_3");
+
+            return list[Random.Range(0, list.Length)];
         }
         else
         {

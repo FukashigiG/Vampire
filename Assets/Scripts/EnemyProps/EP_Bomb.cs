@@ -31,7 +31,7 @@ public class EP_Bomb : Base_EnemyProps
         try
         {
             float elapsed = 0f;
-            float jumpHeight = 9f;
+            float jumpHeight = 4f;
 
             Vector2 dir = (targetPoint - startPosi);
 

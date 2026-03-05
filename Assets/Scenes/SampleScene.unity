@@ -3591,7 +3591,7 @@ Transform:
   m_GameObject: {fileID: 1119186709}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalPosition: {x: 31, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4463,7 +4463,7 @@ Transform:
   m_GameObject: {fileID: 1421521594}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 30, z: 0}
+  m_LocalPosition: {x: 0, y: 31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4844,7 +4844,7 @@ Transform:
   m_GameObject: {fileID: 1603403732}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30, y: 0, z: 0}
+  m_LocalPosition: {x: -31, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5041,11 +5041,12 @@ MonoBehaviour:
   txt_WaveCount: {fileID: 935835506}
   txt_TimeLimit_Wave: {fileID: 1316949032}
   v_Camera_FocusOnBoss: {fileID: 1359795766}
-  num_Wave: 4
   minute_Wave: 1.18
+  baseWeight_EXBoss: 50
   initialStage: {fileID: 11400000, guid: 45fe6a9709d151a468685435afa9aad2, type: 2}
   item_WarpStage: {fileID: 270761467918423833, guid: 19663bb03d8b1e54c972e4ceb543e222, type: 3}
   dataHolder: {fileID: 11400000, guid: d91bf72238158cb45add6f1c0f6e33c0, type: 2}
+  <size_PlayArea>k__BackingField: 30
   <waveBoostMultiplier>k__BackingField: 0.06
   _waveState: 0
 --- !u!114 &1660246992
@@ -5316,6 +5317,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1976216189}
     m_Modifications:
+    - target: {fileID: 1067354812055685199, guid: c931651d256b0a042ac7b4247f8f0662, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2074628889277431703, guid: c931651d256b0a042ac7b4247f8f0662, type: 3}
       propertyPath: m_Name
       value: DisplayBossAction
@@ -5325,8 +5330,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 11cd852e70dd3e94898df2f31f70a83a, type: 2}
     - target: {fileID: 7900710415063850241, guid: c931651d256b0a042ac7b4247f8f0662, type: 3}
-      propertyPath: m_hasFontAssetChanged
+      propertyPath: m_HorizontalAlignment
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7900710415063850241, guid: c931651d256b0a042ac7b4247f8f0662, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8611814396730626403, guid: c931651d256b0a042ac7b4247f8f0662, type: 3}
       propertyPath: m_Pivot.x
@@ -5407,6 +5416,14 @@ PrefabInstance:
     - target: {fileID: 8611814396730626403, guid: c931651d256b0a042ac7b4247f8f0662, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640333631103383379, guid: c931651d256b0a042ac7b4247f8f0662, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 30.519978
+      objectReference: {fileID: 0}
+    - target: {fileID: 8640333631103383379, guid: c931651d256b0a042ac7b4247f8f0662, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 84.44001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6181,7 +6198,7 @@ Transform:
   m_GameObject: {fileID: 2016628840}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -30, z: 0}
+  m_LocalPosition: {x: 0, y: -31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af1d06700d8f4ea449c226d0d66b0221, type: 3}
+  m_Name: B_Rizagiga
+  m_EditorClassIdentifier: 
+  <sprite>k__BackingField: {fileID: -73074148178559209, guid: 886786f97c72d3b4a85db31f9ff59803, type: 3}
+  <_name>k__BackingField: "\u84BC\u304D\u7DCF\u7D71 \u30EA\u30B6\u30AE\u30AC\u30FC\u30C9\"\u8F5F\""
+  <description>k__BackingField: "\u9F8D\u306E\u5A01\u53B3\u3092\u63B4\u307F\u3001\u305D\u3057\u3066\u53D6\u308A\u8FD4\u3059"
+  <rank>k__BackingField: 3
+  <actType>k__BackingField: 3
+  <hp>k__BackingField: 9999
+  <power>k__BackingField: 88
+  <defense>k__BackingField: 33
+  <moveSpeed>k__BackingField: 59
+  _shotType: 0
+  _num_Bullet: 1
+  _divergenceAngle: 0
+  _range_Shot: 0
+  _friquentry_Shot: 0
+  _bulletPrefab: {fileID: 0}
+  _fieldLogic: {fileID: 0}
+  _radius_FieldSize: 0
+  <statusAbilities>k__BackingField:
+  - {fileID: 11400000, guid: 6a9722d8d25f74c4c86416d92100bf0c, type: 2}
+  dropItems:
+  - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}
+    dropRate_Parcentage: 100
+  - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}
+    dropRate_Parcentage: 100
+  - prefab: {fileID: 270761467918423833, guid: 7ab27df6dc991384186a8781e6b4b8bc, type: 3}
+    dropRate_Parcentage: 50
+  - prefab: {fileID: 270761467918423833, guid: 63f1b1a5d2bf379408e23318d9c36fa4, type: 3}
+    dropRate_Parcentage: 100
+  - prefab: {fileID: 270761467918423833, guid: 63f1b1a5d2bf379408e23318d9c36fa4, type: 3}
+    dropRate_Parcentage: 100
+  - prefab: {fileID: 270761467918423833, guid: 63f1b1a5d2bf379408e23318d9c36fa4, type: 3}
+    dropRate_Parcentage: 100
+  _bossActions:
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 1eb5e07a7ebfe7b408cf092b03198682, type: 2}
+    <triggerType>k__BackingField: 2
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 30
+    <baseWeight>k__BackingField: 0
+    <decayRate>k__BackingField: 0
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: c633a76e9cfd4b14ab873ea1f77c98e9, type: 2}
+    <triggerType>k__BackingField: 2
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 40
+    <baseWeight>k__BackingField: 0
+    <decayRate>k__BackingField: 0
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: fea1b9e9cd579f5499cf5a85ce437797, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.4
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 7551c2f2ca70f344dacbce5eade38995, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 50
+    <decayRate>k__BackingField: 0.4
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 03a07e8ddcef236458241ced67487d5f, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 38
+    <decayRate>k__BackingField: 0.2
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 68ea606cf975a7a4aa1ba8d20881a96d, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 60
+    <decayRate>k__BackingField: 0.4
+  - <actionLogic>k__BackingField: {fileID: 11400000, guid: 0839e5c6387fdbd4fbe9dd40a81edb7d, type: 2}
+    <triggerType>k__BackingField: 0
+    <targetActCount>k__BackingField: 0
+    <thresholdHpRate_Percent>k__BackingField: 0
+    <baseWeight>k__BackingField: 44
+    <decayRate>k__BackingField: 0.1

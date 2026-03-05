@@ -75,8 +75,6 @@ public class PlayerController : SingletonMono<PlayerController>
 
             _rigidbody.linearDamping = 6f;
         }
-
-        Debug.Log(_rigidbody.linearVelocity.magnitude.ToString("F3"));
     }
 
     void CheckBoost(Vector2 currentInputDirection)
