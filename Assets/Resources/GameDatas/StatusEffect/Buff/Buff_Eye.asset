@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Buff_Eye
   m_EditorClassIdentifier: 
   <effectName>k__BackingField: b_e
+  <icon>k__BackingField: {fileID: -7197628652413606252, guid: d9bd5a2391a228648add3fd7783b383c, type: 3}
   targetType: 3

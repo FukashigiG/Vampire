@@ -1,11 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewBuffEffect", menuName = "Game Data/StatusEffects/Buff")]
 public class SED_Buff : Base_StatusEffectData
 {
-    enum Type { atk, def, spd, eye, luk}
+    enum Type { atk, def, spd, eye, luk, rld}
 
     [SerializeField] Type targetType;
 
@@ -36,6 +36,10 @@ public class SED_Buff : Base_StatusEffectData
             case Type.luk:
                 if (target is PlayerStatus _player) _player.enhancementRate_Luck += amount;
                 break;
+
+            case Type.rld:
+                if (target is PlayerStatus __player) __player.enhancementRate_Time_ReloadKnives += amount;
+                break;
         }
     }
 
@@ -61,6 +65,10 @@ public class SED_Buff : Base_StatusEffectData
 
             case Type.luk:
                 if (target is PlayerStatus _player) _player.enhancementRate_Luck -= amount;
+                break;
+
+            case Type.rld:
+                if (target is PlayerStatus __player) __player.enhancementRate_Time_ReloadKnives -= amount;
                 break;
         }
     }

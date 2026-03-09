@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da231e44db34144ba8d62de278dd12d, type: 3}
   m_Name: Heal_M
   m_EditorClassIdentifier: 
-  <effectName>k__BackingField: "\u56DE\u5FA9"
+  <effectName>k__BackingField: "\u5E83\u56DE\u5FA9"
   probability_Percent: 80
   <description>k__BackingField: "\u6295\u64F2\u6642\u3001\u9AD8\u78BA\u7387\u3067HP\u3092\u3061\u3087\u3063\u3068\u56DE\u5FA9"
   <effectOnThrown>k__BackingField: 1
   <effectOnHit>k__BackingField: 0
-  ratio_Heal: 4
+  ratio_Heal: 2

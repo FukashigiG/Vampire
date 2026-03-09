@@ -24,7 +24,7 @@ public class PlayerController : SingletonMono<PlayerController>
 
     List<float> curves = new List<float>();
 
-    Vector2 inputValue;
+    public Vector2 inputValue {  get; private set; }
 
     bool isAlive = true;
 

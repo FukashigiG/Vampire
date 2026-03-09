@@ -29,7 +29,7 @@ public class UI_ShowPlayerItemInfo : SingletonMono<UI_ShowPlayerItemInfo>
 
     [SerializeField] GameObject descriptionArea_Treasure;
     [SerializeField] TextMeshProUGUI description_Treasure;
-    [SerializeField] Text flavorTxt_Treasure;
+    [SerializeField] TextMeshProUGUI flavorTxt_Treasure;
 
     enum ItemType { knife, treasure }
 

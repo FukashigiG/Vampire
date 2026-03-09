@@ -12,7 +12,7 @@ public class PlayerStatus : Base_MobStatus
 
     public PlayerInventory inventory { get; private set; }
     public PlayerAttack attack { get; private set; }
-    PlayerController ctrler;
+    public PlayerController ctrler {  get; private set; }
 
     [field : SerializeField] public int requiredEXP_LvUp {  get; private set; }
 
@@ -33,7 +33,7 @@ public class PlayerStatus : Base_MobStatus
     public int luck { get { return (int)(base_Luck * (1f + (enhancementRate_Defence / 100f))); } }
     public int eyeSight { get { return (int)(base_EyeSight * (1f + (enhancementRate_EyeSight / 100f))); } }
     public float coolTime_ThrowKnife { get { return (base_CoolTime_ThrowKnife * (1f + (enhancementRate_CoolTime_ThrowKnife / 100f))); } }
-    public float time_ReloadKnives { get { return (base_Time_ReloadKnives * (1f + (enhancementRate_Time_ReloadKnives / 100f))); } }
+    public float time_ReloadKnives { get { return (base_Time_ReloadKnives / (1f + (enhancementRate_Time_ReloadKnives / 100f))); } }
     // ドロー上限のみ計算方法が異なり、増減量がパーセントでなくそのままの数値で扱われる
     public int limit_DrawKnife { get { return base_Limit_DrawKnife + enhancement_Limit_DrawKnife; } }
 

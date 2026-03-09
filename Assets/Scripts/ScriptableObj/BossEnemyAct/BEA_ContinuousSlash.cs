@@ -15,6 +15,7 @@ public class BEA_ContinuousSlash : Base_BossEnemyAct
 
     [SerializeField] float size_Width = 2;
     [SerializeField] float size_Length = 7;
+    [SerializeField] float interval_EachAttack = 0.3f;
 
     [SerializeField] int num_Attacks = 0;
 
@@ -30,7 +31,7 @@ public class BEA_ContinuousSlash : Base_BossEnemyAct
 
             Attack(ctrler, pos, Quaternion.Euler(0, 0, baseAngle + randomAngle), token).Forget();
 
-            await UniTask.Delay(200, cancellationToken: token);
+            await UniTask.Delay((int)(interval_EachAttack * 1000), cancellationToken: token);
         }
 
         ctrler._animator.SetTrigger("Attack");

@@ -1317,16 +1317,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274970328}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1976216189}
+  m_Father: {fileID: 949559595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 738, y: -121.2}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 291.1, y: 418.8}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &274970331
@@ -2265,11 +2265,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 949559595}
+  m_Father: {fileID: 1976216189}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 453, y: 358}
+  m_AnchoredPosition: {x: 310, y: -406.1}
   m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &628323818
@@ -3302,7 +3302,7 @@ RectTransform:
   - {fileID: 234350008}
   - {fileID: 30205279}
   - {fileID: 2074013096}
-  - {fileID: 628323817}
+  - {fileID: 274970329}
   m_Father: {fileID: 1976216189}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6049,9 +6049,9 @@ RectTransform:
   - {fileID: 2110719233}
   - {fileID: 1511749509}
   - {fileID: 949559595}
+  - {fileID: 628323817}
   - {fileID: 113361089}
   - {fileID: 254285631}
-  - {fileID: 274970329}
   - {fileID: 628701823}
   - {fileID: 1318927817}
   - {fileID: 1094347144}
@@ -6241,7 +6241,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 35.800003, y: 289.52002}
+  m_AnchoredPosition: {x: 608.1, y: 36.36}
   m_SizeDelta: {x: 269, y: 240}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2074013097
@@ -6805,12 +6805,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 1976216189}
     m_Modifications:
     - target: {fileID: 423953534632707397, guid: f2efe90ffb763c3428949e16ee0a982d, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 11cd852e70dd3e94898df2f31f70a83a, type: 2}
-    - target: {fileID: 423953534632707397, guid: f2efe90ffb763c3428949e16ee0a982d, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360318851834352341, guid: f2efe90ffb763c3428949e16ee0a982d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2333218222058666126, guid: f2efe90ffb763c3428949e16ee0a982d, type: 3}
       propertyPath: m_Name

@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: ReferHP_BoostBlue
   m_EditorClassIdentifier: Assembly-CSharp::TL_ReferHP_BoostElementPoint
   targetElement: 2
+  maxBonusValue: 13
+  reverse: 0

@@ -177,7 +177,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         }
         catch (System.OperationCanceledException)
         {
-            Debug.Log($"{effect.effectName}.effect was cancelled");
+            
         }
         finally
         {

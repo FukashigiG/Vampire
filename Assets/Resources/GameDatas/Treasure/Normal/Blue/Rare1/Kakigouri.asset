@@ -18,4 +18,4 @@ MonoBehaviour:
   <sprite>k__BackingField: {fileID: 4551484890520126105, guid: fae64e1a6d2e5e247994637f6cb20a91, type: 3}
   <element>k__BackingField: 2
   <description>k__BackingField: "\u51CD\u7D50\u7CFB\u52B9\u679C\u306E\u6642\u9593\u304C\u307B\u3093\u306E\u3059\u3053\u3057\u4F38\u3073\u308B"
-  <logic>k__BackingField: {fileID: 11400000, guid: 3740f4ed61f243e4d8cab8c634d1d9f6, type: 2}
+  <logic>k__BackingField: {fileID: 11400000, guid: 67ecaa183d515284ba5663f9eb34b6c6, type: 2}

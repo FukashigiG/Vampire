@@ -131,12 +131,11 @@ public class GameAdmin : SingletonMono<GameAdmin>
         // 既存の敵を全除去
         EnemySpawner.Instance.Stop_SpawnTask();
 
-        await BossAppear();
+        // ボス登場処理を実行しつつ、ボス死亡通知を受け取るタスクを取得
+        UniTask task_OnBossDie = await BossAppear();
 
-        // ボス討伐通知を受け取るまで待つ
-        await cullentBoss.onDie
-            .First()
-            .ToUniTask(cancellationToken: _cancellationToken);
+        // BossAppear内でSubscribeしておくことで、既に死んでいても完了扱いとなりゲームの進行が止まらない
+        await task_OnBossDie;
 
         await OnBossDefeated(cullentBoss.gameObject);
 
@@ -186,7 +185,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
     }
 
     // ボス出現処理
-    async UniTask BossAppear()
+    async UniTask<UniTask> BossAppear()
     {
         EnemyData EX_Boss = BossDetermination();
 
@@ -218,6 +217,10 @@ public class GameAdmin : SingletonMono<GameAdmin>
         // ボス生成
         cullentBoss = EnemySpawner.Instance.SpawnBoss(EX_Boss, spawnPos);
 
+
+        var dieTask = cullentBoss.onDie.First().ToUniTask(cancellationToken: _cancellationToken);
+
+
         UI_BossHPGauge.Instance.Initialize(cullentBoss.gameObject);
 
         var _animator = cullentBoss.GetComponent<Animator>();
@@ -230,6 +233,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
         // ボス注目カメラを切る
         v_Camera_FocusOnBoss.gameObject.SetActive(false);
+
+        return dieTask;
     }
 
     EnemyData BossDetermination()

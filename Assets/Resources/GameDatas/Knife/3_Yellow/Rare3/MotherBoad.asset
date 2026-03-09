@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
+  m_Name: MotherBoad
+  m_EditorClassIdentifier: 
+  <_name>k__BackingField: "\u30DE\u30B6\u30FC\u30DC\u30FC\u30C9"
+  <flavortext>k__BackingField: 
+  <rank>k__BackingField: 3
+  <sprite>k__BackingField: {fileID: 21300000, guid: 935183074e6140c438bac451e5c63571, type: 3}
+  <element>k__BackingField: 3
+  <power>k__BackingField: 30
+  <elementPower>k__BackingField: 16
+  <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
+  <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: fe36de0609e73f344911275b3a2180da, type: 3}
+  <abilities>k__BackingField:
+  - abilityLogic: {fileID: 11400000, guid: 147cbae4a79c86e4f9dadd6a39a8b72e, type: 2}
+    effectID: moth_R
+  - abilityLogic: {fileID: 11400000, guid: 9ff5bf1f2f8e1b943804945ebc0e2537, type: 2}
+    effectID: moth_S
+  - abilityLogic: {fileID: 11400000, guid: 7e2052a4c058a844d9b60d0aba891c2c, type: 2}
+    effectID: moth_D
+  - abilityLogic: {fileID: 11400000, guid: 1dab5e291b785594dae8a74c726f7c4e, type: 2}
+    effectID: moth_P
