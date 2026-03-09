@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
@@ -16,6 +16,13 @@ public abstract class Base_DropItemCtrler : MonoBehaviour
     private void Awake()
     {
         MiniMapController.Instance.NewItemInstance(this);
+
+        float areaSize = GameAdmin.Instance.size_PlayArea;
+
+        float clampP_X = Mathf.Clamp(transform.position.x, -areaSize, areaSize);
+        float clampP_Y = Mathf.Clamp(transform.position.y, -areaSize, areaSize);
+
+        transform.position = new Vector2(clampP_X, clampP_Y);
     }
 
     private void Update()

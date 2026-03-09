@@ -114,6 +114,10 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
             case EnemyData.EnemyActType.Fielder:
                 targetPrefab = prefab_NormalEnemy_Fielder;
                 break;
+
+            case EnemyData.EnemyActType.BigBoss:
+                targetPrefab = bossEnemy;
+                break;
         }
 
         // 生成

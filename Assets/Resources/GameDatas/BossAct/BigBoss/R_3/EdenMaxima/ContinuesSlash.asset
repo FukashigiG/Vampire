@@ -20,7 +20,8 @@ MonoBehaviour:
   attackDetectObje: {fileID: 8782759202650464566, guid: 54a4b7bca65b56b469a622eba113bab9, type: 3}
   warningPrefab: {fileID: 5595648858755892628, guid: 9c956cabe1981c34a96d85fa2c044000, type: 3}
   fx: {fileID: 3310574184614383003, guid: 22ede355bdd7dec4eadf48532b14aa76, type: 3}
-  damageMultiplier: 1
+  damageMultiplier: 0.85
   size_Width: 1.65
   size_Length: 30
+  interval_EachAttack: 0.25
   num_Attacks: 9

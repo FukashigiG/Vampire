@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
+  m_Name: Koin
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureData
+  <_name>k__BackingField: "\u30B3\u30A4\u30F3"
+  <flavortext>k__BackingField: "\u4E0D\u601D\u8B70\u306A\u6C17\u914D\u304C\u3059\u308B"
+  <rank>k__BackingField: 2
+  <sprite>k__BackingField: {fileID: 666855092564498837, guid: 252ddc61889447542b08d23a48a2c239, type: 3}
+  <element>k__BackingField: 3
+  <description>k__BackingField: "\u6B8B\u308A\u4F53\u529B\u304C\u5C11\u306A\u3044\u307B\u3069\u3001\u9EC4\u306E\u30CA\u30A4\u30D5\u306E\u5C5E\u6027\u5024\u304C\u5897\u52A0"
+  <logic>k__BackingField: {fileID: 11400000, guid: 5ac5cb00a7b59f840a5a1a1e59fca7cd, type: 2}

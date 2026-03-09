@@ -5,6 +5,7 @@ using System.Threading;
 using NaughtyAttributes;
 using System;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 [CreateAssetMenu(fileName = "NewBossEnemyAct", menuName = "Game Data/BossEnemyAct/Punch&Warp")]
 public class BEA_PunchAndWarp : Base_BossEnemyAct
@@ -51,6 +52,13 @@ public class BEA_PunchAndWarp : Base_BossEnemyAct
         x.GetComponent<EP_Punch>().Initialie_OR((int)(ctrler._enemyStatus.power * damageMultiplier), 0, rangeType, forwardDistance, size_Width, size_Vertical);
 
         ctrler.gameObject.transform.Translate(dir * size_Vertical);
+
+        float areaSize = GameAdmin.Instance.size_PlayArea;
+
+        float clampP_X = Mathf.Clamp(ctrler.transform.position.x, -areaSize, areaSize);
+        float clampP_Y = Mathf.Clamp(ctrler.transform.position.y, -areaSize, areaSize);
+
+        ctrler.transform.position = new Vector2(clampP_X, clampP_Y);
 
         Instantiate(fx, ctrler.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
 

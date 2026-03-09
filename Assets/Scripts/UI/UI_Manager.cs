@@ -9,8 +9,21 @@ public class UI_Manager : SingletonMono<UI_Manager>
 
     [SerializeField] PausePanelCtrler _pausePanelCtrler;
 
-    public void Initialize()
+    [SerializeField] GameObject[] UI_ForPC;
+    [SerializeField] GameObject[] UI_ForSumaho;
+
+    public void Initialize(bool isForPC)
     {
+        foreach (GameObject go in UI_ForPC)
+        {
+            if (go != null) go.SetActive(isForPC);
+        }
+
+        foreach(GameObject go in UI_ForSumaho)
+        {
+            if(go != null) go.SetActive(! isForPC);
+        }
+
         InputActionMap uiMap = inputActions.FindActionMap("UICtrl");
         InputAction togglePanelAction = null;
 

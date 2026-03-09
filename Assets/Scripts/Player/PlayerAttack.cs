@@ -128,7 +128,9 @@ public class PlayerAttack : MonoBehaviour
         // まず手持ちを空にする
         hand.Clear();
 
-        await UniTask.Delay((int)(status.time_ReloadKnives * 1000 / 2), cancellationToken: token);
+        int reloadTime = (int)(status.time_ReloadKnives * 1000 / 2);
+
+        await UniTask.Delay(reloadTime, cancellationToken: token);
 
         List<KnifeData_RunTime> drawnKnives = status.inventory.runtimeKnives
                             .OrderBy(x => UnityEngine.Random.value)// 順番をシャッフルして参照（元のリストをいじるわけではない）
@@ -142,7 +144,9 @@ public class PlayerAttack : MonoBehaviour
         // 購読先による検知、介入のための発行
         subject_OnReload.OnNext(hand);
 
-        await UniTask.Delay((int)(status.time_ReloadKnives * 1000 / 2), cancellationToken: token);
+        reloadTime = (int)(status.time_ReloadKnives * 1000 / 2);
+
+        await UniTask.Delay(reloadTime, cancellationToken: token);
     }
 
     async UniTask ThrowAllHands(CancellationToken token)
@@ -174,8 +178,10 @@ public class PlayerAttack : MonoBehaviour
 
             Instantiate(fx_Throw, transform.position + (Vector3)dir, baseRotation);
 
+            int cooltime = (int)(status.coolTime_ThrowKnife * 1000);
+
             // ステータスの持つ数値の分だけ待機
-            await UniTask.Delay((int)(status.coolTime_ThrowKnife * 1000), cancellationToken: token);
+            await UniTask.Delay(cooltime, cancellationToken: token);
         }
     }
 

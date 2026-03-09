@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UniRx;
+using System.Linq;
 
 public class PlayerController : SingletonMono<PlayerController>
 {
@@ -21,7 +22,9 @@ public class PlayerController : SingletonMono<PlayerController>
 
     Queue<Vector2> inputQueue = new Queue<Vector2>();
 
-    Vector2 inputValue;
+    List<float> curves = new List<float>();
+
+    public Vector2 inputValue {  get; private set; }
 
     bool isAlive = true;
 
@@ -49,24 +52,29 @@ public class PlayerController : SingletonMono<PlayerController>
 
     void FixedUpdate()
     {
-        if(! isAlive) return;
+        if(! isAlive)
+        {
+            _rigidbody.linearDamping = 6f;
+
+            return;
+        }
 
         inputValue = _input.actions["Move"].ReadValue<Vector2>();
 
-        CheckBoost(inputValue);
+        //CheckBoost(inputValue.normalized);
 
         if (inputValue.sqrMagnitude > 0.01)
         {
-            
+            _rigidbody.linearDamping = 0f;
 
-            _rigidbody.AddForce(inputValue * _status.moveSpeed);
+            _rigidbody.AddForce((inputValue.normalized * _status.moveSpeed / 10f - _rigidbody.linearVelocity) * 40f);
         }
         else
         {
             //inputQueue.Clear();
-        }
 
-        _rigidbody.AddForce(inputValue * _status.moveSpeed);
+            _rigidbody.linearDamping = 6f;
+        }
     }
 
     void CheckBoost(Vector2 currentInputDirection)
@@ -80,29 +88,28 @@ public class PlayerController : SingletonMono<PlayerController>
             // キューがゼロ入力なら、そのキューは無視
             if (queue.sqrMagnitude < 0.01) continue;
 
-            float dotProduct = Vector2.Dot(queue, inputValue.normalized);
-
             // 各キューと比較して、Nフレーム前の入力と現在の入力ベクトルの内積を計算 (正規化して方向のみを比較)
             // Dot < 0 ならば、角度は90度より大きい
-            if (dotProduct <= 0f)
-            {
-                _rigidbody.linearVelocity = inputValue.normalized;
+            float dotProduct = Vector2.Dot(queue, inputValue.normalized);
 
-                _rigidbody.AddForce(inputValue.normalized * _status.moveSpeed * 0.5f, mode: ForceMode2D.Impulse);
+            float curve = (dotProduct - 1) * -0.5f;
 
-                
-
-                // 一度検知したら履歴を一旦クリアする
-                //inputQueue.Clear();
-
-                break;
-            }
+            curves.Add(curve);
         }
 
-        
-        //float dotProduct = Vector2.Dot(inputQueue.Peek(), inputValue.normalized);
+        if(curves.Count >= framesToCompare)
+        {
+            float max = curves.Max();
 
-        
+            max = Mathf.Clamp01(max);
+
+            if (max >= 0.1f)
+            {
+                _rigidbody.AddForce(currentInputDirection * Mathf.Pow(max, 2f), mode: ForceMode2D.Impulse);
+            }
+
+            curves.Clear();
+        }
 
         // キューが必要数以上溢れないように、古いものを消す
         while (inputQueue.Count > framesToCompare)

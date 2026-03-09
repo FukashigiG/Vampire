@@ -15,6 +15,7 @@ public class BEA_ContinuousSlash : Base_BossEnemyAct
 
     [SerializeField] float size_Width = 2;
     [SerializeField] float size_Length = 7;
+    [SerializeField] float interval_EachAttack = 0.3f;
 
     [SerializeField] int num_Attacks = 0;
 
@@ -30,7 +31,7 @@ public class BEA_ContinuousSlash : Base_BossEnemyAct
 
             Attack(ctrler, pos, Quaternion.Euler(0, 0, baseAngle + randomAngle), token).Forget();
 
-            await UniTask.Delay(200, cancellationToken: token);
+            await UniTask.Delay((int)(interval_EachAttack * 1000), cancellationToken: token);
         }
 
         ctrler._animator.SetTrigger("Attack");
@@ -46,7 +47,7 @@ public class BEA_ContinuousSlash : Base_BossEnemyAct
         try
         {
             // 初期化、アニメーション終了まで待つ
-            await warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, AttackRangeType.box, 0, size_X:size_Length, size_Y:size_Width);
+            await warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, AttackRangeType.box, 0, size_X:size_Width, size_Y:size_Length);
         }
         catch (OperationCanceledException)
         {
@@ -57,7 +58,7 @@ public class BEA_ContinuousSlash : Base_BossEnemyAct
 
         // 本命の攻撃判定オブジェクトを生成、初期化
         GameObject x = Instantiate(attackDetectObje, pos, angle);
-        x.GetComponent<EP_Punch>().Initialie_OR((int)(ctrler._enemyStatus.power * damageMultiplier), 0, AttackRangeType.box, 0, size_X: size_Length, size_Y: size_Width);
+        x.GetComponent<EP_Punch>().Initialie_OR((int)(ctrler._enemyStatus.power * damageMultiplier), 0, AttackRangeType.box, 0, size_X: size_Width, size_Y: size_Length);
 
         GameObject y = Instantiate(fx, pos, angle);
     }
