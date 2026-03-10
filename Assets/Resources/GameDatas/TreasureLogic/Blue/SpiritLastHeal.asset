@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c85bbe39a8a884459c3a044eb18d357, type: 3}
   m_Name: SpiritLastHeal
   m_EditorClassIdentifier: Assembly-CSharp::TL_SpiritLastHeal
-  healAmountMultiple: 1
+  healAmountMultiple: 0.7

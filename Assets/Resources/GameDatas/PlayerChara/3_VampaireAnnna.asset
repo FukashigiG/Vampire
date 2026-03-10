@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4a92988800192408927d5db7966ed4, type: 3}
+  m_Name: 3_VampaireAnnna
+  m_EditorClassIdentifier: 
+  <sprite>k__BackingField: {fileID: 0}
+  <_name>k__BackingField: "\u30F4\u30A1\u30F3\u30D1\u30A4\u30A2\u674F\u5948"
+  <hp>k__BackingField: 160
+  <power>k__BackingField: 39
+  <defense>k__BackingField: 37
+  <moveSpeed>k__BackingField: 40
+  <luck>k__BackingField: 0
+  <eyeSight>k__BackingField: 4
+  <limit_DrawKnives>k__BackingField: 4
+  <initialKnives>k__BackingField:
+  - {fileID: 11400000, guid: 82be4c99c97bf8046b228af6d4f490ad, type: 2}
+  - {fileID: 11400000, guid: 604a2c3ea6e9b0e4799e31211a586d77, type: 2}
+  <initialTreasures>k__BackingField:
+  - {fileID: 11400000, guid: 834b7ba76e3317e429376eb5936a20b4, type: 2}
+  <charaAbility>k__BackingField: {fileID: 11400000, guid: 7e57c264023100b418c8337a79e1bed3, type: 2}
+  <masteredElement>k__BackingField: 0
+  <prefab>k__BackingField: {fileID: 0}
+  <image_FullBody>k__BackingField: {fileID: -3536400115235161164, guid: d3c67511458c73a4fb51634fec9ae191, type: 3}
+  <image_CutInArt>k__BackingField: {fileID: 6727543558157199431, guid: 00f651758543e4a43b8e3d5cd5b8c95e, type: 3}
+  <image_icon>k__BackingField: {fileID: 6186327566917251072, guid: d1501c84fbcb67946b19f771670d641a, type: 3}

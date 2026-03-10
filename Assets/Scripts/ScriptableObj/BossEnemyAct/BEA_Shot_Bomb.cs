@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(fileName = "NewBossEnemyAct", menuName = "Game Data/BossEnemyAct/Basic/ShotBomb")]
 public class BEA_Shot_Bomb : Base_BossEnemyAct
 {
-    // ƒ{ƒ€’e”­Ëˆ—
+    // ãƒœãƒ å¼¾ç™ºå°„å‡¦ç†
 
     [SerializeField] GameObject prefab_Bullet;
     [SerializeField] int num_Bullet;
@@ -18,7 +18,7 @@ public class BEA_Shot_Bomb : Base_BossEnemyAct
 
     public async override UniTask Action(EnemyCtrler_BigBoss ctrler, CancellationToken token)
     {
-        // ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ğæ“¾
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ–¹å‘ã‚’å–å¾—
         Vector2 dir = (ctrler.target.position - ctrler.transform.position).normalized;
 
         GameObject bullet = null;
@@ -31,11 +31,11 @@ public class BEA_Shot_Bomb : Base_BossEnemyAct
         {
             Vector2 target = playerPoint + Random.insideUnitCircle * randomRadius;
 
-            // ’e‚ğ¶¬
+            // å¼¾ã‚’ç”Ÿæˆ
             bullet = Instantiate(prefab_Bullet, ctrler.transform.position, Quaternion.identity);
 
-            // ’e‚ğ‰Šú‰»
-            bullet.GetComponent<EP_Bomb>().Initialize_OR(target, 2f, ctrler._enemyStatus.power);
+            // å¼¾ã‚’åˆæœŸåŒ–
+            bullet.GetComponent<EP_Bomb>().Initialize_OR(target, 2f, (int)(ctrler._enemyStatus.power * damageMultiple));
         }
 
         await UniTask.Delay(1000, cancellationToken: token);

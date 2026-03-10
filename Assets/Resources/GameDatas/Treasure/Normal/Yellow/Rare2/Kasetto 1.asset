@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
+  m_Name: Kasetto 1
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureData
+  <_name>k__BackingField: "\u30C6\u30B9\u30C8\u30C7\u30FC\u30BF"
+  <flavortext>k__BackingField: "\u3089\u30FC\u3089\u3089\u30FC\u3089\u30FC\u3089\u30FC\u3089\u30FC\u3089\u30FC"
+  <rank>k__BackingField: 2
+  <sprite>k__BackingField: {fileID: -6085745100998184547, guid: cac4cb103dbbd5b4ca2c60fb8a93cc92, type: 3}
+  <element>k__BackingField: 3
+  <description>k__BackingField: "\u53EC\u559A\u7269\u306E\u5BFF\u547D\u304C\u4F38\u3073\u308B"
+  <logic>k__BackingField: {fileID: 11400000, guid: e250d953a3d08f24ebe3f65c02888331, type: 2}

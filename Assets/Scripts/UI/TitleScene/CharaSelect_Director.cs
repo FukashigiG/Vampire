@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
 using TMPro;
+using DG.Tweening;
+using Cysharp.Threading.Tasks;
 
 public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
 {
@@ -25,20 +27,25 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
     [SerializeField] TextMeshProUGUI txt_ChataAbilityName;
     [SerializeField] TextMeshProUGUI txt_ChataAbilityDiscription;
     [SerializeField] List<TextMeshProUGUI> txts_Status;
+    [SerializeField] CanvasGroup _canvasGroup;
+    [SerializeField] RectTransform window_R;
 
     [Header("素材割り当て")]
     [SerializeField] Sprite BG_Red;
     [SerializeField] Sprite BG_Blue;
     [SerializeField] Sprite BG_Yellow;
+    [SerializeField] Sprite BG_White;
 
     List<PlayerCharaData> charas = new List<PlayerCharaData>();
 
     public PlayerCharaData cullentSelected { get; private set; } = null;
 
+    Vector2 basePosi_WindowR;
+
     public void Initialize(Button btn_Open)
     {
         btn_Open.onClick.AddListener(OpenPanel);
-        btn_Close.onClick.AddListener(ClosePanel);
+        btn_Close.onClick.AddListener(() => ClosePanel().Forget());
         btn_GoButtle.onClick.AddListener(GoButtle);
 
         charas = Resources.LoadAll<PlayerCharaData>("GameDatas/PlayerChara").ToList();
@@ -58,6 +65,7 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
             }).AddTo(this);
         }
 
+        basePosi_WindowR = window_R.position;
     }
 
     void SetInfo(PlayerCharaData data)
@@ -102,6 +110,7 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
 
             case Element.White:
                 txt_Element.text = "白";
+                BG_Image.sprite= BG_White;
                 break;
         }
 
@@ -142,6 +151,10 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
         }
 
         btn_GoButtle.interactable = true;
+
+        //window_R.position = basePosi_WindowR;
+        window_R.DOPunchAnchorPos(Vector2.right * 10f, 0.5f);
+        //window_R.DOShakeAnchorPos(0.5f, 10f);
     }
 
     // パネルを開く際の処理
@@ -167,11 +180,21 @@ public class CharaSelect_Director : SingletonMono<CharaSelect_Director>
             btn_GoButtle.interactable = false;
         }
 
+        _canvasGroup.alpha = 0;
+        _canvasGroup.blocksRaycasts = true;
+
+        _canvasGroup.DOFade(1, 0.2f);
+
         bodyPanel.SetActive(true);
     }
 
-    void ClosePanel()
+    async UniTaskVoid ClosePanel()
     {
+        _canvasGroup.alpha = 1;
+        _canvasGroup.blocksRaycasts = false;
+
+        await _canvasGroup.DOFade(0, 0.2f).ToUniTask(TweenCancelBehaviour.KillAndCancelAwait, cancellationToken: this.GetCancellationTokenOnDestroy());
+
         bodyPanel.SetActive(false);
     }
 

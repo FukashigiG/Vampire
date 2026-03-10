@@ -54,6 +54,9 @@ public class PlayerStatus : Base_MobStatus
     Subject<Unit> lvUp = new Subject<Unit>();
     public IObservable<Unit> onLvUp => lvUp;
 
+    Subject<int> subject_onHeal = new Subject<int>();
+    public IObservable<int> onHeal => subject_onHeal;
+
     public IObservable<Unit> onSecond => subject_OnSecond;
     public IObservable<(Vector2 position, int amount)> onDamaged => subject_OnDamaged;
     public IObservable<(Base_MobStatus status, Base_StatusEffectData statusEffect, float duration, int amount)> onGetStatusEffect => subject_OnGetStatusEffect;
@@ -162,6 +165,8 @@ public class PlayerStatus : Base_MobStatus
     public override void HealHP(int x)
     {
         base.HealHP(x);
+
+        subject_onHeal.OnNext(x);
     }
 
     public void Modify_statusPoint(PlayerStatusType statusType, int point)
@@ -215,6 +220,8 @@ public class PlayerStatus : Base_MobStatus
     protected override void OnDestroy()
     {
         base.OnDestroy();
+
+        inventory.OnDestroy();
 
         disposables.Dispose();
     }

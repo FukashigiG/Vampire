@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207ebe8e1cd66ed40bcec6ec9c80ee36, type: 3}
+  m_Name: WhitelKnife 1
+  m_EditorClassIdentifier: 
+  <_name>k__BackingField: "\u30B9\u30C8\u30E9\u30A4\u30AF\u30CA\u30A4\u30D5"
+  <flavortext>k__BackingField: 
+  <rank>k__BackingField: 3
+  <sprite>k__BackingField: {fileID: 21300000, guid: 8c9393b17c18b9c45bbb6ce2422a40bb, type: 3}
+  <element>k__BackingField: 0
+  <power>k__BackingField: 60
+  <elementPower>k__BackingField: 0
+  <prefab>k__BackingField: {fileID: 9031835482910408214, guid: 1538e3597b64e734ebeb4a2b273673a0, type: 3}
+  <hitEffect>k__BackingField: {fileID: 2533848353679586684, guid: b3464c1d73b30534182e8b7fb7962cb1, type: 3}
+  <abilities>k__BackingField:
+  - abilityLogic: {fileID: 11400000, guid: c00549e1ccee61d43b31401ad4dd286f, type: 2}
+    effectID: ghtrsg
+  - abilityLogic: {fileID: 11400000, guid: f096bcab631b62944bd91faac68559cb, type: 2}
+    effectID: ghtrsg

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
+  m_Name: Koumori
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureData
+  <_name>k__BackingField: "\u30B3\u30A6\u30E2\u30EA\u306E\u9AEA\u7559\u3081"
+  <flavortext>k__BackingField: "\u5225\u306B\u672C\u4F53\u3068\u304B\u3067\u306F\u306A\u3044"
+  <rank>k__BackingField: 1
+  <sprite>k__BackingField: {fileID: -7029734725121769487, guid: f7e43d76b42a85f44bfcd8d43a5c7995, type: 3}
+  <element>k__BackingField: 0
+  <description>k__BackingField: "HP\u56DE\u5FA9\u6642\u3001\u5C11\u3057\u306E\u9593\u653B\u6483\u529B\u3068\u8996\u91CE\u304C\u4E0A\u6607\u3059\u308B"
+  <logic>k__BackingField: {fileID: 11400000, guid: 3123cfead0efb0242b64e745bf880fa6, type: 2}

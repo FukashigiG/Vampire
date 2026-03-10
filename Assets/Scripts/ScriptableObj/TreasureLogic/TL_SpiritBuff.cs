@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
@@ -8,7 +8,7 @@ using Cysharp.Threading.Tasks;
 [CreateAssetMenu(fileName = "NewTreasure", menuName = "Game Data/TreasureLogic/SpiritBuff")]
 public class TL_SpiritBuff : Base_TreasureLogic
 {
-    // ŠŽ‚µ‚Ä‚¢‚éŠÔAŽõ–½‚ð‹]µ‚É¶¬‚³‚ê‚é¸—ì‚ª‹­‰»‚³‚ê‚é
+    // æ‰€æŒã—ã¦ã„ã‚‹é–“ã€å¯¿å‘½ã‚’çŠ ç‰²ã«ç”Ÿæˆã•ã‚Œã‚‹ç²¾éœŠãŒå¼·åŒ–ã•ã‚Œã‚‹
 
     [SerializeField] int buffAmount_Power;
 
@@ -16,7 +16,7 @@ public class TL_SpiritBuff : Base_TreasureLogic
     {
         SpiritCtrler.onAwake.Subscribe(spirit =>
         {
-            spirit.LifeTime *= 0.6f;
+            spirit.lifeTime *= 0.6f;
 
             spirit.interval_Shot_Sec *= 0.6f;
 

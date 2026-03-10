@@ -13,8 +13,9 @@ public class BEA_ChargeAndShot : Base_BossEnemyAct
 
     [SerializeField] GameObject attackDetectObje;
 
+    [SerializeField] float speedMuitiple = 2f;
+
     [SerializeField] float moveAmount;
-    [SerializeField] float time;
 
     [SerializeField] int num_Bullet;
 
@@ -36,13 +37,19 @@ public class BEA_ChargeAndShot : Base_BossEnemyAct
 
         Vector2 dir = (target.position - ctrler.transform.position).normalized;
 
+        // 突進する距離を決定
+        // 進行方向に壁があればその本の手前で止まるように
+        float _moveAmount = moveAmount;
+        RaycastHit2D rayHit = Physics2D.Raycast(ctrler.transform.position, dir, _moveAmount, LayerMask.GetMask("Wall"));
+        if (rayHit) _moveAmount = rayHit.distance * 0.95f;
+
         // 警告オブジェクトを生成
         GameObject warning = Instantiate(yokoku, ctrler.transform.position, Quaternion.FromToRotation(Vector2.up, dir));
 
         try
         {
             // アニメーション待機
-            await warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, AttackRangeType.box, moveAmount / 2, 3f, moveAmount);
+            await warning.GetComponent<EP_Warning>().WarningAnim(delayTime, token, AttackRangeType.box, _moveAmount / 2, 3f, _moveAmount);
         }
         catch
         {
@@ -57,19 +64,21 @@ public class BEA_ChargeAndShot : Base_BossEnemyAct
 
         GameObject bullet = null;
         float bulletTimer = 0f;
-        float elapsedTime = 0f;
+        float mileage = 0f;
+        float _moveSpeed = ctrler._enemyStatus.moveSpeed / 10 * speedMuitiple;
 
-        while (elapsedTime < time)
+        while (mileage < _moveAmount)
         {
-            ctrler.transform.Translate(dir * moveAmount / time * Time.deltaTime);
+            ctrler.transform.Translate(dir * _moveSpeed * Time.deltaTime);
 
-            await UniTask.Delay((int)(1000 * Time.deltaTime), cancellationToken: token);
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: token);
 
-            elapsedTime += Time.deltaTime;
+            mileage += _moveSpeed * Time.deltaTime;
 
-            bulletTimer += Time.deltaTime;
+            bulletTimer += _moveSpeed * Time.deltaTime;
 
-            if(bulletTimer >= time / num_Bullet)
+            // 移動量が最長距離における弾一発を出すまでの距離を越えるたび弾を生成
+            if(bulletTimer >= moveAmount / num_Bullet)
             {
                 bulletTimer = 0f;
 

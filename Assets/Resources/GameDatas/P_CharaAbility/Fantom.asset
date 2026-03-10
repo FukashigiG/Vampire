@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb890dc4b13d59b4396916b0945a8ea5, type: 3}
+  m_Name: Fantom
+  m_EditorClassIdentifier: Assembly-CSharp::PCA_Fantom
+  <abilityName>k__BackingField: "\u30D5\u30A1\u30F3\u30C8\u30E0\u30E9\u30C3\u30B7\u30E5"
+  <explanation>k__BackingField: "\u653B\u6483\u5BFE\u8C61\u306B\u3042\u3089\u3086\u308B\u65B9\u5411\u304B\u3089\u30CA\u30A4\u30D5\u3092\u6295\u3052\u3064\u3051\u307E\u304F\u308B"
+  <requireChargeValue>k__BackingField: 30
+  instantBuffAmount: 50
+  fx_Trail: {fileID: 8158072470025654302, guid: 9d1f9170a04d1fa4c83db08a1acd4b26, type: 3}
+  fx_Warp: {fileID: 9179038628262014345, guid: 78bd93ccfcee68548978a12c3d155af1, type: 3}

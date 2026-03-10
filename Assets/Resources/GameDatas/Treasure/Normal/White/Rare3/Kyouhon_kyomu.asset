@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
+  m_Name: Kyouhon_kyomu
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureData
+  <_name>k__BackingField: "\u6295\u64F2\u6559\u672C\u30FB\u865A\u7121"
+  <flavortext>k__BackingField: "\u73FE\u5728\u3067\u306F\u30ED\u30B9\u30C8\u30E1\u30C7\u30A3\u30A2\u3068\u3057\u3066\u6271\u308F\u308C\u3066\u3044\u308B"
+  <rank>k__BackingField: 3
+  <sprite>k__BackingField: {fileID: -8057843808045156126, guid: ea429e270960b3141bb3fd6c1beaa5b4, type: 3}
+  <element>k__BackingField: 0
+  <description>k__BackingField: "\u5404\u4E00\u6295\u76EE\u306E\u30CA\u30A4\u30D5\u306E\u5C5E\u6027\u5024\u304C\u6E1B\u308A\u3001\u300C\u9632\u5FA1\u7121\u8996\u300D\u3092\u8FFD\u52A0"
+  <logic>k__BackingField: {fileID: 11400000, guid: 5ffd4cfa047ac2444830f91be19e5035, type: 2}

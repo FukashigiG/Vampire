@@ -16,7 +16,7 @@ public class PlayerController : SingletonMono<PlayerController>
     [SerializeField, Range(1, 30)]
     private int framesToCompare = 5;
 
-    Rigidbody2D _rigidbody;
+    public Rigidbody2D _rigidbody {  get; private set; }
     PlayerInput _input;
     public PlayerStatus _status { get; private set; }
 
@@ -75,6 +75,13 @@ public class PlayerController : SingletonMono<PlayerController>
 
             _rigidbody.linearDamping = 6f;
         }
+
+        // 意地でも外に飛び出さないようにする
+        var areaSize = GameAdmin.Instance.size_PlayArea;
+        var pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, -areaSize, areaSize);
+        pos.y = Mathf.Clamp(pos.y, -areaSize, areaSize);
+        transform.position =pos;
     }
 
     void CheckBoost(Vector2 currentInputDirection)

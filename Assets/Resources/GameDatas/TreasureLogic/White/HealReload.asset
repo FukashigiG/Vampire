@@ -12,9 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9da468a66e1d914c9e5ea0ad8ba8db3, type: 3}
   m_Name: HealReload
   m_EditorClassIdentifier: 
-  <_name>k__BackingField: 
-  <flavortext>k__BackingField: 
-  <rank>k__BackingField: 2
-  <sprite>k__BackingField: {fileID: 0}
-  <element>k__BackingField: 0
-  healRatio: 0.015
+  healRatio: 0.009

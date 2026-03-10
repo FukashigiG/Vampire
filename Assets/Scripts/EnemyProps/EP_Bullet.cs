@@ -35,9 +35,9 @@ public class EP_Bullet : Base_EnemyProps
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 当たったものがダメージを受けるものなら
-        if (collision.gameObject.TryGetComponent(out Base_MobStatus ms))
+        if (collision.gameObject.TryGetComponent(out IDamagable id))
         {
-            ms.GetAttack(damage, elementDamage, transform.position);
+            id.GetAttack(damage, elementDamage, transform.position);
 
             Instantiate(fx_OnHit, transform.position, Quaternion.identity);
 

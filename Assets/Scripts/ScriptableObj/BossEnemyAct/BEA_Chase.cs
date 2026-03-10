@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -8,9 +8,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewBossEnemyAct", menuName = "Game Data/BossEnemyAct/Chase")]
 public class BEA_Chase : Base_BossEnemyAct
 {
-    [Header("���b�ԒǐՂ��邩")]
+    [Header("何秒間追跡するか")]
     [SerializeField] float lifeTime_Action = 5f;
-    [Header("�ǐՂ𒆒f���鋗��")]
+    [Header("追跡を中断する距離")]
     [SerializeField] float distance_WrapUpAction = 4f;
  
     public async override UniTask Action(EnemyCtrler_BigBoss ctrler, CancellationToken token)
@@ -29,7 +29,7 @@ public class BEA_Chase : Base_BossEnemyAct
 
             if (distance < distance_WrapUpAction) return;
 
-            await UniTask.Delay((int)(1000 * Time.deltaTime), cancellationToken: token);
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: token);
 
             elapsedTime += Time.deltaTime;
         }

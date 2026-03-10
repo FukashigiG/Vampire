@@ -6,7 +6,7 @@ using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SpiritCtrler : MonoBehaviour
+public class SpiritCtrler : MonoBehaviour, ISummonable
 {
     [SerializeField] ParticleSystem fx;
 
@@ -20,7 +20,7 @@ public class SpiritCtrler : MonoBehaviour
     public int power = 4;
 
     // 寿命（秒）
-    public float LifeTime = 10;
+    public float lifeTime { get; set; } = 10f;
 
     // 周回半径
     [SerializeField] float radius = 1.2f;
@@ -76,7 +76,7 @@ public class SpiritCtrler : MonoBehaviour
         elapsedTime += Time.deltaTime;
 
         // 寿命が来ていたら消える
-        if(elapsedTime >= LifeTime)
+        if(elapsedTime >= lifeTime)
         {
             Die();
         }

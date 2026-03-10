@@ -84,7 +84,7 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
     {
         // Resourcesフォルダ内のデータを取得
         _cachedKnives = Resources.LoadAll<KnifeData>("GameDatas/Knife").ToList();
-        _cachedTreasures = Resources.LoadAll<TreasureData>("GameDatas/Treasure").ToList();
+        _cachedTreasures = Resources.LoadAll<TreasureData>("GameDatas/Treasure/Normal").ToList();
     }
 
     public void ShowEvent()

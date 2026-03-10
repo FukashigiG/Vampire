@@ -36,7 +36,7 @@ public class BEA_Warp : Base_BossEnemyAct
 
                 safety--;
 
-            }while(Mathf.Abs(pos.x) < areaSize && Mathf.Abs(pos.y) < areaSize && safety > 0);
+            }while((Mathf.Abs(pos.x) > areaSize || Mathf.Abs(pos.y) > areaSize) && safety > 0);
 
             // N回やってだめだったら最終手段
             if( safety <= 0 )

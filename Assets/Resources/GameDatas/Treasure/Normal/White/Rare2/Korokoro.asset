@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
+  m_Name: Korokoro
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureData
+  <_name>k__BackingField: "\u30B3\u30ED\u30B3\u30ED"
+  <flavortext>k__BackingField: "\u6BB4\u308A\u3084\u3059\u305D\u3046\u306A\u5F62\u72B6"
+  <rank>k__BackingField: 2
+  <sprite>k__BackingField: {fileID: -4478528384973214133, guid: 23b5d395f3c4efa4c9c98dc58012753f, type: 3}
+  <element>k__BackingField: 0
+  <description>k__BackingField: "\u30EA\u30ED\u30FC\u30C9\u6642\u5C11\u3057HP\u3092\u56DE\u5FA9"
+  <logic>k__BackingField: {fileID: 11400000, guid: ab22e28a035ca71459f07b688cc6e1ec, type: 2}
