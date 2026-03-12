@@ -15,7 +15,7 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 
     [field: SerializeField] public GameObject body_Panel { get; private set; }
 
-    [SerializeField] Button[] buttons_Option;
+    [SerializeField] Button_GetSome[] buttons_Option;
     [SerializeField] Button button_Decide;
     [SerializeField] Button button_Skip;
 
@@ -98,7 +98,7 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
         {
             button.gameObject.SetActive(true);
 
-            button.onClick.RemoveAllListeners();
+            button.btn.onClick.RemoveAllListeners();
 
             Base_PlayerItem _item = GetRandomItem();
 
@@ -111,9 +111,9 @@ public class GetSomeoneViewer : SingletonMono<GetSomeoneViewer>
 
             lotteriedItems.Add(_item);
 
-            button.GetComponent<Image>().sprite = _item.sprite;
+            button.SetUp(_item);
 
-            button.onClick.AddListener(() =>
+            button.btn.onClick.AddListener(() =>
             {
                 currentSelected = _item;
 

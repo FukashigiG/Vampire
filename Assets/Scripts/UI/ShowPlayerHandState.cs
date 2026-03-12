@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +12,7 @@ public class ShowPlayerHandState : MonoBehaviour
 
     public void AddedKnifeInHand(Sprite sprite, int index)
     {
-        GameObject x = Instantiate(KnifeImagePrefeb, Vector2.zero, Quaternion.identity, this.transform);
+        GameObject x = Instantiate(KnifeImagePrefeb, this.transform);
 
         var copmonent = x.transform.GetComponent<UI_KnifeImg_ShowHand>();
 
@@ -24,7 +24,7 @@ public class ShowPlayerHandState : MonoBehaviour
 
         rect.SetSiblingIndex(index);
 
-        rect.anchoredPosition = Vector2.up * (width * -index - 50f);
+        //rect.localPosition = new Vector3(0, 1, 0) * (width * -index - 50f);
     }
 
     public void RemoveKnifeInHand(int index)

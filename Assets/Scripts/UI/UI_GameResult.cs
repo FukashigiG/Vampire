@@ -16,6 +16,7 @@ public class UI_GameResult : SingletonMono<UI_GameResult>
     [SerializeField] Sprite sprite_Icon_Null;
 
     [SerializeField] Button button_GoBack;
+    [SerializeField] Button button_Tweet;
 
     public void OnGameSet(bool isPlayerWin)
     {
@@ -52,6 +53,18 @@ public class UI_GameResult : SingletonMono<UI_GameResult>
         button_GoBack.onClick.AddListener(() =>
         {
             GameAdmin.Instance.ReTry();
+        });
+
+        button_Tweet.onClick.RemoveAllListeners();
+        string judge = isPlayerWin ? "勝利！" : "敗北,,,";
+
+        string id = "nageknife";
+        string txt = $"Wave{GameAdmin.Instance.waveCount}まで到達し、{judge}";
+        string tag1 = "unityroom";
+        string tag2 = "投げナイフ";
+        button_Tweet.onClick.AddListener(() =>
+        {
+            naichilab.UnityRoomTweet.Tweet(id, txt, tag1, tag2);
         });
     }
 }

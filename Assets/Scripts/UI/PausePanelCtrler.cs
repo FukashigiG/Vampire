@@ -163,9 +163,14 @@ public class PausePanelCtrler : MonoBehaviour
     // パネル表示
     void TogglePanel(InputAction.CallbackContext context)
     {
+        // 既に開いてるなら無視
         if(body.activeSelf == true) return;
 
-        if(GameAdmin.Instance.isPausing) return;
+        // ポーズ中なら無視、、、しようと思ったけど宝箱開けてるときに手持ち参照してぇな
+        //if(GameAdmin.Instance.isPausing) return;
+
+        // ゲームの決着がついているなら無視
+        if(! GameAdmin.Instance.onGame) return;
 
         body.SetActive(true);
 

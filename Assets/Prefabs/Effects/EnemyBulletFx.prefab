@@ -140,11 +140,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3357777936095663219, guid: 6a15fa33111c6b543a85348a05037e9c, type: 3}
       propertyPath: m_Range
-      value: 8
+      value: 6.7502427
       objectReference: {fileID: 0}
     - target: {fileID: 3357777936095663219, guid: 6a15fa33111c6b543a85348a05037e9c, type: 3}
       propertyPath: m_Intensity
-      value: 0
+      value: 14.925487
       objectReference: {fileID: 0}
     - target: {fileID: 3357777936557854539, guid: 6a15fa33111c6b543a85348a05037e9c, type: 3}
       propertyPath: m_Materials.Array.size

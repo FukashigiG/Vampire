@@ -42,9 +42,15 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     public StageData currentStage { get; private set; }
 
+    // ポーズの発生源数を管理する変数
+    // 例えば、ポーズ中に新たにポーズを発生させたのちそれを閉じた後で、ポーズが解除されないように
     int pauseCount = 0;
 
+    // ポーズ中（TimeScaleがゼロ）のフラグ
     public bool isPausing => pauseCount > 0;
+
+    // ゲームの決着がついているかのフラグ
+    public bool onGame { get; private set; }
 
     EnemyStatus cullentBoss = null;
 
@@ -93,6 +99,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
         }).AddTo(this);
 
         UI_Manager.Instance.Initialize(dataHolder.isPlayOnPC);
+
+        onGame = true;
     }
 
     public void UpdateWave(StageData stageData)
@@ -343,6 +351,8 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     public void GameSet(bool isPlayerWin)
     {
+        onGame = false;
+
         UI_GameResult.Instance.OnGameSet(isPlayerWin);
 
         UnityroomApiClient.Instance.SendScore(1, waveCount, ScoreboardWriteMode.HighScoreDesc);

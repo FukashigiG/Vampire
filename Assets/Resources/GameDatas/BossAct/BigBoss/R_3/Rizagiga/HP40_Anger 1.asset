@@ -17,3 +17,4 @@ MonoBehaviour:
   <range_Max>k__BackingField: 999
   delayTime: 0
   <actType>k__BackingField: 0
+  prefab_Fx: {fileID: 3357777935856840699, guid: 74a902fe0d97976459dbcdd2d83a3861, type: 3}
