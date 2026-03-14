@@ -40,6 +40,10 @@ public class PlayerAttack : MonoBehaviour
     Subject<ReactiveCollection<KnifeData_RunTime>> subject_OnReload = new();
     public IObservable<ReactiveCollection<KnifeData_RunTime>> onReload => subject_OnReload;
 
+    // ナイフを捨てると発行
+    Subject<KnifeData_RunTime> subject_onTrashKnife = new();
+    public IObservable<KnifeData_RunTime> onTrashKnife => subject_onTrashKnife;
+
     // 攻撃サイクル用トークンソース
     CancellationTokenSource cancellationTokenSource;
 
@@ -246,6 +250,8 @@ public class PlayerAttack : MonoBehaviour
     // N番目のナイフを手持ちから捨てる
     public void TrashKnife(int index)
     {
+        subject_onTrashKnife.OnNext(hand[index]);
+
         hand.RemoveAt(index);
     }
 

@@ -18,18 +18,21 @@ public class TurretCtrler : MonoBehaviour//, ISummonable
     public float lifeTime { get; set; } = 50f;
 
     // 経過時間記録変数
-    float elapsedTime = 0;
+    [SerializeField] float elapsedTime = 0;
 
     // 残弾数
-    int bulletNum = 20;
+    public int bulletNum = 20;
 
     // 発射間隔
-    float interval_Shot_Sec = 0.6f;
+    [SerializeField] float interval_Shot_Sec = 0.4f;
 
     // 感知射程
-    float eyeSight = 5.5f;
+    [SerializeField] float eyeSight = 5.5f;
 
-    int power = 6;
+    // 弾の威力
+    [SerializeField] int power = 8;
+
+    [SerializeField] float bulletSpeed = 20f;
 
     // 生成された際に出す通知とその購読部分
     static Subject<TurretCtrler> subject_onAwake = new();
@@ -40,6 +43,8 @@ public class TurretCtrler : MonoBehaviour//, ISummonable
     public static IObservable<TurretCtrler> onDestroy => subject_onDestroy;
 
     CancellationToken token;
+
+    bool onDie = false;
 
     void Awake()
     {
@@ -106,7 +111,7 @@ public class TurretCtrler : MonoBehaviour//, ISummonable
             GameObject bullet = Instantiate(prefab_Bullet, this.transform.position, rotation);
 
             // 攻撃力を弾に渡し、初期化処理
-            bullet.GetComponent<PlayerPropsBulletCtrler>().Initialize(power, 20f, fx_Bullet);
+            bullet.GetComponent<PlayerPropsBulletCtrler>().Initialize(power, bulletSpeed, fx_Bullet);
 
             // 発射エフェクト
             Instantiate(fx_Shot, this.transform.position, Quaternion.identity);
@@ -148,8 +153,12 @@ public class TurretCtrler : MonoBehaviour//, ISummonable
         return nearestObject;
     }
 
-    void Die()
+    public void Die()
     {
+        if (onDie) return;
+
+        onDie = true;
+ 
         subject_onDestroy.OnNext(this);
 
         Instantiate(fx_Die, transform.position, Quaternion.identity);

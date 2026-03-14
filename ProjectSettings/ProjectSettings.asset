@@ -736,8 +736,7 @@ PlayerSettings:
     iPhone: DOTWEEN
     tvOS: DOTWEEN
   additionalCompilerArguments:
-    WebGL:
-    - -langversion:11.0
+    WebGL: []
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}

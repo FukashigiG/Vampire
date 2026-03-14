@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
   m_Name: Drill
   m_EditorClassIdentifier: Assembly-CSharp::TreasureData
-  <_name>k__BackingField: "\u30C9\u30EA\u30EB"
+  <_name>k__BackingField: "\u30CB\u30FC\u30C9\u30EB\u30C9\u30EA\u30EB"
   <flavortext>k__BackingField: "\u6700\u9AD8\u901F\u5EA6\u3067\u30D6\u30C1\u629C\u3053\u3046"
-  <rank>k__BackingField: 1
+  <rank>k__BackingField: 2
   <sprite>k__BackingField: {fileID: 254509965974115023, guid: 8143e08a7375b7448a6314b0fee6c6e3, type: 3}
   <element>k__BackingField: 3
   <description>k__BackingField: "\u30DC\u30B9\u51FA\u73FE\u6642\u3001\u5FC5\u6BBA\u6280\u30B2\u30FC\u30B8\u304C\u6700\u5927\u307E\u3067\u8CAF\u307E\u308B"

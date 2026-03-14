@@ -16,7 +16,7 @@ public class PlayerPropsBulletCtrler : MonoBehaviour
 
     public enum DamageType
     {
-        normal, elemental
+        normal, elemental, fusion
     }
 
     DamageType damageType = DamageType.normal;
@@ -65,6 +65,11 @@ public class PlayerPropsBulletCtrler : MonoBehaviour
                 case DamageType.elemental:
                     // 属性ダメージ
                     ms.GetAttack(0, damagePoint, transform.position);
+                    break;
+
+                case DamageType.fusion:
+                    // 両方で半分づつダメージ
+                    ms.GetAttack(damagePoint/2, damagePoint/2, transform.position);
                     break;
 
                 default:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: StageDataHolder
   m_EditorClassIdentifier: Assembly-CSharp::StageDataHolder
   updatable: 1
-  <selectedChara>k__BackingField: {fileID: 11400000, guid: 8958616813cb9e245bc3a5df9200876e, type: 2}
+  <selectedChara>k__BackingField: {fileID: 11400000, guid: 4901826a51d85ca4e882607638170838, type: 2}
   <isEndless>k__BackingField: 0
   <isPlayOnPC>k__BackingField: 1
   <minute_Wave>k__BackingField: 1.18

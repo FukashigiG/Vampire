@@ -110,3 +110,8 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
+  elapsedTime: 0
+  bulletNum: 20
+  interval_Shot_Sec: 0.5
+  eyeSight: 5.5
+  power: 6

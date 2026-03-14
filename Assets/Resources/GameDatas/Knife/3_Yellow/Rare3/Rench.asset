@@ -24,5 +24,7 @@ MonoBehaviour:
   <abilities>k__BackingField:
   - abilityLogic: {fileID: 11400000, guid: c101397b7d006b846b880f8719c5e0ab, type: 2}
     effectID: r_h_m
+  - abilityLogic: {fileID: 11400000, guid: ee4bf46aa13a1d64693f35fe457c0eb2, type: 2}
+    effectID: ovrvns
   - abilityLogic: {fileID: 11400000, guid: 17e860b8c320c3048b0b573d69e74311, type: 2}
     effectID: ovrvns
