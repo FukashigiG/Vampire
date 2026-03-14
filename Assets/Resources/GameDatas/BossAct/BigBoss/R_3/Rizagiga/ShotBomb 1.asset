@@ -18,6 +18,7 @@ MonoBehaviour:
   delayTime: 0.3
   <actType>k__BackingField: 1
   prefab_Bullet: {fileID: 4141551899407967012, guid: 7e3ddeeab777e22428ded1506bf2b104, type: 3}
+  fx_Bomb: {fileID: 3239568679811347795, guid: 9ecf418c1eef8ba408fd5216b3c4a742, type: 3}
   num_Bullet: 8
   damageMultiple: 0.35
   randomRadius: 7

@@ -12,6 +12,7 @@ public class BEA_CP_and_Bullets : Base_BossEnemyAct
     [SerializeField] GameObject warningPrefab;
     [SerializeField] GameObject bullet_Prefab;
     [SerializeField] GameObject fx;
+    [SerializeField] GameObject fx_Bullet;
     [SerializeField] float damageMultiplier;
 
     [SerializeField] float size_Radius = 0;
@@ -91,7 +92,7 @@ public class BEA_CP_and_Bullets : Base_BossEnemyAct
                 // 弾を生成
                 bullet = Instantiate(bullet_Prefab, pos, r);
                 // 弾を初期化
-                bullet.GetComponent<EP_Bullet>().Initialize((int)(ctrler._enemyStatus.power * damageMultiplier * 0.7f), 0);
+                bullet.GetComponent<EP_Bullet>().Initialize((int)(ctrler._enemyStatus.power * damageMultiplier * 0.7f), 0, fx_Bullet);
             }
         }
     }

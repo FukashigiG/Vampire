@@ -7,21 +7,35 @@ public class EP_Bomb : Base_EnemyProps
     [SerializeField] float radius = 1.5f;
 
     [SerializeField] GameObject damageDetect;
+    [SerializeField] GameObject fx_Default;
     [SerializeField] GameObject fx_Hit;
-    [SerializeField] ParticleSystem fx_Trail;
+    ParticleSystem fx;
 
     float time_Impact;
 
     Vector2 targetPoint;
 
 
-    public void Initialize_OR(Vector2 _targetPoint, float _time_Impact, int damage)
+    public void Initialize_OR(Vector2 _targetPoint, float _time_Impact, int damage, GameObject _fx = null)
     {
         targetPoint = _targetPoint;
 
         time_Impact = _time_Impact;
 
         base.Initialize(damage, 0);
+
+        GameObject fxPrefab;
+
+        if(_fx != null)
+        {
+            fxPrefab = _fx;
+        }
+        else
+        {
+            fxPrefab = fx_Default;
+        }
+
+        fx = Instantiate(fxPrefab, transform.position, Quaternion.identity, this.transform).GetComponent<ParticleSystem>();
 
         Task(transform.position, this.gameObject.GetCancellationTokenOnDestroy()).Forget();
     }
@@ -62,8 +76,8 @@ public class EP_Bomb : Base_EnemyProps
 
             Instantiate(fx_Hit, targetPoint, Quaternion.identity);
 
-            fx_Trail.transform.parent = null;
-            fx_Trail.Stop();
+            fx.transform.parent = null;
+            fx.Stop();
 
             Destroy(this.gameObject);
 

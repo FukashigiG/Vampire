@@ -48,9 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpiritCtrler
   fx: {fileID: 720151645780570120}
   prefab_Bullet: {fileID: 2023543075554908296, guid: e1ffeae31b948b143904d1e96aebfd8b, type: 3}
+  fx_Bullet: {fileID: 6068827365368370443, guid: eef33dfce26f4044ca0f577feca7ef41, type: 3}
   interval_Shot_Sec: 1
   power: 5
-  LifeTime: 9
   radius: 1.2
 --- !u!58 &7312606934941075820
 CircleCollider2D:

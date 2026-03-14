@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: b15047aaf0da1ed4a9b1be8b561b5f0d
+guid: 725f1188f05b86a4e956d47bd5e5b092
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8815067448003259301
-    second: mendama_2_0
-  - first:
-      213: -5139035847023681238
-    second: mendama_2_1
+      213: 5790386610532515738
+    second: tallet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -54,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 200
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -116,45 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mendama_2_0
+      name: tallet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 200
-        height: 200
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b5418aa3cd69aa580800000000000000
-      internalID: -8815067448003259301
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mendama_2_1
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 0
-        width: 200
-        height: 200
+        x: 46
+        y: 45
+        width: 415
+        height: 434
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a21a72aff1a7ea8b0800000000000000
-      internalID: -5139035847023681238
+      spriteID: a9ff7f881f59b5050800000000000000
+      internalID: 5790386610532515738
       vertices: []
       indices: 
       edges: []
@@ -163,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dffd7a1937fbb184e8f2c3bfa1f98184
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -171,12 +146,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":2.0,"y":1.0},"gridSpriteSize":{"x":200.0,"y":200.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      mendama_2_0: -8815067448003259301
-      mendama_2_1: -5139035847023681238
+      tallet_0: 5790386610532515738
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -12,6 +12,7 @@ public class SpiritCtrler : MonoBehaviour, ISummonable
 
     // 発射する弾のプレハブ
     [SerializeField] GameObject prefab_Bullet;
+    [SerializeField] GameObject fx_Bullet;
 
     // 弾の発射間隔（秒）
     public float interval_Shot_Sec = 1;
@@ -131,7 +132,7 @@ public class SpiritCtrler : MonoBehaviour, ISummonable
                 GameObject bullet = Instantiate(prefab_Bullet, this.transform.position, rotation);
 
                 // 攻撃力を弾に渡し、初期化処理
-                bullet.GetComponent<Bullet_SpilitCtrler>().Initialize(power);
+                bullet.GetComponent<PlayerPropsBulletCtrler>().Initialize(power, 5f, fx_Bullet);
             }
         }
         catch

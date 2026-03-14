@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public abstract class Base_EnemyProps : MonoBehaviour
     protected int damage;
     protected int elementDamage;
 
-    public virtual void Initialize(int dmg, int elementDmg)
+    public virtual void Initialize(int dmg, int elementDmg, GameObject fx = null)
     {
         damage = dmg;
         elementDamage = elementDmg;

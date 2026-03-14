@@ -14,10 +14,13 @@ public class TL_LongLifeSummon : Base_TreasureLogic
 
     public override void SubscribeToEvent(PlayerStatus status, CompositeDisposable disposables)
     {
+        /*
         ISummonable.onAwake.Subscribe( x =>
         {
             x.lifeTime += extLife;
 
         }).AddTo( disposables );
+
+        */
     }
 }

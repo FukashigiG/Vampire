@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,9 +9,10 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(fileName = "NewBossEnemyAct", menuName = "Game Data/BossEnemyAct/BulletStorm")]
 public class BEA_BulletStorm : Base_BossEnemyAct
 {
-    // ƒx[ƒVƒbƒN‚È’e”­Ëˆ—
+    // ãƒ™ãƒ¼ã‚·ãƒƒã‚¯ãªå¼¾ç™ºå°„å‡¦ç†
 
     [SerializeField] GameObject prefab_Bullet;
+    [SerializeField] GameObject fx_Bullet;
     [SerializeField] int num_Bullet;
     [SerializeField] float damageMultiple = 0.5f;
 
@@ -20,7 +21,7 @@ public class BEA_BulletStorm : Base_BossEnemyAct
 
     public async override UniTask Action(EnemyCtrler_BigBoss ctrler, CancellationToken token)
     {
-        // ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ğæ“¾
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®æ–¹å‘ã‚’å–å¾—
         Vector2 dir = (ctrler.target.position - ctrler.transform.position).normalized;
 
         GameObject bullet = null;
@@ -34,7 +35,7 @@ public class BEA_BulletStorm : Base_BossEnemyAct
 
             bullet = Instantiate(prefab_Bullet, bulletPoint, targetRotation);
 
-            bullet.GetComponent<EP_Bullet>().Initialize((int)(ctrler._enemyStatus.power * damageMultiple), 0);
+            bullet.GetComponent<EP_Bullet>().Initialize((int)(ctrler._enemyStatus.power * damageMultiple), 0, fx_Bullet);
 
             await UniTask.Delay((int)(75), cancellationToken: token);
         }
@@ -47,10 +48,10 @@ public class BEA_BulletStorm : Base_BossEnemyAct
         float randomX = Random.Range(-range_X / 2, range_X / 2);
         float randomY = Random.Range(-range_Y / 2, range_Y / 2);
 
-        // Œ´“_‚ğ’†S‚Æ‚µ‚½ƒ‰ƒ“ƒ_ƒ€‚ÈlŠp”ÍˆÍ“à‚Ì“_‚ğæ“¾
+        // åŸç‚¹ã‚’ä¸­å¿ƒã¨ã—ãŸãƒ©ãƒ³ãƒ€ãƒ ãªå››è§’ç¯„å›²å†…ã®ç‚¹ã‚’å–å¾—
         Vector2 basePoint = new Vector2(randomX, randomY);
 
-        // ƒ{ƒX‚ÌÀ•WA–Ú“I•ûŒü‚Æ‡¬
+        // ãƒœã‚¹ã®åº§æ¨™ã€ç›®çš„æ–¹å‘ã¨åˆæˆ
         Vector2 worldPoint = centerPoint + (Vector2)(rotate * basePoint);
 
         return worldPoint;

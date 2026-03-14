@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6002114493564059005
+--- !u!1 &2023543075554908296
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,52 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3758519086626368313}
-  - component: {fileID: 3816263866328472407}
-  - component: {fileID: 1829984014173496497}
-  m_Layer: 9
-  m_Name: Bullet_Enemy
+  - component: {fileID: 4396592889866058661}
+  - component: {fileID: 8192274049056977943}
+  - component: {fileID: 2625360852282960743}
+  m_Layer: 8
+  m_Name: Bullet_Spirit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3758519086626368313
+--- !u!4 &4396592889866058661
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6002114493564059005}
+  m_GameObject: {fileID: 2023543075554908296}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.14, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3816263866328472407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6002114493564059005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7a8e9ece6d8cae4db9b93bb4afe88f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fx_Default: {fileID: 8086034454790436210, guid: 49af4c74f451e0143b8698843d47cfb5, type: 3}
-  fx_OnHit: {fileID: 4473110034534548137, guid: a2dfef2bafc566d489cb5d31ebddd201, type: 3}
---- !u!61 &1829984014173496497
+--- !u!61 &8192274049056977943
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6002114493564059005}
+  m_GameObject: {fileID: 2023543075554908296}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -84,12 +70,26 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 0.45, y: 1.15}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
-    drawMode: 1
+    drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.8, y: 0.8}
+  m_Size: {x: 0.4, y: 0.4}
   m_EdgeRadius: 0
+--- !u!114 &2625360852282960743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023543075554908296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f7f6ce385908f449bff582a6889cd68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Bullet_SpilitCtrler
+  defaultFx: {fileID: 6068827365368370443, guid: eef33dfce26f4044ca0f577feca7ef41, type: 3}
+  base_Speed: 2.5

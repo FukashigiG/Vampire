@@ -24,6 +24,7 @@ public class BEA_ChargeAndShot : Base_BossEnemyAct
     [SerializeField] GameObject yokoku;
 
     [SerializeField] GameObject prefab_Bullet;
+    [SerializeField] GameObject fx_Bullet;
 
 
 
@@ -90,7 +91,7 @@ public class BEA_ChargeAndShot : Base_BossEnemyAct
                 bullet = Instantiate(prefab_Bullet, ctrler.transform.position, _rotation);
 
                 // 弾を初期化
-                bullet.GetComponent<EP_Bullet>().Initialize((int)(ctrler._enemyStatus.power * damageMultiplier / 2), 0);
+                bullet.GetComponent<EP_Bullet>().Initialize((int)(ctrler._enemyStatus.power * damageMultiplier / 2), 0, fx_Bullet);
             }
         }
 

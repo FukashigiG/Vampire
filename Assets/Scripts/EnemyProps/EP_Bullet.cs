@@ -4,13 +4,33 @@ using UnityEngine;
 
 public class EP_Bullet : Base_EnemyProps
 {
+    [SerializeField] GameObject fx_Default;
     [SerializeField] GameObject fx_OnHit;
-    [SerializeField] ParticleSystem fx_Trail;
+
+    ParticleSystem fx;
 
     float speed = 5f;
     float lifeTime = 5f;
 
     float timeCount = 0;
+
+    public override void Initialize(int dmg, int elementDmg, GameObject _fx = null)
+    {
+        base.Initialize(dmg, elementDmg, _fx);
+
+        GameObject fxPrefab;
+
+        if(_fx != null)
+        {
+            fxPrefab = _fx;
+        }
+        else
+        {
+            fxPrefab = fx_Default;
+        }
+
+        fx = Instantiate(fxPrefab, this.transform.position, Quaternion.identity, this.transform).GetComponent<ParticleSystem>();
+    }
 
     void Update()
     {
@@ -23,9 +43,9 @@ public class EP_Bullet : Base_EnemyProps
         {
             // トレイル部分の親子関係の解除
             // 自然に消える演出のための処理
-            // OnDestroyないでやろうとするとなんかうまくいかない
-            fx_Trail.transform.parent = null;
-            fx_Trail.Stop();
+            // OnDestroy内でやろうとするとなんかうまくいかない
+            fx.transform.parent = null;
+            fx.Stop();
 
             Destroy(this.gameObject);
         }
@@ -44,8 +64,8 @@ public class EP_Bullet : Base_EnemyProps
             // トレイル部分の親子関係の解除
             // 自然に消える演出のための処理
             // OnDestroyないでやろうとするとなんかうまくいかない
-            fx_Trail.transform.parent = null;
-            fx_Trail.Stop();
+            fx.transform.parent = null;
+            fx.Stop();
 
             Destroy(this.gameObject);
         }

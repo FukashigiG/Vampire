@@ -12,6 +12,9 @@ public class StageDataHolder : ScriptableObject
     [field: SerializeField] public bool isEndless {  get; private set; }
     [field: SerializeField] public bool isPlayOnPC {  get; private set; }
 
+    [field: SerializeField] public float minute_Wave {  get; private set; }
+    [field: SerializeField] public int baseWeight_ExBoss {  get; private set; }
+
     public void SetData(PlayerCharaData charaData, bool _isEndless, bool _isPlayOnPC)
     {
         if(! updatable) return;

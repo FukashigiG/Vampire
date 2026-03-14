@@ -142,9 +142,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3501893452787138007, guid: db667c0317c36ab41aef724b63de71cb, type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3501893452787138010, guid: db667c0317c36ab41aef724b63de71cb, type: 3}
       propertyPath: m_Name
-      value: CFXR3 Iceball B + Ice Trail
+      value: SpiritBullet
       objectReference: {fileID: 0}
     - target: {fileID: 3501893452787138010, guid: db667c0317c36ab41aef724b63de71cb, type: 3}
       propertyPath: m_IsActive

@@ -21,9 +21,6 @@ public class GameAdmin : SingletonMono<GameAdmin>
 
     [SerializeField] CinemachineCamera v_Camera_FocusOnBoss;
 
-    [SerializeField] float minute_Wave;
-    [SerializeField] int baseWeight_EXBoss;
-
     [SerializeField] StageData initialStage;
 
     [SerializeField] GameObject item_WarpStage;
@@ -31,6 +28,9 @@ public class GameAdmin : SingletonMono<GameAdmin>
     [SerializeField] StageDataHolder dataHolder;
 
     [field:SerializeField] public float size_PlayArea {  get; private set; }
+
+    float minute_Wave;
+    int baseWeight_EXBoss;
 
     CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
     CancellationToken _cancellationToken;
@@ -85,6 +85,10 @@ public class GameAdmin : SingletonMono<GameAdmin>
         currentStage = initialStage;
 
         var p_Status = PlayerController.Instance.GetComponent<PlayerStatus>();
+
+        minute_Wave = dataHolder.minute_Wave;
+
+        baseWeight_EXBoss = dataHolder.baseWeight_ExBoss;
 
         var charaData = dataHolder.selectedChara;
 
