@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+
 
 public class TitleSceneManager : SingletonMono<TitleSceneManager>
 {
@@ -27,8 +29,10 @@ public class TitleSceneManager : SingletonMono<TitleSceneManager>
 
         UI_Setting.Instance.Initialize();
         CharaSelect_Director.Instance.Initialize(btn_SelectChara);
-        EnemyDictionary_Director.Instance.Initialize(btn_Dictionary);
         TipsDictionary.Instance.Initialize(btn_Tips);
+
+        List<EnemyData> enemies = Resources.LoadAll<EnemyData>("GameDatas/Enemy").ToList();
+        EnemyDictionary_Director.Instance.Initialize(btn_Dictionary, enemies);
 
         btn_Setting.onClick.RemoveAllListeners();
         btn_Setting.onClick.AddListener(() => UI_Setting.Instance.OpenPanel());

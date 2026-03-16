@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066e6738ca1d5b4b894600456af53bc, type: 3}
   m_Name: TrashToBuff_Reload
   m_EditorClassIdentifier: Assembly-CSharp::TL_TrashToBuff
-  statusEffect: {fileID: 0}
+  statusEffect: {fileID: 11400000, guid: 7098fc02066ba9d45843da05eb4bf085, type: 2}
   effectid: trashbfrld53634
   duration: 1.7
   amount: 30

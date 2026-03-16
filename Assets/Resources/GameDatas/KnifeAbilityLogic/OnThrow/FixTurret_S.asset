@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e27d185999941ba4c91b7b38f6355441, type: 3}
-  m_Name: FixTurret_M
+  m_Name: FixTurret_S
   m_EditorClassIdentifier: Assembly-CSharp::KAL_FixTurret
-  <effectName>k__BackingField: "\u8D85\u30EA\u30DA\u30A2"
+  <effectName>k__BackingField: "\u30EA\u30DA\u30A2"
   probability_Percent: 100
-  <description>k__BackingField: "\u6295\u64F2\u6642\u3001\u5E83\u7BC4\u56F2\u306E\u30BF\u30EC\u30C3\u30C8\u306E\u6B8B\u5F3E\u6570\u3092\u56DE\u5FA9"
+  <description>k__BackingField: "\u6295\u64F2\u6642\u3001\u5468\u56F2\u306E\u30BF\u30EC\u30C3\u30C8\u306E\u6B8B\u5F3E\u6570\u3092\u307B\u3093\u306E\u308A\u56DE\u5FA9"
   <effectOnThrown>k__BackingField: 1
   <effectOnHit>k__BackingField: 0
-  num_ExBullet: 5
-  radius: 6.5
+  num_ExBullet: 3
+  radius: 4
   targetLayer:
     serializedVersion: 2
     m_Bits: 4096

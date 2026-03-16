@@ -1,25 +1,30 @@
+ï»¿using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using System;
 
 [CreateAssetMenu(fileName = "NewESA", menuName = "Game Data/EnemyStatusAbilityData/Warp")]
 public class ESA_Warp : Base_EnemyStatusAbilityData
 {
-    // UŒ‚‚ğó‚¯‚é‚ÆŒã•û‚Éƒ[ƒv‚·‚é
+    // æ”»æ’ƒã‚’å—ã‘ã‚‹ã¨å¾Œæ–¹ã«ãƒ¯ãƒ¼ãƒ—ã™ã‚‹
 
     [SerializeField] bool warpForBack = true;
 
     [SerializeField] float distance;
 
+    [SerializeField] float coolTime = 0.5f;
+
     [SerializeField] GameObject fx_Warp;
 
     public override void ApplyAbility(EnemyStatus status, CompositeDisposable disposables)
     {
-        status.onDamaged.Subscribe(x =>
+        status.onDamaged
+            .Where(x => x.amount <= status.hitPoint.Value)
+            .ThrottleFirst(TimeSpan.FromSeconds(coolTime)) // ã“ã‚Œã®æ„å‘³ï¼šä¸€åº¦ã‚¤ãƒ™ãƒ³ãƒˆã‚’é€šã—ãŸã‚‰Nç§’é–“åŒã‚¤ãƒ™ãƒ³ãƒˆã‚’ç„¡è¦–
+            .Subscribe(x =>
         {
-            // ”íƒ_ƒ‚ªHPˆÈã‚È‚ç”­“®‚µ‚È‚¢
-            if(x.amount > status.hitPoint.Value) return;
 
             Vector2 playerPosi = status.ctrler.target.transform.position;
 
@@ -36,7 +41,7 @@ public class ESA_Warp : Base_EnemyStatusAbilityData
                     break;
             }
 
-            // ˆÚ“®êŠ‚ÉƒGƒtƒFƒNƒg¶¬
+            // ç§»å‹•å ´æ‰€ã«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç”Ÿæˆ
             Instantiate(fx_Warp, status.transform.position, Quaternion.identity);
 
         }).AddTo(disposables);

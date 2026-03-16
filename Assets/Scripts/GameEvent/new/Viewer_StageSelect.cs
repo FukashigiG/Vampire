@@ -11,6 +11,7 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
 
     [SerializeField] Button[] buttons_Option;
     [SerializeField] Button button_Decide;
+    [SerializeField] Button button_OpenEnemyDx;
 
     [SerializeField] TextMeshProUGUI txt_StageName;
     [SerializeField] TextMeshProUGUI txt_StageRank;
@@ -62,6 +63,8 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
             buttons_Option[i].onClick.AddListener(() =>
             {
                 ShowDiscription(_stage);
+
+                EnemyDictionary_Director.Instance.Initialize(button_OpenEnemyDx, _stage.enemyList, GameAdmin.Instance.cullentBoostMultiple + GameAdmin.Instance.waveBoostMultiplier);
             });
         }
 

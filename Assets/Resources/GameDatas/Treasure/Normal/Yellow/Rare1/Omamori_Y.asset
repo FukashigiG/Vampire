@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
   m_Name: Omamori_Y
   m_EditorClassIdentifier: Assembly-CSharp::TreasureData
-  <_name>k__BackingField: "\u9752\u3044\u304A\u307E\u3082\u308A"
+  <_name>k__BackingField: "\u9EC4\u8272\u3044\u304A\u307E\u3082\u308A"
   <flavortext>k__BackingField: "\u305F\u304E\u308B\u6C17\u914D\u304C\u52A0\u8B77\u3092\u3082\u305F\u3089\u3059"
   <rank>k__BackingField: 1
   <sprite>k__BackingField: {fileID: 8901998200999881701, guid: adaf2cbe566f84f4a821683cc8ba2094, type: 3}

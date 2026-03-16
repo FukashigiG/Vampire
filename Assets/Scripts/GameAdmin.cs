@@ -57,6 +57,9 @@ public class GameAdmin : SingletonMono<GameAdmin>
     // １ウェーブあたりの敵の強化倍率
     [field: SerializeField] public float waveBoostMultiplier {  get; private set; }
 
+    // 現在の倍率
+    public float cullentBoostMultiple => 1 + (waveCount - 1) * waveBoostMultiplier;
+
     float cullentTimeScale = 1f;
 
     public enum WaveState

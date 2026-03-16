@@ -17,4 +17,5 @@ MonoBehaviour:
   <icon>k__BackingField: {fileID: 9083328548952584075, guid: 68d96634cf9f79a40a13e0ae4befa54f, type: 3}
   warpForBack: 0
   distance: 6
+  coolTime: 1
   fx_Warp: {fileID: 2708598583397607911, guid: 84e02b21d2249604083feccea206d958, type: 3}

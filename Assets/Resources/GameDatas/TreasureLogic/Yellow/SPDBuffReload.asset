@@ -12,12 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b95c77e8d589b242adcc68f93583649, type: 3}
   m_Name: SPDBuffReload
   m_EditorClassIdentifier: 
-  <_name>k__BackingField: 
-  <flavortext>k__BackingField: 
-  <rank>k__BackingField: 3
-  <sprite>k__BackingField: {fileID: 0}
-  <element>k__BackingField: 0
   statusEffect: {fileID: 11400000, guid: 403c818acf0fc2f40a95694ac4f6120a, type: 2}
   duration: 1
   amount_percent: 60
-  effectID: 
+  effectID: rldbfspd6543

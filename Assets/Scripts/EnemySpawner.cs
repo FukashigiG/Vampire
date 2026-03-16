@@ -125,7 +125,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
 
         // データとウエーブ数の倍率ブーストを渡したうえで初期化させる
         x.GetComponent<EnemyStatus>()
-        .Initialize_OR(data, 1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
+        .Initialize_OR(data, GameAdmin.Instance.cullentBoostMultiple);
     }
 
     // 生成場所の抽選
@@ -206,7 +206,7 @@ public class EnemySpawner : SingletonMono<EnemySpawner>
         var status = x.GetComponent<EnemyStatus>();
 
         // ウエーブ数の倍率ブーストを渡したうえでの初期化
-        status.Initialize_OR(boss, 1 + (GameAdmin.Instance.waveCount - 1) * GameAdmin.Instance.waveBoostMultiplier);
+        status.Initialize_OR(boss, GameAdmin.Instance.cullentBoostMultiple);
 
         return status;
     }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TurretLastHealItem
   m_EditorClassIdentifier: Assembly-CSharp::TL_TurretLastSummon
   summonedObj: {fileID: 270761467918423833, guid: 63f1b1a5d2bf379408e23318d9c36fa4, type: 3}
-  percent: 25
+  percent: 15

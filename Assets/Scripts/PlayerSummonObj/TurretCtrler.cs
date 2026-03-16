@@ -24,15 +24,16 @@ public class TurretCtrler : MonoBehaviour//, ISummonable
     public int bulletNum = 20;
 
     // 発射間隔
-    [SerializeField] float interval_Shot_Sec = 0.4f;
+    public float interval_Shot_Sec = 0.4f;
 
     // 感知射程
-    [SerializeField] float eyeSight = 5.5f;
+    public float eyeSight = 5.5f;
 
     // 弾の威力
-    [SerializeField] int power = 8;
+    public int power = 8;
 
-    [SerializeField] float bulletSpeed = 20f;
+    // 弾の速度
+    public float bulletSpeed = 20f;
 
     // 生成された際に出す通知とその購読部分
     static Subject<TurretCtrler> subject_onAwake = new();
@@ -43,6 +44,8 @@ public class TurretCtrler : MonoBehaviour//, ISummonable
     public static IObservable<TurretCtrler> onDestroy => subject_onDestroy;
 
     CancellationToken token;
+
+    GameObject target = null;
 
     bool onDie = false;
 
@@ -59,6 +62,8 @@ public class TurretCtrler : MonoBehaviour//, ISummonable
 
     private void Update()
     {
+        if(target == null) target = FindEnemy();
+
         // 経過時間を加算
         elapsedTime += Time.deltaTime;
 
@@ -71,8 +76,6 @@ public class TurretCtrler : MonoBehaviour//, ISummonable
 
     async UniTask ShotTask()
     {
-        GameObject target = null;
-
         while (bulletNum > 0)
         {
             try
@@ -80,14 +83,7 @@ public class TurretCtrler : MonoBehaviour//, ISummonable
                 // クールタイム
                 await UniTask.Delay((int)(interval_Shot_Sec * 1000), cancellationToken: token);
 
-                // 攻撃対象が出現するまで待つ
-                do
-                {
-                    target = FindEnemy();
-
-                    await UniTask.Yield(cancellationToken: token);
-
-                } while(target == null);
+                await UniTask.WaitUntil(() => target != null, cancellationToken: token);
             }
             catch
             {
@@ -133,8 +129,14 @@ public class TurretCtrler : MonoBehaviour//, ISummonable
     {
 
         //一定範囲内の敵を配列に格納
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, eyeSight, targetLayer);
+        Collider2D hits = Physics2D.OverlapCircle(transform.position, eyeSight, targetLayer);
 
+        if (hits == null) return null;
+        return hits.gameObject;
+
+        // 以下の手法でやろうとすると負荷が過ごそうなので断念
+
+        /*
         GameObject nearestObject = null;
         float shortestDistance = Mathf.Infinity; // 無限大で初期化
 
@@ -151,6 +153,7 @@ public class TurretCtrler : MonoBehaviour//, ISummonable
         }
 
         return nearestObject;
+        */
     }
 
     public void Die()

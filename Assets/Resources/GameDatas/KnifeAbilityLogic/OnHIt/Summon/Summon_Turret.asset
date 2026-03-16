@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aec2cedade780eb4d8cff9f37e742dd9, type: 3}
   m_Name: Summon_Turret
   m_EditorClassIdentifier: Assembly-CSharp::KAL_SummonObject
-  <effectName>k__BackingField: "\u7CBE\u970A\u53EC\u559A"
-  probability_Percent: 35
-  <description>k__BackingField: "\u30D2\u30C3\u30C8\u5730\u70B9\u4ED8\u8FD1\u306B\u30BF\u30EC\u30C3\u30C8\u3092\u751F\u6210\u3059\u308B"
+  <effectName>k__BackingField: "\u63A5\u5730"
+  probability_Percent: 42
+  <description>k__BackingField: "\u307E\u308C\u306B\u30D2\u30C3\u30C8\u5730\u70B9\u4ED8\u8FD1\u306B\u30BF\u30EC\u30C3\u30C8\u3092\u751F\u6210\u3059\u308B"
   <effectOnThrown>k__BackingField: 0
   <effectOnHit>k__BackingField: 1
   SummonedObject: {fileID: 3692588499798039020, guid: 234e910b1ecd69347baf42adea8aae46, type: 3}

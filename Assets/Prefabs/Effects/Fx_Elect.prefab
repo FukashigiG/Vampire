@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1355973933852736831}
   - component: {fileID: 3960018906311444401}
   m_Layer: 0
-  m_Name: CFXR Lightning Strike + Impact 1
+  m_Name: Fx_Elect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

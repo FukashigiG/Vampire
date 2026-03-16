@@ -14,25 +14,42 @@ public class EnemyDictionary_Director : SingletonMono<EnemyDictionary_Director>
 
     [SerializeField] GameObject bodyPanel;
 
+    Button btn_Open;
     [SerializeField] Button btn_Close;
     [SerializeField] Transform btnArea;
     [SerializeField] TextMeshProUGUI txt_EnemyName;
     [SerializeField] TextMeshProUGUI txt_EnemyType;
+    [SerializeField] TextMeshProUGUI txt_EnemyModify;
     [SerializeField] TextMeshProUGUI txt_EnemyDiscription;
     [SerializeField] Image image_Enemy;
     [SerializeField] List<TextMeshProUGUI> txts_Status;
     [SerializeField] List<Icon_ESA> icons_ESA;
 
-    List<EnemyData> enemies = new List<EnemyData>();
+    List<Button> buttons;
 
-    public void Initialize(Button btn_Open)
+    float modifire = 1f;
+
+    public void Initialize(Button _btn_Open, List<EnemyData> enemies, float _modifire = 1f, int index = -1)
     {
+        modifire = _modifire;
+
+        txt_EnemyModify.text = $"(x {modifire.ToString("F2")})";
+
+        foreach(Transform child in btnArea)
+        {
+            Destroy(child.gameObject);
+        }
+
         // 画面開閉登録
+        btn_Open?.onClick.RemoveAllListeners();
+        btn_Open = _btn_Open;
         btn_Open.onClick.AddListener(OpenPanel);
+        btn_Close.onClick.RemoveAllListeners();
         btn_Close.onClick.AddListener(ClosePanel);
 
         // 全データ取得
-        enemies = Resources.LoadAll<EnemyData>("GameDatas/Enemy").ToList();
+        // やっぱ先にリストを用意してもらう形にしよう
+        //enemies = Resources.LoadAll<EnemyData>("GameDatas/Enemy").ToList();
 
         // それぞれのデータの分だけボタンを用意、初期化
         foreach (EnemyData enemy in enemies)
@@ -50,6 +67,7 @@ public class EnemyDictionary_Director : SingletonMono<EnemyDictionary_Director>
             }).AddTo(this);
         }
 
+        if(index >  -1 && index < enemies.Count) SetInfo(enemies[index]);
     }
 
     // 渡された敵の情報を表示
@@ -83,10 +101,10 @@ public class EnemyDictionary_Director : SingletonMono<EnemyDictionary_Director>
 
         txt_EnemyDiscription.text = data.description;
 
-        txts_Status[0].text = "HP : " + data.hp;
-        txts_Status[1].text = "攻撃力 : " + data.power;
-        txts_Status[2].text = "防御力 : " + data.defense;
-        txts_Status[3].text = "移動速度 : " + data.moveSpeed;
+        txts_Status[0].text = "HP : " + (int)(data.hp * modifire);
+        txts_Status[1].text = "攻撃力 : " + (int)(data.power * modifire);
+        txts_Status[2].text = "防御力 : " + (int)(data.defense * modifire);
+        txts_Status[3].text = "移動速度 : " + (int)(data.moveSpeed * modifire);
 
         for (int i = 0; i < data.statusAbilities.Count; i++)
         {

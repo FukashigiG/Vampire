@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b830faf662ff0114fa5c87e18e7a3bb2, type: 3}
-  m_Name: z
+  m_Name: tidu
   m_EditorClassIdentifier: Assembly-CSharp::TreasureData
-  <_name>k__BackingField: 
-  <flavortext>k__BackingField: 
+  <_name>k__BackingField: "\u5B9D\u306E\u5730\u56F3"
+  <flavortext>k__BackingField: "\u3053\u306E\u4E16\u306E\u3059\u3079\u3066\u3092\u7F6E\u304B\u308C\u305F\u5834\u6240\u3092\u793A\u3057\u3066\u3042\u308B"
   <rank>k__BackingField: 1
-  <sprite>k__BackingField: {fileID: 7847293171571253542, guid: f9c817fc8df7b0f4ab7e09b9332fc3ef, type: 3}
+  <sprite>k__BackingField: {fileID: 7495039484680916130, guid: 8a0863b7ce330ea46846e7f962e55dae, type: 3}
   <element>k__BackingField: 0
   <description>k__BackingField: "\u30CA\u30A4\u30D5\u3092\u6368\u3066\u308B\u3068\u307B\u3093\u306E\u308A\u56DE\u5FA9"
   <logic>k__BackingField: {fileID: 11400000, guid: 8a08e1411d172844bb785b62a91ce36d, type: 2}
