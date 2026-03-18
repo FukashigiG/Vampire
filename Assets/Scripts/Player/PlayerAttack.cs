@@ -349,7 +349,7 @@ public class PlayerAttack : MonoBehaviour
 
         closerCam.SetActive(true);
 
-        await UniTask.Delay((int)(1000 * Time.timeScale), cancellationToken: token);
+        await UniTask.Delay((int)(1000 * GameAdmin.Instance.cullentTimeScale), cancellationToken: token);
 
         GameAdmin.Instance.SetTimeScaleValue(1f);
 

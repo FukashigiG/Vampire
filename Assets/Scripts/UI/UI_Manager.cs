@@ -26,10 +26,12 @@ public class UI_Manager : SingletonMono<UI_Manager>
 
         InputActionMap uiMap = inputActions.FindActionMap("UICtrl");
         InputAction togglePanelAction = null;
+        InputAction switchTimeScaleMode = null;
 
         if (uiMap != null)
         {
             togglePanelAction = uiMap.FindAction("TogglePanel");
+            switchTimeScaleMode = uiMap.FindAction("SwitchTimeScaleMode");
         }
         else
         {
@@ -50,6 +52,21 @@ public class UI_Manager : SingletonMono<UI_Manager>
         {
             Debug.Log("Actionが見つかりません");
         }
-        
+
+        if (switchTimeScaleMode != null)
+        {
+            // すでに有効化されていないかチェック
+            if (!switchTimeScaleMode.enabled)
+            {
+                switchTimeScaleMode.Enable(); // この一文があって初めて、アクションが呼ばれるようになる
+            }
+
+            UI_FastModeButton.Instance.Initialize(switchTimeScaleMode);
+        }
+        else
+        {
+            Debug.Log("Actionが見つかりません");
+        }
+
     }
 }

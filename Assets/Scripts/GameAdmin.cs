@@ -2,15 +2,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
+using TMPro;
 using UniRx;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
-using TMPro;
 using unityroom.Api;
 using Random = UnityEngine.Random;
-using System.Linq;
 
 public class GameAdmin : SingletonMono<GameAdmin>
 {
@@ -60,7 +62,14 @@ public class GameAdmin : SingletonMono<GameAdmin>
     // 現在の倍率
     public float cullentBoostMultiple => 1 + (waveCount - 1) * waveBoostMultiplier;
 
-    float cullentTimeScale = 1f;
+    // タイムスケールを記録する
+    public float cullentTimeScale { get; private set; } = 1f;
+
+    // ゲームの再生速度を記録する（2倍速モード実装のために追加した変数）
+    float defaultTimescaleMultiplier = 1f;
+
+    // 計算したタイムスケールの結果を指す
+    float _TimeScale => cullentTimeScale * defaultTimescaleMultiplier;
 
     public enum WaveState
     {
@@ -296,7 +305,7 @@ public class GameAdmin : SingletonMono<GameAdmin>
             source.GenerateImpulse();
 
             // 少し待つ
-            await UniTask.Delay((int)(1.5f * 1000 * Time.timeScale), cancellationToken: _cancellationToken);
+            await UniTask.Delay((int)(1.5f * 1000 * cullentTimeScale), cancellationToken: _cancellationToken);
         }
         finally
         {
@@ -324,12 +333,21 @@ public class GameAdmin : SingletonMono<GameAdmin>
         Instantiate(item_WarpStage, posi, Quaternion.identity);
     }
 
+    public void SetTimeScaleMultiplier(float x)
+    {
+        defaultTimescaleMultiplier = x;
+
+        if (!isPausing) Time.timeScale = _TimeScale;
+
+        Debug.Log(_TimeScale);
+    }
+
     public void SetTimeScaleValue(float x)
     {
         if(x <= 0) return;
 
         cullentTimeScale = x;
-        Time.timeScale = cullentTimeScale;
+        Time.timeScale = _TimeScale;
     }
 
     // 一時停止
@@ -345,9 +363,9 @@ public class GameAdmin : SingletonMono<GameAdmin>
     {
         pauseCount--;
 
-        if (pauseCount == 0)
+        if (! isPausing)
         {
-            Time.timeScale = cullentTimeScale;
+            Time.timeScale = _TimeScale;
         }
     }
 

@@ -33,8 +33,6 @@ public class PlayerInventory
 
             // リストに加える
             runtimeKnives.Add(y);
-
-            Debug.Log("Add");
         }
         else
         {

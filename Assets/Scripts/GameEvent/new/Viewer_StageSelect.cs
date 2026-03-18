@@ -64,7 +64,7 @@ public class Viewer_StageSelect : SingletonMono<Viewer_StageSelect>
             {
                 ShowDiscription(_stage);
 
-                EnemyDictionary_Director.Instance.Initialize(button_OpenEnemyDx, _stage.enemyList, GameAdmin.Instance.cullentBoostMultiple + GameAdmin.Instance.waveBoostMultiplier);
+                 EnemyDictionary_Director.Instance?.Initialize(button_OpenEnemyDx, _stage.enemyList, GameAdmin.Instance.cullentBoostMultiple + GameAdmin.Instance.waveBoostMultiplier);
             });
         }
 
