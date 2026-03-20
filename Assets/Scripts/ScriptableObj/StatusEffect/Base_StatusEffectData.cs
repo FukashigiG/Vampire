@@ -1,26 +1,28 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public abstract class Base_StatusEffectData : ScriptableObject
+public abstract class Base_StatusEffectData : ScriptableObject, IDiscribing
 {
-    [field: SerializeField] public string effectName {  get; private set; }
+    [field: SerializeField] public string _name {  get; private set; }
+    [field: SerializeField] public string description {  get; private set; }
+    [field: SerializeField] public IDiscribing ex_Discribing { get; private set; } = null;
     [field: SerializeField] public Sprite icon {  get; private set; }
 
-    // Œø‰ÊŠÔ’†’èŠú“I‚É‰½‚©‚µ‚ç‚Ìˆ—‚ğ‚·‚é‚©
+    // åŠ¹æœæ™‚é–“ä¸­å®šæœŸçš„ã«ä½•ã‹ã—ã‚‰ã®å‡¦ç†ã‚’ã™ã‚‹ã‹
     public virtual bool IsTickingEffect => false;
 
-    // Œø‰Ê“K—p‚ÉŒÄ‚Î‚ê‚é
-    // target = Œø‰Ê‘ÎÛ, amount = Œø‰Ê—Ê
+    // åŠ¹æœé©ç”¨æ™‚ã«å‘¼ã°ã‚Œã‚‹
+    // target = åŠ¹æœå¯¾è±¡, amount = åŠ¹æœé‡
     public abstract void Apply(Base_MobStatus target, int amount);
-    // Œø‰ÊI—¹‚ÉŒÄ‚Î‚ê‚é
+    // åŠ¹æœçµ‚äº†æ™‚ã«å‘¼ã°ã‚Œã‚‹
     public abstract void Remove(Base_MobStatus target, int amount);
 
     public virtual async UniTask Tick(Base_MobStatus target, float duration, int amount, CancellationToken token)
     {
-        // ƒfƒtƒHƒ‹ƒg‚Å‚Í‰½‚à‚µ‚È‚¢
+        // ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ä½•ã‚‚ã—ãªã„
         await UniTask.CompletedTask;
     }
 }

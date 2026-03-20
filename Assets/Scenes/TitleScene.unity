@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1867181179267402779, guid: 7c5bf6c935cd90744ae0b8148de094ff, type: 3}
+  m_Sprite: {fileID: 7394752860723047771, guid: 8e32248b2c783c64cb832f7797c3715e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -559,14 +559,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShowAbilityDetail
       objectReference: {fileID: 0}
-    - target: {fileID: 7783937702645528848, guid: a32c5b0e2621bb54c99d8bb876f466aa, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7125913978083620876, guid: a32c5b0e2621bb54c99d8bb876f466aa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1617953664}
   m_SourcePrefab: {fileID: 100100000, guid: a32c5b0e2621bb54c99d8bb876f466aa, type: 3}
 --- !u!224 &209736535 stripped
 RectTransform:
@@ -3716,6 +3715,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1617953660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7125913978083620876, guid: a32c5b0e2621bb54c99d8bb876f466aa, type: 3}
+  m_PrefabInstance: {fileID: 209736534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1617953664
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617953660}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1621134750
 GameObject:
   m_ObjectHideFlags: 0

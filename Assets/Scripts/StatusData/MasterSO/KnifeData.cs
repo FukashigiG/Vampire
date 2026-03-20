@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName ="NewWeaponData", menuName = "Game Data/Weapon Data")]
-public class KnifeData : Base_PlayerItem
+public class KnifeData : Base_PlayerItem, IDiscribing
 {
     // ナイフの各ステータスをまとめたもの
     // このスクリプトはUnityエディタ上に登録するためのものであり、ゲーム中では_RunTimeがついてるものを扱う
@@ -28,6 +29,23 @@ public class KnifeData : Base_PlayerItem
     public bool blaze; // 火焔
     public bool freeze; // 氷結
     */
+
+    public string description => $"攻撃：{power}, 属性：{elementPower}\n{GetAllAbilitiesName()}";
+    public IDiscribing ex_Discribing => abilities[0];
+
+    string GetAllAbilitiesName()
+    {
+        string txt = string.Empty;
+
+        foreach(KnifeAbility ability in abilities)
+        {
+            if (txt.Length > 0) txt += ", ";
+
+            txt += ability._name;
+        }
+
+        return txt;
+    }
 }
 
 [System.Serializable]
@@ -46,6 +64,7 @@ public class KnifeAbility : IDiscribing
 
     public string _name => abilityLogic.effectName;
     public string description => abilityLogic.description;
+    public IDiscribing ex_Discribing => abilityLogic.extraDiscribe;
 
     // ナイフが投げられたときに呼ばれる
     public virtual void OnThrown(PlayerStatus status, GameObject knifeObj, KnifeData_RunTime knifeData)

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2a4fac465698e4a9e065c59669a8eb, type: 3}
   m_Name: arrowHit
   m_EditorClassIdentifier: 
-  <effectName>k__BackingField: 
+  <_name>k__BackingField: "\u5E7D\u970A\u72B6\u614B"
+  <description>k__BackingField: "\u6570\u79D2\u9593\u3001\u81EA\u8EAB\u306E\u5F53\u305F\u308A\u5224\u5B9A\u304C\u6D88\u3048\u308B"
   <icon>k__BackingField: {fileID: -781672473073315959, guid: a6bdf83b365ef704b83da35a58e42020, type: 3}
   targetType: 2

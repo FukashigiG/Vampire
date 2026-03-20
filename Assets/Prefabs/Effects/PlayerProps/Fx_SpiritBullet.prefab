@@ -98,6 +98,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3501893452787138005, guid: db667c0317c36ab41aef724b63de71cb, type: 3}
+      propertyPath: animatedLights.Array.data[0].light
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3501893452787138006, guid: db667c0317c36ab41aef724b63de71cb, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -148,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3501893452787138010, guid: db667c0317c36ab41aef724b63de71cb, type: 3}
       propertyPath: m_Name
-      value: SpiritBullet
+      value: Fx_SpiritBullet
       objectReference: {fileID: 0}
     - target: {fileID: 3501893452787138010, guid: db667c0317c36ab41aef724b63de71cb, type: 3}
       propertyPath: m_IsActive
@@ -159,7 +163,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3501893452413584979, guid: db667c0317c36ab41aef724b63de71cb, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3501893452787138006, guid: db667c0317c36ab41aef724b63de71cb, type: 3}
       insertIndex: -1

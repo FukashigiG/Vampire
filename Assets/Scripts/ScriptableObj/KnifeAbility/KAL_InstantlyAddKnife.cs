@@ -1,13 +1,15 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewKnifeAbility", menuName = "Game Data/KnifeAbility/InstantlyAddKnife")]
 public class KAL_InstantlyAddKnife : Base_KnifeAbilityLogic
 {
-    // “Š±Žž‘¦À‚ÉŽèŽ‚¿ƒiƒCƒt‚É‰½‚©‚µ‚ç‚ð’Ç‰Á
+    // æŠ•æ“²æ™‚å³åº§ã«æ‰‹æŒã¡ãƒŠã‚¤ãƒ•ã«ä½•ã‹ã—ã‚‰ã‚’è¿½åŠ 
 
     [SerializeField] KnifeData knifeData_Added;
+
+    public override IDiscribing extraDiscribe => knifeData_Added;
 
     public override void ActivateAbility(Base_MobStatus status, GameObject knifeObject, KnifeData_RunTime knifeData, string effectID)
     {

@@ -185,5 +185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8507fb35a6168fe40806a0320d17ca1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txt: {fileID: 3515293434381238106}
+  rect: {fileID: 449099179641164914}
   life: 0.75
+  txt: {fileID: 3515293434381238106}

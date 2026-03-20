@@ -1,16 +1,18 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewKnifeAbility", menuName = "Game Data/KnifeAbility/de_buff")]
 public class KAL_Debuff : Base_KnifeAbilityLogic
 {
-    // �Ώۂɏ�ԕω�
+    // 対象に状態変化
 
     [SerializeField] float dulation;
     [SerializeField] int amount_percent;
 
     [SerializeField] Base_StatusEffectData statusEffect;
+
+    public override IDiscribing extraDiscribe => statusEffect;
 
     public override void ActivateAbility(Base_MobStatus status, GameObject knifeObj, KnifeData_RunTime knifeData, string effectID)
     {

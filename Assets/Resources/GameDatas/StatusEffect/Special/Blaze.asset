@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2a4fac465698e4a9e065c59669a8eb, type: 3}
   m_Name: Blaze
   m_EditorClassIdentifier: 
-  <effectName>k__BackingField: 
+  <_name>k__BackingField: "\u706B\u708E\u72B6\u614B"
+  <description>k__BackingField: "\u6570\u79D2\u9593\u3058\u308F\u3058\u308F\u3068\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B"
   <icon>k__BackingField: {fileID: 3311922749231627523, guid: 9d010ce3e6c73894389e1ad4d7f5b6e5, type: 3}
   targetType: 3

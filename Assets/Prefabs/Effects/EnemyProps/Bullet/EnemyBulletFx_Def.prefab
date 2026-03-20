@@ -538,6 +538,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3357777935856840692, guid: 6a15fa33111c6b543a85348a05037e9c, type: 3}
+      propertyPath: animatedLights.Array.data[0].light
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3357777935856840693, guid: 6a15fa33111c6b543a85348a05037e9c, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -616,11 +620,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3357777935856840699, guid: 6a15fa33111c6b543a85348a05037e9c, type: 3}
       propertyPath: m_Name
-      value: EnemyBulletFx
+      value: EnemyBulletFx_Def
       objectReference: {fileID: 0}
     - target: {fileID: 3357777936095663219, guid: 6a15fa33111c6b543a85348a05037e9c, type: 3}
       propertyPath: m_Range
-      value: 7.109012
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3357777936095663219, guid: 6a15fa33111c6b543a85348a05037e9c, type: 3}
       propertyPath: m_Color.b
@@ -636,7 +640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3357777936095663219, guid: 6a15fa33111c6b543a85348a05037e9c, type: 3}
       propertyPath: m_Intensity
-      value: 16.505669
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3357777936557854532, guid: 6a15fa33111c6b543a85348a05037e9c, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -691,7 +695,8 @@ PrefabInstance:
       value: 0.30630827
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3357777936095663218, guid: 6a15fa33111c6b543a85348a05037e9c, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3357777935856840695, guid: 6a15fa33111c6b543a85348a05037e9c, type: 3}
       insertIndex: -1

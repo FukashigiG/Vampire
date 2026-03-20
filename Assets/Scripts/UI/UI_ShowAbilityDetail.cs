@@ -3,24 +3,41 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class UI_ShowAbilityDetail : SingletonMono<UI_ShowAbilityDetail>
 {
-    [SerializeField] TextMeshProUGUI txt_Name;
-    [SerializeField] TextMeshProUGUI txt_Description;
+    List<Window_ShowDetail> windows = new List<Window_ShowDetail>();
 
-    [SerializeField] GameObject body;
-
-    public void Show(IDiscribing discribing)
+    protected override void Awake()
     {
-        body.SetActive(true);
+        foreach(Transform child in this.transform)
+        {
+            if(child.gameObject.TryGetComponent(out Window_ShowDetail window))
+            {
+                windows.Add(window);
+            }
+        }
+    }
 
-        txt_Name.text = discribing._name;
-        txt_Description.text = discribing.description;
+    public void Show(IDiscribing discribing, int order = 0)
+    {
+        if(discribing._name == string.Empty || discribing._name == "" || discribing._name == null) return;
+        if(order >= windows.Count) return;
+
+        windows[order].OpenWindow(discribing);
+
+        if(discribing.ex_Discribing != null)
+        {
+            Show(discribing.ex_Discribing, order + 1);
+        }
     }
 
     public void Hide()
     {
-        body.SetActive(false);
+        foreach(Window_ShowDetail window in windows)
+        {
+            window.gameObject.SetActive(false);
+        }
     }
 }

@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2a4fac465698e4a9e065c59669a8eb, type: 3}
   m_Name: ArrowDamage
   m_EditorClassIdentifier: 
-  <effectName>k__BackingField: 
+  <_name>k__BackingField: "\u7121\u6575\u72B6\u614B"
+  <description>k__BackingField: "\u6570\u79D2\u9593\u3042\u3089\u3086\u308B\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u306A\u3044"
+  <icon>k__BackingField: {fileID: 0}
   targetType: 1

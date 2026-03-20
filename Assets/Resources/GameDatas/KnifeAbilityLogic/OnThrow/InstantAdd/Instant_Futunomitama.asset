@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <effectName>k__BackingField: "\u964D\u81E8\u30FB\u5E03\u90FD\u5FA1\u9B42"
   probability_Percent: 30
-  <description>k__BackingField: "\u6295\u64F2\u6642\u3001\u300C\u5E03\u90FD\u5FA1\u9B42\u300D\u3092\u6301\u3061\u306B\u52A0\u3048\u308B\u3053\u3068\u304C\u3042\u308B"
+  <description>k__BackingField: "\u6295\u64F2\u6642\u3001\u300C\u5E03\u90FD\u5FA1\u9B42\u300D\u3092\u624B\u6301\u3061\u306B\u52A0\u3048\u308B\u3053\u3068\u304C\u3042\u308B"
   <effectOnThrown>k__BackingField: 1
   <effectOnHit>k__BackingField: 0
   knifeData_Added: {fileID: 11400000, guid: 87e781edba0b0da43bd298cc5f5aca54, type: 2}

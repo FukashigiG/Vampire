@@ -262,7 +262,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
         _hitPoint.Value -= value;
 
         //ダメージテキストを出す処理
-        DamageTxtFactory.Instance.InstantiateDmgTxt(transform.position, value, color_DamageTxt);
+        DamageTxtFactory.Instance.DisplayDmgTxt(transform.position, value, color_DamageTxt);
 
         if (_hitPoint.Value <= 0)
         {
@@ -311,7 +311,7 @@ public class Base_MobStatus : MonoBehaviour, IDamagable
 
         if(value <= 0) return;
 
-        DamageTxtFactory.Instance.InstantiateDmgTxt(transform.position, value, Color.green);
+        DamageTxtFactory.Instance.DisplayDmgTxt(transform.position, value, Color.green);
     }
 
     // ノックバック
